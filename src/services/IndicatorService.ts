@@ -1,56 +1,46 @@
-import mongoose from 'mongoose'
-import * as types from '../types'
-import db from '@/db'
-import IndicatorModel from '@/models/Indicator'
+import { Indicator } from '@/types'
+import prisma from '../../prisma/prisma'
+
+interface SearchParams {
+  query: string
+  page: number
+}
 
 const IndicatorService = {
-  async getById(id: string) {
-    await db
+  async get({ id }: { id: string }) {
+    const data: (Indicator & { total: number | null })[] =
+      await prisma.$queryRaw`SELECT i.*, (SELECT "value" FROM "Value" WHERE "indicatorId" = ${id} AND year = ${
+        new Date().getFullYear() - 1
+      } AND "countryId" = 'WEOWORLD') as "total" FROM "Indicator" i WHERE "id" = ${id}`
 
-    return await IndicatorModel.findOne({ id })
-  },
-  async create(item: types.Indicator) {
-    await db
-
-    return await IndicatorModel.create(item)
+    return data[0]
   },
 
-  async autocomplete(query: string) {
-    await db
-
-    return await IndicatorModel.find({
-      $text: { $search: query, $caseSensitive: false },
-    }).limit(5)
-  },
-
-  async search({ query, topic, page }: { query: string; page: number; topic: string }) {
-    await db
-
-    const dataPromise = IndicatorModel.find({
-      $text: { $search: query, $caseSensitive: false },
+  async search({ query, page }: SearchParams) {
+    const dataPromise = prisma.indicator.findMany({
+      where: { label: { search: query.trim().replace(/ /gi, ' & ').toLowerCase() } },
+      take: 45,
+      skip: (page - 1) * 45,
     })
-      .sort('label')
-      .skip((page - 1) * 45)
-      .limit(45)
 
-    const countPromise = IndicatorModel.count({
-      $text: { $search: query, $caseSensitive: false },
+    const countPromise = prisma.indicator.count({
+      where: { label: { search: query.trim().replace(/ /gi, ' & ').toLowerCase() } },
     })
 
     const [data, count] = await Promise.all([dataPromise, countPromise])
 
-    return {
-      data: data.map((item) => item.toObject()) as types.Indicator[],
-      count: count,
-      pages: Math.ceil(count / 45),
-      page,
-    }
+    return { data, page, pages: Math.ceil(count / 45) }
   },
 
-  async getAll() {
-    await db
+  async autocomplete({ query }: { query: string }) {
+    return await prisma.indicator.findMany({
+      where: { label: { search: query.trim().replace(/ /gi, ' & ').toLowerCase() } },
+      take: 5,
+    })
+  },
 
-    return await IndicatorModel.find({})
+  async getMany({ ids }: { ids: string[] }) {
+    return await prisma.indicator.findMany({ where: { id: { in: ids } } })
   },
 }
 

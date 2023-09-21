@@ -8,7 +8,7 @@ export const GET = async (req: NextRequest) => {
     return new NextResponse(null, { status: 400 })
   }
 
-  const data = await IndicatorService.autocomplete(query)
+  const data = await IndicatorService.autocomplete({ query })
 
   return NextResponse.json(data)
 }

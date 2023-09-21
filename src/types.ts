@@ -5,11 +5,12 @@ export interface PageProps<TParams extends {} = {}, TSearchParams extends {} = {
 
 export interface Indicator {
   label: string
-  description: string
+  description: string | null
   source: string
-  unit: string
+  unit: string | null
   dataset: string
   id: string
+  unitSymbol: string | null
 }
 
 export interface Topic {
@@ -27,33 +28,13 @@ export type ApiResponse<T extends {} = {}> = [
   T[]
 ]
 
-/*export interface Value {
-  indicator: {
-    id: string
-    value: string
-  }
-  country: {
-    id: string
-    value: string
-  }
-  countryiso3code: string
-  date: string
-  value: number
-  unit: string
-  obs_status: string
-  decimal: number
-}*/
-
 export interface IMFResponseIndicator {
   label: string
   description: string
   source: string
+
   unit: string
   dataset: string
-}
-
-export interface Value {
-  [key: string]: number
 }
 
 export interface IMFResponse {
@@ -74,4 +55,16 @@ export interface IMFValuesResponse {
     version: '1'
     'output-method': string
   }
+}
+
+export interface Value {
+  value: number
+  indicator: string
+  country: string
+  year: number
+}
+
+export interface Country {
+  id: string
+  name: string
 }

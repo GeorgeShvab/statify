@@ -1,4 +1,3 @@
-import TopicService from '@/services/TopicService'
 import { Indicator } from '@/types'
 import Link from 'next/link'
 import { FC } from 'react'

@@ -1,0 +1,54 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Indicator {
+  id          String   @id @unique
+  label       String
+  description String?
+  source      String
+  unit        String?
+  dataset     String
+  absolute    Boolean
+  unitSymbol  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  values      Value[]
+
+  @@index([label(sort: Asc)])
+  @@index([id(sort: Asc)])
+}
+
+model Value {
+  id          Int        @id @default(autoincrement())
+  value       Float
+  country     Country    @relation(fields: [countryId], references: [id])
+  year        Int
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  indicator   Indicator? @relation(fields: [indicatorId], references: [id])
+  indicatorId String?
+  countryId   String
+
+  @@index([year(sort: Desc)])
+  @@index([countryId(sort: Asc)])
+  @@index([indicatorId(sort: Asc)])
+}
+
+model Country {
+  id        String   @id @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  country   Boolean  @default(false)
+  values    Value[]
+
+  @@index([name(sort: Asc)])
+  @@index([id(sort: Asc)])
+}
