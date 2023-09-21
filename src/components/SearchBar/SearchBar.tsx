@@ -124,9 +124,11 @@ const SearchBar: FC = () => {
   }
 
   const fetchAutocomplete = async (value: string) => {
+    setAutocomplete((prev) => ({ ...prev, isOpened: true }))
+
     const { data } = await axios.get<Indicator[]>('/api/autocomplete?query=' + value)
 
-    setAutocomplete({ isOpened: true, data })
+    setAutocomplete((prev) => ({ ...prev, data }))
   }
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -147,9 +149,7 @@ const SearchBar: FC = () => {
   }
 
   const handleInputClick = () => {
-    if (autocomplete.data?.length) {
-      setAutocomplete((prev) => ({ ...prev, isOpened: true }))
-    }
+    setAutocomplete((prev) => ({ ...prev, isOpened: true }))
   }
 
   const handleSubmit = (e: FormEvent) => {
@@ -163,8 +163,10 @@ const SearchBar: FC = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex gap-1.5 md:gap-2.5 items-center" ref={containerEl}>
-        <div className="relative flex-1 z-10">
-          <div className={`border ${autocomplete.isOpened ? 'rounded-t-lg' : 'rounded-lg'}`}>
+        <div className="relative flex-1 z-20">
+          <div
+            className={`border ${autocomplete.isOpened && autocomplete.data?.length ? 'rounded-t-lg' : 'rounded-lg'}`}
+          >
             <div className="flex bg-white overflow-hidden rounded-lg">
               <span className="text-neutral-400 h-10 w-10 flex justify-center items-center">
                 <svg

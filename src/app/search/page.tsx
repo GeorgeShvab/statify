@@ -14,7 +14,6 @@ interface SearchParams {
 const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
   const { data, pages, page } = await IndicatorService.search({
     query: searchParams.query,
-    topic: searchParams.topic || 'All Topics',
     page: searchParams.page ? Number(searchParams.page) : 1,
   })
 

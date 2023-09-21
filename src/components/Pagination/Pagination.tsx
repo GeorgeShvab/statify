@@ -61,8 +61,9 @@ const Pagination: FC<Props> = ({ page, pages }) => {
             )}
           </>
         )}
-        {displayedPages.map((item) => (
+        {displayedPages.map((item, index) => (
           <Link
+            key={item}
             href={makeUrl(searchParams.toString(), item)}
             className={`h-10 w-10 rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all ${
               item === page ? 'font-bold text-black pointer-events-none' : 'text-neutral-500'

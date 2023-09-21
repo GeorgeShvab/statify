@@ -60,6 +60,9 @@ main {
   border-radius: 0 8px 0 0;
 }
 
-.country-row:last-child > th {
+.country-row:last-child > td {
   border-bottom: none !important;
+}
+
+.country-row-chart {
 }
