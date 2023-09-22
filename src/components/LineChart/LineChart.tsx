@@ -59,6 +59,7 @@ const LineChart: FC<Props> = (props) => {
         fill: false,
         borderWidth: 1,
         pointRadius: 0,
+        pointHoverRadius: 0,
       },
     ],
   }

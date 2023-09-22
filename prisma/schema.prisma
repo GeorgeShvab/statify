@@ -9,7 +9,7 @@ datasource db {
 }
 
 model Indicator {
-  id          String   @id @unique
+  id          String     @id @unique
   label       String
   description String?
   source      String
@@ -17,9 +17,10 @@ model Indicator {
   dataset     String
   absolute    Boolean
   unitSymbol  String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   values      Value[]
+  Bookmark    Bookmark[]
 
   @@index([label(sort: Asc)])
   @@index([id(sort: Asc)])
@@ -42,13 +43,27 @@ model Value {
 }
 
 model Country {
-  id        String   @id @unique
+  id        String     @id @unique
   name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  country   Boolean  @default(false)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  country   Boolean    @default(false)
   values    Value[]
+  Bookmark  Bookmark[]
 
   @@index([name(sort: Asc)])
   @@index([id(sort: Asc)])
+}
+
+model Bookmark {
+  id          Int       @id @default(autoincrement())
+  country     Country?  @relation(fields: [countryId], references: [id])
+  indicator   Indicator @relation(fields: [indicatorId], references: [id])
+  client      String
+  countryId   String?
+  indicatorId String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([createdAt(sort: Desc)])
 }
