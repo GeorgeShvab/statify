@@ -3,9 +3,6 @@ import './globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import Footer from '@/components/Footer/Footer'
-import getClientId from '@/app/actions/getClientId'
-import { randomUUID } from 'crypto'
-import { cookies } from 'next/headers'
 
 const roboto = Roboto({ subsets: ['latin'], weight: ['100', '300', '400', '500', '700', '900'] })
 
