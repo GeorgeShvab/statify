@@ -1,31 +1,30 @@
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
 import Pagination from '@/components/Pagination/Pagination'
+import BookmarkService from '@/services/BookmarkService'
 import IndicatorService from '@/services/IndicatorService'
 import { PageProps } from '@/types'
 import { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { FC } from 'react'
 
 interface SearchParams {
-  query: string
-  topic?: string
-  page?: string
+  page: number
 }
 
-const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
-  const { data, pages, page } = await IndicatorService.search({
-    query: searchParams.query,
-    page: searchParams.page ? Number(searchParams.page) : 1,
-  })
+const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
+  const client = cookies().get('client_id')?.value
+
+  const data = client ? await BookmarkService.get({ client, page: searchParams.page || 1 }) : null
 
   return (
-    <main>
+    <main className="mb-3 md:mb-5">
       <div className="flex flex-col min-h-[calc(100vh-var(--header-height))] relative">
         <div className="flex-1">
           <div className="container">
-            <h2 className="mb-1.5 md:mb-3 px-2 font-semibold">Search results for {searchParams.query}</h2>
-            {data.length ? (
+            <h2 className="mb-1.5 md:mb-3 px-2 font-semibold">Your Bookmarks</h2>
+            {data?.data.length ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                {data.map((item) => (
+                {data.data.map((item) => (
                   <IndicatorCard key={item.id} {...item} />
                 ))}
               </div>
@@ -43,18 +42,18 @@ const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => 
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                      d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
                     />
                   </svg>
                 </div>
-                <p className="text-center text-neutral-300">No datasets found</p>
+                <p className="text-center text-neutral-300">You have no bookmarks yet</p>
               </div>
             )}
           </div>
         </div>
-        {searchParams.query && !!data.length && (
+        {!!data?.data.length && (
           <div className="container">
-            <Pagination pages={pages} page={page} />
+            <Pagination pages={data.pages} page={data.page} />
           </div>
         )}
       </div>
@@ -62,18 +61,16 @@ const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => 
   )
 }
 
-export const generateMetadata = async ({ searchParams }: PageProps<{}, SearchParams>): Promise<Metadata> => {
-  return {
-    title: `Results for ${searchParams.query}`,
-    description: `Indicator results for ${searchParams.query}`,
-    openGraph: {
-      images: ['/favicon.png'],
-      title: `Results for ${searchParams.query}`,
-      description: `Indicator results for ${searchParams.query}`,
-      type: 'website',
-      url: `/search?query=${searchParams.query}&page=${searchParams.page}&topic=${searchParams.topic}`,
-    },
-  }
+export const metadata: Metadata = {
+  title: 'Bookmarks',
+  description: 'Precious economic data by countries',
+  openGraph: {
+    images: ['/favicon.png'],
+    title: 'Statify',
+    description: 'Precious economic data by countries',
+    type: 'website',
+    url: `/`,
+  },
 }
 
-export default SearchPage
+export default Bookmarks

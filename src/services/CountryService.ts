@@ -7,7 +7,12 @@ const CountryService = {
 
   async getCountries({ indicator }: { indicator: string }) {
     return await prisma.country.findMany({
-      include: { values: { orderBy: { year: 'asc' }, where: { indicatorId: indicator } } },
+      include: {
+        values: {
+          orderBy: { year: 'asc' },
+          where: { indicatorId: indicator, year: { lte: new Date().getFullYear() } },
+        },
+      },
       orderBy: { name: 'asc' },
     })
   },

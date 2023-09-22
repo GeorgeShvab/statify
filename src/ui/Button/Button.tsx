@@ -14,7 +14,7 @@ const Button: ForwardRefRenderFunction<
 
   if (href) {
     return (
-      <a className={classname} {...(props as any)} ref={ref}>
+      <a className={classname} href={href} {...(props as any)} ref={ref}>
         {children}
       </a>
     )

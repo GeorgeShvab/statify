@@ -18,13 +18,15 @@ const IndicatorService = {
 
   async search({ query, page }: SearchParams) {
     const dataPromise = prisma.indicator.findMany({
-      where: { label: { search: query.trim().replace(/ /gi, ' & ').toLowerCase() } },
+      where: { OR: [{ label: { contains: query.trim() } }, { description: { contains: query.trim() } }] },
       take: 45,
       skip: (page - 1) * 45,
+      orderBy: { label: 'asc' },
     })
 
     const countPromise = prisma.indicator.count({
-      where: { label: { search: query.trim().replace(/ /gi, ' & ').toLowerCase() } },
+      where: { OR: [{ label: { contains: query.trim() } }, { description: { contains: query.trim() } }] },
+      orderBy: { label: 'asc' },
     })
 
     const [data, count] = await Promise.all([dataPromise, countPromise])
@@ -34,8 +36,9 @@ const IndicatorService = {
 
   async autocomplete({ query }: { query: string }) {
     return await prisma.indicator.findMany({
-      where: { label: { search: query.trim().replace(/ /gi, ' & ').toLowerCase() } },
+      where: { OR: [{ label: { contains: query.trim() } }, { description: { contains: query.trim() } }] },
       take: 5,
+      orderBy: { label: 'asc' },
     })
   },
 

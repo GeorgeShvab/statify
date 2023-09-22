@@ -33,6 +33,7 @@ const Chart: FC<Props> = (props) => {
       fill: false,
       borderWidth: 1,
       pointRadius: window.screen.width > 768 ? 4 : 0,
+      pointHover: window.screen.width > 768 ? 4 : 0,
     })),
   }
 

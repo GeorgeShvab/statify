@@ -38,7 +38,11 @@ const ValueService = {
       }
     } else {
       data = await prisma.value.findMany({
-        where: { indicatorId: indicator, ...(country ? { countryId: country } : {}) },
+        where: {
+          indicatorId: indicator,
+          ...(country ? { countryId: country } : {}),
+          year: { lte: new Date().getFullYear() },
+        },
         orderBy: { year: 'asc' },
       })
     }

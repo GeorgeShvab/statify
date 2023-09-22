@@ -2,9 +2,11 @@ import * as types from '@/types'
 import IndicatorService from '@/services/IndicatorService'
 import getFullCountryName from '@/utils/getFullCountryName'
 import { Metadata } from 'next'
-import Chart from './Chart'
 import Link from 'next/link'
 import ValueService from '@/services/ValueService'
+import dynamic from 'next/dynamic'
+
+const Chart = dynamic(() => import('./Chart'), { ssr: false })
 
 interface SearchParams {
   id: string
@@ -41,17 +43,18 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             </p>
           </div>
         </div>
-
         <div className="container mb-3 md:mb-5">
-          <div className="px-2 py-4 pt-6 md:pt-8 md:px-7 md:py-6 rounded-lg bg-white border">
+          <div className="px-2 pr-2.5 py-4 pt-6 md:pt-8 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border">
             <h4 className="mb-1 md:mb-3 text-center font-semibold text-sm md:text-lg">
               {indicator.label}, {indicator.unit}
             </h4>
-            <Chart
-              data={values.map((item) => item.value)}
-              labels={values.map((item) => String(item.year))}
-              legend={[getFullCountryName(params.country)]}
-            />
+            <div className="!h-[300px] md:!h-[480px]">
+              <Chart
+                data={values.map((item) => item.value)}
+                labels={values.map((item) => String(item.year))}
+                legend={[getFullCountryName(params.country)]}
+              />
+            </div>
           </div>
         </div>
         <div className="container">
@@ -70,12 +73,12 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
               <tbody>
                 {values.map((item) => (
                   <tr className="country-row">
-                    <th className="border-b dark:border-slate-600 py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-left">
-                      {item.value.toFixed(2)}
-                    </th>
-                    <th className="border-b dark:border-slate-600 py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-fit md:w-32">
+                    <td className="border-b dark:border-slate-600 py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-left">
+                      {item.value.toFixed(2)} {indicator.unitSymbol}
+                    </td>
+                    <td className="border-b dark:border-slate-600 py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-fit md:w-32">
                       {item.year}
-                    </th>
+                    </td>
                   </tr>
                 ))}
               </tbody>
