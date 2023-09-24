@@ -57,11 +57,12 @@ export interface IMFValuesResponse {
   }
 }
 
-export interface Value {
+export type Value<T = {}> = T & {
   value: number
-  indicator: string
-  country: string
+  indicatorId: string | null
+  countryId: string
   year: number
+  id: number
 }
 
 export interface Country {
