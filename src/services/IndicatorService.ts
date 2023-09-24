@@ -18,14 +18,24 @@ const IndicatorService = {
 
   async search({ query, page }: SearchParams) {
     const dataPromise = prisma.indicator.findMany({
-      where: { OR: [{ label: { contains: query.trim() } }, { description: { contains: query.trim() } }] },
+      where: {
+        OR: [
+          { label: { contains: query.trim(), mode: 'insensitive' } },
+          { description: { contains: query.trim(), mode: 'insensitive' } },
+        ],
+      },
       take: 45,
       skip: (page - 1) * 45,
       orderBy: { label: 'asc' },
     })
 
     const countPromise = prisma.indicator.count({
-      where: { OR: [{ label: { contains: query.trim() } }, { description: { contains: query.trim() } }] },
+      where: {
+        OR: [
+          { label: { contains: query.trim(), mode: 'insensitive' } },
+          { description: { contains: query.trim(), mode: 'insensitive' } },
+        ],
+      },
       orderBy: { label: 'asc' },
     })
 
@@ -36,7 +46,12 @@ const IndicatorService = {
 
   async autocomplete({ query }: { query: string }) {
     return await prisma.indicator.findMany({
-      where: { OR: [{ label: { contains: query.trim() } }, { description: { contains: query.trim() } }] },
+      where: {
+        OR: [
+          { label: { contains: query.trim(), mode: 'insensitive' } },
+          { description: { contains: query.trim(), mode: 'insensitive' } },
+        ],
+      },
       take: 5,
       orderBy: { label: 'asc' },
     })

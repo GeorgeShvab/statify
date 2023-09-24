@@ -5,6 +5,7 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import ValueService from '@/services/ValueService'
 import dynamic from 'next/dynamic'
+import Table from './Table'
 
 const Chart = dynamic(() => import('./Chart'), { ssr: false })
 
@@ -48,7 +49,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             <h4 className="mb-1 md:mb-3 text-center font-semibold text-sm md:text-lg">
               {indicator.label}, {indicator.unit}
             </h4>
-            <div className="!h-[300px] md:!h-[480px]">
+            <div className="!h-[300px] md:!h-[480px] overflow-hidden">
               <Chart
                 data={values.map((item) => item.value)}
                 labels={values.map((item) => String(item.year))}
@@ -59,30 +60,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
         </div>
         <div className="container">
           <div className="bg-white dark:bg-slate-800 rounded-lg border">
-            <table className="table-auto w-full relative country-table">
-              <thead>
-                <tr className="">
-                  <th className="sticky top-0 !border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-left bg-neutral-50">
-                    {indicator.unit}
-                  </th>
-                  <th className="sticky top-0 !border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-right bg-neutral-50 w-fit md:w-32">
-                    Year
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {values.map((item) => (
-                  <tr className="country-row">
-                    <td className="border-b dark:border-slate-600 py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-left">
-                      {item.value.toFixed(2)} {indicator.unitSymbol}
-                    </td>
-                    <td className="border-b dark:border-slate-600 py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-fit md:w-32">
-                      {item.year}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <Table data={values} indicator={indicator} />
           </div>
         </div>
       </div>

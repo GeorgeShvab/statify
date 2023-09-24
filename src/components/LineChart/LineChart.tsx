@@ -64,13 +64,7 @@ const LineChart: FC<Props> = (props) => {
     ],
   }
 
-  return (
-    <Line
-      data={data}
-      options={options}
-      className="country-row-chart !w-20 !h-7 md:!w-24 md:!h-10 translate-x-[8px] md:translate-x-[94px]"
-    />
-  )
+  return <Line data={data} options={options} className="country-row-chart !w-20 !h-7 md:!w-24 md:!h-10" />
 }
 
 export default LineChart
