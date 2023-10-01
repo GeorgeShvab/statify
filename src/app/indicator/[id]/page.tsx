@@ -123,12 +123,20 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
   return {
     title: `${indicator.label}`,
     description: `Detaled data about ${indicator.label} in all countries`,
+    themeColor: '#ffffff',
     openGraph: {
-      images: ['/favicon.png'],
+      images: ['/og.png'],
       title: `${indicator.label}`,
       description: `Detaled data about ${indicator.label} in all countries`,
       type: 'website',
       url: `/indicator/${params.id}`,
+    },
+    twitter: {
+      images: ['/og.png'],
+      title: 'Statify',
+      description: 'Precious economic data by countries',
+      card: 'summary_large_image',
+      site: '@Zhorrrro',
     },
   }
 }
