@@ -1,103 +1,19 @@
 'use client'
 
-import { ChangeEvent, FC, FormEvent, useCallback, useEffect, useRef, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, useCallback, useRef, useState } from 'react'
 import Button from '@/ui/Button/Button'
 import axios from 'axios'
-import { Indicator, Topic } from '@/types'
+import { Indicator } from '@/types'
 import Link from 'next/link'
 import useOutsideClick from '@/hooks/useOutsideClick'
 import IconButton from '@/ui/IconButton/IconButton'
 import { useRouter, useSearchParams } from 'next/navigation'
-import Dropdown from '@/ui/Dropdown/Dropdown'
 import throttle from '@/utils/throttle'
 
 interface AutocompleteState {
   data: Indicator[] | undefined
   isOpened: boolean
 }
-
-const topics = [
-  {
-    id: '1',
-    value: 'All Topics',
-  },
-  {
-    id: '11',
-    value: 'Poverty ',
-  },
-  {
-    id: '4',
-    value: 'Education ',
-  },
-  {
-    id: '10',
-    value: 'Social Protection & Labor',
-  },
-  {
-    id: '3',
-    value: 'Economy & Growth',
-  },
-  {
-    id: '1',
-    value: 'Agriculture & Rural Development  ',
-  },
-  {
-    id: '19',
-    value: 'Climate Change',
-  },
-  {
-    id: '6',
-    value: 'Environment ',
-  },
-  {
-    id: '16',
-    value: 'Urban Development ',
-  },
-  {
-    id: '12',
-    value: 'Private Sector',
-  },
-  {
-    id: '21',
-    value: 'Trade',
-  },
-  {
-    id: '14',
-    value: 'Science & Technology ',
-  },
-  {
-    id: '20',
-    value: 'External Debt',
-  },
-  {
-    id: '7',
-    value: 'Financial Sector ',
-  },
-  {
-    id: '2',
-    value: 'Aid Effectiveness ',
-  },
-  {
-    id: '9',
-    value: 'Infrastructure ',
-  },
-  {
-    id: '13',
-    value: 'Public Sector ',
-  },
-  {
-    id: '18',
-    value: 'Millenium development goals',
-  },
-  {
-    id: '5',
-    value: 'Energy & Mining ',
-  },
-  {
-    id: '17',
-    value: 'Gender',
-  },
-]
 
 const SearchBar: FC = () => {
   const containerEl = useRef<HTMLDivElement>(null)
