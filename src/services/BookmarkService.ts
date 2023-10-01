@@ -15,7 +15,7 @@ const BookmarkService = {
     const dataPromise = prisma.bookmark.findMany({
       where: { client },
       orderBy: { createdAt: 'desc' },
-      include: { indicator: true },
+      select: { indicator: true, country: true },
       take: 45,
       skip: (page - 1) * 45,
     })
@@ -24,7 +24,7 @@ const BookmarkService = {
 
     const [data, count] = await Promise.all([dataPromise, countPromise])
 
-    return { data: data.map((item) => item.indicator), pages: Math.ceil(count / 45), page }
+    return { data, pages: Math.ceil(count / 45), page }
   },
 
   async getOne({ client, country, indicator }: BookmarkAction) {

@@ -10,6 +10,9 @@
   --black: 12 12 12;
   --black-light: 38 38 38;
   --black-dark: 6 6 6;
+  --blue: 52 132 240;
+
+  --blue-color: rgba(52, 132, 240);
 
   --header-height: 158.4px;
   --footer-height: 56.8px;
@@ -64,5 +67,78 @@ main {
   border-bottom: none !important;
 }
 
-.country-row-chart {
+.rc-slider-track {
+  background-color: #3484f0 !important; /* Change this to the desired track color */
+  z-index: 2 !important;
+}
+
+.rc-slider-rail {
+}
+
+/* Styling the handle (thumb) of the slider */
+.rc-slider-handle {
+  background: white !important; /* Change this to the desired handle color */
+  border: 2px solid #3484f0 !important; /* Change this to the desired handle border color */
+  z-index: 5 !important;
+  opacity: 100 !important;
+}
+
+/* Styling the tooltip that displays the value */
+.rc-slider-tooltip {
+  background-color: #3484f0 !important; /* Change this to the desired tooltip background color */
+  color: #ffffff; /* Change this to the desired tooltip text color */
+  border: none; /* Remove the tooltip border */
+}
+
+/* Styling the tooltip arrow */
+.rc-slider-tooltip-arrow {
+  border-top-color: #3484f0 !important; /* Change this to the desired tooltip arrow color */
+}
+
+.rc-slider-dot {
+  background-color: #3484f0 !important;
+  border-color: #3484f0 !important;
+}
+
+@media screen and (max-width: 768px) {
+  .rc-slider-track {
+    background-color: #3484f0 !important; /* Change this to the desired track color */
+    z-index: 2 !important;
+    height: 3px !important;
+  }
+
+  .rc-slider-rail {
+    height: 3px !important;
+  }
+
+  /* Styling the handle (thumb) of the slider */
+  .rc-slider-handle {
+    background: white !important; /* Change this to the desired handle color */
+    border: 2px solid #3484f0 !important; /* Change this to the desired handle border color */
+    opacity: 100 !important;
+    height: 10px !important;
+    width: 10px !important;
+    margin-top: -3.5px !important;
+  }
+
+  /* Styling the tooltip that displays the value */
+  .rc-slider-tooltip {
+    background-color: #3484f0 !important; /* Change this to the desired tooltip background color */
+    color: #ffffff; /* Change this to the desired tooltip text color */
+    border: none; /* Remove the tooltip border */
+  }
+
+  /* Styling the tooltip arrow */
+  .rc-slider-tooltip-arrow {
+    border-top-color: #3484f0 !important; /* Change this to the desired tooltip arrow color */
+  }
+
+  .rc-slider-dot {
+    background-color: #3484f0 !important;
+    border-color: #3484f0 !important;
+  }
+
+  .rc-slider-mark {
+    font-size: 11px !important;
+  }
 }
