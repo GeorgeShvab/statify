@@ -72,12 +72,20 @@ export const generateMetadata = async ({ searchParams }: PageProps<{}, SearchPar
   return {
     title: `Results for ${searchParams.query}`,
     description: `Indicator results for ${searchParams.query}`,
+    themeColor: '#ffffff',
     openGraph: {
-      images: ['/favicon.png'],
+      images: ['/og.png'],
       title: `Results for ${searchParams.query}`,
       description: `Indicator results for ${searchParams.query}`,
       type: 'website',
       url: `/search?query=${searchParams.query}&page=${searchParams.page}&topic=${searchParams.topic}`,
+    },
+    twitter: {
+      images: ['/og.png'],
+      title: 'Statify',
+      description: 'Precious economic data by countries',
+      card: 'summary_large_image',
+      site: '@Zhorrrro',
     },
   }
 }

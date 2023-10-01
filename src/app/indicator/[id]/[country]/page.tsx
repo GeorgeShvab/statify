@@ -98,12 +98,20 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
   return {
     title: `${getFullCountryName(params.country)} - ${indicator.label}`,
     description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}`,
+    themeColor: '#ffffff',
     openGraph: {
-      images: ['/favicon.png'],
+      images: ['/og.png'],
       title: `${getFullCountryName(params.country)} - ${indicator.label}`,
       description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}`,
       type: 'website',
       url: `/indicator/${params.id}/${params.country}`,
+    },
+    twitter: {
+      images: ['/og.png'],
+      title: 'Statify',
+      description: 'Precious economic data by countries',
+      card: 'summary_large_image',
+      site: '@Zhorrrro',
     },
   }
 }
