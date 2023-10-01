@@ -1,6 +1,6 @@
 'use client'
 
-import { FC } from 'react'
+import { FC, memo } from 'react'
 import {
   Chart as ChartJS,
   ArcElement,
@@ -55,7 +55,7 @@ const LineChart: FC<Props> = (props) => {
     datasets: [
       {
         data: props.data,
-        borderColor: 'blue',
+        borderColor: '#3484F0',
         fill: false,
         borderWidth: 1,
         pointRadius: 0,
@@ -67,4 +67,4 @@ const LineChart: FC<Props> = (props) => {
   return <Line data={data} options={options} className="country-row-chart !w-20 !h-7 md:!w-24 md:!h-10" />
 }
 
-export default LineChart
+export default memo(LineChart)

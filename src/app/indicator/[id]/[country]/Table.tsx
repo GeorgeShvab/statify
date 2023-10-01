@@ -1,6 +1,7 @@
 'use client'
 
 import { Indicator, Value } from '@/types'
+import quickSort from '@/utils/quickSort'
 import { FC, memo, useState } from 'react'
 
 interface Props {
@@ -35,28 +36,27 @@ const Table: FC<Props> = (props) => {
   })
 
   const handleSort = (by: 'year' | 'value') => {
-    console.log(by, data.by, data.order)
     if (by === 'year') {
       setData((prev) => ({
         ...prev,
         order: prev.order === 'asc' && prev.by === 'year' ? 'desc' : 'asc',
         by: 'year',
-        data: prev.data.sort((a, b) => {
-          if (a.year > b.year) return prev.order === 'asc' && prev.by === 'year' ? -1 : 1
-          if (a.year < b.year) return prev.order === 'asc' && prev.by === 'year' ? 1 : -1
-          return 0
-        }),
+        data: quickSort(
+          prev.data,
+          (prev.order === 'asc' && prev.by === 'year' ? 'desc' : 'asc') as any,
+          (item) => item.year
+        ),
       }))
     } else {
       setData((prev) => ({
         ...prev,
         order: prev.order === 'asc' && prev.by === 'value' ? 'desc' : 'asc',
         by: 'value',
-        data: prev.data.sort((a, b) => {
-          if (a.value > b.value) return prev.order === 'asc' && prev.by === 'value' ? -1 : 1
-          if (a.value < b.value) return prev.order === 'asc' && prev.by === 'value' ? 1 : -1
-          return 0
-        }),
+        data: quickSort(
+          prev.data,
+          (prev.order === 'asc' && prev.by === 'value' ? 'desc' : 'asc') as any,
+          (item) => item.value
+        ),
       }))
     }
   }
@@ -65,7 +65,7 @@ const Table: FC<Props> = (props) => {
     <table className="table-auto w-full relative country-table">
       <thead>
         <tr className="">
-          <th className="sticky top-0 !border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-left bg-neutral-50">
+          <th className="!border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-left bg-neutral-50">
             <button
               className="flex items-center gap-1.5 md:gap-3 justify-start"
               onClick={() => handleSort('value')}
@@ -116,7 +116,7 @@ const Table: FC<Props> = (props) => {
               </div>
             </button>
           </th>
-          <th className="sticky top-0 !border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-right bg-neutral-50 w-fit md:w-32">
+          <th className="!border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-right bg-neutral-50 w-fit md:w-32">
             <button
               className="flex items-center gap-1.5 md:gap-3 justify-end w-full"
               onClick={() => handleSort('year')}

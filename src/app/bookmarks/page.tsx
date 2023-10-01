@@ -1,7 +1,6 @@
-import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
+import BookmarkCard from '@/components/BookmarkCard/BookmarkCard'
 import Pagination from '@/components/Pagination/Pagination'
 import BookmarkService from '@/services/BookmarkService'
-import IndicatorService from '@/services/IndicatorService'
 import { PageProps } from '@/types'
 import { Metadata } from 'next'
 import { cookies } from 'next/headers'
@@ -25,7 +24,7 @@ const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
             {data?.data.length ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                 {data.data.map((item) => (
-                  <IndicatorCard key={item.id} {...item} />
+                  <BookmarkCard key={(item?.country?.id || '') + item.indicator.id} {...item} />
                 ))}
               </div>
             ) : (

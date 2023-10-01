@@ -15,6 +15,9 @@ const config: Config = {
           light: 'rgb(var(--black-light) / <alpha-value>)',
           dark: 'rgb(var(--black-dark) / <alpha-value>)',
         },
+        blue: {
+          DEFAULT: 'rgb(var(--blue) / <alpha-value>)',
+        },
       },
     },
   },
