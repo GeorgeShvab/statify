@@ -1,5 +1,6 @@
 import BookmarkCard from '@/components/BookmarkCard/BookmarkCard'
 import Pagination from '@/components/Pagination/Pagination'
+import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
 import BookmarkService from '@/services/BookmarkService'
 import { PageProps } from '@/types'
 import { Metadata } from 'next'
@@ -17,6 +18,11 @@ const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
 
   return (
     <main className="mb-3 md:mb-5">
+      <div className="container">
+        <div className="py-3 md:py-5">
+          <AdvancedSearchBar />
+        </div>
+      </div>
       <div className="flex flex-col min-h-[calc(100vh-var(--header-height))] relative">
         <div className="flex-1">
           <div className="container">

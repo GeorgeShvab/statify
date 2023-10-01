@@ -1,5 +1,6 @@
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
 import Pagination from '@/components/Pagination/Pagination'
+import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
 import IndicatorService from '@/services/IndicatorService'
 import { PageProps } from '@/types'
 import { Metadata } from 'next'
@@ -19,6 +20,11 @@ const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => 
 
   return (
     <main>
+      <div className="container">
+        <div className="py-3 md:py-5">
+          <AdvancedSearchBar />
+        </div>
+      </div>
       <div className="flex flex-col min-h-[calc(100vh-var(--header-height))] relative">
         <div className="flex-1">
           <div className="container">

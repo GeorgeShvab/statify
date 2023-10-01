@@ -9,6 +9,7 @@ import { ChartProvider } from '@/components/Chart/ChartContext'
 import quickSort from '@/utils/quickSort'
 import Table from './Table'
 import dynamic from 'next/dynamic'
+import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
 
 interface Params {
   id: string
@@ -42,6 +43,11 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
 
   return (
     <main className="mb-3 md:mb-5">
+      <div className="container">
+        <div className="py-3 md:py-5">
+          <AdvancedSearchBar />
+        </div>
+      </div>
       <div className="min-h-[calc(100vh-var(--header-height))]">
         <div className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
