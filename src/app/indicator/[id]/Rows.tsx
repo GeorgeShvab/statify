@@ -1,4 +1,4 @@
-import useChart from '@/context/ChartContext'
+import useChart from '@/components/Chart/ChartContext'
 import { Country, Value, Indicator } from '@/types'
 import { FC, useCallback } from 'react'
 import Row from './Row'
