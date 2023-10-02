@@ -11,6 +11,7 @@ import BookmarkService from '@/services/BookmarkService'
 import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import dynamic from 'next/dynamic'
 import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
+import { notFound } from 'next/navigation'
 
 interface SearchParams {
   id: string
@@ -33,7 +34,9 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
 
   const [country, indicator, isBookmarked] = await Promise.all([countryPromise, indicatorPromise, isBookmarkedPromise])
 
-  if (!indicator) return null
+  if (!indicator || !country) {
+    notFound()
+  }
 
   return (
     <main className="mb-3 md:mb-5">
@@ -93,7 +96,27 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
 export const generateMetadata = async ({ params }: types.PageProps<SearchParams>): Promise<Metadata> => {
   const indicator = await IndicatorService.get({ id: params.id })
 
-  if (!indicator) return {}
+  if (!indicator) {
+    return {
+      title: 'Not Found',
+      description: 'This page is not exist',
+      themeColor: '#ffffff',
+      openGraph: {
+        images: ['/og.png'],
+        title: 'Not Found',
+        description: 'This page is not exist',
+        type: 'website',
+        url: `/`,
+      },
+      twitter: {
+        images: ['/og.png'],
+        title: 'Statify',
+        description: 'This page is not exist',
+        card: 'summary_large_image',
+        site: '@Zhorrrro',
+      },
+    }
+  }
 
   return {
     title: `${getFullCountryName(params.country)} - ${indicator.label}`,
