@@ -90,7 +90,7 @@ const SearchBar: FC = () => {
             className={`border ${autocomplete.isOpened && autocomplete.data?.length ? 'rounded-t-lg' : 'rounded-lg'}`}
           >
             <div className="flex bg-white overflow-hidden rounded-lg">
-              <span className="text-neutral-400 h-10 w-10 flex justify-center items-center">
+              <span className="text-neutral-400 h-10 w-10 flex justify-center items-center" aria-hidden>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
