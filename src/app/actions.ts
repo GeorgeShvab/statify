@@ -17,8 +17,6 @@ export async function getClientId() {
     id = clientId
   }
 
-  console.log('Action')
-
   return id
 }
 

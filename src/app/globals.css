@@ -14,12 +14,9 @@
 
   --blue-color: rgba(52, 132, 240);
 
-  --header-height: 158.4px;
-  --footer-height: 56.8px;
-}
-
-main {
-  min-height: calc(100vh - var(--header-height));
+  --header-height: 64.8px;
+  --footer-height: 88.8px;
+  --search-bar-height: 65.6px;
 }
 
 .container {
@@ -37,6 +34,20 @@ main {
     padding-left: 24px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  :root {
+    --footer-height: 52.8px;
+    --header-height: 76.8px;
+    --search-bar-height: 81.6px;
+  }
+
+  main {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height));
+  }
+
+  .main-height {
+    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height));
   }
 }
 

@@ -19,8 +19,6 @@ const BookmarkButton: FC<Props> = (props) => {
   const handleBookmark = async () => {
     setIsBookmarked((prev) => !prev)
 
-    console.log(country, id)
-
     const { data } = await axios.post('/api/bookmark', { country, indicator: id })
 
     router.prefetch('/bookmarks')

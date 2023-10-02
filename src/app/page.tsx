@@ -6,14 +6,16 @@ const Home: FC = () => {
   return (
     <main className="bg-white">
       <div className="container">
-        <div className="flex flex-col min-h-[calc(100vh-121.6px)] md:min-h-[calc(100vh-133.6px)] justify-center items-center">
+        <div className="flex flex-col h-[calc(100svh-var(--header-height))] md:h-[calc(100vh-var(--header-height)-var(--footer-height))] justify-center items-center">
           <div>
             <div className="px-2 md:px-0">
-              <h1 className="text-center text-[42px] md:text-5xl font-bold text-black mb-20 md:mb-16 leading-normal">
+              <h1 className="text-center text-[42px] md:text-6xl font-bold text-black mb-20 md:mb-16 leading-normal">
                 Discover the World through Data
               </h1>
-              <div className="mb-8 md:mb-8">
-                <SearchBar />
+              <div className="flex justify-center">
+                <div className="mb-8 md:mb-8 max-w-[600px] w-full [&>form>div>div>div>div]:bg-neutral-50 [&>form>div>div>div>div>input]:bg-neutral-50">
+                  <SearchBar />
+                </div>
               </div>
               <div className="md:flex md:justify-center">
                 <p className="text-center text-gray-400 max-w-[600px] text-[13px] md:text-base">
@@ -31,19 +33,19 @@ const Home: FC = () => {
 
 export const metadata: Metadata = {
   title: 'Statify',
-  description: 'Precious economic data by countries',
+  description: 'Accurate economic data by countries',
   themeColor: '#ffffff',
   openGraph: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Precious economic data by countries',
+    description: 'Accurate economic data by countries',
     type: 'website',
     url: `/`,
   },
   twitter: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Precious economic data by countries',
+    description: 'Accurate economic data by countries',
     card: 'summary_large_image',
     site: '@Zhorrrro',
   },

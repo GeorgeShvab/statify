@@ -18,6 +18,8 @@ interface AutocompleteState {
 const SearchBar: FC = () => {
   const containerEl = useRef<HTMLDivElement>(null)
 
+  const abortController = useRef<AbortController>()
+
   const router = useRouter()
 
   const searchParams = useSearchParams()
@@ -34,12 +36,17 @@ const SearchBar: FC = () => {
 
   const fetchAutocomplete = useCallback(
     throttle(async (value: string) => {
-      console.log('ahahaha')
-      setAutocomplete((prev) => ({ ...prev, isOpened: true }))
+      abortController.current?.abort()
 
-      const { data } = await axios.get<Indicator[]>('/api/autocomplete?query=' + value)
+      abortController.current = new AbortController()
 
-      setAutocomplete((prev) => ({ ...prev, data }))
+      try {
+        const { data } = await axios.get<Indicator[]>('/api/autocomplete?query=' + value, {
+          signal: abortController.current.signal,
+        })
+
+        setAutocomplete((prev) => ({ data, isOpened: true }))
+      } catch (e) {}
     }, 1000),
     []
   )
