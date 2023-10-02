@@ -13,10 +13,12 @@ interface SearchParams {
 }
 
 const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
-  const { data, pages, page } = await IndicatorService.search({
-    query: searchParams.query,
-    page: searchParams.page ? Number(searchParams.page) : 1,
-  })
+  const result = searchParams.query
+    ? await IndicatorService.search({
+        query: searchParams.query,
+        page: searchParams.page ? Number(searchParams.page) : 1,
+      })
+    : null
 
   return (
     <main>
@@ -25,13 +27,15 @@ const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => 
           <AdvancedSearchBar />
         </div>
       </div>
-      <div className="flex flex-col min-h-[calc(100vh-var(--header-height))] relative">
+      <div className="flex flex-col min-h-main-dynamic md:min-h-main relative">
         <div className="flex-1">
           <div className="container">
-            <h2 className="mb-1.5 md:mb-3 px-2 font-semibold">Search results for {searchParams.query}</h2>
-            {data.length ? (
+            <h2 className="mb-1.5 md:mb-3 px-2 font-semibold">
+              {result ? `Search results for ${searchParams.query}` : <>&nbsp;</>}
+            </h2>
+            {result?.data.length ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
-                {data.map((item) => (
+                {result.data.map((item) => (
                   <IndicatorCard key={item.id} {...item} />
                 ))}
               </div>
@@ -53,14 +57,16 @@ const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => 
                     />
                   </svg>
                 </div>
-                <p className="text-center text-neutral-300">No datasets found</p>
+                <p className="text-center text-neutral-300">
+                  {result === null ? 'Enter a keyword or phrase' : 'No datasets found'}
+                </p>
               </div>
             )}
           </div>
         </div>
-        {searchParams.query && !!data.length && (
+        {searchParams.query && !!result?.data.length && (
           <div className="container">
-            <Pagination pages={pages} page={page} />
+            <Pagination pages={result.pages} page={result.page} />
           </div>
         )}
       </div>
@@ -83,7 +89,7 @@ export const generateMetadata = async ({ searchParams }: PageProps<{}, SearchPar
     twitter: {
       images: ['/og.png'],
       title: 'Statify',
-      description: 'Precious economic data by countries',
+      description: 'Accurate economic data by countries',
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },

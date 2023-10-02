@@ -17,13 +17,13 @@ const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
   const data = client ? await BookmarkService.get({ client, page: searchParams.page || 1 }) : null
 
   return (
-    <main className="mb-3 md:mb-5">
+    <main className="">
       <div className="container">
         <div className="py-3 md:py-5">
           <AdvancedSearchBar />
         </div>
       </div>
-      <div className="flex flex-col min-h-[calc(100vh-var(--header-height))] relative">
+      <div className="flex flex-col min-h-main-dynamic md:min-h-main relative">
         <div className="flex-1">
           <div className="container">
             <h2 className="mb-1.5 md:mb-3 px-2 font-semibold">Your Bookmarks</h2>
@@ -68,19 +68,19 @@ const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
 
 export const metadata: Metadata = {
   title: 'Bookmarks',
-  description: 'Precious economic data by countries',
+  description: 'Accurate economic data by countries',
   themeColor: '#ffffff',
   openGraph: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Precious economic data by countries',
+    description: 'Accurate economic data by countries',
     type: 'website',
     url: `/`,
   },
   twitter: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Precious economic data by countries',
+    description: 'Accurate economic data by countries',
     card: 'summary_large_image',
     site: '@Zhorrrro',
   },

@@ -9,8 +9,6 @@ interface Props {
 const Transition: FC<Props> = ({ duration = 400, children, show }) => {
   if (!children) return null
 
-  console.log(show)
-
   return cloneElement(
     children,
     {

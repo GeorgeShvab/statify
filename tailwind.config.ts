@@ -19,6 +19,14 @@ const config: Config = {
           DEFAULT: 'rgb(var(--blue) / <alpha-value>)',
         },
       },
+      height: {
+        main: 'calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height))',
+        'main-dynamic': 'calc(100svh - var(--header-height) - var(--search-bar-height))',
+      },
+      minHeight: {
+        main: 'calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height))',
+        'main-dynamic': 'calc(100svh - var(--header-height) - var(--search-bar-height))',
+      },
     },
   },
   plugins: [],

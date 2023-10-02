@@ -42,7 +42,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
           <AdvancedSearchBar />
         </div>
       </div>
-      <div className="min-h-[calc(100vh-var(--header-height))]">
+      <div className="min-h-main-dynamic md:min-h-main">
         <div className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
             <BookmarkButton isBookmarked={!!isBookmarked} />
@@ -109,7 +109,7 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
     twitter: {
       images: ['/og.png'],
       title: 'Statify',
-      description: 'Precious economic data by countries',
+      description: 'Accurate economic data by countries',
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },
