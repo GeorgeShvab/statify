@@ -10,6 +10,7 @@ import quickSort from '@/utils/quickSort'
 import Table from './Table'
 import dynamic from 'next/dynamic'
 import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
+import { notFound } from 'next/navigation'
 
 interface Params {
   id: string
@@ -36,6 +37,10 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
     indicatorPromise,
     isBookmarkedPromise,
   ])
+
+  if (!indicator) {
+    notFound()
+  }
 
   const initialChartRegion = countries.find((item) => item.id === 'WEOWORLD') || countries[0]
 
@@ -119,6 +124,28 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
 
 export const generateMetadata = async ({ params }: types.PageProps<Params>): Promise<Metadata> => {
   const indicator = await IndicatorService.get({ id: params.id })
+
+  if (!indicator) {
+    return {
+      title: 'Not Found',
+      description: 'This page is not exist',
+      themeColor: '#ffffff',
+      openGraph: {
+        images: ['/og.png'],
+        title: 'Not Found',
+        description: 'This page is not exist',
+        type: 'website',
+        url: `/`,
+      },
+      twitter: {
+        images: ['/og.png'],
+        title: 'Statify',
+        description: 'This page is not exist',
+        card: 'summary_large_image',
+        site: '@Zhorrrro',
+      },
+    }
+  }
 
   return {
     title: `${indicator.label}`,
