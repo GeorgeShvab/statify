@@ -1,6 +1,7 @@
 'use client'
 
 import { Country, Value } from '@/types'
+import { useRouter } from 'next/navigation'
 import { FC, ReactElement, createContext, useContext, useEffect, useState } from 'react'
 
 interface ChartContext {
@@ -52,6 +53,8 @@ export const ChartProvider: FC<Props> = ({ initial, children, initialRange }) =>
     range: initialRange,
   })
 
+  const router = useRouter()
+
   const remove = (id: string) => setData((prev) => ({ ...prev, data: prev.data.filter((item) => item.id !== id) }))
 
   const removeAll = () => setData((prev) => ({ ...prev, data: [] }))
@@ -92,9 +95,7 @@ export const ChartProvider: FC<Props> = ({ initial, children, initialRange }) =>
         .join(',')
     )
 
-    url.search = params.toString()
-
-    window.history.replaceState(null, '', url.href)
+    router.replace('?' + params.toString(), { scroll: false })
   }, [data.data])
 
   return (
