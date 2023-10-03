@@ -49,7 +49,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
         <div className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
             <BookmarkButton isBookmarked={!!isBookmarked} />
-            <h1 className="text-2xl font-bold mb-6 md:mb-8">
+            <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">
               {country.name} - {indicator.label}
             </h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
