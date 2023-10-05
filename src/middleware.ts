@@ -14,7 +14,7 @@ export function middleware(request: NextRequest) {
       name: 'client_id',
       value: id,
       httpOnly: true,
-      expires: 1000 * 60 * 60 * 24 * 730,
+      expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365),
     })
 
     return response
