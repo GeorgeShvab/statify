@@ -1,0 +1,43 @@
+import { FC } from 'react'
+import ContentLoader from 'react-content-loader'
+
+const Loading: FC = () => {
+  return (
+    <>
+      <div className="container grid grid-cols-1 gap-2 md:gap-3.5">
+        <ContentLoader
+          speed={2}
+          width={'100%'}
+          height={230}
+          viewBox="0 0 100% 230"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
+        >
+          <rect x="0" y="0" rx="8" ry="8" width="100%" height="230" />
+        </ContentLoader>
+        <ContentLoader
+          speed={2}
+          width={'100%'}
+          height={613}
+          viewBox="0 0 100% 613"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
+        >
+          <rect x="0" y="0" rx="8" ry="8" width="100%" height="613" />
+        </ContentLoader>
+        <ContentLoader
+          speed={2}
+          width={'100%'}
+          height={613}
+          viewBox="0 0 100% 613"
+          backgroundColor="#f3f3f3"
+          foregroundColor="#ecebeb"
+        >
+          <rect x="0" y="0" rx="8" ry="8" width="100%" height="613" />
+        </ContentLoader>
+      </div>
+    </>
+  )
+}
+
+export default Loading
