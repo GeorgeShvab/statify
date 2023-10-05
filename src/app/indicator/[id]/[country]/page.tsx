@@ -39,12 +39,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
   }
 
   return (
-    <main className="mb-3 md:mb-5">
-      <div className="container">
-        <div className="py-3 md:py-5">
-          <AdvancedSearchBar />
-        </div>
-      </div>
+    <div>
       <div className="min-h-main-dynamic md:min-h-main">
         <div className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
@@ -89,7 +84,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
           </>
         </ChartProvider>
       </div>
-    </main>
+    </div>
   )
 }
 
