@@ -102,7 +102,7 @@ const Table: FC<Props> = (props) => {
           </th>
           <th className="!border-b dark:border-slate-600 text-[10px] md:text-base font-medium py-4 md:py-3 px-2 md:px-3 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-right bg-neutral-50 w-28 md:w-64">
             <button
-              className="flex items-center gap-1.5 md:gap-3 justify-end w-full"
+              className="flex items-center gap-1.5 md:gap-3 justify-end w-full text-right"
               onClick={() => handleSort('value')}
               aria-label="Sort by value"
             >

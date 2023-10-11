@@ -21,7 +21,7 @@ const IndicatorService = {
       where: {
         OR: [
           { label: { contains: query.trim(), mode: 'insensitive' } },
-          { description: { contains: query.trim(), mode: 'insensitive' } },
+          //{ description: { contains: query.trim(), mode: 'insensitive' } },
         ],
       },
       take: 45,
@@ -33,7 +33,7 @@ const IndicatorService = {
       where: {
         OR: [
           { label: { contains: query.trim(), mode: 'insensitive' } },
-          { description: { contains: query.trim(), mode: 'insensitive' } },
+          //{ description: { contains: query.trim(), mode: 'insensitive' } },
         ],
       },
       orderBy: { label: 'asc' },
@@ -49,7 +49,7 @@ const IndicatorService = {
       where: {
         OR: [
           { label: { contains: query.trim(), mode: 'insensitive' } },
-          { description: { contains: query.trim(), mode: 'insensitive' } },
+          //{ description: { contains: query.trim(), mode: 'insensitive' } },
         ],
       },
       take: 5,
