@@ -89,7 +89,11 @@ const SearchBar: FC = () => {
           <div
             className={`border ${autocomplete.isOpened && autocomplete.data?.length ? 'rounded-t-lg' : 'rounded-lg'}`}
           >
-            <div className="flex bg-white overflow-hidden rounded-lg">
+            <div
+              className={`flex bg-white overflow-hidden  ${
+                autocomplete.isOpened && autocomplete.data?.length ? 'rounded-t-lg' : 'rounded-lg'
+              }`}
+            >
               <span className="text-neutral-400 h-10 w-10 flex justify-center items-center" aria-hidden>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -117,7 +121,7 @@ const SearchBar: FC = () => {
               />
               {value && (
                 <button
-                  className="text-neutral-400 h-10 w-10 flex justify-center items-center"
+                  className="text-neutral-400 h-10 w-10 flex justify-center items-center hover:text-neutral-500 transition-colors"
                   aria-label="Clear Form"
                   type="button"
                   onClick={clearValue}

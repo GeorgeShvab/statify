@@ -25,8 +25,8 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
   return (
     <tr className="country-row group select-none" onContextMenu={handleContextMenu} role="button">
       <td
-        className={`relative border-b dark:border-slate-600 text-[10px] md:text-base py-4 md:py-3 pl-4 px-2 md:px-3 md:pr-6 md:pl-6 text-gray-400 font-normal dark:text-slate-200 text-left w-24 md:w-[350px] ${
-          isAtChart ? 'bg-neutral-50' : 'bg-white'
+        className={`relative border-b text-[10px] md:text-base py-4 md:py-3 pl-4 px-2 md:px-3 md:pr-6 md:pl-6 text-gray-400 font-normal dark:text-slate-200 text-left w-24 md:w-[350px] ${
+          isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
         <button
@@ -63,14 +63,14 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
       </td>
       <td
         className={`border-b dark:border-slate-600 py-4 md:py-3 px-2 md:px-3 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-32 md:w-64 ${
-          isAtChart ? 'bg-neutral-50' : 'bg-white'
+          isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
         {country.values[country.values.length - 1].value.toFixed(2)} {indicator.unitSymbol}
       </td>
       <td
         className={`border-b dark:border-slate-600 text-[10px] md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-[100px] md:w-48 ${
-          isAtChart ? 'bg-neutral-50' : 'bg-white'
+          isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
         <div className="w-full flex justify-center">
@@ -85,7 +85,7 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
       </td>
       <td
         className={`border-b dark:border-slate-600 py-4 md:py-3 px-2 md:px-3 pr-4 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-[5px] md:w-[75px] ${
-          isAtChart ? 'bg-neutral-50' : 'bg-white'
+          isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
         {country.values[country.values.length - 1].year}

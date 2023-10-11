@@ -61,7 +61,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
           <>
             <div className="container mb-2 md:mb-3.5">
               <div className="px-2 pr-3 py-4 pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border">
-                <h4 className="mb-1 md:mb-3 text-center font-semibold text-sm md:text-lg">
+                <h4 className="mb-3 md:mb-3 text-center font-semibold text-sm md:text-lg">
                   {indicator.label}, {indicator.unit}
                 </h4>
                 <div className="!min-h-[328px] md:!h-[520px] overflow-hidden">
