@@ -16,9 +16,16 @@ const IndicatorService = {
     return data[0]
   },
 
+  async getAll() {
+    const data = await prisma.indicator.findMany({ where: {} })
+
+    return data
+  },
+
   async search({ query, page }: SearchParams) {
     const dataPromise = prisma.indicator.findMany({
       where: {
+        hidden: false,
         OR: [
           { label: { contains: query.trim(), mode: 'insensitive' } },
           //{ description: { contains: query.trim(), mode: 'insensitive' } },
@@ -31,6 +38,7 @@ const IndicatorService = {
 
     const countPromise = prisma.indicator.count({
       where: {
+        hidden: false,
         OR: [
           { label: { contains: query.trim(), mode: 'insensitive' } },
           //{ description: { contains: query.trim(), mode: 'insensitive' } },
@@ -47,6 +55,7 @@ const IndicatorService = {
   async autocomplete({ query }: { query: string }) {
     return await prisma.indicator.findMany({
       where: {
+        hidden: false,
         OR: [
           { label: { contains: query.trim(), mode: 'insensitive' } },
           //{ description: { contains: query.trim(), mode: 'insensitive' } },
