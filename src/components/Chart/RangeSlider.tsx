@@ -41,6 +41,7 @@ const RangeSlider: FC = () => {
               }, {})
       }
       onChange={handleChangeYears}
+      ariaLabelForHandle="Change years range"
       range
     />
   )

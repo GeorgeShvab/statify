@@ -2,7 +2,7 @@ import LineChart from '@/components/LineChart/LineChart'
 import { Country, Indicator, Value } from '@/types'
 import prettifyValue from '@/utils/prettifyValue'
 import Link from 'next/link'
-import { FC, memo } from 'react'
+import { FC, MouseEvent, memo } from 'react'
 
 interface Props {
   indicator: Indicator
@@ -17,8 +17,9 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
     onAddToChart(country)
   }
 
-  const handleContextMenu = () => {
-    if (window.screen.width < 768) {
+  const handleContextMenu = (e: MouseEvent) => {
+    if (window.screen.width < 1024) {
+      e.preventDefault()
       handleAdd()
     }
   }
@@ -31,8 +32,9 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
         }`}
       >
         <button
-          className="hidden md:flex opacity-0 group-hover:opacity-100 transition-opacity absolute left-[-45px] top-1/2 translate-y-[-50%] w-10 h-10 border rounded-lg bg-white flex items-center justify-center"
+          className="hidden lg:flex opacity-0 group-hover:opacity-100 transition-opacity absolute left-[-45px] top-1/2 translate-y-[-50%] w-10 h-10 border rounded-lg bg-white flex items-center justify-center"
           onClick={handleAdd}
+          aria-label={isAtChart ? 'Remove from the chart' : 'Add to the chart'}
         >
           {isAtChart ? (
             <svg
