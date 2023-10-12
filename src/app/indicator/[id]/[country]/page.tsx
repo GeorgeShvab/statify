@@ -10,7 +10,6 @@ import { cookies } from 'next/headers'
 import BookmarkService from '@/services/BookmarkService'
 import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import dynamic from 'next/dynamic'
-import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
 import { notFound } from 'next/navigation'
 
 interface SearchParams {

@@ -26,10 +26,7 @@ const IndicatorService = {
     const dataPromise = prisma.indicator.findMany({
       where: {
         hidden: false,
-        OR: [
-          { label: { contains: query.trim(), mode: 'insensitive' } },
-          //{ description: { contains: query.trim(), mode: 'insensitive' } },
-        ],
+        OR: [{ label: { contains: query.trim(), mode: 'insensitive' } }],
       },
       take: 45,
       skip: (page - 1) * 45,
@@ -39,10 +36,7 @@ const IndicatorService = {
     const countPromise = prisma.indicator.count({
       where: {
         hidden: false,
-        OR: [
-          { label: { contains: query.trim(), mode: 'insensitive' } },
-          //{ description: { contains: query.trim(), mode: 'insensitive' } },
-        ],
+        OR: [{ label: { contains: query.trim(), mode: 'insensitive' } }],
       },
       orderBy: { label: 'asc' },
     })
