@@ -97,7 +97,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
                 </div>
               </div>
             </div>
-            <div className="container mb-2 md:mb-3.5 overflow-hidden md:hidden">
+            <div className="container mb-2 md:mb-3.5 overflow-hidden lg:hidden">
               <div className="px-2 py-4 md:px-7 md:py-6 rounded-lg bg-white border">
                 <p className="text-neutral-400 text-center text-xs">
                   Tap and hold on any of the rows to add or remove it from the chart
