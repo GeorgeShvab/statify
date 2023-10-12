@@ -1,5 +1,6 @@
 import LineChart from '@/components/LineChart/LineChart'
 import { Country, Indicator, Value } from '@/types'
+import prettifyValue from '@/utils/prettifyValue'
 import Link from 'next/link'
 import { FC, memo } from 'react'
 
@@ -66,7 +67,7 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
           isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
-        {country.values[country.values.length - 1].value.toFixed(2)} {indicator.unitSymbol}
+        {prettifyValue(country.values[country.values.length - 1].value.toFixed(2))}
       </td>
       <td
         className={`border-b dark:border-slate-600 text-[10px] md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-[100px] md:w-48 ${

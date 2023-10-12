@@ -9,8 +9,8 @@ import { ChartProvider } from '@/components/Chart/ChartContext'
 import quickSort from '@/utils/quickSort'
 import Table from './Table'
 import dynamic from 'next/dynamic'
-import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
 import { notFound } from 'next/navigation'
+import prettifyValue from '@/utils/prettifyValue'
 
 interface Params {
   id: string
@@ -62,14 +62,13 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
             {indicator.total && (
               <p className="font-semibold mt-4">
                 Global:{' '}
-                {(indicator.unitSymbol === 'bln'
-                  ? Math.round(indicator.total * 1000000000)
-                  : indicator.unitSymbol === 'mln'
-                  ? Math.round(indicator.total * 1000000)
-                  : indicator.total.toFixed(2)
-                )
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+                {prettifyValue(
+                  indicator.unitSymbol === 'bln'
+                    ? Math.round(indicator.total * 1000000000)
+                    : indicator.unitSymbol === 'mln'
+                    ? Math.round(indicator.total * 1000000)
+                    : indicator.total.toFixed(2)
+                )}
               </p>
             )}
           </div>
