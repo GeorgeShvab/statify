@@ -1,5 +1,6 @@
 import { Indicator } from '@/types'
 import prisma from '../../prisma/prisma'
+import { Prisma } from '@prisma/client'
 
 interface SearchParams {
   query: string
@@ -23,41 +24,33 @@ const IndicatorService = {
   },
 
   async search({ query, page }: SearchParams) {
-    const dataPromise = prisma.indicator.findMany({
-      where: {
-        hidden: false,
-        OR: [{ label: { contains: query.trim(), mode: 'insensitive' } }],
-      },
-      take: 45,
-      skip: (page - 1) * 45,
-      orderBy: { label: 'asc' },
-    })
+    const dataPromise = prisma.$queryRaw`SELECT * FROM "Indicator" WHERE (LOWER("label") LIKE LOWER(${
+      '%' + query + '%'
+    }) OR LOWER(ARRAY_TO_STRING("searchTags", ' ')) LIKE LOWER(${
+      '%' + query + '%'
+    })) AND "hidden" = FALSE ORDER BY "label" ASC OFFSET ${(page - 1) * 45} LIMIT 45` as Prisma.PrismaPromise<
+      Indicator[]
+    >
 
-    const countPromise = prisma.indicator.count({
-      where: {
-        hidden: false,
-        OR: [{ label: { contains: query.trim(), mode: 'insensitive' } }],
-      },
-      orderBy: { label: 'asc' },
-    })
+    const countPromise = prisma.$queryRaw`SELECT "id" FROM "Indicator" WHERE (LOWER("label") LIKE LOWER(${
+      '%' + query + '%'
+    }) OR LOWER(ARRAY_TO_STRING("searchTags", ' ')) LIKE LOWER(${
+      '%' + query + '%'
+    })) AND "hidden" = FALSE ORDER BY "label" ASC` as Prisma.PrismaPromise<{ id: string }[]>
 
     const [data, count] = await Promise.all([dataPromise, countPromise])
 
-    return { data, page, pages: Math.ceil(count / 45) }
+    return { data, page, pages: Math.ceil(count.length / 45) }
   },
 
   async autocomplete({ query }: { query: string }) {
-    return await prisma.indicator.findMany({
-      where: {
-        hidden: false,
-        OR: [
-          { label: { contains: query.trim(), mode: 'insensitive' } },
-          //{ description: { contains: query.trim(), mode: 'insensitive' } },
-        ],
-      },
-      take: 5,
-      orderBy: { label: 'asc' },
-    })
+    const data = await prisma.$queryRaw`SELECT * FROM "Indicator" WHERE (LOWER("label") LIKE LOWER(${
+      '%' + query + '%'
+    }) OR LOWER(ARRAY_TO_STRING("searchTags", ' ')) LIKE LOWER(${
+      '%' + query + '%'
+    })) AND "hidden" = FALSE ORDER BY "label" ASC LIMIT 5`
+
+    return data
   },
 
   async getMany({ ids }: { ids: string[] }) {
