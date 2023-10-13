@@ -1,6 +1,6 @@
-import LineChart from '@/components/LineChart/LineChart'
 import { Country, Indicator, Value } from '@/types'
 import prettifyValue from '@/utils/prettifyValue'
+import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { FC, MouseEvent, memo } from 'react'
 
@@ -11,6 +11,8 @@ interface Props {
   onRemoveFromChart: (id: string) => void
   isAtChart: boolean
 }
+
+const LineChart = dynamic(() => import('@/components/LineChart/LineChart'), { ssr: false })
 
 const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
   const handleAdd = () => {
