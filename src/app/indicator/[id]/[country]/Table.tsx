@@ -19,10 +19,10 @@ interface State {
 const Row: FC<{ value: Value; indicator: Indicator }> = memo(({ value, indicator }) => {
   return (
     <tr className="country-row" key={value.year}>
-      <td className="border-b dark:border-slate-600 py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-left">
+      <td className="border-b py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-left">
         {prettifyValue(value.value.toFixed(2))} {indicator.unitSymbol}
       </td>
-      <td className="border-b dark:border-slate-600 py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-fit md:w-32">
+      <td className="border-b py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-right w-fit md:w-32">
         {value.year}
       </td>
     </tr>
@@ -66,7 +66,7 @@ const Table: FC<Props> = (props) => {
     <table className="table-auto w-full relative country-table">
       <thead>
         <tr className="">
-          <th className="!border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-left bg-neutral-50">
+          <th className="!border-b text-xs md:text-base font-medium py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-neutral-500 text-left bg-neutral-50">
             <button
               className="flex items-center gap-1.5 md:gap-3 justify-start"
               onClick={() => handleSort('value')}
@@ -117,7 +117,7 @@ const Table: FC<Props> = (props) => {
               </div>
             </button>
           </th>
-          <th className="!border-b dark:border-slate-600 text-xs md:text-base font-medium py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 dark:text-slate-200 text-right bg-neutral-50 w-fit md:w-32">
+          <th className="!border-b text-xs md:text-base font-medium py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 text-right bg-neutral-50 w-fit md:w-32">
             <button
               className="flex items-center gap-1.5 md:gap-3 justify-end w-full"
               onClick={() => handleSort('year')}

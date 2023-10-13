@@ -27,7 +27,7 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
   return (
     <tr className="country-row group select-none" onContextMenu={handleContextMenu} role="button">
       <td
-        className={`relative border-b text-[10px] md:text-base py-4 md:py-3 pl-4 px-2 md:px-3 md:pr-6 md:pl-6 text-gray-400 font-normal dark:text-slate-200 text-left w-24 md:w-[350px] ${
+        className={`relative border-b text-[10px] md:text-base py-4 md:py-3 pl-4 px-2 md:px-3 md:pr-6 md:pl-6 text-gray-400 font-normal text-left w-24 md:w-[350px] ${
           isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
@@ -60,19 +60,22 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
             </svg>
           )}
         </button>
-        <Link href={`/indicator/${indicator.id}/${country.id}`} className="hover:text-neutral-600 transition-colors">
+        <Link
+          href={`/indicator/${indicator.id}/${country.id}`}
+          className="hover:text-neutral-600 transition-colors select-auto"
+        >
           {country.name}
         </Link>
       </td>
       <td
-        className={`border-b dark:border-slate-600 py-4 md:py-3 px-2 md:px-3 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-32 md:w-64 ${
+        className={`border-b py-4 md:py-3 px-2 md:px-3 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal select-auto text-right w-32 md:w-64 ${
           isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
         {prettifyValue(country.values[country.values.length - 1].value.toFixed(2))}
       </td>
       <td
-        className={`border-b dark:border-slate-600 text-[10px] md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-[100px] md:w-48 ${
+        className={`border-b text-[10px] md:text-base text-gray-400 font-normal text-right w-[100px] md:w-48 ${
           isAtChart ? 'bg-neutral-50' : ''
         }`}
       >
@@ -87,7 +90,7 @@ const Row: FC<Props> = ({ indicator, country, onAddToChart, isAtChart }) => {
         </div>
       </td>
       <td
-        className={`border-b dark:border-slate-600 py-4 md:py-3 px-2 md:px-3 pr-4 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal dark:text-slate-200 text-right w-[5px] md:w-[75px] ${
+        className={`border-b py-4 md:py-3 px-2 md:px-3 select-auto pr-4 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal text-right w-[5px] md:w-[75px] ${
           isAtChart ? 'bg-neutral-50' : ''
         }`}
       >

@@ -105,7 +105,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
               </div>
             </div>
             <div className="container">
-              <div className="bg-white dark:bg-slate-800 rounded-lg border">
+              <div className="bg-white rounded-lg border">
                 <Table data={countries} indicator={indicator} />
               </div>
             </div>
