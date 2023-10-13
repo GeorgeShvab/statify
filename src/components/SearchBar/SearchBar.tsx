@@ -36,18 +36,14 @@ const SearchBar: FC = () => {
 
   const fetchAutocomplete = useCallback(
     throttle(async (value: string) => {
-      abortController.current?.abort()
-
-      abortController.current = new AbortController()
-
       try {
         const { data } = await axios.get<Indicator[]>('/api/autocomplete?query=' + value, {
-          signal: abortController.current.signal,
+          signal: abortController.current?.signal,
         })
 
         setAutocomplete((prev) => ({ data, isOpened: true }))
       } catch (e) {}
-    }, 1000),
+    }, 750),
     []
   )
 
@@ -57,8 +53,12 @@ const SearchBar: FC = () => {
     const query = e.target.value.trim()
 
     if (!query) {
+      abortController.current?.abort()
       setAutocomplete({ isOpened: false, data: undefined })
     } else {
+      abortController.current?.abort()
+      abortController.current = new AbortController()
+
       fetchAutocomplete(query)
     }
   }
@@ -74,6 +74,8 @@ const SearchBar: FC = () => {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
+
+    abortController.current?.abort()
 
     navigate()
   }
