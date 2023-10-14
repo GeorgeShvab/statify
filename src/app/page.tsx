@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { FC, Suspense } from 'react'
 import SearchBar from '@/components/SearchBar/SearchBar'
-import SearchBarLoading from '@/components/SearchBar/SearchBarLoading'
+import SearchBarLoader from '@/components/SearchBar/SearchBarLoader'
 
 const Home: FC = () => {
   return (
@@ -15,7 +15,7 @@ const Home: FC = () => {
               </h1>
               <div className="flex justify-center">
                 <div className="mb-8 md:mb-8 max-w-[700px] w-full [&>form>div>div>div>div]:bg-neutral-50 [&>form>div>div>div>div>input]:bg-neutral-50">
-                  <Suspense fallback={<SearchBarLoading />}>
+                  <Suspense fallback={<SearchBarLoader />}>
                     <SearchBar />
                   </Suspense>
                 </div>
