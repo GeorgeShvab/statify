@@ -69,3 +69,9 @@ export interface Country {
   id: string
   name: string
 }
+
+export interface ChartCountry extends Country {
+  values: Value[]
+  isSelected: boolean
+  color: string | undefined
+}
