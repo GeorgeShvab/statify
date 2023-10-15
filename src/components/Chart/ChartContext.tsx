@@ -1,13 +1,14 @@
 'use client'
 
-import { Country, Value } from '@/types'
+import { ChartCountry, Country, Value } from '@/types'
+import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import { FC, ReactElement, createContext, useContext, useEffect, useState } from 'react'
+import { FC, ReactElement, createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import useColors from './useColors'
 
 interface ChartContext {
-  data: (Country & { values: Value[] })[]
   remove: (id: string) => void
-  add: (country: Country & { values: Value[] }) => void
+  add: (country: string) => void
   removeAll: () => void
   isError: boolean
   removeError: () => void
@@ -16,10 +17,10 @@ interface ChartContext {
   setRange: (range: number[]) => void
   setSelectedRange: (range: number[]) => void
   setRanges: (range: number[], selectedRange: number[]) => void
+  regions: ChartCountry[]
 }
 
 const ChartContext = createContext<ChartContext>({
-  data: [],
   remove: () => {},
   add: () => {},
   removeAll: () => {},
@@ -30,38 +31,54 @@ const ChartContext = createContext<ChartContext>({
   setRange: () => {},
   setSelectedRange: () => {},
   setRanges: () => {},
+  regions: [],
 })
 
 interface Props {
-  initial: (Country & { values: Value[] })[]
+  initial: string[]
   children: ReactElement
   initialRange: number[]
+  regions: (Country & { values: Value[] })[]
 }
 
 interface State {
-  data: (Country & { values: Value[] })[]
   isError: boolean
   range: number[]
   selectedRange: number[]
+  regions: ChartCountry[]
 }
 
-export const ChartProvider: FC<Props> = ({ initial, children, initialRange }) => {
+export const ChartProvider: FC<Props> = ({ initial, children, initialRange, regions }) => {
+  const { addColor, getColor } = useColors()
+
+  const initialRegions = useMemo(
+    () =>
+      regions.map((item) => ({
+        ...item,
+        isSelected: initial.includes(item.id),
+        color: initial.includes(item.id) ? getColor() : undefined,
+      })),
+    []
+  )
+
   const [data, setData] = useState<State>({
-    data: initial,
     isError: false,
     selectedRange: initialRange,
     range: initialRange,
+    regions: initialRegions,
   })
 
   const router = useRouter()
 
-  const remove = (id: string) => setData((prev) => ({ ...prev, data: prev.data.filter((item) => item.id !== id) }))
+  const remove = (id: string) =>
+    setData((prev) => ({
+      ...prev,
+      regions: prev.regions.map((item) => ({ ...item, isSelected: item.id === id ? false : item.isSelected })),
+    }))
 
-  const removeAll = () => setData((prev) => ({ ...prev, data: [] }))
+  const removeAll = () => setData((prev) => ({ ...prev, regions: initialRegions }))
 
   const removeError = () => setData((prev) => ({ ...prev, isError: false }))
-
-  const setError = () => setData((prev) => ({ ...prev, isError: true }))
 
   const setRange = (range: number[]) => setData((prev) => ({ ...prev, range: range }))
 
@@ -70,14 +87,63 @@ export const ChartProvider: FC<Props> = ({ initial, children, initialRange }) =>
 
   const setSelectedRange = (selectedRange: number[]) => setData((prev) => ({ ...prev, selectedRange }))
 
-  const add = (country: Country & { values: Value[] }) => {
+  const add = (country: string) => {
     setData((prev) => {
-      if (prev.data.find((item) => item.id === country.id)) {
-        return { ...prev, data: prev.data.filter((item) => item.id !== country.id) }
-      } else if (prev.data.length > 4) {
-        return { ...prev, isError: true }
-      } else {
-        return { ...prev, data: [...prev.data, country] }
+      if (prev.regions.filter((item) => item.isSelected).length > 14) {
+        if (prev.regions.find((item) => item.id === country)?.isSelected) {
+          return {
+            ...prev,
+            regions: prev.regions.map((item) => {
+              if (item.id === country && item.color) {
+                addColor(item.color)
+              }
+
+              return {
+                ...item,
+                isSelected: item.id === country ? false : item.isSelected,
+                color: item.id === country ? undefined : item.color,
+              }
+            }),
+          }
+        }
+
+        return {
+          ...prev,
+          isError: true,
+          regions: prev.regions.map((item) => {
+            if (item.id === country && item.color) {
+              addColor(item.color)
+            }
+
+            return {
+              ...item,
+              isSelected: item.id === country ? false : item.isSelected,
+              color: item.id === country ? undefined : item.color,
+            }
+          }),
+        }
+      }
+
+      return {
+        ...prev,
+        regions: prev.regions.map((item) => {
+          let newColor = item.color
+
+          if (item.id === country && item.color && item.isSelected) {
+            addColor(item.color)
+            newColor = undefined
+          }
+
+          if (item.id === country && !item.isSelected) {
+            newColor = getColor()
+          }
+
+          return {
+            ...item,
+            isSelected: item.id === country ? !item.isSelected : item.isSelected,
+            color: newColor,
+          }
+        }),
       }
     })
   }
@@ -89,22 +155,23 @@ export const ChartProvider: FC<Props> = ({ initial, children, initialRange }) =>
 
     params.set(
       'chart_items',
-      data.data
+      data.regions
+        .filter((item) => item.isSelected)
         .map((item) => item.id)
         .sort()
         .join(',')
     )
 
     router.replace('?' + params.toString(), { scroll: false })
-  }, [data.data])
+  }, [data.regions])
 
   return (
     <ChartContext.Provider
       value={{
         isError: data.isError,
-        data: data.data,
         range: data.range,
         selectedRange: data.selectedRange,
+        regions: data.regions,
         add,
         remove,
         removeAll,

@@ -51,7 +51,7 @@ const Table: FC<Props> = (props) => {
         <tr className="">
           <th className="top-0 z-20 !border-b text-[10px] md:text-base font-bold py-4 md:py-3 pl-4 px-2 md:px-3 md:pr-6 md:pl-6 text-neutral-500 text-left w-24 md:w-[350px] bg-neutral-50">
             <button
-              className="flex items-center gap-1.5 md:gap-3 justify-start select-auto"
+              className="flex items-center gap-1.5 md:gap-3 justify-start"
               onClick={() => handleSort('country')}
               aria-label="Sort by country name"
             >
@@ -102,7 +102,7 @@ const Table: FC<Props> = (props) => {
           </th>
           <th className="!border-b text-[10px] md:text-base font-medium py-4 md:py-3 px-2 md:px-3 md:pr-6 md:pl-6 text-neutral-500 text-right bg-neutral-50 w-28 md:w-64">
             <button
-              className="flex items-center gap-1.5 md:gap-3 justify-end w-full text-right select-auto"
+              className="flex items-center gap-1.5 md:gap-3 justify-end w-full text-right"
               onClick={() => handleSort('value')}
               aria-label="Sort by value"
             >
@@ -151,10 +151,10 @@ const Table: FC<Props> = (props) => {
               </div>
             </button>
           </th>
-          <th className="!border-b select-auto text-[10px] md:text-base font-medium py-4 md:py-3 text-neutral-500 text-center bg-neutral-50 w-[100px] md:w-48 whitespace-nowrap">
+          <th className="!border-b text-[10px] md:text-base font-medium py-4 md:py-3 text-neutral-500 text-center bg-neutral-50 w-[100px] md:w-48 whitespace-nowrap">
             Trend
           </th>
-          <th className="!border-b select-auto text-[10px] md:text-base font-medium py-4 md:py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 text-right bg-neutral-50 w-[5px] md:w-[75px]">
+          <th className="!border-b text-[10px] md:text-base font-medium py-4 md:py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 text-right bg-neutral-50 w-[5px] md:w-[75px]">
             Year
           </th>
         </tr>

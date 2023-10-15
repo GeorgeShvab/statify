@@ -11,6 +11,7 @@ import Table from './Table'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 import prettifyValue from '@/utils/prettifyValue'
+import ManageRegionsButton from '@/components/Chart/ManageRegions/ManageRegionsButton'
 
 interface Params {
   id: string
@@ -74,18 +75,24 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
           </div>
         </div>
         <ChartProvider
-          initial={countries.filter((item) => initialChartItems.split(',').includes(item.id))}
+          initial={initialChartItems.split(',')}
           initialRange={quickSort(
             Array.from(new Set(countries.map((item) => item.values.map((item) => item.year)).flat()))
           )}
+          regions={countries}
         >
           <>
             <div className="container mb-2 md:mb-3.5">
-              <div className="px-2 pr-3 py-4 pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border">
-                <h2 className="mb-3 md:mb-3 text-center font-semibold text-sm md:text-lg">
-                  {indicator.label}, {indicator.unit}
-                </h2>
-                <div className="!min-h-[328px] md:!h-[520px] overflow-hidden">
+              <div className="px-2 pr-3 py-4 pt-5 md:pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border relative">
+                <div className="mb-4 md:mb-4 flex justify-center relative">
+                  <h2 className="text-center font-semibold text-sm md:text-lg">
+                    {indicator.label}, {indicator.unit}
+                  </h2>
+                  <div className="absolute right-0 top-1/2 translate-y-[-50%]">
+                    <ManageRegionsButton />
+                  </div>
+                </div>
+                <div className="!min-h-[328px] md:!min-h-[520px] overflow-hidden">
                   <Chart />
                 </div>
               </div>
@@ -97,20 +104,13 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
                 </div>
               </div>
             </div>
-            <div className="container mb-2 md:mb-3.5 overflow-hidden lg:hidden">
-              <div className="px-2 py-4 md:px-7 md:py-6 rounded-lg bg-white border">
-                <p className="text-neutral-400 text-center text-xs">
-                  Tap and hold on any of the rows to add or remove it from the chart
-                </p>
-              </div>
-            </div>
-            <div className="container">
-              <div className="bg-white rounded-lg border">
-                <Table data={countries} indicator={indicator} />
-              </div>
-            </div>
           </>
         </ChartProvider>
+        <div className="container">
+          <div className="bg-white rounded-lg border">
+            <Table data={countries} indicator={indicator} />
+          </div>
+        </div>
       </div>
     </div>
   )
