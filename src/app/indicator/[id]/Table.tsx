@@ -55,7 +55,7 @@ const Table: FC<Props> = (props) => {
               onClick={() => handleSort('country')}
               aria-label="Sort by country name"
             >
-              Country
+              Region
               <div className="w-4 h-4 flex items-center justify-center">
                 {data.by === 'country' ? (
                   data.order === 'asc' ? (

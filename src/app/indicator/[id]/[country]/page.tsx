@@ -40,7 +40,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
   return (
     <div>
       <div className="min-h-main-dynamic md:min-h-main">
-        <div className="container mb-2 md:mb-3.5">
+        <section className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
             <BookmarkButton isBookmarked={!!isBookmarked} />
             <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">
@@ -55,13 +55,13 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
               <Link href={`/indicator/${params.id}`}>Global {indicator.label}</Link>
             </p>
           </div>
-        </div>
+        </section>
         <ChartProvider
           initial={[country.id]}
           regions={[country]}
           initialRange={country.values.map((item) => item.year)}
         >
-          <>
+          <section>
             <div className="container mb-2 md:mb-3.5">
               <div className="px-2 pr-3 py-4 pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border">
                 <h2 className="mb-3 md:mb-3 text-center font-semibold text-sm md:text-lg">
@@ -79,13 +79,13 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
                 </div>
               </div>
             </div>
-            <div className="container">
-              <div className="bg-white rounded-lg border">
-                <Table data={country.values} indicator={indicator} />
-              </div>
-            </div>
-          </>
+          </section>
         </ChartProvider>
+        <section className="container">
+          <div className="bg-white rounded-lg border">
+            <Table data={country.values} indicator={indicator} />
+          </div>
+        </section>
       </div>
     </div>
   )

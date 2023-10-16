@@ -1,9 +1,8 @@
 'use client'
 
 import { ChartCountry, Country, Value } from '@/types'
-import axios from 'axios'
 import { useRouter } from 'next/navigation'
-import { FC, ReactElement, createContext, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { FC, ReactElement, createContext, memo, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import useColors from './useColors'
 
 interface ChartContext {
@@ -47,6 +46,10 @@ interface State {
   selectedRange: number[]
   regions: ChartCountry[]
 }
+
+const Container: FC<{ children: ReactElement }> = memo(({ children }) => {
+  return children
+})
 
 export const ChartProvider: FC<Props> = ({ initial, children, initialRange, regions }) => {
   const { addColor, getColor } = useColors()
@@ -181,7 +184,7 @@ export const ChartProvider: FC<Props> = ({ initial, children, initialRange, regi
         setRanges,
       }}
     >
-      {children}
+      <Container>{children}</Container>
     </ChartContext.Provider>
   )
 }

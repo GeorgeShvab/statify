@@ -14,11 +14,13 @@ const Region: FC<Props> = ({ onClick, ...props }) => {
   }
 
   return (
-    <li className={`px-6 pr-3 text-sm flex items-center justify-between ${props.isSelected ? 'bg-neutral-100' : ''}`}>
+    <li
+      className={`px-6 pr-3 text-sm flex items-center justify-between ${props.isSelected ? 'bg-neutral-100' : ''}`}
+      onClick={handleClick}
+    >
       <span className="text-neutral-700">{props.name}</span>
       <button
         className="text-neutral-500 h-10 w-10 flex justify-center items-center"
-        onClick={handleClick}
         aria-label={props.isSelected ? 'Unselect' : 'Select'}
       >
         {props.isSelected ? (
