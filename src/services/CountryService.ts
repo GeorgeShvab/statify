@@ -13,6 +13,16 @@ const CountryService = {
      as values FROM "Country" c WHERE (SELECT COUNT("id") FROM "Value" WHERE "indicatorId" = ${indicator} AND "countryId" = c."id" AND "year" <= ${new Date().getFullYear()}) > 0 ORDER BY "name" ASC`
   },
 
+  async getCountriesValueByIndicator({
+    indicator,
+  }: {
+    indicator: string
+  }): Promise<(Country & { value: number; year: number })[]> {
+    return await prisma.$queryRaw`SELECT c.id, c.name, (SELECT "value" FROM "Value" WHERE "indicatorId" = ${indicator} AND "countryId" = c."id" AND "year" <= ${new Date().getFullYear()} ORDER BY "year" DESC LIMIT 1) as value,
+    (SELECT "year" FROM "Value" WHERE "indicatorId" = ${indicator} AND "countryId" = c."id" AND "year" <= ${new Date().getFullYear()} ORDER BY "year" DESC LIMIT 1) as year
+     FROM "Country" c WHERE (SELECT COUNT("id") FROM "Value" WHERE "indicatorId" = ${indicator} AND "countryId" = c."id" AND "year" <= ${new Date().getFullYear()}) > 0 ORDER BY "name" ASC`
+  },
+
   async getCountry({
     indicator,
     country,

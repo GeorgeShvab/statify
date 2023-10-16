@@ -1,24 +1,24 @@
 'use client'
 
-import { Indicator, Country, Value } from '@/types'
+import { Indicator, Country, Value, RowCountry } from '@/types'
 import { FC, useState } from 'react'
 import quickSort from '@/utils/quickSort'
 import Rows from './Rows'
 
 interface Props {
-  data: (Country & { values: Value[]; name: string })[]
+  data: RowCountry[]
   indicator: Indicator
 }
 
 interface State {
-  data: (Country & { values: Value[] })[]
+  data: RowCountry[]
   order: 'asc' | 'desc'
   by?: 'country' | 'value'
 }
 
 const Table: FC<Props> = (props) => {
   const [data, setData] = useState<State>({
-    data: props.data as (Country & { values: Value[] })[],
+    data: props.data,
     order: 'asc',
     by: 'country',
   })
@@ -36,11 +36,7 @@ const Table: FC<Props> = (props) => {
         ...prev,
         order: prev.order === 'asc' && prev.by === 'value' ? 'desc' : 'asc',
         by: 'value',
-        data: quickSort(
-          prev.data,
-          prev.order === 'asc' && prev.by === 'value' ? 'desc' : 'asc',
-          (item) => item.values[item.values.length - 1].value
-        ),
+        data: quickSort(prev.data, prev.order === 'asc' && prev.by === 'value' ? 'desc' : 'asc', (item) => item.value),
       }))
     }
   }

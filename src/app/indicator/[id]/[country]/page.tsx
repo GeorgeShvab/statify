@@ -56,11 +56,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             </p>
           </div>
         </section>
-        <ChartProvider
-          initial={[country.id]}
-          regions={[country]}
-          initialRange={country.values.map((item) => item.year)}
-        >
+        <ChartProvider initial={[country.id]} indicator={indicator.id} country={country.id}>
           <section>
             <div className="container mb-2 md:mb-3.5">
               <div className="px-2 pr-3 py-4 pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border">

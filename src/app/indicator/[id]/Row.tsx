@@ -1,11 +1,11 @@
-import { Country, Indicator, Value } from '@/types'
+import { Country, Indicator, RowCountry, Value } from '@/types'
 import prettifyValue from '@/utils/prettifyValue'
 import Link from 'next/link'
 import { FC, memo } from 'react'
 
 interface Props {
   indicator: Indicator
-  country: Country & { values: Value[] }
+  country: RowCountry
 }
 
 const Row: FC<Props> = ({ indicator, country }) => {
@@ -21,7 +21,7 @@ const Row: FC<Props> = ({ indicator, country }) => {
       <td
         className={`border-b py-4 md:py-3 px-2 md:px-3 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal text-right w-32 md:w-64`}
       >
-        {prettifyValue(country.values[country.values.length - 1].value.toFixed(2))}
+        {prettifyValue(country.value.toFixed(2))}
       </td>
       <td className={`border-b text-[10px] md:text-base text-gray-400 font-normal text-right w-[100px] md:w-48`}>
         <div className="w-full flex justify-center">
@@ -35,7 +35,7 @@ const Row: FC<Props> = ({ indicator, country }) => {
       <td
         className={`border-b py-4 md:py-3 px-2 md:px-3 pr-4 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal text-right w-[5px] md:w-[75px]`}
       >
-        {country.values[country.values.length - 1].year}
+        {country.year}
       </td>
     </tr>
   )

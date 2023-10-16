@@ -2,8 +2,10 @@
 
 import { ChartCountry, Country, Value } from '@/types'
 import { useRouter } from 'next/navigation'
-import React, { FC, ReactElement, createContext, memo, useContext, useEffect, useMemo, useRef, useState } from 'react'
+import React, { FC, ReactElement, createContext, memo, useContext, useEffect, useMemo, useState } from 'react'
 import useColors from './useColors'
+import axios from 'axios'
+import quickSort from '@/utils/quickSort'
 
 interface ChartContext {
   remove: (id: string) => void
@@ -17,6 +19,7 @@ interface ChartContext {
   setSelectedRange: (range: number[]) => void
   setRanges: (range: number[], selectedRange: number[]) => void
   regions: ChartCountry[]
+  isLoading: boolean
 }
 
 const ChartContext = createContext<ChartContext>({
@@ -31,13 +34,14 @@ const ChartContext = createContext<ChartContext>({
   setSelectedRange: () => {},
   setRanges: () => {},
   regions: [],
+  isLoading: true,
 })
 
 interface Props {
   initial: string[]
   children: ReactElement
-  initialRange: number[]
-  regions: (Country & { values: Value[] })[]
+  indicator: string
+  country?: string
 }
 
 interface State {
@@ -45,31 +49,49 @@ interface State {
   range: number[]
   selectedRange: number[]
   regions: ChartCountry[]
+  isLoading: boolean
 }
 
 const Container: FC<{ children: ReactElement }> = memo(({ children }) => {
   return children
 })
 
-export const ChartProvider: FC<Props> = ({ initial, children, initialRange, regions }) => {
+export const ChartProvider: FC<Props> = ({ initial, children, indicator, country }) => {
   const { addColor, getColor } = useColors()
-
-  const initialRegions = useMemo(
-    () =>
-      regions.map((item) => ({
-        ...item,
-        isSelected: initial.includes(item.id),
-        color: initial.includes(item.id) ? getColor() : undefined,
-      })),
-    []
-  )
 
   const [data, setData] = useState<State>({
     isError: false,
-    selectedRange: initialRange,
-    range: initialRange,
-    regions: initialRegions,
+    selectedRange: [],
+    range: [],
+    regions: [],
+    isLoading: true,
   })
+
+  useEffect(() => {
+    ;(async () => {
+      let data: (Country & { values: Value[] })[]
+
+      if (country) {
+        data = [(await axios.get<Country & { values: Value[] }>(`/api/indicator/${indicator}/${country}`)).data]
+      } else {
+        data = (await axios.get<(Country & { values: Value[] })[]>('/api/indicator/' + indicator)).data
+      }
+
+      const range = quickSort(Array.from(new Set(data.map((item) => item.values.map((item) => item.year)).flat())))
+
+      setData((prev) => ({
+        ...prev,
+        selectedRange: range,
+        regions: data.map((item) => ({
+          ...item,
+          isSelected: initial.includes(item.id),
+          color: initial.includes(item.id) ? getColor() : undefined,
+        })),
+        range,
+        isLoading: false,
+      }))
+    })()
+  }, [])
 
   const router = useRouter()
 
@@ -79,7 +101,14 @@ export const ChartProvider: FC<Props> = ({ initial, children, initialRange, regi
       regions: prev.regions.map((item) => ({ ...item, isSelected: item.id === id ? false : item.isSelected })),
     }))
 
-  const removeAll = () => setData((prev) => ({ ...prev, regions: initialRegions }))
+  const removeAll = () =>
+    setData((prev) => ({
+      ...prev,
+      regions: prev.regions.map((item) => {
+        item.color && addColor(item.color)
+        return { ...item, isSelected: false, color: undefined }
+      }),
+    }))
 
   const removeError = () => setData((prev) => ({ ...prev, isError: false }))
 
@@ -175,6 +204,7 @@ export const ChartProvider: FC<Props> = ({ initial, children, initialRange, regi
         range: data.range,
         selectedRange: data.selectedRange,
         regions: data.regions,
+        isLoading: data.isLoading,
         add,
         remove,
         removeAll,
