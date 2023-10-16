@@ -1,15 +1,12 @@
 import { Country, Indicator, Value } from '@/types'
 import prettifyValue from '@/utils/prettifyValue'
-import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { FC, MouseEvent, memo } from 'react'
+import { FC, memo } from 'react'
 
 interface Props {
   indicator: Indicator
   country: Country & { values: Value[] }
 }
-
-const LineChart = dynamic(() => import('@/components/LineChart/LineChart'), { ssr: false })
 
 const Row: FC<Props> = ({ indicator, country }) => {
   return (
@@ -28,12 +25,10 @@ const Row: FC<Props> = ({ indicator, country }) => {
       </td>
       <td className={`border-b text-[10px] md:text-base text-gray-400 font-normal text-right w-[100px] md:w-48`}>
         <div className="w-full flex justify-center">
-          <LineChart
-            data={
-              country.values
-                .filter((item, index) => index % 2 === 0 || index === 0)
-                .map((item) => item.value) as number[]
-            }
+          <img
+            alt="Trend"
+            src={`${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/${indicator.id}/${country.id}.png`}
+            className="w-[60px] md:w-auto"
           />
         </div>
       </td>

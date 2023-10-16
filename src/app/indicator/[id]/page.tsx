@@ -50,13 +50,12 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
   return (
     <div>
       <div className="min-h-main-dynamic md:min-h-main">
-        <div className="container mb-2 md:mb-3.5">
+        <section className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
             <BookmarkButton isBookmarked={!!isBookmarked} />
             <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">{indicator.label}</h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
             <p className="text-neutral-400 text-sm">Unit: {indicator.unit}</p>
-
             {indicator.description && indicator.description.trim() && (
               <p className="text-neutral-600 mt-3" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
@@ -73,7 +72,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
               </p>
             )}
           </div>
-        </div>
+        </section>
         <ChartProvider
           initial={initialChartItems.split(',')}
           initialRange={quickSort(
@@ -81,10 +80,10 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
           )}
           regions={countries}
         >
-          <>
+          <section>
             <div className="container mb-2 md:mb-3.5">
               <div className="px-2 pr-3 py-4 pt-5 md:pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border relative">
-                <div className="mb-4 md:mb-4 flex justify-center relative">
+                <div className="mb-4 md:mb-4 flex justify-center relative px-8">
                   <h2 className="text-center font-semibold text-sm md:text-lg">
                     {indicator.label}, {indicator.unit}
                   </h2>
@@ -104,13 +103,13 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
                 </div>
               </div>
             </div>
-          </>
+          </section>
         </ChartProvider>
-        <div className="container">
+        <section className="container">
           <div className="bg-white rounded-lg border">
             <Table data={countries} indicator={indicator} />
           </div>
-        </div>
+        </section>
       </div>
     </div>
   )

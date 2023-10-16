@@ -26,7 +26,7 @@ const ManageRegions: FC = () => {
 
   return (
     <div className="border rounded-lg bg-white h-[75vh] md:h-[60vh] w-[95vw] md:w-[400px] min-h-[300px] flex flex-col overflow-hidden">
-      <h3 className="text-center font-medium pt-5 mb-4">Chart manager</h3>
+      <h3 className="text-center font-medium pt-5 mb-4">Edit chart</h3>
       <div className="px-3 mb-3">
         <SearchInput onChange={handleInput} value={value} onClear={clearValue} />
       </div>

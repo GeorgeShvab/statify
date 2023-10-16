@@ -29,7 +29,7 @@ const ManageRegionsList: FC<Props> = ({ regions, onClick }) => {
   return (
     <ul
       className={`overflow-auto pb-2 pretty-scrollbar transition-all ${
-        isScrolled ? 'shadow-[inset_-5px_5px_5px_-5px_rgba(0,_0,_0,_0.15)]' : ''
+        isScrolled ? 'shadow-[inset_-2px_5px_5px_-5px_rgba(0,_0,_0,_0.15)]' : ''
       }`}
       onScroll={handleScroll}
     >
