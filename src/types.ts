@@ -75,3 +75,8 @@ export interface ChartCountry extends Country {
   isSelected: boolean
   color: string | undefined
 }
+
+export interface RowCountry extends Country {
+  year: number
+  value: number
+}

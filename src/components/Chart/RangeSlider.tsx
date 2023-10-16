@@ -6,11 +6,13 @@ import { FC } from 'react'
 import 'rc-slider/assets/index.css'
 
 const RangeSlider: FC = () => {
-  const { range, setSelectedRange } = useChart()
+  const { range, setSelectedRange, isLoading } = useChart()
 
   const handleChangeYears: any = (minMax: number[]) => {
     setSelectedRange(range.filter((item) => item >= minMax[0] && item <= minMax[1]))
   }
+
+  if (isLoading) return null
 
   return (
     <Slider

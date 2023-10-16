@@ -20,9 +20,11 @@ import Alert from '@/ui/Alert/Alert'
 ChartJS.register(ArcElement, Tooltip, Legend, LinearScale, CategoryScale, PointElement, LineElement)
 
 const Chart: FC = () => {
-  const { regions, isError, removeError, selectedRange } = useChart()
+  const { regions, isError, removeError, selectedRange, isLoading } = useChart()
 
   const selectedRegions = useMemo(() => regions.filter((item) => item.isSelected), [regions])
+
+  if (isLoading) return null
 
   const data: ChartData<'line'> = {
     labels: selectedRange,

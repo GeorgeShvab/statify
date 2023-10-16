@@ -31,7 +31,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
 
   const isBookmarkedPromise = client ? BookmarkService.getOne({ indicator: params.id, client }) : null
 
-  const countriesPromise = CountryService.getCountries({ indicator: params.id })
+  const countriesPromise = CountryService.getCountriesValueByIndicator({ indicator: params.id })
 
   const [countries, indicator, isBookmarked] = await Promise.all([
     countriesPromise,
@@ -73,13 +73,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
             )}
           </div>
         </section>
-        <ChartProvider
-          initial={initialChartItems.split(',')}
-          initialRange={quickSort(
-            Array.from(new Set(countries.map((item) => item.values.map((item) => item.year)).flat()))
-          )}
-          regions={countries}
-        >
+        <ChartProvider initial={initialChartItems.split(',')} indicator={indicator.id}>
           <section>
             <div className="container mb-2 md:mb-3.5">
               <div className="px-2 pr-3 py-4 pt-5 md:pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border relative">
