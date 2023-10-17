@@ -4,7 +4,7 @@ import ManageRegionsList from './ManageRegionsList'
 import SearchInput from '@/ui/SearchInput/SearchInput'
 
 const ManageRegions: FC = () => {
-  const { add, regions } = useChart()
+  const { add, regions, remove } = useChart()
 
   const [value, setValue] = useState<string>('')
 
@@ -24,6 +24,14 @@ const ManageRegions: FC = () => {
     [value, regions]
   )
 
+  const handleRegionClick = (data: { isSelected: boolean; id: string; name: string }) => {
+    if (data.isSelected) {
+      remove(data.id)
+    } else {
+      add(data.id)
+    }
+  }
+
   return (
     <div className="border rounded-lg bg-white h-[75vh] md:h-[60vh] w-[95vw] md:w-[400px] min-h-[300px] flex flex-col overflow-hidden">
       <h3 className="text-center font-medium pt-5 mb-4">Edit chart</h3>
@@ -31,7 +39,7 @@ const ManageRegions: FC = () => {
         <SearchInput onChange={handleInput} value={value} onClear={clearValue} />
       </div>
 
-      <ManageRegionsList regions={data} onClick={add} />
+      <ManageRegionsList regions={data} onClick={handleRegionClick} />
     </div>
   )
 }

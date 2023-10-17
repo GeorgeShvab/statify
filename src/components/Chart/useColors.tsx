@@ -29,11 +29,15 @@ const useColors = () => {
     return color
   }
 
+  const resetColors = () => {
+    colors.current = chartColors
+  }
+
   const addColor = (color: string) => {
     colors.current.push(color)
   }
 
-  return { colors, addColor, getColor }
+  return { colors, addColor, getColor, resetColors }
 }
 
 export default useColors

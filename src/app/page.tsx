@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     title: 'Statify',
     description: 'Accurate economic data by countries',
     type: 'website',
-    url: `/`,
+    url: '/',
   },
   twitter: {
     images: ['/og.png'],

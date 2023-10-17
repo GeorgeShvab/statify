@@ -48,7 +48,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             </h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
             <p className="text-neutral-400 text-sm">Unit: {indicator.unit}</p>
-            {indicator.description && indicator.description.trim() && (
+            {indicator.description && (
               <p className="text-neutral-600 mt-4" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
             <p className="mt-2 text-blue text-sm">
@@ -100,7 +100,7 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
         title: 'Not Found',
         description: 'This page is not exist',
         type: 'website',
-        url: `/`,
+        url: '/',
       },
       twitter: {
         images: ['/og.png'],

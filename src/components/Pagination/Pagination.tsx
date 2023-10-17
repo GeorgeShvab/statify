@@ -48,14 +48,12 @@ const Pagination: FC<Props> = ({ page, pages }) => {
           <>
             <Link
               href={makeUrl(searchParams.toString(), 1)}
-              className={`h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500`}
+              className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500"
             >
               1
             </Link>
             {page - 3 > 1 && (
-              <span
-                className={`h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500`}
-              >
+              <span className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500">
                 ...
               </span>
             )}
@@ -75,15 +73,13 @@ const Pagination: FC<Props> = ({ page, pages }) => {
         {pages - 2 > page && (
           <>
             {pages - 3 > page && (
-              <span
-                className={`h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500`}
-              >
+              <span className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500">
                 ...
               </span>
             )}
             <Link
               href={makeUrl(searchParams.toString(), pages)}
-              className={`h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500`}
+              className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500"
             >
               {pages}
             </Link>
