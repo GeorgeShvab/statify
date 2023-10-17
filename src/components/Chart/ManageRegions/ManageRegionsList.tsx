@@ -1,28 +1,14 @@
-import { Value, Country, ChartCountry } from '@/types'
-import throttle from '@/utils/throttle'
-import { FC, useState, UIEvent, useCallback, memo, useMemo } from 'react'
+import { FC, useCallback } from 'react'
 import Region from './Region'
+import useScroll from '@/hooks/useScroll'
 
 interface Props {
   regions: { id: string; name: string; isSelected: boolean }[]
-  onClick: (data: string) => void
+  onClick: (data: { isSelected: boolean; id: string; name: string }) => void
 }
 
 const ManageRegionsList: FC<Props> = ({ regions, onClick }) => {
-  const [isScrolled, setIsScrolled] = useState<boolean>(false)
-
-  const handleScroll = useCallback(
-    throttle((e: UIEvent<HTMLDivElement>) => {
-      const scrollTop = (e.target as HTMLDivElement).scrollTop
-
-      if (scrollTop > 50) {
-        setIsScrolled(true)
-      } else {
-        setIsScrolled(false)
-      }
-    }, 75),
-    []
-  )
+  const [isScrolled, handleScroll] = useScroll()
 
   const onItemClick = useCallback(onClick, [regions])
 

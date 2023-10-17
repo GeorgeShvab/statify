@@ -6,7 +6,6 @@ import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import BookmarkService from '@/services/BookmarkService'
 import { cookies } from 'next/headers'
 import { ChartProvider } from '@/components/Chart/ChartContext'
-import quickSort from '@/utils/quickSort'
 import Table from './Table'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
@@ -47,6 +46,18 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
 
   const initialChartItems = searchParams.chart_items || initialChartRegion.id
 
+  let globalValue
+
+  if (indicator.total) {
+    if (indicator.unitSymbol === 'bln') {
+      globalValue = Math.round(indicator.total * 1000000000)
+    } else if (indicator.unitSymbol === 'mln') {
+      globalValue = Math.round(indicator.total * 1000000)
+    } else {
+      globalValue = indicator.total
+    }
+  }
+
   return (
     <div>
       <div className="min-h-main-dynamic md:min-h-main">
@@ -59,18 +70,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
             {indicator.description && indicator.description.trim() && (
               <p className="text-neutral-600 mt-3" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
-            {indicator.total && (
-              <p className="font-semibold mt-4">
-                Global:{' '}
-                {prettifyValue(
-                  indicator.unitSymbol === 'bln'
-                    ? Math.round(indicator.total * 1000000000)
-                    : indicator.unitSymbol === 'mln'
-                    ? Math.round(indicator.total * 1000000)
-                    : indicator.total.toFixed(2)
-                )}
-              </p>
-            )}
+            {globalValue && <p className="font-semibold mt-4">Global: {prettifyValue(globalValue)}</p>}
           </div>
         </section>
         <ChartProvider initial={initialChartItems.split(',')} indicator={indicator.id}>
@@ -122,7 +122,7 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
         title: 'Not Found',
         description: 'This page is not exist',
         type: 'website',
-        url: `/`,
+        url: '/',
       },
       twitter: {
         images: ['/og.png'],
@@ -135,12 +135,12 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
   }
 
   return {
-    title: `${indicator.label}`,
+    title: indicator.label,
     description: `Detaled data about ${indicator.label} in all countries`,
     themeColor: '#ffffff',
     openGraph: {
       images: ['/og.png'],
-      title: `${indicator.label}`,
+      title: indicator.label,
       description: `Detaled data about ${indicator.label} in all countries`,
       type: 'website',
       url: `/indicator/${params.id}`,

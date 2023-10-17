@@ -21,9 +21,7 @@ const BookmarkCard: FC<Props> = ({ indicator, country }) => {
         </h2>
         {indicator.source && <p className="mt-1 text-sm text-neutral-400">Source: {indicator.source}</p>}
       </div>
-      {indicator.description && indicator.description.trim() && (
-        <p className="text-neutral-500 text-sm">{truncateString(indicator.description, 30)}</p>
-      )}
+      {indicator.description && <p className="text-neutral-500 text-sm">{truncateString(indicator.description, 30)}</p>}
     </Link>
   )
 }

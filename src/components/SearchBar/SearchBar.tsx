@@ -8,17 +8,12 @@ import Link from 'next/link'
 import useOutsideClick from '@/hooks/useOutsideClick'
 import IconButton from '@/ui/IconButton/IconButton'
 import { useRouter, useSearchParams } from 'next/navigation'
-import throttle from '@/utils/throttle'
-
-interface AutocompleteState {
-  data: Indicator[] | undefined
-  isOpened: boolean
-}
+import useAutocomplete from './useAutocomplete'
+import SearchIcon from '@/ui/Icons/SearchIcon'
+import ResetIcon from '@/ui/Icons/ResetIcon'
 
 const SearchBar: FC = () => {
   const containerEl = useRef<HTMLDivElement>(null)
-
-  const abortController = useRef<AbortController>()
 
   const router = useRouter()
 
@@ -26,26 +21,13 @@ const SearchBar: FC = () => {
 
   const [value, setValue] = useState<string>(searchParams.get('query') || '')
 
-  const [autocomplete, setAutocomplete] = useState<AutocompleteState>({ data: undefined, isOpened: false })
+  const { autocomplete, setAutocomplete, abortController, fetch } = useAutocomplete()
 
   const navigate = (v: string = value) => {
     router.push(`/search?query=${v}`)
 
     setAutocomplete((prev) => ({ ...prev, isOpened: false }))
   }
-
-  const fetchAutocomplete = useCallback(
-    throttle(async (value: string) => {
-      try {
-        const { data } = await axios.get<Indicator[]>('/api/autocomplete?query=' + value, {
-          signal: abortController.current?.signal,
-        })
-
-        setAutocomplete((prev) => ({ data, isOpened: true }))
-      } catch (e) {}
-    }, 750),
-    []
-  )
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -59,7 +41,7 @@ const SearchBar: FC = () => {
       abortController.current?.abort()
       abortController.current = new AbortController()
 
-      fetchAutocomplete(query)
+      fetch(query)
     }
   }
 
@@ -80,9 +62,7 @@ const SearchBar: FC = () => {
     navigate()
   }
 
-  useOutsideClick(() => {
-    setAutocomplete((prev) => ({ ...prev, isOpened: false }))
-  }, containerEl)
+  useOutsideClick(() => setAutocomplete((prev) => ({ ...prev, isOpened: false })), containerEl)
 
   return (
     <form onSubmit={handleSubmit}>
@@ -97,20 +77,7 @@ const SearchBar: FC = () => {
               }`}
             >
               <span className="text-neutral-400 h-10 w-10 flex justify-center items-center" aria-hidden>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="w-4 h-4"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
+                <SearchIcon className="w-4 h-4" />
               </span>
               <input
                 name="query"
@@ -128,20 +95,7 @@ const SearchBar: FC = () => {
                   type="button"
                   onClick={clearValue}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth={1.5}
-                    stroke="currentColor"
-                    className="w-5 h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+                  <ResetIcon className="w-5 h-5" />
                 </button>
               )}
             </div>

@@ -70,13 +70,13 @@ export interface Country {
   name: string
 }
 
-export interface ChartCountry extends Country {
+export interface ChartItem extends Country {
   values: Value[]
   isSelected: boolean
   color: string | undefined
 }
 
-export interface RowCountry extends Country {
+export interface RowItem extends Country {
   year: number
   value: number
 }

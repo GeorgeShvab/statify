@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     title: 'Not Found',
     description: 'This page is not exist',
     type: 'website',
-    url: `/`,
+    url: '/',
   },
   twitter: {
     images: ['/og.png'],
