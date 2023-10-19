@@ -23,7 +23,7 @@ const useGetChartData = (indicator: string, country?: string) => {
       setData(data)
     })()
 
-    return abortController.abort
+    return () => abortController.abort()
   }, [])
 
   return data
