@@ -46,18 +46,6 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
 
   const initialChartItems = searchParams.chart_items || initialChartRegion.id
 
-  let globalValue
-
-  if (indicator.total) {
-    if (indicator.unitSymbol === 'bln') {
-      globalValue = Math.round(indicator.total * 1000000000)
-    } else if (indicator.unitSymbol === 'mln') {
-      globalValue = Math.round(indicator.total * 1000000)
-    } else {
-      globalValue = indicator.total
-    }
-  }
-
   return (
     <div>
       <div className="min-h-main-dynamic md:min-h-main">
@@ -70,7 +58,12 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
             {indicator.description && indicator.description.trim() && (
               <p className="text-neutral-600 mt-3" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
-            {globalValue && <p className="font-semibold mt-4">Global: {prettifyValue(globalValue)}</p>}
+            {indicator.total && (
+              <p className="mt-4 text-neutral-600">
+                {indicator.absolute ? 'World total:' : 'Average in the world:'} {prettifyValue(indicator.total)}{' '}
+                {indicator.unitSymbol}
+              </p>
+            )}
           </div>
         </section>
         <ChartProvider initial={initialChartItems.split(',')} indicator={indicator.id}>

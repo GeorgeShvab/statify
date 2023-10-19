@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useMemo, useState } from 'react'
+import { ChangeEvent, FC, useDeferredValue, useMemo, useState } from 'react'
 import useChart from '../ChartContext'
 import ManageRegionsList from './ManageRegionsList'
 import SearchInput from '@/ui/SearchInput/SearchInput'
@@ -16,12 +16,14 @@ const ManageRegions: FC = () => {
 
   const clearValue = () => setValue('')
 
+  const defferedValue = useDeferredValue(value)
+
   const data = useMemo(
     () =>
-      value.trim()
-        ? regions.filter((item) => new RegExp(`(^|\\s)${value.trim()}`, 'gi').test(item.name.trim()))
+      defferedValue.trim()
+        ? regions.filter((item) => new RegExp(`(^|\\s)${defferedValue.trim()}`, 'gi').test(item.name.trim()))
         : regions,
-    [value, regions]
+    [defferedValue, regions]
   )
 
   const handleRegionClick = (data: { isSelected: boolean; id: string; name: string }) => {

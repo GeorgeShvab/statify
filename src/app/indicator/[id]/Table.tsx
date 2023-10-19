@@ -56,7 +56,7 @@ const Table: FC<Props> = (props) => {
         </tr>
       </thead>
       <tbody>
-        {props.data.map((item) => (
+        {data.data.map((item) => (
           <Row key={item.id} indicator={props.indicator} country={item} />
         ))}
       </tbody>

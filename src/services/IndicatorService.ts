@@ -10,9 +10,7 @@ interface SearchParams {
 const IndicatorService = {
   async get({ id }: { id: string }) {
     const data: (Indicator & { total: number | null })[] =
-      await prisma.$queryRaw`SELECT i.*, (SELECT "value" FROM "Value" WHERE "indicatorId" = ${id} AND year = ${
-        new Date().getFullYear() - 1
-      } AND "countryId" = 'WEOWORLD') as "total" FROM "Indicator" i WHERE "id" = ${id}`
+      await prisma.$queryRaw`SELECT i.*, (SELECT "value" FROM "Value" WHERE "indicatorId" = ${id} AND year = ${new Date().getFullYear()} AND "countryId" = 'WEOWORLD') as "total" FROM "Indicator" i WHERE "id" = ${id}`
 
     return data[0]
   },

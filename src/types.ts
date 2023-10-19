@@ -11,6 +11,7 @@ export interface Indicator {
   dataset: string
   id: string
   unitSymbol: string | null
+  absolute: boolean
 }
 
 export interface Topic {
