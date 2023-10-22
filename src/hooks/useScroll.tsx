@@ -1,24 +1,31 @@
 import throttle from '@/utils/throttle'
 import { useCallback, useState, UIEvent } from 'react'
 
+interface State {
+  isAtStart: boolean
+  isAtEnd: boolean
+}
+
 // Hook to determine if element is scrolled
 const useScroll = () => {
-  const [isScrolled, setIsScrolled] = useState<boolean>()
+  const [state, setState] = useState<State>({ isAtStart: true, isAtEnd: false })
 
   const handleScroll = useCallback(
-    throttle((e: UIEvent<HTMLDivElement>) => {
-      const scrollTop = (e.target as HTMLDivElement).scrollTop
+    throttle((e: UIEvent<HTMLDivElement> & { target: HTMLDivElement }) => {
+      const scrollTop = e.target.scrollTop
 
-      if (scrollTop > 50) {
-        setIsScrolled(true)
+      if (scrollTop < 50) {
+        setState({ isAtEnd: false, isAtStart: true })
+      } else if (scrollTop + e.target.offsetHeight > e.target.scrollHeight - 50) {
+        setState({ isAtEnd: true, isAtStart: false })
       } else {
-        setIsScrolled(false)
+        setState({ isAtEnd: false, isAtStart: false })
       }
     }, 75),
     []
   )
 
-  return [isScrolled, handleScroll] as const
+  return [state, handleScroll] as const
 }
 
 export default useScroll

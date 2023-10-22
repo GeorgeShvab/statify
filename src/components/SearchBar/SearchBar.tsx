@@ -12,7 +12,11 @@ import useAutocomplete from './useAutocomplete'
 import SearchIcon from '@/ui/Icons/SearchIcon'
 import ResetIcon from '@/ui/Icons/ResetIcon'
 
-const SearchBar: FC = () => {
+interface Props {
+  placeholder?: string
+}
+
+const SearchBar: FC<Props> = ({ placeholder }) => {
   const containerEl = useRef<HTMLDivElement>(null)
 
   const router = useRouter()
@@ -82,7 +86,7 @@ const SearchBar: FC = () => {
               <input
                 name="query"
                 value={value}
-                placeholder="Search..."
+                placeholder={placeholder || 'Search...'}
                 autoComplete="off"
                 className="h-10 flex-1 outline-none text-sm text-neutral-800"
                 onInput={handleInput}

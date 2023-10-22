@@ -18,7 +18,7 @@ const Region: FC<Props> = ({ onClick, ...props }) => {
   return (
     <li
       className={`px-6 pr-3 text-sm flex items-center justify-between transition-colors ${
-        props.isSelected ? 'bg-neutral-100' : 'hover:bg-neutral-50'
+        props.isSelected ? 'bg-neutral-100' : 'md:hover:bg-neutral-50'
       }`}
       onClick={handleClick}
       role="button"

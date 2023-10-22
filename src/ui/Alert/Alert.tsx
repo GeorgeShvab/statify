@@ -29,7 +29,7 @@ const Alert: FC<Props> = ({ show, text, onClose, severity }) => {
     <DelayWrapper show={show} wrapper={<Transition />}>
       <div
         className={`z-50 fixed top-0 left-1/2 translate-x-[-50%] rounded-lg px-4 py-2 transition-all ${
-          severity === 'success' ? 'bg-green-300' : 'bg-red-500'
+          severity === 'success' ? 'bg-green-400' : 'bg-red-500'
         }`}
       >
         <p className="text-white text-sm md:text-base text-center">{text}</p>

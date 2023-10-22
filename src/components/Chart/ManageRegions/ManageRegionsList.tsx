@@ -8,14 +8,14 @@ interface Props {
 }
 
 const ManageRegionsList: FC<Props> = ({ regions, onClick }) => {
-  const [isScrolled, handleScroll] = useScroll()
+  const [{ isAtStart, isAtEnd }, handleScroll] = useScroll()
 
   const onItemClick = useCallback(onClick, [regions])
 
   return (
     <ul
-      className={`overflow-auto pb-2 pretty-scrollbar transition-all ${
-        isScrolled ? 'shadow-[inset_-2px_5px_5px_-5px_rgba(0,_0,_0,_0.15)]' : ''
+      className={`overflow-auto pretty-scrollbar transition-all pb-2 ${
+        !isAtStart ? 'shadow-[inset_-2px_5px_5px_-5px_rgba(0,_0,_0,_0.15)]' : ''
       }`}
       onScroll={handleScroll}
     >
