@@ -1,7 +1,12 @@
 import Button from '@/ui/Button/Button'
 import IconButton from '@/ui/IconButton/IconButton'
+import { FC } from 'react'
 
-const SearchBarLoader = () => {
+interface Props {
+  placeholder?: string
+}
+
+const SearchBarLoader: FC<Props> = ({ placeholder }) => {
   return (
     <form>
       <div className="flex gap-1.5 md:gap-2.5 items-center">
@@ -27,7 +32,7 @@ const SearchBarLoader = () => {
               <input
                 name="query"
                 value=""
-                placeholder="Search..."
+                placeholder={placeholder || 'Search...'}
                 autoComplete="off"
                 className="h-10 flex-1 outline-none text-sm text-neutral-800"
               />

@@ -16,6 +16,19 @@ const Modal: FC<Props> = ({ children, opened, onClose }) => {
     }
   }, [opened])
 
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code !== '27') return
+      onClose()
+    }
+
+    window.addEventListener('keyup', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keyup', handleKeyDown)
+    }
+  }, [])
+
   if (!opened) return null
 
   return createPortal(

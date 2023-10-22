@@ -64,7 +64,7 @@ const Chart: FC = () => {
       <div className="flex gap-3 md:gap-6 justify-center flex-wrap">
         {selectedRegions.map((item, index) => (
           <div className="flex items-center gap-1.5 md:gap-2" key={item.id}>
-            <span className="h-[2px] w-3 md:w-4 block" style={{ backgroundColor: item.color }}></span>
+            <span className="chart-label-color h-[2px] w-3 md:w-4 block" style={{ backgroundColor: item.color }}></span>
             <span className="rounded-lg text-xs md:text-sm text-neutral-500 whitespace-nowrap">{item.name}</span>
           </div>
         ))}

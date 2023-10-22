@@ -11,6 +11,7 @@ import BookmarkService from '@/services/BookmarkService'
 import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
+import CopyChartButton from '@/components/Chart/CopyChartButton'
 
 interface SearchParams {
   id: string
@@ -59,11 +60,16 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
         <ChartProvider initial={[country.id]} indicator={indicator.id} country={country.id}>
           <section>
             <div className="container mb-2 md:mb-3.5">
-              <div className="px-2 pr-3 py-4 pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border">
-                <h2 className="mb-3 md:mb-3 text-center font-semibold text-sm md:text-lg">
-                  {indicator.label}, {indicator.unit}
-                </h2>
-                <div className="!min-h-[328px] md:!h-[520px] overflow-hidden">
+              <div className="px-2 pr-3 pt-4 pb-2 pt-5 md:pt-7 md:px-7 md:pb-3 rounded-lg bg-white border relative">
+                <div className="mb-5 md:mb-4 flex justify-center relative px-8">
+                  <div className="absolute right-0 top-1/2 translate-y-[-50%]">
+                    <CopyChartButton />
+                  </div>
+                  <h2 className="text-center font-semibold text-sm md:text-lg">
+                    {indicator.label}, {indicator.unit}
+                  </h2>
+                </div>
+                <div className="!min-h-[336px] md:!min-h-[528px] overflow-hidden pb-2" id="chart">
                   <Chart />
                 </div>
               </div>

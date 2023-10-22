@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 import prettifyValue from '@/utils/prettifyValue'
 import ManageRegionsButton from '@/components/Chart/ManageRegions/ManageRegionsButton'
+import CopyChartButton from '@/components/Chart/CopyChartButton'
 
 interface Params {
   id: string
@@ -69,8 +70,11 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
         <ChartProvider initial={initialChartItems.split(',')} indicator={indicator.id}>
           <section>
             <div className="container mb-2 md:mb-3.5">
-              <div className="px-2 pr-3 py-4 pt-5 md:pt-6 md:pt-7 md:px-7 md:pr-7 md:py-6 rounded-lg bg-white border relative">
-                <div className="mb-4 md:mb-4 flex justify-center relative px-8">
+              <div className="px-2 pr-3 pt-4 pb-2 pt-5 md:pt-7 md:px-7 md:pb-3 rounded-lg bg-white border relative">
+                <div className="mb-5 md:mb-4 flex justify-center relative px-8">
+                  <div className="absolute left-0 md:left-auto md:right-10 top-1/2 translate-y-[-50%]">
+                    <CopyChartButton />
+                  </div>
                   <h2 className="text-center font-semibold text-sm md:text-lg">
                     {indicator.label}, {indicator.unit}
                   </h2>
@@ -78,7 +82,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
                     <ManageRegionsButton />
                   </div>
                 </div>
-                <div className="!min-h-[328px] md:!min-h-[520px] overflow-hidden">
+                <div className="!min-h-[336px] md:!min-h-[528px] overflow-hidden pb-2" id="chart">
                   <Chart />
                 </div>
               </div>
