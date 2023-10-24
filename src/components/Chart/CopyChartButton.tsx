@@ -37,11 +37,15 @@ const CopyChartButton: FC = () => {
 
       const canvas = await makeCanvasFromChartElement(chart)
 
-      canvas.toBlob(function (blob: any) {
-        const item = new ClipboardItem({ 'image/png': blob })
-        navigator.clipboard.write([item])
+      canvas.toBlob(async function (blob) {
+        if (!blob) {
+          setState({ isSuccess: false, isError: true })
+        } else {
+          const item = new ClipboardItem({ 'image/png': blob })
+          await navigator.clipboard.write([item])
 
-        setState({ isSuccess: true, isError: false })
+          setState({ isSuccess: true, isError: false })
+        }
       })
     } catch (e) {
       setState({ isError: true, isSuccess: false })
