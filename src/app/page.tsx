@@ -36,19 +36,20 @@ const Home: FC = () => {
 
 export const metadata: Metadata = {
   title: 'Statify',
-  description: 'Accurate economic data by countries',
+  description:
+    'Explore our database featuring 100+ indicators for hundreds of regions worldwide. Create customizable charts, view trends, and access hundreds of thousands of data points.',
   themeColor: '#ffffff',
   openGraph: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Accurate economic data by countries',
+    description: 'Explore our database featuring 100+ indicators for hundreds of regions worldwide.',
     type: 'website',
     url: '/',
   },
   twitter: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Accurate economic data by countries',
+    description: 'Explore our database featuring 100+ indicators for hundreds of regions worldwide.',
     card: 'summary_large_image',
     site: '@Zhorrrro',
   },

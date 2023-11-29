@@ -68,19 +68,19 @@ const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
 
 export const metadata: Metadata = {
   title: 'Bookmarks',
-  description: 'Accurate economic data by countries',
+  description: 'Explore our database featuring 100+ indicators for hundreds of regions worldwide.',
   themeColor: '#ffffff',
   openGraph: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Accurate economic data by countries',
+    description: 'Explore our database featuring 100+ indicators for hundreds of regions worldwide.',
     type: 'website',
     url: '/',
   },
   twitter: {
     images: ['/og.png'],
     title: 'Statify',
-    description: 'Accurate economic data by countries',
+    description: 'Explore our database featuring 100+ indicators for hundreds of regions worldwide.',
     card: 'summary_large_image',
     site: '@Zhorrrro',
   },

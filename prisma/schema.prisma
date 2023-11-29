@@ -47,13 +47,18 @@ model Value {
 }
 
 model Country {
-  id        String     @id @unique
-  name      String?
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  country   Boolean    @default(false)
-  values    Value[]
-  Bookmark  Bookmark[]
+  id                        String     @id @unique
+  name                      String?
+  geoCode                   String?    @unique
+  createdAt                 DateTime   @default(now())
+  updatedAt                 DateTime   @updatedAt
+  country                   Boolean    @default(false)
+  independentState          Boolean    @default(true)
+  union                     Boolean    @default(false)
+  internationallyRecognized Boolean    @default(true)
+  geographicRegion          Boolean    @default(false)
+  values                    Value[]
+  Bookmark                  Bookmark[]
 
   @@index([name(sort: Asc)])
   @@index([id(sort: Asc)])
