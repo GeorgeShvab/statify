@@ -29,7 +29,7 @@ const Table: FC<Props> = (props) => {
               onClick={handleValueSort}
               aria-label="Sort by value"
             >
-              {props.indicator.unit}
+              Value
               <span className="w-4 h-4 flex items-center justify-center">
                 {data.by === 'value' ? data.order === 'asc' ? <SortAscIcon /> : <SortDescIcon /> : <SortIcon />}
               </span>

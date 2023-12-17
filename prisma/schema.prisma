@@ -14,7 +14,7 @@ model Indicator {
   description String?
   source      String
   unit        String?
-  dataset     String
+  dataset     String?
   absolute    Boolean
   unitSymbol  String?
   hidden      Boolean    @default(false)
@@ -50,6 +50,8 @@ model Country {
   id                        String     @id @unique
   name                      String?
   geoCode                   String?    @unique
+  iso2Code                  String?
+  mapping                   Json?
   createdAt                 DateTime   @default(now())
   updatedAt                 DateTime   @updatedAt
   country                   Boolean    @default(false)

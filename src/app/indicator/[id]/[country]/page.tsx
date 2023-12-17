@@ -53,7 +53,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
               <p className="text-neutral-600 mt-4" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
             <p className="mt-2 text-blue text-sm">
-              <Link href={`/indicator/${params.id}`}>Global {indicator.label}</Link>
+              <Link href={`/indicator/${params.id}`}>Back to all countries</Link>
             </p>
           </div>
         </section>
