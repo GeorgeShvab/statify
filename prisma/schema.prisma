@@ -51,6 +51,7 @@ model Country {
   name                      String?
   geoCode                   String?    @unique
   iso2Code                  String?
+  hidden                    Boolean    @default(false)
   mapping                   Json?
   createdAt                 DateTime   @default(now())
   updatedAt                 DateTime   @updatedAt
