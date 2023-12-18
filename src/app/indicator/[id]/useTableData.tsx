@@ -1,14 +1,14 @@
-import { RowItem } from '@/types'
+import { CountryRowValue } from '@/types'
 import quickSort from '@/utils/quickSort'
 import { useState } from 'react'
 
 interface State {
-  data: RowItem[]
+  data: CountryRowValue[]
   order: 'asc' | 'desc'
   by?: 'country' | 'value'
 }
 
-const useTableData = (data: RowItem[]) => {
+const useTableData = (data: CountryRowValue[]) => {
   const [state, setState] = useState<State>({
     data: data,
     order: 'asc',

@@ -61,8 +61,8 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
             )}
             {indicator.total && (
               <p className="mt-4 text-neutral-600">
-                {indicator.absolute ? 'World total:' : 'Average in the world:'} {prettifyValue(indicator.total)}{' '}
-                {indicator.unitSymbol}
+                {indicator.absolute ? 'World total:' : 'Average in the world:'}{' '}
+                {prettifyValue(indicator.total, indicator.precision)} {indicator.unitSymbol}
               </p>
             )}
           </div>

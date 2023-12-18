@@ -1,9 +1,7 @@
 'use client'
 
-import { ChangeEvent, FC, FormEvent, useCallback, useRef, useState } from 'react'
+import { ChangeEvent, FC, FormEvent, useRef, useState } from 'react'
 import Button from '@/ui/Button/Button'
-import axios from 'axios'
-import { Indicator } from '@/types'
 import Link from 'next/link'
 import useOutsideClick from '@/hooks/useOutsideClick'
 import IconButton from '@/ui/IconButton/IconButton'

@@ -1,6 +1,5 @@
-import { Indicator } from '@/types'
 import prisma from '../../prisma/prisma'
-import { Prisma } from '@prisma/client'
+import { Indicator, Prisma } from '@prisma/client'
 
 interface SearchParams {
   query: string

@@ -1,12 +1,13 @@
 'use client'
 
-import { Indicator, Value } from '@/types'
+import { Value } from '@/types'
 import { FC } from 'react'
 import Row from './Row'
 import SortIcon from '@/ui/Icons/SortIcon'
 import SortAscIcon from '@/ui/Icons/SortAscIcon'
 import SortDescIcon from '@/ui/Icons/SortDescIcon'
 import useTableData from './useTableData'
+import { Indicator } from '@prisma/client'
 
 interface Props {
   data: Value[]
@@ -51,7 +52,7 @@ const Table: FC<Props> = (props) => {
       </thead>
       <tbody>
         {data.data.map((item) => (
-          <Row key={item.id} value={item} />
+          <Row key={item.id} precition={props.indicator.precision} value={item} />
         ))}
       </tbody>
     </table>

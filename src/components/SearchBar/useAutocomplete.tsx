@@ -1,5 +1,5 @@
 import throttle from '@/utils/throttle'
-import { Indicator } from '@/types'
+import { Indicator } from '@prisma/client'
 import axios from 'axios'
 import { useCallback, useRef, useState } from 'react'
 
