@@ -17,6 +17,7 @@ model Indicator {
   dataset     String?
   absolute    Boolean
   unitSymbol  String?
+  precision   Int        @default(0)
   hidden      Boolean    @default(false)
   tags        String[]
   searchTags  String[]
@@ -48,7 +49,7 @@ model Value {
 
 model Country {
   id                        String     @id @unique
-  name                      String?
+  name                      String
   geoCode                   String?    @unique
   iso2Code                  String?
   hidden                    Boolean    @default(false)

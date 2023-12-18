@@ -1,5 +1,5 @@
-import { Indicator } from '@/types'
 import truncateString from '@/utils/truncateString'
+import { Indicator } from '@prisma/client'
 import Link from 'next/link'
 import { FC } from 'react'
 

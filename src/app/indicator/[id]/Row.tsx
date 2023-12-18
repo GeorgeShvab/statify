@@ -1,11 +1,12 @@
-import { Indicator, RowItem } from '@/types'
+import { CountryRowValue } from '@/types'
 import prettifyValue from '@/utils/prettifyValue'
+import { Indicator } from '@prisma/client'
 import Link from 'next/link'
 import { FC, memo } from 'react'
 
 interface Props {
   indicator: Indicator
-  country: RowItem
+  country: CountryRowValue
 }
 
 const Row: FC<Props> = ({ indicator, country }) => {
@@ -17,7 +18,7 @@ const Row: FC<Props> = ({ indicator, country }) => {
         </Link>
       </td>
       <td className="border-b py-4 md:py-3 px-2 md:px-3 md:pr-6 md:pl-6 text-[10px] md:text-base text-gray-400 font-normal text-right w-32 md:w-64">
-        {prettifyValue(country.value)}
+        {prettifyValue(country.value, indicator.precision)}
       </td>
       <td className="border-b text-[10px] md:text-base text-gray-400 font-normal text-right w-[100px] md:w-48">
         <div className="w-full flex justify-center">

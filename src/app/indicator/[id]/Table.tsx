@@ -1,15 +1,16 @@
 'use client'
 
-import { Indicator, RowItem } from '@/types'
+import { CountryRowValue } from '@/types'
 import { FC } from 'react'
 import SortIcon from '@/ui/Icons/SortIcon'
 import SortAscIcon from '@/ui/Icons/SortAscIcon'
 import SortDescIcon from '@/ui/Icons/SortDescIcon'
 import Row from './Row'
 import useTableData from './useTableData'
+import { Country, Indicator } from '@prisma/client'
 
 interface Props {
-  data: RowItem[]
+  data: CountryRowValue[]
   indicator: Indicator
 }
 
