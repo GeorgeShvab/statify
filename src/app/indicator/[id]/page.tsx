@@ -5,13 +5,10 @@ import CountryService from '@/services/CountryService'
 import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import BookmarkService from '@/services/BookmarkService'
 import { cookies } from 'next/headers'
-import { ChartProvider } from '@/components/Chart/ChartContext'
 import Table from './Table'
-import dynamic from 'next/dynamic'
 import { notFound } from 'next/navigation'
 import prettifyValue from '@/utils/prettifyValue'
-import ManageRegionsButton from '@/components/Chart/ManageRegions/ManageRegionsButton'
-import CopyChartButton from '@/components/Chart/CopyChartButton'
+import Chart from './Chart'
 
 interface Params {
   id: string
@@ -20,9 +17,6 @@ interface Params {
 interface SearchParams {
   chart_items: string
 }
-
-const Chart = dynamic(() => import('@/components/Chart/Chart'), { ssr: false })
-const RangeSlider = dynamic(() => import('@/components/Chart/RangeSlider'), { ssr: false })
 
 async function IndicatorPage({ params, searchParams }: types.PageProps<Params, SearchParams>) {
   const client = cookies().get('client_id')?.value
@@ -60,42 +54,16 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
               <p className="text-neutral-600 mt-3" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
             {indicator.total && (
-              <p className="mt-4 text-neutral-600">
+              <p className="mt-4 text-neutral-600 font-bold">
                 {indicator.absolute ? 'World total:' : 'Average in the world:'}{' '}
                 {prettifyValue(indicator.total, indicator.precision)} {indicator.unitSymbol}
               </p>
             )}
           </div>
         </section>
-        <ChartProvider initial={initialChartItems.split(',')} indicator={indicator.id}>
-          <section>
-            <div className="container mb-2 md:mb-3.5">
-              <div className="px-2 pr-3 pt-4 pb-2 pt-5 md:pt-7 md:px-7 md:pb-3 rounded-lg bg-white border relative">
-                <div className="mb-5 md:mb-4 flex justify-center relative px-8">
-                  <div className="absolute left-0 md:left-auto md:right-10 top-1/2 translate-y-[-50%]">
-                    <CopyChartButton />
-                  </div>
-                  <h2 className="text-center font-semibold text-sm md:text-lg">
-                    {indicator.label}, {indicator.unit}
-                  </h2>
-                  <div className="absolute right-0 top-1/2 translate-y-[-50%]">
-                    <ManageRegionsButton />
-                  </div>
-                </div>
-                <div className="!min-h-[336px] md:!min-h-[528px] overflow-hidden pb-2" id="chart">
-                  <Chart />
-                </div>
-              </div>
-            </div>
-            <div className="container mb-2 md:mb-3.5 overflow-hidden">
-              <div className="px-6 py-4 md:px-9 md:py-6 rounded-lg bg-white border">
-                <div className="h-[32px] md:h-[30px]">
-                  <RangeSlider />
-                </div>
-              </div>
-            </div>
-          </section>
-        </ChartProvider>
+        <section>
+          <Chart initial={initialChartItems.split(',')} indicator={indicator} />
+        </section>
         <section className="container">
           <div className="bg-white rounded-lg border">
             <Table data={countries} indicator={indicator} />
