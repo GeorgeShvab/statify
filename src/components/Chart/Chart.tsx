@@ -20,16 +20,22 @@ import Alert from '@/ui/Alert/Alert'
 ChartJS.register(ArcElement, Tooltip, Legend, LinearScale, CategoryScale, PointElement, LineElement)
 
 const Chart: FC = () => {
-  const { regions, isError, removeError, selectedRange, isLoading } = useChart()
+  const { regions, isError, removeError, selectedRange, isLoading, shortening } = useChart()
 
   const selectedRegions = useMemo(() => regions.filter((item) => item.isSelected), [regions])
 
   if (isLoading) return null
 
+  let greatest = 0
+
   const data: ChartData<'line'> = {
     labels: selectedRange,
-    datasets: selectedRegions.map((item, index) => {
-      const arr = selectedRange.map((year) => item.values.find((item) => item.year === year)?.value || null)
+    datasets: selectedRegions.map((item) => {
+      const arr = selectedRange.map((year) => {
+        const value = item.values.find((item) => item.year === year)?.value || null
+        if (value && value > greatest) greatest = value
+        return value
+      })
 
       return {
         data: arr,
@@ -51,6 +57,17 @@ const Chart: FC = () => {
       },
       tooltip: {
         animation: false,
+      },
+    },
+    scales: {
+      y: {
+        ticks: {
+          callback: (value) => {
+            const label = Number(shortening ? Number(value) / shortening : value)
+            if (label % 1 !== 0) return label.toFixed(1)
+            return label
+          },
+        },
       },
     },
     responsive: true,

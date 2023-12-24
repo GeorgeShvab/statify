@@ -16,6 +16,7 @@ interface ChartContext {
   setSelectedRange: (range: number[]) => void
   regions: ChartItem[]
   isLoading: boolean
+  shortening: number | null
 }
 
 const ChartContext = createContext<ChartContext>({
@@ -29,6 +30,7 @@ const ChartContext = createContext<ChartContext>({
   setSelectedRange: () => {},
   regions: [],
   isLoading: true,
+  shortening: null,
 })
 
 interface Props {

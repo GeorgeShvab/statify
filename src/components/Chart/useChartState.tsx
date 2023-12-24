@@ -11,6 +11,7 @@ interface State {
   regions: ChartItem[]
   isLoading: boolean
   colors: string[]
+  shortening: number | null
 }
 
 const chartColors = [
@@ -41,6 +42,7 @@ const useChartState = (initial: string[], indicator: string, country?: string) =
     regions: [],
     isLoading: true,
     colors: chartColors,
+    shortening: null,
   })
 
   const remove = (id: string) => {
@@ -90,21 +92,41 @@ const useChartState = (initial: string[], indicator: string, country?: string) =
     if (regions) {
       const range = quickSort(Array.from(new Set(regions.map((item) => item.values.map((item) => item.year)).flat())))
 
+      let greatest = 0
+
       setData((prev) => ({
         ...prev,
         selectedRange: range,
-        regions: regions.map((item) => ({
-          ...item,
-          isSelected: initial.includes(item.id),
-          color: initial.includes(item.id) ? getColor() : undefined,
-        })),
+        regions: regions.map((item) => {
+          const isSelected = initial.includes(item.id)
+          if (isSelected) {
+            item.values.forEach((item) => {
+              if (Math.abs(item.value) > greatest) greatest = Math.abs(item.value)
+            })
+          }
+
+          return {
+            ...item,
+            isSelected: isSelected,
+            color: isSelected ? getColor() : undefined,
+          }
+        }),
         range,
         isLoading: false,
+        shortening: getShortening(greatest),
       }))
     }
   }, [regions])
 
   return { data, remove, removeAll, removeError, setSelectedRange, add }
+}
+
+function getShortening(value: number) {
+  if (value > 1000000000000) return 1000000000000
+  if (value > 1000000000) return 1000000000
+  if (value > 1000000) return 1000000
+  if (value > 1000) return 1000
+  return null
 }
 
 export default useChartState
