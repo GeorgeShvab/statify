@@ -1,16 +1,11 @@
 import { ChartItem } from '@/types'
 import { useEffect, useState } from 'react'
 import useColors from './useColors'
-import quickSort from '@/utils/quickSort'
-import useGetChartData from './useGetChartData'
 
 interface State {
   isError: boolean
-  range: number[]
-  selectedRange: number[]
   regions: ChartItem[]
   isLoading: boolean
-  colors: string[]
   shortening: number | null
 }
 
@@ -32,18 +27,22 @@ const chartColors = [
   '#946711',
 ]
 
-const useChartState = (initial: string[], indicator: string, country?: string) => {
-  const { addColor, getColor, resetColors } = useColors()
+const useChartState = (regions: ChartItem[]) => {
+  const { addColor, getColor, resetColors, colors } = useColors()
 
   const [data, setData] = useState<State>({
     isError: false,
-    selectedRange: [],
-    range: [],
-    regions: [],
+    regions: regions,
     isLoading: true,
-    colors: chartColors,
     shortening: null,
   })
+
+  useEffect(() => {
+    setData((prev) => ({
+      ...prev,
+      regions: data.regions.map((item) => ({ ...item, color: item.isSelected ? getColor() : undefined })),
+    }))
+  }, [])
 
   const remove = (id: string) => {
     setData((prev) => ({
@@ -84,41 +83,21 @@ const useChartState = (initial: string[], indicator: string, country?: string) =
 
   const removeError = () => setData((prev) => ({ ...prev, isError: false }))
 
-  const setSelectedRange = (selectedRange: number[]) => setData((prev) => ({ ...prev, selectedRange }))
-
-  const regions = useGetChartData(indicator, country)
-
   useEffect(() => {
-    if (regions) {
-      const range = quickSort(Array.from(new Set(regions.map((item) => item.values.map((item) => item.year)).flat())))
+    const largest = data.regions
+      .filter((item) => item.isSelected)
+      .reduce(
+        (acc, curr) =>
+          Math.abs(Math.max(...curr.values.map((item) => item.value))) > acc
+            ? Math.abs(Math.max(...curr.values.map((item) => item.value)))
+            : acc,
+        0
+      )
 
-      let greatest = 0
+    setData((prev) => ({ ...prev, shortening: getShortening(largest) }))
+  }, [data.regions, regions])
 
-      setData((prev) => ({
-        ...prev,
-        selectedRange: range,
-        regions: regions.map((item) => {
-          const isSelected = initial.includes(item.id)
-          if (isSelected) {
-            item.values.forEach((item) => {
-              if (Math.abs(item.value) > greatest) greatest = Math.abs(item.value)
-            })
-          }
-
-          return {
-            ...item,
-            isSelected: isSelected,
-            color: isSelected ? getColor() : undefined,
-          }
-        }),
-        range,
-        isLoading: false,
-        shortening: getShortening(greatest),
-      }))
-    }
-  }, [regions])
-
-  return { data, remove, removeAll, removeError, setSelectedRange, add }
+  return { data, remove, removeAll, removeError, add }
 }
 
 function getShortening(value: number) {

@@ -16,29 +16,40 @@ import {
 import { Line } from 'react-chartjs-2'
 import useChart from './ChartContext'
 import Alert from '@/ui/Alert/Alert'
+import { useRange } from './RangeContext'
+import { ChartItem } from '@/types'
 
 ChartJS.register(ArcElement, Tooltip, Legend, LinearScale, CategoryScale, PointElement, LineElement)
 
 const Chart: FC = () => {
-  const { regions, isError, removeError, selectedRange, isLoading, shortening } = useChart()
+  const { regions, isError, removeError, shortening } = useChart()
+  const { range, selectedRange } = useRange()
 
   const selectedRegions = useMemo(() => regions.filter((item) => item.isSelected), [regions])
 
-  if (isLoading) return null
-
-  let greatest = 0
+  const filteredRange = range.filter((item) => item >= selectedRange[0] && item <= selectedRange[1])
 
   const data: ChartData<'line'> = {
-    labels: selectedRange,
-    datasets: selectedRegions.map((item) => {
-      const arr = selectedRange.map((year) => {
-        const value = item.values.find((item) => item.year === year)?.value || null
-        if (value && value > greatest) greatest = value
-        return value
-      })
+    labels: filteredRange.filter((item) => item >= selectedRange[0] && item <= selectedRange[1]),
+    datasets: selectedRegions.map((item: ChartItem) => {
+      const values = item.values.filter((item) => item.year >= selectedRange[0] && item.year <= selectedRange[1])
+
+      let data = []
+      let i = 0,
+        j = 0
+
+      while (i < filteredRange.length) {
+        if (filteredRange[i] === values[j]?.year) {
+          data.push(values[j]?.value)
+          i++, j++
+        } else {
+          data.push(null)
+          i++
+        }
+      }
 
       return {
-        data: arr,
+        data: data,
         borderColor: item.color,
         fill: false,
         borderWidth: 1,

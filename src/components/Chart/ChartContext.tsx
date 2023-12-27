@@ -11,11 +11,7 @@ interface ChartContext {
   removeAll: () => void
   isError: boolean
   removeError: () => void
-  range: number[]
-  selectedRange: number[]
-  setSelectedRange: (range: number[]) => void
   regions: ChartItem[]
-  isLoading: boolean
   shortening: number | null
 }
 
@@ -25,27 +21,21 @@ const ChartContext = createContext<ChartContext>({
   removeAll: () => {},
   removeError: () => {},
   isError: false,
-  range: [],
-  selectedRange: [],
-  setSelectedRange: () => {},
   regions: [],
-  isLoading: true,
   shortening: null,
 })
 
 interface Props {
-  initial: string[]
   children: ReactElement
-  indicator: string
-  country?: string
+  regions: ChartItem[]
 }
 
 const Container: FC<{ children: ReactElement }> = memo(({ children }) => {
   return children
 })
 
-export const ChartProvider: FC<Props> = ({ initial, children, indicator, country }) => {
-  const { data, ...methods } = useChartState(initial, indicator, country)
+export const ChartProvider: FC<Props> = ({ children, regions }) => {
+  const { data, ...methods } = useChartState(regions)
 
   useChartSearchParams(data.regions)
 
