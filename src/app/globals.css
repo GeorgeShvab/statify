@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
+*,
+*::before,
+*::after {
+  -webkit-tap-highlight-color: transparent;
   box-sizing: border-box;
 }
 
@@ -66,6 +69,28 @@
   }
 }
 
+/*Range Slider styles*/
+
+@media screen and (max-width: 768px) {
+  .rc-slider-track {
+    height: 3px !important;
+  }
+
+  .rc-slider-rail {
+    height: 3px !important;
+  }
+
+  .rc-slider-handle {
+    height: 10px !important;
+    width: 10px !important;
+    margin-top: -3.5px !important;
+  }
+
+  .rc-slider-mark {
+    font-size: 9.5px !important;
+  }
+}
+
 .country-table:first-child th:first-child {
   border-radius: 8px 0 0 0;
 }
@@ -88,6 +113,9 @@
   border: 2px solid #3484f0 !important;
   z-index: 5 !important;
   opacity: 100 !important;
+  height: 12px !important;
+  width: 12px !important;
+  margin-top: -4px !important;
 }
 
 .rc-slider-tooltip {
@@ -101,52 +129,11 @@
 }
 
 .rc-slider-dot {
+  background-color: #e5e7eb !important;
+  border-color: #e5e7eb !important;
+}
+
+.rc-slider-dot.rc-slider-dot-active {
   background-color: #3484f0 !important;
   border-color: #3484f0 !important;
-}
-
-@media screen and (max-width: 768px) {
-  .rc-slider-track {
-    background-color: #3484f0 !important;
-    z-index: 2 !important;
-    height: 3px !important;
-  }
-
-  .rc-slider-rail {
-    height: 3px !important;
-  }
-
-  .rc-slider-handle {
-    background: white !important;
-    border: 2px solid #3484f0 !important;
-    opacity: 100 !important;
-    height: 10px !important;
-    width: 10px !important;
-    margin-top: -3.5px !important;
-  }
-
-  .rc-slider-tooltip {
-    background-color: #3484f0 !important;
-    color: #ffffff;
-    border: none;
-  }
-
-  .rc-slider-tooltip-arrow {
-    border-top-color: #3484f0 !important;
-  }
-
-  .rc-slider-dot {
-    background-color: #3484f0 !important;
-    border-color: #3484f0 !important;
-  }
-
-  .rc-slider-mark {
-    font-size: 11px !important;
-  }
-}
-
-*,
-*::before,
-*::after {
-  -webkit-tap-highlight-color: transparent;
 }

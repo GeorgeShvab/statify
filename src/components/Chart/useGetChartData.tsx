@@ -1,3 +1,5 @@
+'use client'
+
 import { ChartItem } from '@/types'
 import axios from 'axios'
 import { useEffect, useState } from 'react'

@@ -30,7 +30,7 @@ const ChartTitle: FC<Props> = ({ label, unit }) => {
 
   return (
     <div className="mb-0.5 relative px-8">
-      <div className="absolute right-0 md:left-auto md:right-10 top-0">
+      <div className="absolute right-0 top-0">
         <CopyChartButton />
       </div>
       <h2 className="text-center font-semibold text-sm md:text-lg mb-0.5">{label}</h2>

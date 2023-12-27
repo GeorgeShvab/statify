@@ -1,47 +1,33 @@
 'use client'
 
-import useChart from './ChartContext'
 import Slider from 'rc-slider'
 import { FC } from 'react'
 import 'rc-slider/assets/index.css'
+import { useRange } from './RangeContext'
 
 const RangeSlider: FC = () => {
-  const { range, setSelectedRange, isLoading } = useChart()
+  const { range, selectedRange, setSelectedRange } = useRange()
 
-  const handleChangeYears: any = (minMax: number[]) => {
-    setSelectedRange(range.filter((item) => item >= minMax[0] && item <= minMax[1]))
+  let shortenedRange = range.filter((item, index) => item % 5 === 0 || index === 0 || index === range.length - 1)
+
+  const handleChangeYears: any = (minMax: [number, number]) => {
+    setSelectedRange([shortenedRange[minMax[0]], shortenedRange[minMax[1]]])
   }
-
-  if (isLoading) return null
 
   return (
     <Slider
       className="mb-[18px] md:mb-4"
-      min={range[0]}
-      max={range[range.length - 1]}
+      min={0}
+      max={shortenedRange.length - 1}
+      value={[
+        shortenedRange.indexOf(selectedRange[0]) !== -1 ? shortenedRange.indexOf(selectedRange[0]) : 0,
+        shortenedRange.indexOf(selectedRange[1]) !== -1
+          ? shortenedRange.indexOf(selectedRange[1])
+          : shortenedRange.length - 1,
+      ]}
       step={1}
-      defaultValue={[range[0], range[range.length - 1]]}
-      marks={
-        window.screen.width > 768
-          ? range
-              .filter((item) => item % 2 === 0)
-              .reduce((state, current) => {
-                if (current in state) {
-                  return state
-                } else {
-                  return { ...state, [current]: current }
-                }
-              }, {})
-          : range
-              .filter((item) => item % 5 === 0)
-              .reduce((state, current) => {
-                if (current in state) {
-                  return state
-                } else {
-                  return { ...state, [current]: current }
-                }
-              }, {})
-      }
+      defaultValue={[0, shortenedRange.length - 1]}
+      marks={shortenedRange.reduce((acc, curr, index) => ({ ...acc, [index]: curr }), {})}
       onChange={handleChangeYears}
       ariaLabelForHandle="Change years range"
       range
