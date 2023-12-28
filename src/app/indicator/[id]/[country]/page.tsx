@@ -44,17 +44,19 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             </h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
             <p className="text-neutral-400 text-sm">Unit: {indicator.unit}</p>
-            {indicator.description && (
+            {indicator.description ? (
               <p className="text-neutral-600 mt-4" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
-            )}
+            ) : null}
             <p className="mt-2 text-blue text-sm">
               <Link href={`/indicator/${params.id}`}>Back to all countries</Link>
             </p>
           </div>
         </section>
-        <section>
-          <Chart initial={[country.id]} indicator={indicator} country={country.id} />
-        </section>
+        {indicator.showChart ? (
+          <section>
+            <Chart initial={[country.id]} indicator={indicator} country={country.id} />
+          </section>
+        ) : null}
         <section className="container">
           <div className="bg-white rounded-lg border">
             <Table data={country.values} indicator={indicator} />

@@ -9,40 +9,15 @@ interface State {
   shortening: number | null
 }
 
-const chartColors = [
-  '#1f77b4',
-  '#ff7f0e',
-  '#2ca02c',
-  '#d62728',
-  '#9467bd',
-  '#8c564b',
-  '#e377c2',
-  '#7f7f7f',
-  '#bcbd22',
-  '#17becf',
-  '#1f11b4',
-  '#ff1a0e',
-  '#01a02c',
-  '#002728',
-  '#946711',
-]
-
 const useChartState = (regions: ChartItem[]) => {
-  const { addColor, getColor, resetColors, colors } = useColors()
+  const { addColor, getColor, resetColors } = useColors()
 
-  const [data, setData] = useState<State>({
+  const [data, setData] = useState<State>(() => ({
     isError: false,
-    regions: regions,
+    regions: regions.map((item) => ({ ...item, color: item.isSelected && !item.color ? getColor() : undefined })),
     isLoading: true,
     shortening: null,
-  })
-
-  useEffect(() => {
-    setData((prev) => ({
-      ...prev,
-      regions: data.regions.map((item) => ({ ...item, color: item.isSelected ? getColor() : undefined })),
-    }))
-  }, [])
+  }))
 
   const remove = (id: string) => {
     setData((prev) => ({
