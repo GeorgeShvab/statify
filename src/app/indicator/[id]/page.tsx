@@ -37,7 +37,13 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
     notFound()
   }
 
-  const initialChartRegion = countries.find((item) => item.id === 'WEOWORLD') || countries[0]
+  const initialChartRegion =
+    countries.find((item) => item.id === 'WEOWORLD') ||
+    countries.find((item) => item.id === 'USA') ||
+    countries.find((item) => item.id === 'GBR') ||
+    countries.find((item) => item.id === 'DEU') ||
+    countries.find((item) => item.id === 'FRA') ||
+    countries[0]
 
   const initialChartItems = searchParams.chart_items || initialChartRegion.id
 
@@ -53,17 +59,19 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
             {indicator.description && indicator.description.trim() && (
               <p className="text-neutral-600 mt-3" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
-            {indicator.total && (
+            {indicator.total ? (
               <p className="mt-4 text-neutral-600 font-bold">
                 {indicator.absolute ? 'World total:' : 'Average in the world:'}{' '}
                 {prettifyValue(indicator.total, indicator.precision)} {indicator.unitSymbol}
               </p>
-            )}
+            ) : null}
           </div>
         </section>
-        <section>
-          <Chart initial={initialChartItems.split(',')} indicator={indicator} />
-        </section>
+        {indicator.showChart ? (
+          <section>
+            <Chart initial={initialChartItems.split(',')} indicator={indicator} />
+          </section>
+        ) : null}
         <section className="container">
           <div className="bg-white rounded-lg border">
             <Table data={countries} indicator={indicator} />

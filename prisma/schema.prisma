@@ -17,7 +17,6 @@ model Indicator {
   dataset     String?
   absolute    Boolean
   unitSymbol  String?
-  shortener   Int?
   showChart   Boolean    @default(true)
   precision   Int        @default(0)
   hidden      Boolean    @default(false)
