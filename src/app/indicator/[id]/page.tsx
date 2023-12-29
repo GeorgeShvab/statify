@@ -2,9 +2,6 @@ import * as types from '@/types'
 import IndicatorService from '@/services/IndicatorService'
 import { Metadata } from 'next'
 import CountryService from '@/services/CountryService'
-import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
-import BookmarkService from '@/services/BookmarkService'
-import { cookies } from 'next/headers'
 import Table from './Table'
 import { notFound } from 'next/navigation'
 import prettifyValue from '@/utils/prettifyValue'
@@ -20,8 +17,6 @@ interface SearchParams {
 }
 
 async function IndicatorPage({ params, searchParams }: types.PageProps<Params, SearchParams>) {
-  const client = cookies().get('client_id')?.value
-
   const indicatorPromise = IndicatorService.get({ id: params.id })
 
   const countriesPromise = CountryService.getCountriesValueByIndicator({ indicator: params.id })
