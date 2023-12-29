@@ -5,9 +5,6 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import Table from './Table'
 import CountryService from '@/services/CountryService'
-import { cookies } from 'next/headers'
-import BookmarkService from '@/services/BookmarkService'
-import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import { notFound } from 'next/navigation'
 import Chart from './Chart'
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
@@ -18,22 +15,15 @@ interface SearchParams {
 }
 
 async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
-  const client = cookies().get('client_id')?.value
-
-  const isBookmarkedPromise = client
-    ? BookmarkService.getOne({ indicator: params.id, client, country: params.country })
-    : null
-
   const indicatorPromise = IndicatorService.get({ id: params.id })
 
   const countryPromise = CountryService.getCountry({ indicator: params.id, country: params.country })
 
   const relatedIndicatorsPromise = IndicatorService.getRelatedIndicators({ id: params.id })
 
-  const [country, indicator, isBookmarked, relatedIndicators] = await Promise.all([
+  const [country, indicator, relatedIndicators] = await Promise.all([
     countryPromise,
     indicatorPromise,
-    isBookmarkedPromise,
     relatedIndicatorsPromise,
   ])
 
@@ -46,7 +36,6 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
       <div className="min-h-main-dynamic md:min-h-main">
         <section className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
-            <BookmarkButton isBookmarked={!!isBookmarked} />
             <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">
               {country.name} - {indicator.label}
             </h1>
@@ -131,6 +120,22 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
       site: '@Zhorrrro',
     },
   }
+}
+
+export async function generateStaticParams() {
+  const indicators = await IndicatorService.getAll()
+
+  let res = []
+
+  for (let indicator of indicators) {
+    const countries = await CountryService.getCountriesValueByIndicator({ indicator: indicator.id })
+
+    for (let country of countries) {
+      res.push({ id: indicator.id, country: country.id })
+    }
+  }
+
+  return res
 }
 
 export default IndicatorPage
