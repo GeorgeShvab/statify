@@ -24,16 +24,13 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
 
   const indicatorPromise = IndicatorService.get({ id: params.id })
 
-  const isBookmarkedPromise = client ? BookmarkService.getOne({ indicator: params.id, client }) : null
-
   const countriesPromise = CountryService.getCountriesValueByIndicator({ indicator: params.id })
 
   const relatedIndicatorsPromise = IndicatorService.getRelatedIndicators({ id: params.id })
 
-  const [countries, indicator, isBookmarked, relatedIndicators] = await Promise.all([
+  const [countries, indicator, relatedIndicators] = await Promise.all([
     countriesPromise,
     indicatorPromise,
-    isBookmarkedPromise,
     relatedIndicatorsPromise,
   ])
 
@@ -56,7 +53,6 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
       <div className="min-h-main-dynamic md:min-h-main">
         <section className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
-            <BookmarkButton isBookmarked={!!isBookmarked} />
             <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">{indicator.label}</h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
             <p className="text-neutral-400 text-sm">Unit: {indicator.unit}</p>
@@ -142,6 +138,14 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
       site: '@Zhorrrro',
     },
   }
+}
+
+export async function generateStaticParams() {
+  const indicators = await IndicatorService.getAll()
+
+  return indicators.map((indicator) => ({
+    id: indicator.id,
+  }))
 }
 
 export default IndicatorPage

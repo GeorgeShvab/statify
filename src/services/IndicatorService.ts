@@ -15,7 +15,7 @@ const IndicatorService = {
   },
 
   async getAll() {
-    const data = await prisma.indicator.findMany({ where: {} })
+    const data = await prisma.indicator.findMany({ where: { hidden: false } })
 
     return data
   },
