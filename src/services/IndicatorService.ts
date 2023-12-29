@@ -53,6 +53,10 @@ const IndicatorService = {
   async getMany({ ids }: { ids: string[] }) {
     return await prisma.indicator.findMany({ where: { id: { in: ids } } })
   },
+
+  async getRelatedIndicators({ id }: { id: string }) {
+    return (await prisma.indicator.findUnique({ where: { id }, include: { relatedTo: true } }))?.relatedTo
+  },
 }
 
 export default IndicatorService
