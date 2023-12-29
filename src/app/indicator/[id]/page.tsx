@@ -9,6 +9,7 @@ import Table from './Table'
 import { notFound } from 'next/navigation'
 import prettifyValue from '@/utils/prettifyValue'
 import Chart from './Chart'
+import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
 
 interface Params {
   id: string
@@ -27,10 +28,13 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
 
   const countriesPromise = CountryService.getCountriesValueByIndicator({ indicator: params.id })
 
-  const [countries, indicator, isBookmarked] = await Promise.all([
+  const relatedIndicatorsPromise = IndicatorService.getRelatedIndicators({ id: params.id })
+
+  const [countries, indicator, isBookmarked, relatedIndicators] = await Promise.all([
     countriesPromise,
     indicatorPromise,
     isBookmarkedPromise,
+    relatedIndicatorsPromise,
   ])
 
   if (!indicator) {
@@ -77,6 +81,18 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
             <Table data={countries} indicator={indicator} />
           </div>
         </section>
+        {relatedIndicators && relatedIndicators?.length ? (
+          <section className="container mt-3 md:mt-5">
+            <div className="">
+              <h2 className="mb-2 md:mb-3 px-2 font-semibold">Related indicators</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              {relatedIndicators.map((item) => (
+                <IndicatorCard key={item.id} {...item} />
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     </div>
   )

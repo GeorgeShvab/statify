@@ -10,6 +10,7 @@ import BookmarkService from '@/services/BookmarkService'
 import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import { notFound } from 'next/navigation'
 import Chart from './Chart'
+import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
 
 interface SearchParams {
   id: string
@@ -27,7 +28,14 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
 
   const countryPromise = CountryService.getCountry({ indicator: params.id, country: params.country })
 
-  const [country, indicator, isBookmarked] = await Promise.all([countryPromise, indicatorPromise, isBookmarkedPromise])
+  const relatedIndicatorsPromise = IndicatorService.getRelatedIndicators({ id: params.id })
+
+  const [country, indicator, isBookmarked, relatedIndicators] = await Promise.all([
+    countryPromise,
+    indicatorPromise,
+    isBookmarkedPromise,
+    relatedIndicatorsPromise,
+  ])
 
   if (!indicator || !country) {
     notFound()
@@ -62,6 +70,18 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             <Table data={country.values} indicator={indicator} />
           </div>
         </section>
+        {relatedIndicators && relatedIndicators?.length ? (
+          <section className="container mt-3 md:mt-5">
+            <div className="">
+              <h2 className="mb-2 md:mb-3 px-2 font-semibold">Related indicators</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+              {relatedIndicators.map((item) => (
+                <IndicatorCard key={item.id} {...item} />
+              ))}
+            </div>
+          </section>
+        ) : null}
       </div>
     </div>
   )
