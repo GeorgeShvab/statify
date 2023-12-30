@@ -25,3 +25,5 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
     </main>
   )
 }
+
+export const dynamicParams = true

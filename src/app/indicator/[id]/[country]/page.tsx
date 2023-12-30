@@ -122,20 +122,6 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
   }
 }
 
-export async function generateStaticParams() {
-  const indicators = await IndicatorService.getAll()
-
-  let res = []
-
-  for (let indicator of indicators) {
-    const countries = await CountryService.getCountriesValueByIndicator({ indicator: indicator.id })
-
-    for (let country of countries) {
-      res.push({ id: indicator.id, country: country.id })
-    }
-  }
-
-  return res
-}
+export const dynamicParams = true
 
 export default IndicatorPage
