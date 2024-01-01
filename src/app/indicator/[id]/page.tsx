@@ -137,14 +137,6 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
   }
 }
 
-export async function generateStaticParams() {
-  const indicators = await IndicatorService.getAll()
-
-  return indicators.map((indicator) => ({
-    id: indicator.id,
-  }))
-}
-
 export const dynamicParams = true
 
 export default IndicatorPage
