@@ -17,7 +17,7 @@ interface SearchParams {
   chart_items: string
 }
 
-async function IndicatorPage({ params, searchParams }: types.PageProps<Params, SearchParams>) {
+async function IndicatorPage({ params }: types.PageProps<Params, SearchParams>) {
   const indicatorPromise = IndicatorService.get({ id: params.id })
 
   const countriesPromise = CountryService.getCountriesValueByIndicator({ indicator: params.id })
@@ -34,15 +34,15 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
     notFound()
   }
 
-  const initialChartRegion =
+  /*const initialChartRegion =
     countries.find((item) => item.id === 'WEOWORLD') ||
     countries.find((item) => item.id === 'USA') ||
     countries.find((item) => item.id === 'GBR') ||
     countries.find((item) => item.id === 'DEU') ||
     countries.find((item) => item.id === 'FRA') ||
-    countries[0]
+    countries[0]*/
 
-  const initialChartItems = searchParams.chart_items || initialChartRegion.id
+  const initialChartItems = 'USA'
 
   return (
     <div>
@@ -144,8 +144,5 @@ export async function generateStaticParams() {
     id: indicator.id,
   }))
 }
-
-export const dynamicParams = true
-export const dynamic = 'force-static'
 
 export default IndicatorPage
