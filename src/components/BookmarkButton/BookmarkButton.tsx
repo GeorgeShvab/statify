@@ -1,38 +1,26 @@
 'use client'
 
 import IconButton from '@/ui/IconButton/IconButton'
-import axios from 'axios'
-import { useParams, useRouter } from 'next/navigation'
-import { FC, useState } from 'react'
+import { FC } from 'react'
+import useBookmark from './useGetBookmarkData'
 
 interface Props {
-  isBookmarked: boolean
+  countryId?: string
+  indicatorId: string
 }
 
-const BookmarkButton: FC<Props> = (props) => {
-  const [isBookmarked, setIsBookmarked] = useState<boolean>(props.isBookmarked)
-
-  const router = useRouter()
-
-  const { country, id } = useParams()
-
-  const handleBookmark = async () => {
-    setIsBookmarked((prev) => !prev)
-
-    const { data } = await axios.post('/api/bookmark', { country, indicator: id })
-
-    router.prefetch('/bookmarks')
-  }
+const BookmarkButton: FC<Props> = ({ indicatorId, countryId }) => {
+  const { handleBookmark, isBookmarked } = useBookmark(indicatorId, countryId)
 
   return (
     <IconButton
-      className={'absolute right-2.5 top-2 md:right-5 md:top-4 !bg-transparent !text-black'}
+      className={'absolute right-2.5 top-2 md:right-5 md:top-4 !bg-transparent !text-black transition-all'}
       onClick={handleBookmark}
       aria-label={isBookmarked ? 'Bookmark' : 'Unbookmark'}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill={isBookmarked ? 'currentColor' : 'none'}
+        fill={isBookmarked ? 'currentColor' : 'white'}
         viewBox="0 0 24 24"
         strokeWidth={1.5}
         stroke="currentColor"

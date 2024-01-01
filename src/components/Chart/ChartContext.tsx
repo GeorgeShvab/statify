@@ -37,8 +37,6 @@ const Container: FC<{ children: ReactElement }> = memo(({ children }) => {
 export const ChartProvider: FC<Props> = ({ children, regions }) => {
   const { data, ...methods } = useChartState(regions)
 
-  useChartSearchParams(data.regions)
-
   return (
     <ChartContext.Provider
       value={{

@@ -85,6 +85,13 @@ const Chart: FC = () => {
     maintainAspectRatio: window.screen.width > 768 ? true : false,
   }
 
+  if (!data.datasets.length || !shortening)
+    return (
+      <div className="!h-[300px] md:!h-[480px] mb-3 md:mb-5 flex justify-center items-center">
+        <p className="text-sm md:text-base text-neutral-400">Add an item to the chart</p>
+      </div>
+    )
+
   return (
     <div>
       <Alert show={isError} text="Up to 15 countries can be added to the chart" onClose={removeError} />

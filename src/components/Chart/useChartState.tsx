@@ -1,6 +1,7 @@
 import { ChartItem } from '@/types'
 import { useEffect, useState } from 'react'
 import useColors from './useColors'
+import { useRouter } from 'next/navigation'
 
 interface State {
   isError: boolean
@@ -14,7 +15,7 @@ const useChartState = (regions: ChartItem[]) => {
 
   const [data, setData] = useState<State>(() => ({
     isError: false,
-    regions: regions.map((item) => ({ ...item, color: item.isSelected && !item.color ? getColor() : undefined })),
+    regions: regions,
     isLoading: true,
     shortening: null,
   }))
@@ -33,18 +34,34 @@ const useChartState = (regions: ChartItem[]) => {
     }))
   }
 
-  const add = (id: string) => {
-    if (data.regions.filter((item) => item.isSelected).length > 14) {
-      setData((prev) => ({ ...prev, isError: true }))
+  const add = (id: string | string[]) => {
+    if (typeof id === 'object') {
+      if (id.length > 14) id = id.slice(0, 15)
+      if (data.regions.filter((item) => item.isSelected).length > 14) {
+        setData((prev) => ({ ...prev, isError: true }))
+      } else {
+        setData((prev) => ({
+          ...prev,
+          regions: prev.regions.map((item) => ({
+            ...item,
+            isSelected: id.includes(item.id) ? true : item.isSelected,
+            color: id.includes(item.id) ? getColor() : item.color,
+          })),
+        }))
+      }
     } else {
-      setData((prev) => ({
-        ...prev,
-        regions: prev.regions.map((item) => ({
-          ...item,
-          isSelected: item.id === id ? true : item.isSelected,
-          color: item.id === id ? getColor() : item.color,
-        })),
-      }))
+      if (data.regions.filter((item) => item.isSelected).length > 14) {
+        setData((prev) => ({ ...prev, isError: true }))
+      } else {
+        setData((prev) => ({
+          ...prev,
+          regions: prev.regions.map((item) => ({
+            ...item,
+            isSelected: item.id === id ? true : item.isSelected,
+            color: item.id === id ? getColor() : item.color,
+          })),
+        }))
+      }
     }
   }
 
@@ -59,18 +76,66 @@ const useChartState = (regions: ChartItem[]) => {
   const removeError = () => setData((prev) => ({ ...prev, isError: false }))
 
   useEffect(() => {
-    const largest = data.regions
-      .filter((item) => item.isSelected)
-      .reduce(
-        (acc, curr) =>
-          Math.abs(Math.max(...curr.values.map((item) => item.value))) > acc
-            ? Math.abs(Math.max(...curr.values.map((item) => item.value)))
-            : acc,
-        0
-      )
+    if (data.regions) {
+      const largest = data.regions
+        .filter((item) => item.isSelected)
+        .reduce(
+          (acc, curr) =>
+            Math.abs(Math.max(...curr.values.map((item) => item.value))) > acc
+              ? Math.abs(Math.max(...curr.values.map((item) => item.value)))
+              : acc,
+          0
+        )
 
-    setData((prev) => ({ ...prev, shortening: getShortening(largest) }))
-  }, [data.regions, regions])
+      setData((prev) => ({ ...prev, shortening: getShortening(largest) }))
+    }
+  }, [data.regions])
+
+  const router = useRouter()
+
+  useEffect(() => {
+    if (regions.length) {
+      let url = new URL(window.location.href)
+
+      let params = new URLSearchParams(url.search)
+
+      let initialRegions = params.get('chart_items')?.split(',')
+
+      if (!initialRegions || !initialRegions[0]) {
+        if (regions.length > 1) {
+          const world = regions.find((item) => item.id === 'WEOWORLD')
+
+          if (world) {
+            initialRegions = [world.id]
+          } else {
+            initialRegions = ['USA']
+          }
+        } else {
+          initialRegions = [regions[0].id]
+        }
+      }
+
+      add(initialRegions)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (regions.length) {
+      let url = new URL(window.location.href)
+
+      let params = new URLSearchParams(url.search)
+
+      const chartItems = data.regions
+        .filter((item) => item.isSelected)
+        .map((item) => item.id)
+        .sort()
+        .join(',')
+
+      params.set('chart_items', chartItems)
+
+      router.replace('?' + params.toString(), { scroll: false })
+    }
+  }, [data.regions])
 
   return { data, remove, removeAll, removeError, add }
 }
@@ -80,7 +145,7 @@ function getShortening(value: number) {
   if (value > 1000000000) return 1000000000
   if (value > 1000000) return 1000000
   if (value > 1000) return 1000
-  return null
+  return 1
 }
 
 export default useChartState
