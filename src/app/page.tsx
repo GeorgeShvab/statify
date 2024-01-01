@@ -15,8 +15,8 @@ const Home: FC = () => {
               </h1>
               <div className="flex justify-center">
                 <div className="mb-8 md:mb-8 max-w-[700px] w-full [&>form>div>div>div>div]:bg-neutral-50 [&>form>div>div>div>div>input]:bg-neutral-50">
-                  <Suspense fallback={<SearchBarLoader placeholder="Example: Gross domestic product" />}>
-                    <SearchBar placeholder="Example: Gross domestic product" />
+                  <Suspense fallback={<SearchBarLoader placeholder="Example: Birth rate" />}>
+                    <SearchBar placeholder="Example: Birth rate" />
                   </Suspense>
                 </div>
               </div>

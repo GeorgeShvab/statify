@@ -8,6 +8,7 @@ import CountryService from '@/services/CountryService'
 import { notFound } from 'next/navigation'
 import Chart from './Chart'
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
+import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 
 interface SearchParams {
   id: string
@@ -36,6 +37,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
       <div className="min-h-main-dynamic md:min-h-main">
         <section className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
+            <BookmarkButton indicatorId={indicator.id} countryId={country.id} />
             <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">
               {country.name} - {indicator.label}
             </h1>
@@ -123,5 +125,7 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
 }
 
 export const dynamicParams = true
+export const revalidate = 'force-cache'
+export const dynamic = 'force-static'
 
 export default IndicatorPage

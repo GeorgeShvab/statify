@@ -28,7 +28,7 @@ const Table: FC<Props> = (props) => {
             <button
               className="flex items-center gap-1.5 md:gap-3 justify-start"
               onClick={handleCountrySort}
-              aria-label="Sort by country name"
+              aria-label="Sort by region name"
             >
               Region
               <span className="w-4 h-4 flex items-center justify-center">

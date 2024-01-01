@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import prettifyValue from '@/utils/prettifyValue'
 import Chart from './Chart'
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
+import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 
 interface Params {
   id: string
@@ -16,7 +17,7 @@ interface SearchParams {
   chart_items: string
 }
 
-async function IndicatorPage({ params, searchParams }: types.PageProps<Params, SearchParams>) {
+async function IndicatorPage({ params }: types.PageProps<Params, SearchParams>) {
   const indicatorPromise = IndicatorService.get({ id: params.id })
 
   const countriesPromise = CountryService.getCountriesValueByIndicator({ indicator: params.id })
@@ -33,21 +34,12 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
     notFound()
   }
 
-  const initialChartRegion =
-    countries.find((item) => item.id === 'WEOWORLD') ||
-    countries.find((item) => item.id === 'USA') ||
-    countries.find((item) => item.id === 'GBR') ||
-    countries.find((item) => item.id === 'DEU') ||
-    countries.find((item) => item.id === 'FRA') ||
-    countries[0]
-
-  const initialChartItems = searchParams.chart_items || initialChartRegion.id
-
   return (
     <div>
       <div className="min-h-main-dynamic md:min-h-main">
         <section className="container mb-2 md:mb-3.5">
           <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
+            <BookmarkButton indicatorId={indicator.id} />
             <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">{indicator.label}</h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
             <p className="text-neutral-400 text-sm">Unit: {indicator.unit}</p>
@@ -64,7 +56,7 @@ async function IndicatorPage({ params, searchParams }: types.PageProps<Params, S
         </section>
         {indicator.showChart ? (
           <section>
-            <Chart initial={initialChartItems.split(',')} indicator={indicator} />
+            <Chart indicator={indicator} />
           </section>
         ) : null}
         <section className="container">
@@ -142,5 +134,7 @@ export async function generateStaticParams() {
     id: indicator.id,
   }))
 }
+
+export const revalidate = 'force-cache'
 
 export default IndicatorPage

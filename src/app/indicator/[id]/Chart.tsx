@@ -12,11 +12,10 @@ const ChartComponent = dynamic(() => import('@/components/Chart/Chart'), { ssr: 
 const RangeSlider = dynamic(() => import('@/components/Chart/RangeSlider'), { ssr: false })
 
 interface Props {
-  initial: string[]
   indicator: Indicator
 }
 
-const Chart: FC<Props> = ({ initial, indicator }) => {
+const Chart: FC<Props> = ({ indicator }) => {
   const data = useGetChartData(indicator.id)
 
   if (!data) {
@@ -41,7 +40,7 @@ const Chart: FC<Props> = ({ initial, indicator }) => {
   }
 
   return (
-    <ChartProvider regions={data?.map((item) => ({ ...item, isSelected: initial.includes(item.id) }))}>
+    <ChartProvider regions={data?.map((item) => ({ ...item }))}>
       <RangeProvider>
         <>
           <div className="container mb-2 md:mb-3.5">
