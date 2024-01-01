@@ -33,3 +33,20 @@ export const POST = async (req: NextRequest) => {
     return NextResponse.json(bookmark)
   }
 }
+
+export const GET = async (req: NextRequest) => {
+  const searchParams = req.nextUrl.searchParams
+
+  const countryId = searchParams.get('countryId') || undefined
+  const indicatorId = searchParams.get('indicatorId')
+
+  const client = cookies().get('client_id')?.value
+
+  if (!client || !indicatorId) return new NextResponse(null, { status: 400 })
+
+  const bookmark = await BookmarkService.getOne({ client, country: countryId, indicator: indicatorId })
+
+  if (!bookmark) return new NextResponse(null, { status: 404 })
+
+  return new NextResponse(null, { status: 200 })
+}
