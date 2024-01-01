@@ -1,6 +1,7 @@
 import BookmarkService from '@/services/BookmarkService'
 import CountryService from '@/services/CountryService'
 import IndicatorService from '@/services/IndicatorService'
+import generateId from '@/utils/generateId'
 import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -35,12 +36,20 @@ export const POST = async (req: NextRequest) => {
 }
 
 export const GET = async (req: NextRequest) => {
+  let client = cookies().get('client_id')?.value
+
+  if (!client) {
+    const id = generateId()
+
+    client = id
+
+    cookies().set('client_id', id, { httpOnly: true, expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365) })
+  }
+
   const searchParams = req.nextUrl.searchParams
 
   const countryId = searchParams.get('countryId') || undefined
   const indicatorId = searchParams.get('indicatorId')
-
-  const client = cookies().get('client_id')?.value
 
   if (!client || !indicatorId) return new NextResponse(null, { status: 400 })
 
