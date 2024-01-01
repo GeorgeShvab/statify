@@ -145,4 +145,6 @@ export async function generateStaticParams() {
   }))
 }
 
+export const revalidate = 'force-cache'
+
 export default IndicatorPage

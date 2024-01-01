@@ -125,5 +125,7 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
 }
 
 export const dynamicParams = true
+export const revalidate = 'force-cache'
+export const dynamic = 'force-static'
 
 export default IndicatorPage
