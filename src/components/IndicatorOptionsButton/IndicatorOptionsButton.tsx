@@ -45,9 +45,7 @@ const IndicatorOptionsButton: FC<Props> = (props) => {
         </svg>
       </IconButton>
       <Dropdown anchor={anchor} isOpen={isDropdownOpen} onClose={handleCloseOptions} className="flex" renderHidden>
-        <li>
-          <BookmarkButton {...props} />
-        </li>
+        <BookmarkButton {...props} />
       </Dropdown>
     </>
   )

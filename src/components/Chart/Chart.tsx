@@ -95,7 +95,7 @@ const Chart: FC = () => {
   return (
     <div>
       <Alert show={isError} text="Up to 15 countries can be added to the chart" onClose={removeError} />
-      <Line data={data} options={options} className="country-row-chart !h-[300px] md:!h-[480px] mb-3 md:mb-5" />
+      <Line data={data} options={options} className="country-row-chart !h-[300px] md:!h-[480px] mb-3 md:mb-4" />
       <div className="flex gap-3 md:gap-6 justify-center flex-wrap">
         {selectedRegions.map((item, index) => (
           <div className="flex items-center gap-1.5 md:gap-2" key={item.id}>
