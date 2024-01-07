@@ -1,7 +1,6 @@
 'use client'
 
 import useChart from '@/components/Chart/ChartContext'
-import CopyChartButton from '@/components/Chart/CopyChartButton'
 import { FC } from 'react'
 
 interface Props {
@@ -28,15 +27,21 @@ const ChartTitle: FC<Props> = ({ label, unit }) => {
 
   if (regions.length === 0) return null
 
+  const title: JSX.Element | string = shortening ? label : <>&nbsp;</>
+  let subTitle: JSX.Element | string = <>&nbsp;</>
+
+  if (shortening) {
+    if (shortened) {
+      subTitle = shortened + unit
+    } else if (unit) {
+      subTitle = unit?.charAt(0).toUpperCase() + unit?.slice(1, unit.length)
+    }
+  }
+
   return (
-    <div className="mb-0.5 relative px-8">
-      <div className="absolute right-0 top-0">
-        <CopyChartButton />
-      </div>
-      <h2 className="text-center font-semibold text-sm md:text-lg mb-0.5">{label}</h2>
-      <p className="text-center text-[10px] md:text-xs text-neutral-400">
-        {shortened ? shortened + unit : unit && unit?.at(0)?.toUpperCase() + unit?.slice(1, unit.length)}
-      </p>
+    <div className="mb-0.5 relative px-8" id="chart-header">
+      <h2 className="text-center font-semibold text-sm md:text-lg mb-0.5">{title}</h2>
+      <p className="text-center text-[10px] md:text-xs text-neutral-400">{subTitle}</p>
     </div>
   )
 }

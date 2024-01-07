@@ -22,7 +22,7 @@ const SectionButtons: FC<Props> = ({ section, setSection }) => {
         onClick={() => setSection('selected')}
         color="white"
       >
-        Selecteds regions
+        Selected regions
       </Button>
     </div>
   )

@@ -3,7 +3,6 @@
 import { ChartItem } from '@/types'
 import React, { FC, ReactElement, createContext, memo, useContext } from 'react'
 import useChartState from './useChartState'
-import useChartSearchParams from './useChartSearchParams'
 
 interface ChartContext {
   remove: (id: string) => void

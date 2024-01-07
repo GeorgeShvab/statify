@@ -17,12 +17,25 @@ const CopyChartButton: FC = () => {
   const makeCanvasFromChartElement = async (element: HTMLElement) => {
     const canvas = await html2canvas(element, {
       onclone: function (document) {
-        // To change styles of elements in the image because of some styles bug in this library
-        const chart = document.getElementsByClassName('chart-label-color')
+        // To change styles of labels in the image because of some styles bug in this library
+        const labels = document.getElementsByClassName('chart-label-color')
 
-        Array.from(chart).forEach((item) => {
-          item.classList.add('translate-y-2')
-        })
+        // To hide buttons and change other styles (there are some difference in spacing between real page and output image)
+        const elementsToHide = document.getElementsByClassName('html2canvas-hide-element')
+        const chartHeader = document.getElementById('chart-header')
+        const chartContainerElement = document.getElementById('chart')
+        const chartElement = document.querySelector('.country-row-chart')
+
+        if (chartContainerElement) {
+          chartContainerElement.className = `${chartContainerElement.className} !pt-1 md:!pt-1 !border-0`
+        }
+
+        if (chartElement) chartElement.className = `${chartElement.className} !mb-1 md:!mb-2.5`
+
+        if (chartHeader) chartHeader.className = `${chartHeader.className} !mb-2 md:!mb-4`
+
+        Array.from(labels).forEach((item) => item.classList.add('translate-y-2'))
+        Array.from(elementsToHide).forEach((item) => item.classList.add('hidden'))
       },
     })
 
@@ -68,7 +81,7 @@ const CopyChartButton: FC = () => {
       />
       <button
         className={
-          'h-8 w-8 flex justify-center items-center text-neutral-400 hover:text-neutral-600 transition-colors rounded-full'
+          'h-8 w-8 flex justify-center items-center text-neutral-400 hover:text-neutral-600 transition-colors rounded-full html2canvas-hide-element'
         }
         aria-label="Copy the chart as an image"
         title="Copy the chart as an image"
