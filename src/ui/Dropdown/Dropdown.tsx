@@ -1,54 +1,51 @@
-import { FC, MouseEvent, ReactElement, cloneElement, useRef, useState } from 'react'
-import Button from '../Button/Button'
+import { FC, ReactElement, RefObject, useLayoutEffect, useRef, useState } from 'react'
 import useOutsideClick from '@/hooks/useOutsideClick'
+import { createPortal } from 'react-dom'
 
 interface Props {
-  selected: string
-  data: string[]
-  onSelect: (topic: string) => void
-  children: ReactElement
+  children: ReactElement | ReactElement[]
+  isOpen: boolean
+  onClose: () => void
+  anchor: RefObject<HTMLElement>
+  className?: string
+  renderHidden?: boolean
 }
 
-const Dropdown: FC<Props> = ({ selected, data, onSelect, children }) => {
+interface Position {
+  x: number | undefined
+  y: number | undefined
+}
+
+const Dropdown: FC<Props> = ({ children, isOpen, onClose, anchor, renderHidden, className = '' }) => {
   const containerEl = useRef<HTMLDivElement>(null)
 
-  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const close = () => onClose()
 
-  const handleClick = (e: MouseEvent) => {
-    if (children.props.onClick) children.props.onClick(e)
-    setIsOpen((prev) => !prev)
-  }
+  useOutsideClick(close, [containerEl, anchor])
 
-  const close = () => setIsOpen(false)
+  const [position, setPosition] = useState<Position>({ x: undefined, y: undefined })
 
-  const handleSelect = (id: string) => {
-    onSelect(id)
-    setIsOpen(false)
-  }
+  useLayoutEffect(() => {
+    const anchorPosition = anchor.current?.getBoundingClientRect()
 
-  useOutsideClick(close, containerEl)
+    if (anchorPosition) {
+      setPosition({ x: anchorPosition?.x + anchorPosition?.width, y: anchorPosition?.y + anchorPosition?.height })
+    }
+  }, [isOpen])
 
-  return (
-    <div className="relative" ref={containerEl}>
-      {cloneElement(children, { ...children.props, onClick: handleClick }, children.props.children)}
-      {isOpen && (
-        <div className="overflow-hidden absolute top-full right-0 min-w-full rounded-lg border bg-white">
-          <ul className="max-h-[300px] overflow-auto pretty-scrollbar">
-            {data.map((item) => (
-              <li
-                role="button"
-                className={`text-sm h-9 px-4 py-2 whitespace-nowrap flex items-center hover:bg-neutral-100 ${
-                  selected === item ? 'bg-neutral-100' : ''
-                }`}
-                onClick={() => handleSelect(item)}
-              >
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+  if (!renderHidden && !isOpen) return null
+
+  return createPortal(
+    <div
+      className={`absolute z-10 ${renderHidden && !isOpen ? 'hidden' : ''}`}
+      ref={containerEl}
+      style={{ left: position.x, top: position.y }}
+    >
+      <div className="overflow-hidden absolute top-full right-0 min-w-full rounded-lg border bg-white">
+        <ul className={`max-h-[300px] overflow-auto pretty-scrollbar ${className}`}>{children}</ul>
+      </div>
+    </div>,
+    document?.body
   )
 }
 

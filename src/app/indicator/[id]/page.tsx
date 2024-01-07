@@ -4,10 +4,9 @@ import { Metadata } from 'next'
 import CountryService from '@/services/CountryService'
 import Table from './Table'
 import { notFound } from 'next/navigation'
-import prettifyValue from '@/utils/prettifyValue'
 import Chart from './Chart'
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
-import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
+import IndicatorOptionsButton from '@/components/IndicatorOptionsButton/IndicatorOptionsButton'
 
 interface Params {
   id: string
@@ -38,20 +37,14 @@ async function IndicatorPage({ params }: types.PageProps<Params, SearchParams>) 
     <div>
       <div className="min-h-main-dynamic md:min-h-main">
         <section className="container mb-2 md:mb-3.5">
-          <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
-            <BookmarkButton indicatorId={indicator.id} />
-            <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">{indicator.label}</h1>
+          <div className="px-4 py-3.5 pt-4.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
+            <IndicatorOptionsButton indicatorId={indicator.id} />
+            <h1 className="text-2xl font-bold mb-4 md:mb-5 pr-10">{indicator.label}</h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
             <p className="text-neutral-400 text-sm">Unit: {indicator.unit}</p>
             {indicator.description && indicator.description.trim() && (
-              <p className="text-neutral-600 mt-3" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
+              <p className="text-neutral-600 mt-2" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             )}
-            {indicator.total ? (
-              <p className="mt-4 text-neutral-600 font-bold">
-                {indicator.absolute ? 'World total:' : 'Average in the world:'}{' '}
-                {prettifyValue(indicator.total, indicator.precision)} {indicator.unitSymbol}
-              </p>
-            ) : null}
           </div>
         </section>
         {indicator.showChart ? (
@@ -108,19 +101,19 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
 
   return {
     title: indicator.label,
-    description: `Detaled data about ${indicator.label} in all countries`,
+    description: `Detaled data about ${indicator.label} in all countries. ${indicator.description}`,
     themeColor: '#ffffff',
     openGraph: {
       images: ['/og.png'],
       title: indicator.label,
-      description: `Detaled data about ${indicator.label} in all countries`,
+      description: `Detaled data about ${indicator.label} in all countries.`,
       type: 'website',
       url: `/indicator/${params.id}`,
     },
     twitter: {
       images: ['/og.png'],
       title: 'Statify',
-      description: 'Explore our database featuring 100+ indicators for hundreds of regions worldwide.',
+      description: `Detaled data about ${indicator.label} in all countries.`,
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },

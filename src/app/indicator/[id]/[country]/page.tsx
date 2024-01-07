@@ -8,7 +8,7 @@ import CountryService from '@/services/CountryService'
 import { notFound } from 'next/navigation'
 import Chart from './Chart'
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
-import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
+import IndicatorOptionsButton from '@/components/IndicatorOptionsButton/IndicatorOptionsButton'
 
 interface SearchParams {
   id: string
@@ -36,15 +36,15 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
     <div>
       <div className="min-h-main-dynamic md:min-h-main">
         <section className="container mb-2 md:mb-3.5">
-          <div className="px-4 py-3.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
-            <BookmarkButton indicatorId={indicator.id} countryId={country.id} />
-            <h1 className="text-2xl font-bold mb-6 md:mb-8 pr-10">
+          <div className="px-4 py-3.5 pt-4.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
+            <IndicatorOptionsButton indicatorId={indicator.id} countryId={country.id} />
+            <h1 className="text-2xl font-bold mb-4 md:mb-5 pr-10">
               {country.name} - {indicator.label}
             </h1>
             <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
             <p className="text-neutral-400 text-sm">Unit: {indicator.unit}</p>
             {indicator.description ? (
-              <p className="text-neutral-600 mt-4" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
+              <p className="text-neutral-600 mt-2" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             ) : null}
             <p className="mt-2 text-blue text-sm">
               <Link href={`/indicator/${params.id}`}>Back to all countries</Link>
@@ -105,19 +105,21 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
 
   return {
     title: `${getFullCountryName(params.country)} - ${indicator.label}`,
-    description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}`,
+    description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}. ${
+      indicator.description
+    }`,
     themeColor: '#ffffff',
     openGraph: {
       images: ['/og.png'],
       title: `${getFullCountryName(params.country)} - ${indicator.label}`,
-      description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}`,
+      description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}.`,
       type: 'website',
       url: `/indicator/${params.id}/${params.country}`,
     },
     twitter: {
       images: ['/og.png'],
       title: 'Statify',
-      description: 'Explore our database featuring 100+ indicators for hundreds of regions worldwide.',
+      description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}.`,
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },

@@ -34,7 +34,7 @@ const Error: FC = () => {
                 </svg>
               </div>
               <h1 className="text-center text-3xl md:text-4xl font-bold text-black mb-4 md:mb-6 leading-normal">
-                Crytical Error
+                Server Error
               </h1>
               <div className="text-neutral-400 hover:text-neutral-800 transition-colors text-center">
                 <a href="/">To home page</a>
