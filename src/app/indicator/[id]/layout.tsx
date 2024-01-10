@@ -5,7 +5,7 @@ import AdvancedSearchBarLoader from '@/components/SearchBar/AdvancedSearchBarLoa
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
-    <main className="mb-3 md:mb-5">
+    <main className="mb-5 md:mb-7">
       <div className="container">
         <div className="py-3 md:py-5">
           <Suspense fallback={<AdvancedSearchBarLoader />}>

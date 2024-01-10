@@ -7,6 +7,7 @@ import { notFound } from 'next/navigation'
 import Chart from './Chart'
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
 import IndicatorOptionsButton from '@/components/IndicatorOptionsButton/IndicatorOptionsButton'
+import axios from 'axios'
 
 interface Params {
   id: string
@@ -58,7 +59,7 @@ async function IndicatorPage({ params }: types.PageProps<Params, SearchParams>) 
           </div>
         </section>
         {relatedIndicators && relatedIndicators?.length ? (
-          <section className="container mt-3 md:mt-5">
+          <section className="container mt-4 md:mt-5">
             <div className="">
               <h2 className="mb-2 md:mb-3 px-2 font-semibold">Related indicators</h2>
             </div>
@@ -76,6 +77,15 @@ async function IndicatorPage({ params }: types.PageProps<Params, SearchParams>) 
 
 export const generateMetadata = async ({ params }: types.PageProps<Params>): Promise<Metadata> => {
   const indicator = await IndicatorService.get({ id: params.id })
+  let ogImage = '/og.png'
+
+  try {
+    if (indicator) {
+      await axios.head(`${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/WEOWORLD.png`)
+
+      ogImage = `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/WEOWORLD.png`
+    }
+  } catch {}
 
   if (!indicator) {
     return {
@@ -83,14 +93,14 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
       description: 'This page is not exist',
       themeColor: '#ffffff',
       openGraph: {
-        images: ['/og.png'],
+        images: [ogImage],
         title: 'Not Found',
         description: 'This page is not exist',
         type: 'website',
         url: '/',
       },
       twitter: {
-        images: ['/og.png'],
+        images: [ogImage],
         title: 'Statify',
         description: 'This page is not exist',
         card: 'summary_large_image',
@@ -104,14 +114,14 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
     description: `Detaled data about ${indicator.label} in all countries. ${indicator.description}`,
     themeColor: '#ffffff',
     openGraph: {
-      images: ['/og.png'],
+      images: [ogImage],
       title: indicator.label,
       description: `Detaled data about ${indicator.label} in all countries.`,
       type: 'website',
       url: `/indicator/${params.id}`,
     },
     twitter: {
-      images: ['/og.png'],
+      images: [ogImage],
       title: 'Statify',
       description: `Detaled data about ${indicator.label} in all countries.`,
       card: 'summary_large_image',

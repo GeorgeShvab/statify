@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation'
 import Chart from './Chart'
 import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
 import IndicatorOptionsButton from '@/components/IndicatorOptionsButton/IndicatorOptionsButton'
+import axios from 'axios'
 
 interface SearchParams {
   id: string
@@ -62,7 +63,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
           </div>
         </section>
         {relatedIndicators && relatedIndicators?.length ? (
-          <section className="container mt-3 md:mt-5">
+          <section className="container mt-4 md:mt-5">
             <div className="">
               <h2 className="mb-2 md:mb-3 px-2 font-semibold">Related indicators</h2>
             </div>
@@ -80,21 +81,31 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
 
 export const generateMetadata = async ({ params }: types.PageProps<SearchParams>): Promise<Metadata> => {
   const indicator = await IndicatorService.get({ id: params.id })
+  const country = await CountryService.get({ id: params.id })
+  let ogImage = '/og.png'
 
-  if (!indicator) {
+  try {
+    if (indicator && country) {
+      await axios.head(`${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`)
+
+      ogImage = `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`
+    }
+  } catch {}
+
+  if (!indicator || !country) {
     return {
       title: 'Not Found',
       description: 'This page is not exist',
       themeColor: '#ffffff',
       openGraph: {
-        images: ['/og.png'],
+        images: [ogImage],
         title: 'Not Found',
         description: 'This page is not exist',
         type: 'website',
         url: '/',
       },
       twitter: {
-        images: ['/og.png'],
+        images: [ogImage],
         title: 'Statify',
         description: 'This page is not exist',
         card: 'summary_large_image',
@@ -104,22 +115,20 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
   }
 
   return {
-    title: `${getFullCountryName(params.country)} - ${indicator.label}`,
-    description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}. ${
-      indicator.description
-    }`,
+    title: `${country.name} - ${indicator.label}`,
+    description: `Detaled data about ${indicator.label} in ${country.name}. ${indicator.description}`,
     themeColor: '#ffffff',
     openGraph: {
-      images: ['/og.png'],
-      title: `${getFullCountryName(params.country)} - ${indicator.label}`,
-      description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}.`,
+      images: [ogImage],
+      title: `${country.name} - ${indicator.label}`,
+      description: `Detaled data about ${indicator.label} in ${country.name}.`,
       type: 'website',
       url: `/indicator/${params.id}/${params.country}`,
     },
     twitter: {
-      images: ['/og.png'],
+      images: [ogImage],
       title: 'Statify',
-      description: `Detaled data about ${indicator.label} in ${getFullCountryName(params.country)}.`,
+      description: `Detaled data about ${indicator.label} in ${country.name}.`,
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },

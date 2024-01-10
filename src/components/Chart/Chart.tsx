@@ -85,12 +85,23 @@ const Chart: FC = () => {
     maintainAspectRatio: window.screen.width > 768 ? true : false,
   }
 
-  if (!data.datasets.length || !shortening)
+  if (!shortening) return null
+
+  if (!data.datasets.length) {
     return (
       <div className="!h-[300px] md:!h-[480px] mb-3 md:mb-5 flex justify-center items-center">
-        <p className="text-sm md:text-base text-neutral-400">Add an item to the chart</p>
+        <p className="text-sm md:text-base text-neutral-400">Please add a region to the chart</p>
       </div>
     )
+  }
+
+  if (selectedRange[0] === selectedRange[1]) {
+    return (
+      <div className="!h-[300px] md:!h-[480px] mb-3 md:mb-5 flex justify-center items-center">
+        <p className="text-sm md:text-base text-neutral-400">Please choose a wider time range</p>
+      </div>
+    )
+  }
 
   return (
     <div>
