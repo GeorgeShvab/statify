@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { AnchorHTMLAttributes, ForwardRefRenderFunction, forwardRef, ButtonHTMLAttributes, ReactElement } from 'react'
 
 interface Props {
@@ -24,9 +25,9 @@ const Button: ForwardRefRenderFunction<
 
   if (href) {
     return (
-      <a className={btnClassName} href={href} {...(props as any)} ref={ref}>
+      <Link className={btnClassName} href={href} {...(props as any)} ref={ref}>
         {children}
-      </a>
+      </Link>
     )
   }
 
