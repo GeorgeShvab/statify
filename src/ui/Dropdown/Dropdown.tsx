@@ -29,7 +29,10 @@ const Dropdown: FC<Props> = ({ children, isOpen, onClose, anchor, renderHidden, 
     const anchorPosition = anchor.current?.getBoundingClientRect()
 
     if (anchorPosition) {
-      setPosition({ x: anchorPosition?.x + anchorPosition?.width, y: anchorPosition?.y + anchorPosition?.height })
+      setPosition({
+        x: anchorPosition?.x + window.scrollX + anchorPosition?.width,
+        y: anchorPosition?.y + window.scrollY + anchorPosition?.height,
+      })
     }
   }, [isOpen])
 
@@ -41,8 +44,8 @@ const Dropdown: FC<Props> = ({ children, isOpen, onClose, anchor, renderHidden, 
       ref={containerEl}
       style={{ left: position.x, top: position.y }}
     >
-      <div className="overflow-hidden absolute top-full right-0 min-w-full rounded-lg border bg-white">
-        <ul className={`max-h-[300px] overflow-auto pretty-scrollbar ${className}`}>{children}</ul>
+      <div className="shadow absolute top-full right-0 min-w-full rounded-lg border bg-white">
+        <ul className={`max-h-[300px] overflow-hidden rounded-lg ${className}`}>{children}</ul>
       </div>
     </div>,
     document?.body
