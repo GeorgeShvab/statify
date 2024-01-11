@@ -8,10 +8,9 @@ interface SearchParams {
 
 const IndicatorService = {
   async get({ id }: { id: string }) {
-    const data: (Indicator & { total: number | null })[] =
-      await prisma.$queryRaw`SELECT i.*, (SELECT "value" FROM "Value" WHERE "indicatorId" = ${id} AND year = (SELECT MAX(year) FROM "Value" WHERE "countryId" = 'WEOWORLD' AND "indicatorId" = ${id}) AND "countryId" = 'WEOWORLD') as "total" FROM "Indicator" i WHERE "id" = ${id}`
+    const data = await prisma.indicator.findUnique({ where: { id } })
 
-    return data[0]
+    return data
   },
 
   async getAll() {
