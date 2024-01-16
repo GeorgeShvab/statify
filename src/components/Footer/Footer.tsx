@@ -18,7 +18,7 @@ const Footer: FC = () => {
             </li>
           </ul>
           <p className="flex justify-center items-center text-sm text-neutral-500">
-            &copy; 2023 Heorhii Shvab. All rights reserved.
+            &copy; 2023-2024 Heorhii Shvab. All rights reserved.
           </p>
         </div>
       </div>
