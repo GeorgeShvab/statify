@@ -80,8 +80,11 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
 }
 
 export const generateMetadata = async ({ params }: types.PageProps<SearchParams>): Promise<Metadata> => {
-  const indicator = await IndicatorService.get({ id: params.id })
-  const country = await CountryService.get({ id: params.id })
+  const indicatorPromise = IndicatorService.get({ id: params.id })
+  const countryPromise = CountryService.get({ id: params.country })
+
+  const [indicator, country] = await Promise.all([indicatorPromise, countryPromise])
+
   let ogImage = '/og.png'
 
   try {
@@ -115,20 +118,20 @@ export const generateMetadata = async ({ params }: types.PageProps<SearchParams>
   }
 
   return {
-    title: `${country.name} - ${indicator.label}`,
-    description: `Detaled data about ${indicator.label} in ${country.name}. ${indicator.description}`,
+    title: `${indicator.label} in ${country.name}`,
+    description: `Statistical data of the ${indicator.label} in ${country.name}. ${indicator.description}`,
     themeColor: '#ffffff',
     openGraph: {
       images: [ogImage],
-      title: `${country.name} - ${indicator.label}`,
-      description: `Detaled data about ${indicator.label} in ${country.name}.`,
+      title: `${indicator.label} in ${country.name}`,
+      description: `Statistical data of the ${indicator.label} in ${country.name}.`,
       type: 'website',
       url: `/indicator/${params.id}/${params.country}`,
     },
     twitter: {
       images: [ogImage],
-      title: 'Statify',
-      description: `Detaled data about ${indicator.label} in ${country.name}.`,
+      title: `${indicator.label} in ${country.name}`,
+      description: `Statistical data of the ${indicator.label} in ${country.name}.`,
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },
