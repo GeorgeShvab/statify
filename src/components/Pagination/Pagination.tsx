@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { FC } from 'react'
 
 interface Props {
@@ -9,20 +9,10 @@ interface Props {
   pages: number
 }
 
-const makeUrl = (params: string, page: number): string => {
-  const searchParams = new URLSearchParams(params)
-
-  searchParams.set('page', String(page))
-
-  return '?' + searchParams.toString()
-}
-
 const Pagination: FC<Props> = ({ page, pages }) => {
   const searchParams = useSearchParams()
 
-  const displayedPages = Array.from({ length: Math.min(5, pages) }, (_, index) => index + 1)
-    .map((item, index) => Math.max(1, page - 2) + index)
-    .filter((item) => item <= pages)
+  const displayedPages = getPagesArray(page, pages)
 
   return (
     <div className="flex justify-center py-3 md:py-5">
@@ -105,6 +95,21 @@ const Pagination: FC<Props> = ({ page, pages }) => {
       </div>
     </div>
   )
+}
+
+function getPagesArray(page: number, pages: number) {
+  return Array.from({ length: pages }, (_, index) => index + 1).slice(
+    Math.max(0, page - (3 + Math.max(0, 2 - (pages - page)))),
+    Math.min(pages, page + (2 + Math.max(0, 3 - page)))
+  )
+}
+
+function makeUrl(params: string, page: number): string {
+  const searchParams = new URLSearchParams(params)
+
+  searchParams.set('page', String(page))
+
+  return '?' + searchParams.toString()
 }
 
 export default Pagination

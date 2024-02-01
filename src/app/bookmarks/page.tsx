@@ -1,4 +1,5 @@
 import BookmarkCard from '@/components/BookmarkCard/BookmarkCard'
+import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
 import Pagination from '@/components/Pagination/Pagination'
 import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
 import BookmarkService from '@/services/BookmarkService'
@@ -30,7 +31,7 @@ const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
             {data?.data.length ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
                 {data.data.map((item) => (
-                  <BookmarkCard key={(item?.country?.id || '') + item.indicator.id} {...item} />
+                  <IndicatorCard key={(item.countryId || '') + item.id} {...item} />
                 ))}
               </div>
             ) : (

@@ -65,6 +65,7 @@ model Country {
   union                     Boolean    @default(false)
   internationallyRecognized Boolean    @default(true)
   geographicRegion          Boolean    @default(false)
+  searchTags                String[]
   values                    Value[]
   Bookmark                  Bookmark[]
 
