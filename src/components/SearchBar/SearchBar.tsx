@@ -110,7 +110,11 @@ const SearchBar: FC<Props> = ({ placeholder }) => {
               <ul>
                 {autocomplete.data?.map((item) => (
                   <li className="border-b last:border-none hover:bg-neutral-100 transition-colors" key={item.id}>
-                    <Link href={`/indicator/${item.id}`} className="block px-4 py-2 w-full text-sm">
+                    <Link
+                      href={`/indicator/${item.id}${item.countryId ? '/' + item.countryId : ''}`}
+                      className="block px-4 py-2 w-full text-sm"
+                    >
+                      {item.countryId ? item.countryName + ' - ' : ''}
                       {item.label}
                     </Link>
                   </li>

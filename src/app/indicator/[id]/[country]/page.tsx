@@ -1,6 +1,5 @@
 import * as types from '@/types'
 import IndicatorService from '@/services/IndicatorService'
-import getFullCountryName from '@/utils/getFullCountryName'
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Table from './Table'
@@ -47,7 +46,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             {indicator.description ? (
               <p className="text-neutral-600 mt-2" dangerouslySetInnerHTML={{ __html: indicator.description }}></p>
             ) : null}
-            <p className="mt-2 text-blue text-sm">
+            <p className="mt-4 text-blue text-sm">
               <Link href={`/indicator/${params.id}`}>Back to all countries</Link>
             </p>
           </div>

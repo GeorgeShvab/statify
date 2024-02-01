@@ -4,7 +4,7 @@ import axios from 'axios'
 import { useCallback, useRef, useState } from 'react'
 
 interface AutocompleteState {
-  data: Indicator[] | undefined
+  data: (Indicator & { countryName?: string; countryId?: string })[] | undefined
   isOpened: boolean
 }
 
@@ -16,9 +16,12 @@ const useAutocomplete = () => {
   const fetch = useCallback(
     throttle(async (value: string) => {
       try {
-        const { data } = await axios.get<Indicator[]>('/api/autocomplete?query=' + value, {
-          signal: abortController.current?.signal,
-        })
+        const { data } = await axios.get<(Indicator & { countryName?: string; countryId?: string })[]>(
+          '/api/autocomplete?query=' + value,
+          {
+            signal: abortController.current?.signal,
+          }
+        )
 
         setAutocomplete({ data, isOpened: true })
       } catch (e) {}

@@ -24,7 +24,7 @@ const SearchPage: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => 
       <div className="flex-1">
         <div className="container">
           <h2 className="mb-1.5 md:mb-3 px-2 font-semibold">
-            {result ? `Search results for ${searchParams.query}` : <>&nbsp;</>}
+            {result ? `Search results for "${searchParams.query}"` : <>&nbsp;</>}
           </h2>
           {result?.data.length ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
