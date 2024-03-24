@@ -5,23 +5,21 @@ import React, { FC, ReactElement, createContext, memo, useContext } from 'react'
 import useChartState from './useChartState'
 
 interface ChartContext {
-  remove: (id: string) => void
-  add: (country: string) => void
-  removeAll: () => void
-  isError: boolean
+  isLimitError: boolean
   removeError: () => void
   regions: ChartItem[]
-  shortening: number | null
+  shortening: number
+  update: (data: Partial<ChartItem> & { id: string }) => void
+  toggleSelection: (id: string) => void
 }
 
 const ChartContext = createContext<ChartContext>({
-  remove: () => {},
-  add: () => {},
-  removeAll: () => {},
   removeError: () => {},
-  isError: false,
+  update: () => {},
+  isLimitError: false,
   regions: [],
-  shortening: null,
+  shortening: 10000,
+  toggleSelection: () => {},
 })
 
 interface Props {

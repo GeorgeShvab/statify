@@ -2,9 +2,9 @@
 
 import { FC, useState } from 'react'
 import Modal from '../../Modal'
-import ManageRegions from './ManageRegions'
+import ManageRegions from './ChartManager'
 
-const AddItmeButton: FC = () => {
+const ChartManagerButton: FC = () => {
   const [isOpened, setIsOpened] = useState<boolean>(false)
 
   return (
@@ -39,4 +39,4 @@ const AddItmeButton: FC = () => {
   )
 }
 
-export default AddItmeButton
+export default ChartManagerButton

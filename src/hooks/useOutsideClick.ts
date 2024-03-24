@@ -1,6 +1,6 @@
 import { RefObject, useEffect } from 'react'
 
-const useOutsideClick = (fn: () => void, ref: RefObject<HTMLElement> | RefObject<HTMLElement>[]) => {
+const useOutsideClick = (fn: (e: Event) => void, ref: RefObject<HTMLElement> | RefObject<HTMLElement>[]) => {
   const handleClick = (e: MouseEvent) => {
     if (Array.isArray(ref)) {
       for (let element of ref) {
@@ -14,7 +14,7 @@ const useOutsideClick = (fn: () => void, ref: RefObject<HTMLElement> | RefObject
       }
     }
 
-    fn()
+    fn(e)
   }
 
   useEffect(() => {
