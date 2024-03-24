@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 import { FC } from 'react'
 import useGetChartData from '@/components/Chart/useGetChartData'
 import { RangeProvider } from '@/components/Chart/RangeContext'
-import ManageRegionsButton from '@/components/Chart/ManageRegions/ManageRegionsButton'
+import ManageRegionsButton from '@/components/Chart/ChartManager/ChartManagerButton'
 import CopyChartButton from '@/components/Chart/CopyChartButton'
 import ChartTitle from '@/components/Chart/ChartTitle'
 

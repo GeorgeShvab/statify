@@ -8,7 +8,7 @@ import ChartTitle from '../../../components/Chart/ChartTitle'
 import useGetChartData from '@/components/Chart/useGetChartData'
 import { RangeProvider } from '@/components/Chart/RangeContext'
 import CopyChartButton from '@/components/Chart/CopyChartButton'
-import ManageRegionsButton from '@/components/Chart/ManageRegions/ManageRegionsButton'
+import ManageRegionsButton from '@/components/Chart/ChartManager/ChartManagerButton'
 
 const ChartComponent = dynamic(() => import('@/components/Chart/Chart'), { ssr: false })
 const RangeSlider = dynamic(() => import('@/components/Chart/RangeSlider'), { ssr: false })

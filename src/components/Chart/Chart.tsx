@@ -22,7 +22,7 @@ import { ChartItem } from '@/types'
 ChartJS.register(ArcElement, Tooltip, Legend, LinearScale, CategoryScale, PointElement, LineElement)
 
 const Chart: FC = () => {
-  const { regions, isError, removeError, shortening } = useChart()
+  const { regions, isLimitError, removeError, shortening } = useChart()
   const { range, selectedRange } = useRange()
 
   const selectedRegions = useMemo(() => regions.filter((item) => item.isSelected), [regions])
@@ -105,7 +105,7 @@ const Chart: FC = () => {
 
   return (
     <div>
-      <Alert show={isError} text="Up to 15 countries can be added to the chart" onClose={removeError} />
+      <Alert show={isLimitError} text="Up to 15 countries can be added to the chart" onClose={removeError} />
       <Line data={data} options={options} className="country-row-chart !h-[300px] md:!h-[480px] mb-3 md:mb-4" />
       <div className="flex gap-3 md:gap-6 justify-center flex-wrap">
         {selectedRegions.map((item, index) => (

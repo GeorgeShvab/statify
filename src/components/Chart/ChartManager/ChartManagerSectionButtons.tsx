@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Section } from './ManageRegions'
+import { Section } from './ChartManager'
 import Button from '@/ui/Button/Button'
 
 interface Props {
@@ -7,7 +7,7 @@ interface Props {
   section: Section
 }
 
-const SectionButtons: FC<Props> = ({ section, setSection }) => {
+const ChartManagerSectionButtons: FC<Props> = ({ section, setSection }) => {
   return (
     <div className="flex top-full py-3 px-3 gap-2 w-full">
       <Button
@@ -28,4 +28,4 @@ const SectionButtons: FC<Props> = ({ section, setSection }) => {
   )
 }
 
-export default SectionButtons
+export default ChartManagerSectionButtons
