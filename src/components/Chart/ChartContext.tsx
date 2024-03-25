@@ -10,7 +10,6 @@ interface ChartContext {
   regions: ChartItem[]
   shortening: number
   update: (data: Partial<ChartItem> & { id: string }) => void
-  toggleSelection: (id: string) => void
 }
 
 const ChartContext = createContext<ChartContext>({
@@ -19,7 +18,6 @@ const ChartContext = createContext<ChartContext>({
   isLimitError: false,
   regions: [],
   shortening: 10000,
-  toggleSelection: () => {},
 })
 
 interface Props {

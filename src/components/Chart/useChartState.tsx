@@ -10,6 +10,8 @@ interface State {
   selectedCount: number
 }
 
+// bug with shortening
+
 const useChartState = (regions: ChartItem[]) => {
   const getInitialRegions = () => {
     let url = new URL(window.location.href)
@@ -62,7 +64,7 @@ const useChartState = (regions: ChartItem[]) => {
       setData((prev) => ({ ...prev, isLimitError: true }))
     } else {
       const maxAbsValue = data.regions.reduce((acc, curr) => {
-        if (!curr.isSelected) return acc
+        if ((param.id === curr.id && !param.isSelected) || (!curr.isSelected && curr.id !== param.id)) return acc
         const max = Math.abs(Math.max(...curr.values.map((item) => item.value)))
         return max > acc ? max : acc
       }, 0) // to get the largets value in the chart and then calculate the shortening
@@ -84,34 +86,9 @@ const useChartState = (regions: ChartItem[]) => {
     }
   }
 
-  const toggleSelection = (id: string) => {
-    const region = data.regions.find((item) => item.id === id)!
-
-    const maxAbsValue = data.regions.reduce((acc, curr) => {
-      if ((curr.id === id && curr.isSelected) || (!curr.isSelected && curr.id !== id)) return acc
-      const max = Math.abs(Math.max(...curr.values.map((item) => item.value)))
-      return max > acc ? max : acc
-    }, 0) // to get the largets value in the chart and then calculate the shortening
-
-    setData((prev) => ({
-      ...prev,
-      shortening: getShortening(maxAbsValue),
-      selectedCount: prev.selectedCount + (region.isSelected ? -1 : 1),
-      regions: prev.regions.map((item) =>
-        item.id === id
-          ? {
-              ...item,
-              isSelected: !item.isSelected,
-              color: item.color || generateRandomColor(),
-            }
-          : item
-      ),
-    }))
-  }
-
   const removeError = () => setData((prev) => ({ ...prev, isLimitError: false }))
 
-  return { data, removeError, update, toggleSelection }
+  return { data, removeError, update }
 }
 
 function getShortening(value: number) {
