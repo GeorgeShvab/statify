@@ -85,6 +85,9 @@ export const generateMetadata = async ({ searchParams }: PageProps<{}, SearchPar
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },
+    alternates: {
+      canonical: `${process.env.SERVER_ADDRESS}/search`,
+    },
   }
 }
 

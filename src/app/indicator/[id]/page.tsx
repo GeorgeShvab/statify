@@ -127,6 +127,9 @@ export const generateMetadata = async ({ params }: types.PageProps<Params>): Pro
       card: 'summary_large_image',
       site: '@Zhorrrro',
     },
+    alternates: {
+      canonical: `${process.env.SERVER_ADDRESS}/indicator/${params.id}`,
+    },
   }
 }
 
