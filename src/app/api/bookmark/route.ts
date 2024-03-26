@@ -48,7 +48,7 @@ export const GET = async (req: NextRequest) => {
 
   const searchParams = req.nextUrl.searchParams
 
-  const countryId = searchParams.get('countryId') || undefined
+  const countryId = searchParams.get('countryId') || null
   const indicatorId = searchParams.get('indicatorId')
 
   if (!client || !indicatorId) return new NextResponse(null, { status: 400 })

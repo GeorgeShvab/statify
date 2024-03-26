@@ -7,7 +7,7 @@ if (!perPage || Number.isNaN(perPage)) throw new Error('No RESULTS_PER_PAGE env'
 
 interface BookmarkAction {
   indicator: string
-  country?: string
+  country?: string | null
   client: string
 }
 

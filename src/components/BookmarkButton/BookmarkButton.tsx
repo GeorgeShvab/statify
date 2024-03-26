@@ -1,6 +1,5 @@
 'use client'
 
-import IconButton from '@/ui/IconButton/IconButton'
 import { FC } from 'react'
 import useBookmark from './useGetBookmarkData'
 import DropdownItem from '@/ui/Dropdown/DropdownItem'
