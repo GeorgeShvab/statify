@@ -4,7 +4,7 @@ interface Props extends HTMLAttributes<HTMLOrSVGElement> {
   className?: string
 }
 
-const SearchIcon: FC<Props> = ({ className, ...props }) => {
+const SearchIcon: FC<Props> = ({ ...props }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -12,7 +12,7 @@ const SearchIcon: FC<Props> = ({ className, ...props }) => {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className={className || 'w-6 h-6'}
+      className="w-6 h-6"
       {...props}
     >
       <path

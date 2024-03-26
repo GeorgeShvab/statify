@@ -1,54 +1,31 @@
-import { FC, ReactElement, RefObject, useLayoutEffect, useRef, useState } from 'react'
-import useOutsideClick from '@/hooks/useOutsideClick'
-import { createPortal } from 'react-dom'
+import AbsolutePosition from '@/components/AbsolutePosition'
+import AnimationWrapper from '@/components/Animation/AnimationWrapper'
+import OpacityAnimation from '@/components/Animation/OpacityAnimation'
+import DetectOutsideClick from '@/components/DetectOutsideClick'
+import { FC, ReactNode, RefObject } from 'react'
+import DropdownContainer from './DropdownContainer'
+import { Position, PositionOptions } from '@/types'
 
 interface Props {
-  children: ReactElement | ReactElement[]
-  isOpen: boolean
-  onClose: () => void
+  children: ReactNode | ReactNode[]
   anchor: RefObject<HTMLElement>
-  className?: string
+  isOpen: boolean
   renderHidden?: boolean
+  position?: Position | PositionOptions
+  onClose: () => void
 }
 
-interface Position {
-  x: number | undefined
-  y: number | undefined
-}
-
-const Dropdown: FC<Props> = ({ children, isOpen, onClose, anchor, renderHidden, className = '' }) => {
-  const containerEl = useRef<HTMLDivElement>(null)
-
-  const close = () => onClose()
-
-  useOutsideClick(close, [containerEl, anchor])
-
-  const [position, setPosition] = useState<Position>({ x: undefined, y: undefined })
-
-  useLayoutEffect(() => {
-    const anchorPosition = anchor.current?.getBoundingClientRect()
-
-    if (anchorPosition) {
-      setPosition({
-        x: anchorPosition?.x + window.scrollX + anchorPosition?.width,
-        y: anchorPosition?.y + window.scrollY + anchorPosition?.height,
-      })
-    }
-  }, [isOpen])
-
-  if (!renderHidden && !isOpen) return null
-
-  return createPortal(
-    <div
-      className={`absolute z-10 ${renderHidden && !isOpen ? 'hidden' : ''}`}
-      ref={containerEl}
-      style={{ left: position.x, top: position.y }}
-    >
-      <div className="shadow absolute top-full right-0 min-w-full rounded-lg border bg-white">
-        <ul className={`max-h-[300px] overflow-hidden rounded-lg ${className}`}>{children}</ul>
-      </div>
-    </div>,
-    document?.body
+const Dropdown: FC<Props> = ({ children, anchor, isOpen, onClose, position = 'bottom-left', renderHidden = false }) => {
+  return (
+    <AbsolutePosition anchor={anchor} position={position}>
+      <AnimationWrapper open={isOpen} renderHidden={renderHidden}>
+        <OpacityAnimation>
+          <DetectOutsideClick onOutsideClick={onClose} exclude={anchor}>
+            <DropdownContainer>{children}</DropdownContainer>
+          </DetectOutsideClick>
+        </OpacityAnimation>
+      </AnimationWrapper>
+    </AbsolutePosition>
   )
 }
 
