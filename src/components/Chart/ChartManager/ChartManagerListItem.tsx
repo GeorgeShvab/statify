@@ -1,11 +1,9 @@
-import AbsolutePosition from '@/components/AbsolutePosition'
-import Portal from '@/components/Portal'
 import { ChartItem } from '@/types'
 import MinusIcon from '@/ui/Icons/MinusIcon'
 import PlusIcon from '@/ui/Icons/PlusIcon'
 import { FC, memo, useRef, useState } from 'react'
 import ColorPickerPopover from './ColorPickerPopover'
-import DetectOutsideClick from '@/components/DetectOutsideClick'
+import Popover from '@/ui/Popover/Popover'
 
 interface Props extends Pick<ChartItem, 'id' | 'name' | 'isSelected' | 'color'> {
   onClick: (data: Pick<ChartItem, 'id' | 'name' | 'isSelected' | 'color'>) => void
@@ -17,9 +15,13 @@ const ChartManagerListItem: FC<Props> = ({ onClick, setColor, ...props }) => {
 
   const [isColorPickerOpen, setIsColorPickerOpen] = useState<boolean>(false)
 
+  const handleCloseColorPicker = () => setIsColorPickerOpen(false)
+
   const handleClick = () => {
     onClick(props)
   }
+
+  const handleSetColor = (color: string) => setColor(props.id, color)
 
   return (
     <>
@@ -45,15 +47,15 @@ const ChartManagerListItem: FC<Props> = ({ onClick, setColor, ...props }) => {
           {props.isSelected ? <MinusIcon className="w-5 h-5" /> : <PlusIcon className="w-5 h-5" />}
         </button>
       </li>
-      {isColorPickerOpen && (
-        <Portal>
-          <AbsolutePosition position={{ default: 'top-center', 769: 'top-left' }} anchor={pickColorButton}>
-            <DetectOutsideClick exclude={pickColorButton} onOutsideClick={() => setIsColorPickerOpen(false)}>
-              <ColorPickerPopover defaultColor={props.color} setColor={(color) => setColor(props.id, color)} />
-            </DetectOutsideClick>
-          </AbsolutePosition>
-        </Portal>
-      )}
+
+      <Popover
+        position={{ default: 'top-center', 769: 'top-left' }}
+        anchor={pickColorButton}
+        isOpen={isColorPickerOpen}
+        onClose={handleCloseColorPicker}
+      >
+        <ColorPickerPopover defaultColor={props.color} setColor={handleSetColor} />
+      </Popover>
     </>
   )
 }

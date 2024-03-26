@@ -1,0 +1,11 @@
+.opacity-animation {
+  transition: 0.2s ease opacity;
+}
+
+.animation-inactive .opacity-animation {
+  opacity: 0;
+}
+
+.animation-active .opacity-animation {
+  opacity: 1;
+}

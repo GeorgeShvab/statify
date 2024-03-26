@@ -16,7 +16,7 @@ interface PositionState {
   y?: number
 }
 
-const AbsolutePosition: FC<Props> = ({ anchor, children, position }) => {
+const FixedPosition: FC<Props> = ({ anchor, children, position }) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const [pos, setPos] = useState<PositionState>({})
 
@@ -27,20 +27,17 @@ const AbsolutePosition: FC<Props> = ({ anchor, children, position }) => {
 
       let { x, y } = calculatePosition(anchorDomRect, elementDomRect, position)
 
-      x = x + window.scrollX
-      y = y + window.scrollY
-
       if (pos.x !== x || pos.y !== y) setPos({ x, y })
     }
   })
 
   return (
     <Portal>
-      <div className="absolute" style={{ left: pos.x + 'px', top: pos.y + 'px' }} ref={containerRef}>
+      <div className="fixed" style={{ left: pos.x + 'px', top: pos.y + 'px' }} ref={containerRef}>
         {children}
       </div>
     </Portal>
   )
 }
 
-export default AbsolutePosition
+export default FixedPosition
