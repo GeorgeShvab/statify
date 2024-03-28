@@ -1,12 +1,12 @@
 import useDebounce from '@/hooks/useDebounce'
-import { ChangeEvent, FC, useEffect, useState } from 'react'
+import { ChangeEvent, ComponentProps, FC, useEffect, useState } from 'react'
 
-interface Props {
+interface Props extends Omit<ComponentProps<'div'>, 'onChange'> {
   color?: string
   onChange: (color: string) => void
 }
 
-const ColorInput: FC<Props> = ({ color, onChange }) => {
+const ColorInput: FC<Props> = ({ color, onChange, className, ...props }) => {
   const [value, setValue] = useState(color || '')
 
   useEffect(() => {
@@ -31,11 +31,14 @@ const ColorInput: FC<Props> = ({ color, onChange }) => {
   }
 
   return (
-    <div className="flex-1 bg-white border rounded-lg overflow-hidden flex">
+    <div
+      className={`flex-1 bg-white border rounded-lg overflow-hidden flex${className ? ' ' + className : ''}`}
+      {...props}
+    >
       <div className="h-10 w-10 flex-0 bg-neutral-50 flex justify-center items-center text-neutral-800">#</div>
       <input
         type="text"
-        className="h-10 w-24 outline-none text-sm text-neutral-800 bg-white px-3.5"
+        className="h-10 w-24 outline-none text-sm text-neutral-800 bg-white px-3.5 lowercase"
         value={value}
         onInput={handleInput}
       />

@@ -32,7 +32,7 @@ const ColorPickerPopover: FC<Props> = ({ defaultColor, setColor }) => {
         >
           <BrushIcon className="w-5 h-5" />
         </IconButton>
-        <ColorInput color={defaultColor} onChange={setColor} />
+        <ColorInput className="shadow" color={defaultColor} onChange={setColor} />
       </div>
       <div className="rounded-lg p-2 border bg-white shadow">
         {section === 'picker' ? (

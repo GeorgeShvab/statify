@@ -53,6 +53,7 @@ const ChartManagerListItem: FC<Props> = ({ onClick, setColor, ...props }) => {
         anchor={pickColorButton}
         isOpen={isColorPickerOpen}
         onClose={handleCloseColorPicker}
+        closeOnScroll
       >
         <ColorPickerPopover defaultColor={props.color} setColor={handleSetColor} />
       </Popover>
