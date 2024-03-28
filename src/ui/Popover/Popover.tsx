@@ -2,9 +2,12 @@ import AnimationWrapper from '@/components/Animation/AnimationWrapper'
 import OpacityAnimation from '@/components/Animation/OpacityAnimation'
 import DetectOutsideClick from '@/components/DetectOutsideClick'
 import FixedPosition from '@/components/FixedPosition'
-import Portal from '@/components/Portal'
+import useOnScroll from '@/hooks/useOnScroll'
 import { Position, PositionOptions } from '@/types'
+import dynamic from 'next/dynamic'
 import { FC, ReactNode, RefObject } from 'react'
+
+const Portal = dynamic(() => import('@/components/Portal'), { ssr: false })
 
 interface Props {
   children: ReactNode | ReactNode[]
@@ -13,20 +16,31 @@ interface Props {
   renderHidden?: boolean
   position?: Position | PositionOptions
   onClose: () => void
+  closeOnScroll?: boolean
 }
 
-const Popover: FC<Props> = ({ children, anchor, isOpen, onClose, renderHidden = false, position = 'bottom-left' }) => {
+const Popover: FC<Props> = ({
+  children,
+  anchor,
+  isOpen,
+  onClose,
+  closeOnScroll,
+  renderHidden = false,
+  position = 'bottom-left',
+}) => {
+  useOnScroll(() => closeOnScroll && onClose(), [closeOnScroll])
+
   return (
     <Portal>
-      <FixedPosition position={position} anchor={anchor}>
-        <AnimationWrapper open={isOpen} renderHidden={renderHidden}>
+      <AnimationWrapper open={isOpen} renderHidden={renderHidden}>
+        <FixedPosition position={position} anchor={anchor}>
           <OpacityAnimation>
             <DetectOutsideClick exclude={anchor} onOutsideClick={onClose}>
               {children}
             </DetectOutsideClick>
           </OpacityAnimation>
-        </AnimationWrapper>
-      </FixedPosition>
+        </FixedPosition>
+      </AnimationWrapper>
     </Portal>
   )
 }
