@@ -1,6 +1,6 @@
 # Statify
 
-Statify is a web application designed for viewing and analyzing statistics.
+Statify is a web application designed for viewing and analyzing statistics. Link for deployment: https://statify.world
 
 #### Why I Created Statify
 There are a few key reasons behind the creation of this website. The primary motivation was to provide a reliable resource for accessing accurate economic statistics for countries around the world. As someone who frequently works with statistics due to my major, I found existing websites lacking in quality and usability.
