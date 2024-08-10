@@ -1,23 +1,24 @@
-import { FC, memo } from 'react'
+import { CSSProperties, FC, memo } from 'react'
 import { Value } from '@/types'
 import prettifyValue from '@/utils/prettifyValue'
 
-interface Props {
+export interface CountryRowProps {
   value: Value
   precition: number
+  style: CSSProperties
 }
 
-const Row: FC<Props> = memo(({ value, precition }) => {
+const Row: FC<CountryRowProps> = ({ value, precition, style }) => {
   return (
-    <tr className="country-row" key={value.year}>
-      <td className="border-b py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-left">
+    <tr className='country-row' key={value.year} style={style}>
+      <td className='border-b py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-left w-full'>
         {prettifyValue(value.value, precition)}
       </td>
-      <td className="border-b py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-right w-fit md:w-32">
+      <td className='border-b py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-right w-fit md:w-32'>
         {value.year}
       </td>
     </tr>
   )
-})
+}
 
-export default Row
+export default memo(Row)
