@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import ChartManagerListItem from './ChartManagerListItem'
+import ChartManagerListItem from '@/components/Chart/ChartManager/ChartManagerListItem'
 import useScroll from '@/hooks/useScroll'
 import { ChartItem } from '@/types'
 
@@ -20,7 +20,12 @@ const ChartManagerRegionsList: FC<Props> = ({ regions, onClick, setColor }) => {
       onScroll={handleScroll}
     >
       {regions.map((item) => (
-        <ChartManagerListItem {...item} setColor={setColor} onClick={onClick} key={item.id} />
+        <ChartManagerListItem
+          {...item}
+          setColor={setColor}
+          onClick={onClick}
+          key={item.id}
+        />
       ))}
     </ul>
   )

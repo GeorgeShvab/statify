@@ -1,5 +1,5 @@
 import { FC, useState } from 'react'
-import './style.css'
+import '@/components/Chart/ChartManager/style.css'
 import IconButton from '@/ui/IconButton/IconButton'
 import SquaresIcon from '@/ui/Icons/Squares'
 import BrushIcon from '@/ui/Icons/Brush'
@@ -16,25 +16,29 @@ const ColorPickerPopover: FC<Props> = ({ defaultColor, setColor }) => {
   const [section, setSection] = useState<'palette' | 'picker'>('palette')
 
   return (
-    <div className="">
-      <div className="mb-1 md:mb-1.5 flex gap-1 md:gap-1.5">
+    <div className=''>
+      <div className='mb-1 md:mb-1.5 flex gap-1 md:gap-1.5'>
         <IconButton
           className={`shadow ${section === 'palette' ? '!bg-white' : '!text-neutral-400 !bg-neutral-50'}`}
-          color="white"
+          color='white'
           onClick={() => setSection('palette')}
         >
-          <SquaresIcon className="w-[22px] h-[22px]" />
+          <SquaresIcon className='w-[22px] h-[22px]' />
         </IconButton>
         <IconButton
           className={`shadow ${section === 'picker' ? '!bg-white' : '!text-neutral-400 !bg-neutral-50'}`}
-          color="white"
+          color='white'
           onClick={() => setSection('picker')}
         >
-          <BrushIcon className="w-5 h-5" />
+          <BrushIcon className='w-5 h-5' />
         </IconButton>
-        <ColorInput className="shadow" color={defaultColor} onChange={setColor} />
+        <ColorInput
+          className='shadow'
+          color={defaultColor}
+          onChange={setColor}
+        />
       </div>
-      <div className="rounded-lg p-2 border bg-white shadow">
+      <div className='rounded-lg p-2 border bg-white shadow'>
         {section === 'picker' ? (
           <ColorPicker color={defaultColor} onChange={setColor} />
         ) : (

@@ -1,8 +1,7 @@
 import { FC, ReactElement, useEffect } from 'react'
-import { createPortal } from 'react-dom'
-import Portal from './Portal'
-import AnimationWrapper from './Animation/AnimationWrapper'
-import OpacityAnimation from './Animation/OpacityAnimation'
+import Portal from '@/components/Portal'
+import AnimationWrapper from '@/components/Animation/AnimationWrapper'
+import OpacityAnimation from '@/components/Animation/OpacityAnimation'
 
 interface Props {
   children: ReactElement
@@ -37,8 +36,13 @@ const Modal: FC<Props> = ({ children, opened, onClose }) => {
       <AnimationWrapper ms={250} open={opened}>
         <OpacityAnimation>
           <div>
-            <div className="fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20" onClick={onClose} />
-            <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30">{children}</div>
+            <div
+              className='fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20'
+              onClick={onClose}
+            />
+            <div className='fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30'>
+              {children}
+            </div>
           </div>
         </OpacityAnimation>
       </AnimationWrapper>

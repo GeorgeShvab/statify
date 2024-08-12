@@ -1,5 +1,12 @@
-import { FC, ReactElement, createContext, useContext, useEffect, useState } from 'react'
-import useChart from './ChartContext'
+import {
+  FC,
+  ReactElement,
+  createContext,
+  useContext,
+  useEffect,
+  useState
+} from 'react'
+import useChart from '@/components/Chart/ChartContext'
 
 interface RangeContext {
   range: number[]
@@ -17,7 +24,7 @@ const rangeContext = createContext<RangeContext>({
   setRange: () => {},
   setSelectedRange: () => {},
   range: [],
-  selectedRange: [0, 0],
+  selectedRange: [0, 0]
 })
 
 interface Props {
@@ -43,7 +50,7 @@ export const RangeProvider: FC<Props> = ({ children }) => {
 
   const [state, setState] = useState<RangeState>({
     range: range,
-    selectedRange: [range[0], range[range.length - 1]],
+    selectedRange: [range[0], range[range.length - 1]]
   })
 
   useEffect(() => {
@@ -62,8 +69,10 @@ export const RangeProvider: FC<Props> = ({ children }) => {
         range.push(i)
       }
 
-      let selectedMin = state.selectedRange[0] >= min ? state.selectedRange[0] : min
-      let selectedMax = state.selectedRange[1] <= max ? state.selectedRange[1] : max
+      let selectedMin =
+        state.selectedRange[0] >= min ? state.selectedRange[0] : min
+      let selectedMax =
+        state.selectedRange[1] <= max ? state.selectedRange[1] : max
 
       if (selectedMin === state.range[0]) {
         selectedMin = range[0]
@@ -76,16 +85,22 @@ export const RangeProvider: FC<Props> = ({ children }) => {
       setState((prev) => ({
         ...prev,
         range: range,
-        selectedRange: [selectedMin, selectedMax],
+        selectedRange: [selectedMin, selectedMax]
       }))
     }
   }, [regions])
 
-  const setSelectedRange = (range: [number, number]) => setState((prev) => ({ ...prev, selectedRange: range }))
+  const setSelectedRange = (range: [number, number]) =>
+    setState((prev) => ({ ...prev, selectedRange: range }))
 
-  const setRange = (range: number[]) => setState((prev) => ({ ...prev, range: range }))
+  const setRange = (range: number[]) =>
+    setState((prev) => ({ ...prev, range: range }))
 
-  return <rangeContext.Provider value={{ ...state, setRange, setSelectedRange }}>{children}</rangeContext.Provider>
+  return (
+    <rangeContext.Provider value={{ ...state, setRange, setSelectedRange }}>
+      {children}
+    </rangeContext.Provider>
+  )
 }
 
 export const useRange = () => {

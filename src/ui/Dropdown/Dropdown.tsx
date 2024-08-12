@@ -3,7 +3,7 @@ import AnimationWrapper from '@/components/Animation/AnimationWrapper'
 import OpacityAnimation from '@/components/Animation/OpacityAnimation'
 import DetectOutsideClick from '@/components/DetectOutsideClick'
 import { FC, ReactNode, RefObject } from 'react'
-import DropdownContainer from './DropdownContainer'
+import DropdownContainer from '@/ui/Dropdown/DropdownContainer'
 import { Position, PositionOptions } from '@/types'
 import dynamic from 'next/dynamic'
 import useOnScroll from '@/hooks/useOnScroll'
@@ -27,7 +27,7 @@ const Dropdown: FC<Props> = ({
   onClose,
   closeOnScroll,
   position = 'bottom-left',
-  renderHidden = false,
+  renderHidden = false
 }) => {
   useOnScroll(() => closeOnScroll && onClose(), [closeOnScroll])
 

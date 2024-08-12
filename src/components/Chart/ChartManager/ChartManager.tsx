@@ -1,9 +1,9 @@
 import { ChangeEvent, FC, useDeferredValue, useState } from 'react'
-import useChart from '../ChartContext'
 import SearchInput from '@/ui/SearchInput/SearchInput'
-import ChartManagerSectionButtons from './ChartManagerSectionButtons'
-import ChartManagerAllSection from './ChartManagerAllSection'
-import ChartManagerSelectedSection from './ChartManagerSelectedSection'
+import ChartManagerSectionButtons from '@/components/Chart/ChartManager/ChartManagerSectionButtons'
+import ChartManagerAllSection from '@/components/Chart/ChartManager/ChartManagerAllSection'
+import ChartManagerSelectedSection from '@/components/Chart/ChartManager/ChartManagerSelectedSection'
+import useChart from '@/components/Chart/ChartContext'
 
 export type Section = 'all' | 'selected'
 
@@ -13,13 +13,18 @@ const ChartManager: FC = () => {
   const [value, setValue] = useState<string>('')
   const [section, setSection] = useState<Section>('all')
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) => setValue(e.target.value)
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) =>
+    setValue(e.target.value)
 
   const clearValue = () => setValue('')
 
   const defferedValue = useDeferredValue(value.trim())
 
-  const handleRegionClick = (data: { isSelected: boolean; id: string; name: string }) => {
+  const handleRegionClick = (data: {
+    isSelected: boolean
+    id: string
+    name: string
+  }) => {
     if (data.isSelected) {
       update({ id: data.id, isSelected: false })
     } else {
@@ -31,10 +36,14 @@ const ChartManager: FC = () => {
 
   return (
     <div>
-      <div className="border rounded-lg bg-white h-[72vh] md:h-[65vh] w-[95vw] md:w-[400px] min-h-[300px] flex flex-col">
-        <h3 className="text-center font-medium pt-5 mb-4">Edit chart</h3>
-        <div className="px-3">
-          <SearchInput onChange={handleInput} value={value} onClear={clearValue} />
+      <div className='border rounded-lg bg-white h-[72vh] md:h-[65vh] w-[95vw] md:w-[400px] min-h-[300px] flex flex-col'>
+        <h3 className='text-center font-medium pt-5 mb-4'>Edit chart</h3>
+        <div className='px-3'>
+          <SearchInput
+            onChange={handleInput}
+            value={value}
+            onClear={clearValue}
+          />
         </div>
         <ChartManagerSectionButtons section={section} setSection={setSection} />
         {section === 'all' ? (

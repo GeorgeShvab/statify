@@ -2,7 +2,7 @@
 
 import { ChartItem } from '@/types'
 import React, { FC, ReactElement, createContext, memo, useContext } from 'react'
-import useChartState from './useChartState'
+import useChartState from '@/components/Chart/useChartState'
 
 interface ChartContext {
   isLimitError: boolean
@@ -17,7 +17,7 @@ const ChartContext = createContext<ChartContext>({
   update: () => {},
   isLimitError: false,
   regions: [],
-  shortening: 10000,
+  shortening: 10000
 })
 
 interface Props {
@@ -36,7 +36,7 @@ export const ChartProvider: FC<Props> = ({ children, regions }) => {
     <ChartContext.Provider
       value={{
         ...data,
-        ...methods,
+        ...methods
       }}
     >
       <Container>{children}</Container>
