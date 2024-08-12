@@ -4,6 +4,12 @@ import AdvancedSearchBar from '@/components/SearchBar/AdvancedSearchBar'
 import AdvancedSearchBarLoader from '@/components/SearchBar/AdvancedSearchBarLoader'
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
+  const fallback = (
+    <div className='mb-3 md:mb-5'>
+      <Loading />
+    </div>
+  )
+
   return (
     <main className='mb-5 md:mb-7'>
       <div className='container'>
@@ -13,15 +19,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           </Suspense>
         </div>
       </div>
-      <Suspense
-        fallback={
-          <div className='mb-3 md:mb-5'>
-            <Loading />
-          </div>
-        }
-      >
-        {children}
-      </Suspense>
+      <Suspense fallback={fallback}>{children}</Suspense>
     </main>
   )
 }
