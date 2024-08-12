@@ -73,7 +73,7 @@ async function IndicatorPage({
         </section>
         {relatedIndicators && relatedIndicators?.length ? (
           <section className='container mt-4 md:mt-5'>
-            <div className=''>
+            <div>
               <h2 className='mb-2 md:mb-3 px-2 font-semibold'>
                 Related indicators
               </h2>

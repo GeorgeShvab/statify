@@ -16,7 +16,7 @@ const ColorPickerPopover: FC<Props> = ({ defaultColor, setColor }) => {
   const [section, setSection] = useState<'palette' | 'picker'>('palette')
 
   return (
-    <div className=''>
+    <div>
       <div className='mb-1 md:mb-1.5 flex gap-1 md:gap-1.5'>
         <IconButton
           className={`shadow ${section === 'palette' ? '!bg-white' : '!text-neutral-400 !bg-neutral-50'}`}

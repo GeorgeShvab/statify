@@ -23,7 +23,7 @@ const Table: FC<Props> = (props) => {
   return (
     <table className='table-auto w-full relative country-table'>
       <thead>
-        <tr className=''>
+        <tr>
           <th className='top-0 z-20 !border-b text-[10px] md:text-base font-bold py-4 md:py-3 pl-4 px-2 md:px-3 md:pr-6 md:pl-6 text-neutral-500 text-left w-24 md:w-[350px] bg-neutral-50'>
             <button
               className='flex items-center gap-1.5 md:gap-3 justify-start'
