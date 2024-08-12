@@ -1,8 +1,8 @@
 'use client'
 
 import { FC, useState } from 'react'
-import Modal from '../../Modal'
-import ChartManager from './ChartManager'
+import Modal from '@/components/Modal'
+import ChartManager from '@/components/Chart/ChartManager/ChartManager'
 import AddItemIcon from '@/ui/Icons/AddItemIcon'
 
 const ChartManagerButton: FC = () => {
@@ -20,8 +20,8 @@ const ChartManagerButton: FC = () => {
           isOpened ? 'bg-neutral-100' : ''
         }`}
         onClick={toggleChartManager}
-        aria-label="Edit chart"
-        title="Edit chart"
+        aria-label='Edit chart'
+        title='Edit chart'
       >
         <AddItemIcon />
       </button>

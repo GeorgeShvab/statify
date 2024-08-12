@@ -2,8 +2,8 @@
 
 import { FC, ReactElement, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import DelayWrapper from './DelayWrapper'
-import Transition from './Transition'
+import DelayWrapper from '@/ui/Alert/DelayWrapper'
+import Transition from '@/ui/Alert/Transition'
 
 interface Props {
   show: boolean
@@ -32,7 +32,7 @@ const Alert: FC<Props> = ({ show, text, onClose, severity }) => {
           severity === 'success' ? 'bg-green-400' : 'bg-red-500'
         }`}
       >
-        <p className="text-white text-sm md:text-base text-center">{text}</p>
+        <p className='text-white text-sm md:text-base text-center'>{text}</p>
       </div>
     </DelayWrapper>,
     document.body

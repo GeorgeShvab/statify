@@ -2,7 +2,7 @@
 
 import IconButton from '@/ui/IconButton/IconButton'
 import { FC, useRef, useState } from 'react'
-import BookmarkButton from '../BookmarkButton/BookmarkButton'
+import BookmarkButton from '@/components/BookmarkButton/BookmarkButton'
 import DropdownItem from '@/ui/Dropdown/DropdownItem'
 import Dropdown from '@/ui/Dropdown/Dropdown'
 import VerticalMoreIcon from '@/ui/Icons/VerticalMoreIcon'
@@ -26,32 +26,37 @@ const IndicatorOptionsButton: FC<Props> = (props) => {
   return (
     <>
       <IconButton
-        className="absolute right-2 top-2.5 md:right-5 md:top-4 !bg-transparent !text-black transition-all"
+        className='absolute right-2 top-2.5 md:right-5 md:top-4 !bg-transparent !text-black transition-all'
         onClick={handleToggleOptions}
         ref={anchor}
-        aria-label="Open options"
+        aria-label='Open options'
       >
         <VerticalMoreIcon />
       </IconButton>
-      <Dropdown anchor={anchor} isOpen={isDropdownOpen} onClose={handleCloseOptions} renderHidden>
+      <Dropdown
+        anchor={anchor}
+        isOpen={isDropdownOpen}
+        onClose={handleCloseOptions}
+        renderHidden
+      >
         <BookmarkButton {...props} />
         <DropdownItem
-          containerEl="a"
+          containerEl='a'
           containerProps={{
             href: `/api/download/${props.indicatorId}${props.countryId ? `/${props.countryId}` : ''}?format=csv`,
-            download: true,
+            download: true
           }}
-          icon={<CsvFileIcon className="w-5 h-5 transition-all" />}
+          icon={<CsvFileIcon className='w-5 h-5 transition-all' />}
         >
           Download as CSV
         </DropdownItem>
         <DropdownItem
-          containerEl="a"
+          containerEl='a'
           containerProps={{
             href: `/api/download/${props.indicatorId}${props.countryId ? `/${props.countryId}` : ''}?format=xlsx`,
-            download: true,
+            download: true
           }}
-          icon={<XlsxFileIcon className="w-5 h-5 transition-all" />}
+          icon={<XlsxFileIcon className='w-5 h-5 transition-all' />}
         >
           Download as XLSX
         </DropdownItem>

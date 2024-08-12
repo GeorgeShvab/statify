@@ -1,7 +1,7 @@
 'use client'
 
 import { FC } from 'react'
-import useBookmark from './useGetBookmarkData'
+import useBookmark from '@/components/BookmarkButton/useGetBookmarkData'
 import DropdownItem from '@/ui/Dropdown/DropdownItem'
 import BookmarkedIcon from '@/ui/Icons/BookmarkedIcon'
 import BookmarkIcon from '@/ui/Icons/BookmarkIcon'
@@ -18,13 +18,13 @@ const BookmarkButton: FC<Props> = ({ indicatorId, countryId }) => {
     <>
       <DropdownItem
         aria-label={isBookmarked ? 'Bookmark' : 'Unbookmark'}
-        role="button"
+        role='button'
         onClick={handleBookmark}
         icon={
           isBookmarked ? (
-            <BookmarkedIcon className="w-5 h-5 transition-all" />
+            <BookmarkedIcon className='w-5 h-5 transition-all' />
           ) : (
-            <BookmarkIcon className="w-5 h-5 transition-all" />
+            <BookmarkIcon className='w-5 h-5 transition-all' />
           )
         }
       >

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Section } from './ChartManager'
+import { Section } from '@/components/Chart/ChartManager/ChartManager'
 import Button from '@/ui/Button/Button'
 
 interface Props {
@@ -9,18 +9,18 @@ interface Props {
 
 const ChartManagerSectionButtons: FC<Props> = ({ section, setSection }) => {
   return (
-    <div className="flex top-full py-3 px-3 gap-2 w-full">
+    <div className='flex top-full py-3 px-3 gap-2 w-full'>
       <Button
         className={`text-sm flex-1 ${section === 'all' ? '!bg-white' : '!text-neutral-400 !bg-neutral-50'}`}
         onClick={() => setSection('all')}
-        color="white"
+        color='white'
       >
         All regions
       </Button>
       <Button
         className={`text-sm flex-1 ${section === 'selected' ? '!bg-white' : '!text-neutral-400 !bg-neutral-50'}`}
         onClick={() => setSection('selected')}
-        color="white"
+        color='white'
       >
         Selected regions
       </Button>
