@@ -1,6 +1,7 @@
+import { IconProps } from '@/types'
 import { ComponentProps, FC } from 'react'
 
-const ServerErrorIcon: FC<ComponentProps<'svg'>> = (props) => (
+const ServerErrorIcon: FC<IconProps> = (props) => (
   <svg
     width='223'
     height='101'

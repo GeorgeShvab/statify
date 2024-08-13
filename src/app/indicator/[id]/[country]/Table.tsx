@@ -1,13 +1,12 @@
 'use client'
 
-import { Value } from '@/types'
+import { RowValue, Value } from '@/types'
 import { FC } from 'react'
 import Row from '@/app/indicator/[id]/[country]/Row'
-import SortIcon from '@/ui/Icons/SortIcon'
-import SortAscIcon from '@/ui/Icons/SortAscIcon'
-import SortDescIcon from '@/ui/Icons/SortDescIcon'
 import useTableData from '@/app/indicator/[id]/[country]/useTableData'
 import { Indicator } from '@prisma/client'
+import TableComponent from '@/ui/Table/Table'
+import TableHeaderCellWithSorting from '@/ui/TableHeaderCellWithSorting/TableHeaderCellWithSorting'
 
 interface Props {
   data: Value[]
@@ -20,62 +19,40 @@ const Table: FC<Props> = (props) => {
   const handleYearSort = () => handleSort('year')
   const handleValueSort = () => handleSort('value')
 
+  const renderHeader = () => (
+    <tr>
+      <TableHeaderCellWithSorting
+        className='pl-4 pr-3 md:pr-6 md:pl-6'
+        onSortChange={handleValueSort}
+        direction={data.order}
+        isSelected={data.by === 'value'}
+        aria-label='Sort by value'
+      >
+        Value
+      </TableHeaderCellWithSorting>
+      <TableHeaderCellWithSorting
+        className='pl-3 pr-4 md:pr-6 md:pl-6 w-fit md:w-32'
+        onSortChange={handleYearSort}
+        direction={data.order}
+        isSelected={data.by === 'year'}
+        buttonProps={{ className: 'justify-end' }}
+        aria-label='Sort by year'
+      >
+        Year
+      </TableHeaderCellWithSorting>
+    </tr>
+  )
+
+  const renderRow = (item: RowValue) => (
+    <Row key={item.id} precition={props.indicator.precision} value={item} />
+  )
+
   return (
-    <table className='table-auto w-full relative country-table'>
-      <thead>
-        <tr>
-          <th className='!border-b text-xs md:text-base font-medium py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-neutral-500 text-left bg-neutral-50'>
-            <button
-              className='flex items-center gap-1.5 md:gap-3 justify-start'
-              onClick={handleValueSort}
-              aria-label='Sort by value'
-            >
-              Value
-              <span className='w-4 h-4 flex items-center justify-center'>
-                {data.by === 'value' ? (
-                  data.order === 'asc' ? (
-                    <SortAscIcon />
-                  ) : (
-                    <SortDescIcon />
-                  )
-                ) : (
-                  <SortIcon />
-                )}
-              </span>
-            </button>
-          </th>
-          <th className='!border-b text-xs md:text-base font-medium py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-neutral-500 text-right bg-neutral-50 w-fit md:w-32'>
-            <button
-              className='flex items-center gap-1.5 md:gap-3 justify-end w-full'
-              onClick={handleYearSort}
-              aria-label='Sort by year'
-            >
-              Year
-              <span className='w-4 h-4 flex items-center justify-center'>
-                {data.by === 'year' ? (
-                  data.order === 'asc' ? (
-                    <SortAscIcon />
-                  ) : (
-                    <SortDescIcon />
-                  )
-                ) : (
-                  <SortIcon />
-                )}
-              </span>
-            </button>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {data.data.map((item) => (
-          <Row
-            key={item.id}
-            precition={props.indicator.precision}
-            value={item}
-          />
-        ))}
-      </tbody>
-    </table>
+    <TableComponent
+      data={data.data}
+      renderRow={renderRow}
+      renderHeader={renderHeader}
+    />
   )
 }
 
