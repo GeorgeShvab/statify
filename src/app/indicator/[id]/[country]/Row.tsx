@@ -1,6 +1,7 @@
 import { FC, memo } from 'react'
 import { Value } from '@/types'
 import prettifyValue from '@/utils/prettifyValue'
+import TableCell from '@/ui/TableCell/TableCell'
 
 interface Props {
   value: Value
@@ -9,13 +10,13 @@ interface Props {
 
 const Row: FC<Props> = memo(({ value, precition }) => {
   return (
-    <tr className="country-row" key={value.year}>
-      <td className="border-b py-3 pl-4 pr-3 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-left">
+    <tr className='country-row' key={value.year}>
+      <TableCell className='pl-4 pr-3 md:pr-6 md:pl-6'>
         {prettifyValue(value.value, precition)}
-      </td>
-      <td className="border-b py-3 pl-3 pr-4 md:pr-6 md:pl-6 text-xs md:text-base text-gray-400 font-normal text-right w-fit md:w-32">
+      </TableCell>
+      <TableCell className='pl-4 pr-3 md:pr-6 md:pl-6 text-right w-fit md:w-32'>
         {value.year}
-      </td>
+      </TableCell>
     </tr>
   )
 })

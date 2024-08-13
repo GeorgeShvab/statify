@@ -1,6 +1,10 @@
 import Prisma, { Country } from '@prisma/client'
+import { ComponentProps } from 'react'
 
-export interface PageProps<TParams extends {} = {}, TSearchParams extends {} = {}> {
+export interface PageProps<
+  TParams extends {} = {},
+  TSearchParams extends {} = {}
+> {
   params: TParams
   searchParams: TSearchParams
 }
@@ -37,3 +41,7 @@ export type Position =
   | 'bottom-center'
 
 export type PositionOptions = { [key: number]: Position; default?: Position }
+
+export type IconProps = ComponentProps<'svg'>
+
+export type SortOrder = 'asc' | 'desc'

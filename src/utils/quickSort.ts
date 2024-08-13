@@ -1,4 +1,10 @@
-function quickSort<T = any>(array: T[], order: 'asc' | 'desc' = 'asc', fn?: (item: T) => number | string): T[] {
+import { SortOrder } from '@/types'
+
+function quickSort<T = any>(
+  array: T[],
+  order: SortOrder = 'asc',
+  fn?: (item: T) => number | string
+): T[] {
   if (array.length < 2) return array
 
   const pivot = array[Math.floor(array.length / 2)]

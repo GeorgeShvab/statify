@@ -1,10 +1,10 @@
-import { Value } from '@/types'
+import { SortOrder, Value } from '@/types'
 import quickSort from '@/utils/quickSort'
 import { useState } from 'react'
 
 interface State {
   data: Value[]
-  order: 'asc' | 'desc'
+  order: SortOrder
   by?: 'year' | 'value'
 }
 
@@ -12,7 +12,7 @@ const useTableData = (data: Value[]) => {
   const [state, setState] = useState<State>({
     data: data,
     order: 'asc',
-    by: 'year',
+    by: 'year'
   })
 
   const handleSort = (by: 'year' | 'value') => {
@@ -25,7 +25,7 @@ const useTableData = (data: Value[]) => {
           prev.data,
           (prev.order === 'asc' && prev.by === 'year' ? 'desc' : 'asc') as any,
           (item) => item.year
-        ),
+        )
       }))
     } else {
       setState((prev) => ({
@@ -36,7 +36,7 @@ const useTableData = (data: Value[]) => {
           prev.data,
           (prev.order === 'asc' && prev.by === 'value' ? 'desc' : 'asc') as any,
           (item) => item.value
-        ),
+        )
       }))
     }
   }
