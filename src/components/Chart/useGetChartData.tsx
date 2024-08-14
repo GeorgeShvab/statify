@@ -15,11 +15,19 @@ const useGetChartData = (indicator: string, country?: string) => {
 
       if (country) {
         data = [
-          (await axios.get<ChartItem>(`/api/indicator/${indicator}/${country}`, { signal: abortController.signal }))
-            .data,
+          (
+            await axios.get<ChartItem>(
+              `/api/indicator/${indicator}/${country}`,
+              { signal: abortController.signal }
+            )
+          ).data
         ]
       } else {
-        data = (await axios.get<ChartItem[]>('/api/indicator/' + indicator, { signal: abortController.signal })).data
+        data = (
+          await axios.get<ChartItem[]>('/api/indicator/' + indicator, {
+            signal: abortController.signal
+          })
+        ).data
       }
 
       setData(data)
