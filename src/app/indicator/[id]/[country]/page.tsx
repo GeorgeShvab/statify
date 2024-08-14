@@ -1,14 +1,13 @@
 import * as types from '@/types'
 import IndicatorService from '@/services/IndicatorService'
 import { Metadata } from 'next'
-import Link from 'next/link'
 import Table from '@/app/indicator/[id]/[country]/Table'
 import CountryService from '@/services/CountryService'
 import { notFound } from 'next/navigation'
 import Chart from '@/app/indicator/[id]/[country]/Chart'
-import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
-import IndicatorOptionsButton from '@/components/IndicatorOptionsButton/IndicatorOptionsButton'
 import axios from 'axios'
+import IndicatorDetailsSection from '@/containers/IndicatorDetailsSection/IndicatorDetailsSection'
+import RelatedIndicatorsSection from '@/containers/RelatedIndicatorsSection/RelatedIndicatorsSection'
 
 interface SearchParams {
   id: string
@@ -40,32 +39,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
   return (
     <div>
       <div className='min-h-main-dynamic md:min-h-main'>
-        <section className='container mb-2 md:mb-3.5'>
-          <div className='px-4 py-3.5 pt-4.5 md:px-7 md:py-6 rounded-lg bg-white border relative'>
-            <IndicatorOptionsButton
-              indicatorId={indicator.id}
-              countryId={country.id}
-            />
-            <h1 className='text-2xl font-bold mb-4 md:mb-5 pr-10'>
-              {country.name} - {indicator.label}
-            </h1>
-            <p className='text-neutral-400 text-sm'>
-              Source: {indicator.source}
-            </p>
-            <p className='text-neutral-400 text-sm'>Unit: {indicator.unit}</p>
-            {indicator.description ? (
-              <p
-                className='text-neutral-600 mt-2'
-                dangerouslySetInnerHTML={{ __html: indicator.description }}
-              ></p>
-            ) : null}
-            <p className='mt-4 text-blue text-sm'>
-              <Link href={`/indicator/${params.id}`}>
-                Back to all countries
-              </Link>
-            </p>
-          </div>
-        </section>
+        <IndicatorDetailsSection indicator={indicator} country={country} />
         {indicator.showChart ? (
           <section>
             <Chart
@@ -75,25 +49,10 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             />
           </section>
         ) : null}
-        <section className='container'>
-          <div className='bg-white rounded-lg border'>
-            <Table data={country.values} indicator={indicator} />
-          </div>
-        </section>
-        {relatedIndicators && relatedIndicators?.length ? (
-          <section className='container mt-4 md:mt-5'>
-            <div>
-              <h2 className='mb-2 md:mb-3 px-2 font-semibold'>
-                Related indicators
-              </h2>
-            </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
-              {relatedIndicators.map((item) => (
-                <IndicatorCard key={item.id} {...item} />
-              ))}
-            </div>
-          </section>
-        ) : null}
+        <Table data={country.values} indicator={indicator} />
+        {!!relatedIndicators?.length && (
+          <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
+        )}
       </div>
     </div>
   )

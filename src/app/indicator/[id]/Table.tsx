@@ -55,11 +55,15 @@ const Table: FC<Props> = (props) => {
   )
 
   return (
-    <TableComponent
-      data={data.data}
-      renderRow={renderRow}
-      renderHeader={renderHeader}
-    />
+    <section className='container'>
+      <div className='bg-white rounded-lg border'>
+        <TableComponent
+          data={data.data}
+          renderRow={renderRow}
+          renderHeader={renderHeader}
+        />
+      </div>
+    </section>
   )
 }
 

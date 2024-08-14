@@ -5,9 +5,9 @@ import CountryService from '@/services/CountryService'
 import Table from '@/app/indicator/[id]/Table'
 import { notFound } from 'next/navigation'
 import Chart from '@/app/indicator/[id]/Chart'
-import IndicatorCard from '@/components/IndicatorCard/IndicatorCard'
-import IndicatorOptionsButton from '@/components/IndicatorOptionsButton/IndicatorOptionsButton'
 import axios from 'axios'
+import RelatedIndicatorsSection from '@/containers/RelatedIndicatorsSection/RelatedIndicatorsSection'
+import IndicatorDetailsSection from '@/containers/IndicatorDetailsSection/IndicatorDetailsSection'
 
 interface Params {
   id: string
@@ -43,48 +43,16 @@ async function IndicatorPage({
   return (
     <div>
       <div className='min-h-main-dynamic md:min-h-main'>
-        <section className='container mb-2 md:mb-3.5'>
-          <div className='px-4 py-3.5 pt-4.5 md:px-7 md:py-6 rounded-lg bg-white border relative'>
-            <IndicatorOptionsButton indicatorId={indicator.id} />
-            <h1 className='text-2xl font-bold mb-4 md:mb-5 pr-10'>
-              {indicator.label}
-            </h1>
-            <p className='text-neutral-400 text-sm'>
-              Source: {indicator.source}
-            </p>
-            <p className='text-neutral-400 text-sm'>Unit: {indicator.unit}</p>
-            {indicator.description && indicator.description.trim() && (
-              <p
-                className='text-neutral-600 mt-2'
-                dangerouslySetInnerHTML={{ __html: indicator.description }}
-              ></p>
-            )}
-          </div>
-        </section>
+        <IndicatorDetailsSection indicator={indicator} />
         {indicator.showChart ? (
           <section>
             <Chart indicator={indicator} />
           </section>
         ) : null}
-        <section className='container'>
-          <div className='bg-white rounded-lg border'>
-            <Table data={countries} indicator={indicator} />
-          </div>
-        </section>
-        {relatedIndicators && relatedIndicators?.length ? (
-          <section className='container mt-4 md:mt-5'>
-            <div>
-              <h2 className='mb-2 md:mb-3 px-2 font-semibold'>
-                Related indicators
-              </h2>
-            </div>
-            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2'>
-              {relatedIndicators.map((item) => (
-                <IndicatorCard key={item.id} {...item} />
-              ))}
-            </div>
-          </section>
-        ) : null}
+        <Table data={countries} indicator={indicator} />
+        {!!relatedIndicators?.length && (
+          <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
+        )}
       </div>
     </div>
   )
