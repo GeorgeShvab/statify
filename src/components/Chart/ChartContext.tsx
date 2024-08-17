@@ -1,6 +1,6 @@
 'use client'
 
-import { ChartItem } from '@/types'
+import { ChartItem, CountryRowValue } from '@/types'
 import React, { FC, ReactElement, createContext, memo, useContext } from 'react'
 import useChartState from '@/components/Chart/useChartState'
 
@@ -22,7 +22,7 @@ const ChartContext = createContext<ChartContext>({
 
 interface Props {
   children: ReactElement
-  regions: ChartItem[]
+  regions: CountryRowValue[]
 }
 
 const Container: FC<{ children: ReactElement }> = memo(({ children }) => {

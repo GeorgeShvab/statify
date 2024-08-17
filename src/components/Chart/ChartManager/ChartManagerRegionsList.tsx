@@ -5,7 +5,7 @@ import { ChartItem } from '@/types'
 
 interface Props {
   regions: Pick<ChartItem, 'id' | 'name' | 'isSelected' | 'color'>[]
-  onClick: (data: Pick<ChartItem, 'id' | 'name' | 'isSelected'>) => void
+  //onClick: (data: Pick<ChartItem, 'id' | 'name' | 'isSelected'>) => void
   setColor: (id: string, color: string) => void
 }
 

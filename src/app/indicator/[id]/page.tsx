@@ -4,10 +4,16 @@ import { Metadata } from 'next'
 import CountryService from '@/services/CountryService'
 import Table from '@/app/indicator/[id]/Table'
 import { notFound } from 'next/navigation'
-import Chart from '@/app/indicator/[id]/Chart'
 import axios from 'axios'
 import RelatedIndicatorsSection from '@/containers/RelatedIndicatorsSection/RelatedIndicatorsSection'
 import IndicatorDetailsSection from '@/containers/IndicatorDetailsSection/IndicatorDetailsSection'
+import dynamicImport from '@/utils/dynamicImport'
+import dynamic from 'next/dynamic'
+
+const ChartSection = dynamic(
+  () => import('@/containers/ChartSection/ChartSection'),
+  { ssr: false }
+)
 
 interface Params {
   id: string
@@ -30,11 +36,17 @@ async function IndicatorPage({
     id: params.id
   })
 
-  const [countries, indicator, relatedIndicators] = await Promise.all([
-    countriesPromise,
-    indicatorPromise,
-    relatedIndicatorsPromise
-  ])
+  const chartDataPromise = CountryService.getCountries({
+    indicator: params.id
+  })
+
+  const [countries, indicator, relatedIndicators, chartData] =
+    await Promise.all([
+      countriesPromise,
+      indicatorPromise,
+      relatedIndicatorsPromise,
+      chartDataPromise
+    ])
 
   if (!indicator) {
     notFound()
@@ -44,11 +56,9 @@ async function IndicatorPage({
     <div>
       <div className='min-h-main-dynamic md:min-h-main'>
         <IndicatorDetailsSection indicator={indicator} />
-        {indicator.showChart ? (
-          <section>
-            <Chart indicator={indicator} />
-          </section>
-        ) : null}
+        {indicator.showChart && (
+          <ChartSection indicator={indicator} data={chartData} />
+        )}
         <Table data={countries} indicator={indicator} />
         {!!relatedIndicators?.length && (
           <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />

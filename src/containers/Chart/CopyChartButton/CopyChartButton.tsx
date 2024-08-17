@@ -1,12 +1,18 @@
 'use client'
 
-import { useAlert } from '@/providers/AlertProvider/AlertProvider'
 import CopyIcon from '@/ui/Icons/CopyIcon'
 import html2canvas from 'html2canvas'
-import { FC } from 'react'
+import dynamic from 'next/dynamic'
+import { FC, useState } from 'react'
+import { CopyChartState } from './CopyChartButton.types'
+
+const Alert = dynamic(() => import('@/ui/Alert/Alert'), { ssr: false })
 
 const CopyChartButton: FC = () => {
-  const { openAlert } = useAlert()
+  const [state, setState] = useState<CopyChartState>({
+    isError: false,
+    isSuccess: false
+  })
 
   const makeCanvasFromChartElement = async (element: HTMLElement) => {
     const canvas = await html2canvas(element, {
@@ -54,31 +60,42 @@ const CopyChartButton: FC = () => {
 
       canvas.toBlob(async function (blob) {
         if (!blob) {
-          openAlert({ text: 'Unable to copy the chart', severity: 'danger' })
+          setState({ isSuccess: false, isError: true })
         } else {
           const item = new ClipboardItem({ 'image/png': blob })
           await navigator.clipboard.write([item])
 
-          openAlert({
-            text: 'The chart was copied successfully',
-            severity: 'success'
-          })
+          setState({ isSuccess: true, isError: false })
         }
       })
     } catch (e) {
-      openAlert({ text: 'Unable to copy the chart', severity: 'danger' })
+      setState({ isError: true, isSuccess: false })
     }
   }
 
   return (
-    <button
-      className='h-8 w-8 flex justify-center items-center text-neutral-400 hover:text-neutral-600 transition-colors rounded-full html2canvas-hide-element'
-      aria-label='Copy the chart as an image'
-      title='Copy the chart as an image'
-      onClick={handleCopy}
-    >
-      <CopyIcon />
-    </button>
+    <>
+      <Alert
+        show={state.isSuccess}
+        severity='success'
+        text='The chart has been copied to clipboard'
+        onClose={() => setState({ isError: false, isSuccess: false })}
+      />
+      <Alert
+        show={state.isError}
+        severity='danger'
+        text='Unable to copy the chart'
+        onClose={() => setState({ isError: false, isSuccess: false })}
+      />
+      <button
+        className='h-8 w-8 flex justify-center items-center text-neutral-400 hover:text-neutral-600 transition-colors rounded-full html2canvas-hide-element'
+        aria-label='Copy the chart as an image'
+        title='Copy the chart as an image'
+        onClick={handleCopy}
+      >
+        <CopyIcon />
+      </button>
+    </>
   )
 }
 
