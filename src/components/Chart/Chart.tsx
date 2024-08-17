@@ -15,7 +15,6 @@ import {
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
 import useChart from '@/components/Chart/ChartContext'
-import Alert from '@/ui/Alert/Alert'
 import { useRange } from '@/components/Chart/RangeContext'
 import { ChartItem } from '@/types'
 
@@ -30,7 +29,7 @@ ChartJS.register(
 )
 
 const Chart: FC = () => {
-  const { regions, isLimitError, removeError, shortening } = useChart()
+  const { regions, removeError, shortening } = useChart()
   const { range, selectedRange } = useRange()
 
   const selectedRegions = useMemo(
@@ -128,11 +127,6 @@ const Chart: FC = () => {
 
   return (
     <div>
-      <Alert
-        show={isLimitError}
-        text='Up to 15 countries can be added to the chart'
-        onClose={removeError}
-      />
       <Line
         data={data}
         options={options}
