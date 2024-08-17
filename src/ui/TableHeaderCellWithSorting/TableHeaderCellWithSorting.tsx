@@ -16,18 +16,17 @@ const TableHeaderCellWithSorting: FC<TableHeaderCellWithSortingProps> = ({
   direction,
   isSelected,
   onSortChange,
+  buttonProps,
   ...props
 }) => {
-  const { className: buttonClassName, ...buttonProps } = props.buttonProps || {}
-
-  const buttonComponentClassName = `flex items-center gap-1.5 md:gap-3 justify-start w-full text-right ${buttonClassName || ''}`
+  const buttonComponentClassName = `flex items-center gap-1.5 md:gap-3 justify-start w-full text-right ${buttonProps?.className || ''}`
 
   return (
     <TableHeaderCell className={className} {...props}>
       <button
         onClick={onSortChange}
-        className={buttonComponentClassName}
         {...buttonProps}
+        className={buttonComponentClassName}
       >
         {children}
         <span className='w-4 h-4 flex items-center justify-center'>

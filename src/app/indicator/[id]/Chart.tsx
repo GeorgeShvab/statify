@@ -9,6 +9,7 @@ import useGetChartData from '@/components/Chart/useGetChartData'
 import { RangeProvider } from '@/components/Chart/RangeContext'
 import CopyChartButton from '@/components/Chart/CopyChartButton'
 import ManageRegionsButton from '@/components/Chart/ChartManager/ChartManagerButton'
+import { ChartItem, CountryRowValue } from '@/types'
 
 const ChartComponent = dynamic(() => import('@/components/Chart/Chart'), {
   ssr: false
@@ -19,10 +20,11 @@ const RangeSlider = dynamic(() => import('@/components/Chart/RangeSlider'), {
 
 interface Props {
   indicator: Indicator
+  chartData: CountryRowValue[]
 }
 
-const Chart: FC<Props> = ({ indicator }) => {
-  const data = useGetChartData(indicator.id)
+const Chart: FC<Props> = ({ indicator, chartData: data }) => {
+  //const data = useGetChartData(indicator.id)
 
   if (!data) {
     return (
@@ -53,7 +55,7 @@ const Chart: FC<Props> = ({ indicator }) => {
   }
 
   return (
-    <ChartProvider regions={data?.map((item) => ({ ...item }))}>
+    <ChartProvider regions={data as unknown as ChartItem[]}>
       <RangeProvider>
         <>
           <div className='container mb-2 md:mb-3.5'>

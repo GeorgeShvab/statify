@@ -14,8 +14,7 @@ export interface Topic {
   value: string
 }
 
-export interface ChartItem extends Country {
-  values: Value[]
+export interface ChartItem extends CountryWithValues {
   isSelected: boolean
   color: string | undefined
 }
@@ -45,3 +44,8 @@ export type PositionOptions = { [key: number]: Position; default?: Position }
 export type IconProps = ComponentProps<'svg'>
 
 export type SortOrder = 'asc' | 'desc'
+
+export interface CountryWithValues extends Country {
+  values: Value[]
+  maxValue: Value
+}

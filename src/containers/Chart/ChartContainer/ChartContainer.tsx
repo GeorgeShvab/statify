@@ -14,9 +14,11 @@ import {
   ChartData
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import useChart from '@/components/Chart/ChartContext'
-import { useRange } from '@/components/Chart/RangeContext'
+import { useChart } from '@/containers/Chart/ChartProvider/ChartProvider'
+import Alert from '@/ui/Alert/Alert'
+import { useRange } from '@/containers/Chart/RangeProvider/RangeProvider'
 import { ChartItem } from '@/types'
+import ChartErrorView from '../ChartErrorView/ChartErrorView'
 
 ChartJS.register(
   ArcElement,
@@ -29,19 +31,19 @@ ChartJS.register(
 )
 
 const Chart: FC = () => {
-  const { regions, removeError, shortening } = useChart()
+  const { data, isLimitError, shortening } = useChart()
   const { range, selectedRange } = useRange()
 
   const selectedRegions = useMemo(
-    () => regions.filter((item) => item.isSelected),
-    [regions]
+    () => data.filter((item) => item.isSelected),
+    [data]
   )
 
   const filteredRange = range.filter(
     (item) => item >= selectedRange[0] && item <= selectedRange[1]
   )
 
-  const data: ChartData<'line'> = {
+  const chartData: ChartData<'line'> = {
     labels: filteredRange.filter(
       (item) => item >= selectedRange[0] && item <= selectedRange[1]
     ),
@@ -105,30 +107,23 @@ const Chart: FC = () => {
 
   if (!shortening) return null
 
-  if (!data.datasets.length) {
-    return (
-      <div className='!h-[300px] md:!h-[480px] mb-3 md:mb-5 flex justify-center items-center'>
-        <p className='text-sm md:text-base text-neutral-400'>
-          Please add a region to the chart
-        </p>
-      </div>
-    )
+  if (!chartData.datasets.length) {
+    return <ChartErrorView> Please add a region to the chart</ChartErrorView>
   }
 
   if (selectedRange[0] === selectedRange[1]) {
-    return (
-      <div className='!h-[300px] md:!h-[480px] mb-3 md:mb-5 flex justify-center items-center'>
-        <p className='text-sm md:text-base text-neutral-400'>
-          Please choose a wider time range
-        </p>
-      </div>
-    )
+    return <ChartErrorView> Please choose a wider time range</ChartErrorView>
   }
 
   return (
     <div>
+      <Alert
+        show={isLimitError}
+        text='Up to 15 countries can be added to the chart'
+        onClose={() => {}}
+      />
       <Line
-        data={data}
+        data={chartData}
         options={options}
         className='country-row-chart !h-[300px] md:!h-[480px] mb-3 md:mb-4'
       />
