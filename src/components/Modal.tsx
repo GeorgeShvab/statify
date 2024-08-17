@@ -1,10 +1,12 @@
-import { FC, ReactElement, useEffect } from 'react'
-import Portal from '@/components/Portal'
+import { FC, ReactNode, useEffect } from 'react'
 import AnimationWrapper from '@/components/Animation/AnimationWrapper'
 import OpacityAnimation from '@/components/Animation/OpacityAnimation'
+import dynamic from 'next/dynamic'
+
+const Portal = dynamic(() => import('@/components/Portal'), { ssr: false })
 
 interface Props {
-  children: ReactElement
+  children: ReactNode
   opened: boolean
   onClose: () => void
 }

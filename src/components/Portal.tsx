@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react'
+import { FC, ReactNode, useRef } from 'react'
 import { createPortal } from 'react-dom'
 
 interface Props {
@@ -6,7 +6,9 @@ interface Props {
 }
 
 const Portal: FC<Props> = ({ children }) => {
-  return createPortal(<div className="portal">{children}</div>, document.getElementById('portals')!)
+  const container = useRef(document.querySelector('#portal')!)
+
+  return createPortal(children, container.current)
 }
 
 export default Portal
