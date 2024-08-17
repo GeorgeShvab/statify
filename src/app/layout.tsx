@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import Footer from '@/components/Footer/Footer'
+import AlertProvider from '@/providers/AlertProvider/AlertProvider'
 
 const roboto = Roboto({
   subsets: ['latin'],
@@ -22,10 +23,12 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${roboto.className} bg-neutral-50`}>
-        <Header />
-        {children}
-        <Footer />
-        <div id='portals'></div>
+        <AlertProvider>
+          <Header />
+          {children}
+          <Footer />
+          <div id='portal' />
+        </AlertProvider>
       </body>
     </html>
   )
