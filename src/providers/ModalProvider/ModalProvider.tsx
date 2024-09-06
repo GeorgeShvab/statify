@@ -18,10 +18,6 @@ const modalContext = createContext<ModalContext>({
   closeModal: () => {}
 })
 
-const ModalChildContainer: FC<PropsWithChildren> = memo(({ children }) => {
-  return children
-})
-
 const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [element, setElement] = useState<ReactNode>(null)
@@ -48,10 +44,12 @@ const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
       <Modal opened={isOpen} onClose={closeModal}>
         {element}
       </Modal>
-      <ModalChildContainer>{children}</ModalChildContainer>
+      {children}
     </modalContext.Provider>
   )
 }
+
+ModalProvider.displayName = 'ModalProvider'
 
 export const useModal = () => {
   const modalData = useContext(modalContext)

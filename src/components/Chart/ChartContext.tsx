@@ -25,10 +25,6 @@ interface Props {
   regions: ChartItem[]
 }
 
-const Container: FC<{ children: ReactElement }> = memo(({ children }) => {
-  return children
-})
-
 export const ChartProvider: FC<Props> = ({ children, regions }) => {
   const { data, ...methods } = useChartState(regions)
 
@@ -39,10 +35,12 @@ export const ChartProvider: FC<Props> = ({ children, regions }) => {
         ...methods
       }}
     >
-      <Container>{children}</Container>
+      {children}
     </ChartContext.Provider>
   )
 }
+
+ChartProvider.displayName = 'ChartProvider'
 
 const useChart = () => {
   const data = useContext(ChartContext)
