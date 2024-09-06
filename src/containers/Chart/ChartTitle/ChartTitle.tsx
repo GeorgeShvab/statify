@@ -1,11 +1,11 @@
 'use client'
 
-import useChart from '@/components/Chart/ChartContext'
+import { useChart } from '@/containers/Chart/ChartProvider/ChartProvider'
 import { FC } from 'react'
 import { ChartTitleProps } from './ChartTitle.types'
 
 const ChartTitle: FC<ChartTitleProps> = ({ label, unit }) => {
-  const { regions, shortening } = useChart()
+  const { data, shortening } = useChart()
 
   let shortened = null
 
@@ -21,7 +21,7 @@ const ChartTitle: FC<ChartTitleProps> = ({ label, unit }) => {
     shortened = ''
   }
 
-  if (regions.length === 0) return null
+  if (data.length === 0) return null
 
   const title: JSX.Element | string = shortening ? label : <>&nbsp;</>
   let subTitle: JSX.Element | string = <>&nbsp;</>

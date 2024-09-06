@@ -19,7 +19,7 @@ const CountryService = {
      FROM "Value" v WHERE "indicatorId" = ${indicator} AND "countryId" = c."id" 
      AND "year" <= ${new Date().getFullYear()} AND v.value = 
      (SELECT ABS(MAX(ABS(value))) FROM "Value" WHERE "indicatorId" = ${indicator} AND "countryId" = c."id" 
-     AND "year" <= ${new Date().getFullYear()})) as maxValue
+     AND "year" <= ${new Date().getFullYear()})) as "maxValue"
     FROM "Country" c WHERE c."hidden" IS FALSE AND (SELECT COUNT("id") FROM "Value" WHERE "indicatorId" = ${indicator} AND "countryId" = c."id" AND "year" <= ${new Date().getFullYear()}) > 0 ORDER BY "name" ASC`
   },
 
