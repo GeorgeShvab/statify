@@ -40,4 +40,6 @@ const Row: FC<Props> = ({ indicator, country }) => {
   )
 }
 
+Row.displayName = 'CountryRow'
+
 export default memo(Row)
