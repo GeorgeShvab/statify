@@ -8,25 +8,18 @@ import { useChart } from '@/containers/Chart/ChartProvider/ChartProvider'
 export type Section = 'all' | 'selected'
 
 const ChartManager: FC = () => {
-  const {
-    data,
-    setColor,
-    selectRegion,
-    unselectRegion,
-    toggleRegionSelection
-  } = useChart()
+  const { data } = useChart()
 
   const [value, setValue] = useState<string>('')
   const [section, setSection] = useState<Section>('all')
 
-  const handleInput = (e: ChangeEvent<HTMLInputElement>) =>
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
+  }
 
   const clearValue = () => setValue('')
 
   const defferedValue = useDeferredValue(value.trim())
-
-  const handleChangeColor = (id: string, color: string) => setColor(id, color)
 
   return (
     <div>

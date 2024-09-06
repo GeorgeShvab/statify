@@ -7,7 +7,6 @@ import { notFound } from 'next/navigation'
 import axios from 'axios'
 import RelatedIndicatorsSection from '@/containers/RelatedIndicatorsSection/RelatedIndicatorsSection'
 import IndicatorDetailsSection from '@/containers/IndicatorDetailsSection/IndicatorDetailsSection'
-import dynamicImport from '@/utils/dynamicImport'
 import dynamic from 'next/dynamic'
 
 const ChartSection = dynamic(

@@ -1,16 +1,18 @@
 import { ChartItem, CountryWithValues } from '@/types'
 import { ReactNode } from 'react'
 
+export type ChartSelectedRange = [number, number]
+
 export interface ChartContext {
-  isLimitError: boolean
-  //removeError: () => void
   data: ChartItem[]
   shortening: number
-  //update: (data: Partial<ChartItem> & { id: string }) => void
+  range: number[]
+  selectedRange: ChartSelectedRange
   setColor(id: string, color: string): void
   selectRegion(region: string): void
   unselectRegion(region: string): void
-  toggleRegionSelection(region: string): void
+  setRange: (range: number[]) => void
+  setSelectedRange: (range: ChartSelectedRange) => void
 }
 
 export interface ChartProviderProps {

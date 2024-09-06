@@ -74,9 +74,4 @@ const ChartManagerListItem: FC<Props> = ({ onClick, setColor, ...props }) => {
   )
 }
 
-export default memo(
-  ChartManagerListItem,
-  (prevProps, nextProps) =>
-    prevProps.isSelected === nextProps.isSelected &&
-    prevProps.color === nextProps.color
-)
+export default memo(ChartManagerListItem)

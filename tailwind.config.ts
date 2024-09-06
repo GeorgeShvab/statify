@@ -6,6 +6,7 @@ const config: Config = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/ui/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/containers/**/*.{js,ts,jsx,tsx,mdx}'
   ],
   theme: {
     extend: {
@@ -13,22 +14,24 @@ const config: Config = {
         black: {
           DEFAULT: 'rgb(var(--black) / <alpha-value>)',
           light: 'rgb(var(--black-light) / <alpha-value>)',
-          dark: 'rgb(var(--black-dark) / <alpha-value>)',
+          dark: 'rgb(var(--black-dark) / <alpha-value>)'
         },
         blue: {
-          DEFAULT: 'rgb(var(--blue) / <alpha-value>)',
-        },
+          DEFAULT: 'rgb(var(--blue) / <alpha-value>)'
+        }
       },
       height: {
         main: 'calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height))',
-        'main-dynamic': 'calc(100svh - var(--header-height) - var(--search-bar-height))',
+        'main-dynamic':
+          'calc(100svh - var(--header-height) - var(--search-bar-height))'
       },
       minHeight: {
         main: 'calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height))',
-        'main-dynamic': 'calc(100svh - var(--header-height) - var(--search-bar-height))',
-      },
-    },
+        'main-dynamic':
+          'calc(100svh - var(--header-height) - var(--search-bar-height))'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }
 export default config

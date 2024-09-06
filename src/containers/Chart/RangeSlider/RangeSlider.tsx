@@ -3,10 +3,10 @@
 import Slider from 'rc-slider'
 import { FC } from 'react'
 import 'rc-slider/assets/index.css'
-import { useRange } from '@/containers/Chart/RangeProvider/RangeProvider'
+import { useChart } from '../ChartProvider/ChartProvider'
 
 const RangeSlider: FC = () => {
-  const { range, selectedRange, setSelectedRange } = useRange()
+  const { range, selectedRange, setSelectedRange } = useChart()
 
   let shortenedRange = range.filter(
     (item, index) => item % 5 === 0 || index === 0 || index === range.length - 1

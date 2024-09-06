@@ -5,13 +5,15 @@ import useChartState from '@/containers/Chart/hooks/useChartState/useChartState'
 import { ChartProviderProps, type ChartContext } from './ChartProvider.types'
 
 const ChartContext = createContext<ChartContext>({
-  isLimitError: false,
   data: [],
   shortening: 10000,
   setColor: () => {},
   selectRegion: () => {},
   unselectRegion: () => {},
-  toggleRegionSelection: () => {}
+  setRange: () => {},
+  setSelectedRange: () => {},
+  selectedRange: [0, 0],
+  range: []
 })
 
 const ChartProvider: FC<ChartProviderProps> = ({ children, regions }) => {
@@ -23,9 +25,13 @@ const ChartProvider: FC<ChartProviderProps> = ({ children, regions }) => {
 }
 
 export const useChart = () => {
-  const data = useContext(ChartContext)
+  const chartData = useContext(ChartContext)
 
-  return data
+  if (!chartData) {
+    throw new Error('useChart must be used within ChartProvider')
+  }
+
+  return chartData
 }
 
 export default ChartProvider
