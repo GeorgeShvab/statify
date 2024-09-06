@@ -21,4 +21,6 @@ const Row: FC<Props> = memo(({ value, precition }) => {
   )
 })
 
+Row.displayName = 'CountryYearRow'
+
 export default Row
