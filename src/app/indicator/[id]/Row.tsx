@@ -1,5 +1,5 @@
 import { CountryRowValue } from "@/types/types"
-import TableCell from "@/ui/TableCell/TableCell"
+import TableCell from "@/ui/table-cell/TableCell"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
 import { Indicator } from "@prisma/client"
 import Link from "next/link"

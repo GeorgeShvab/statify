@@ -1,5 +1,5 @@
-import { AlertSeverity } from '@/ui/Alert/Alert.types'
-import { ReactNode } from 'react'
+import { AlertSeverity } from "@/ui/alert/Alert.types"
+import { ReactNode } from "react"
 
 export interface AlertProviderProps {
   children: ReactNode

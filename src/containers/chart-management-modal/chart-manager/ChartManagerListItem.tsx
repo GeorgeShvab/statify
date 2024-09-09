@@ -1,9 +1,9 @@
 import { ChartItem } from "@/types/types"
-import MinusIcon from "@/ui/Icons/MinusIcon"
-import PlusIcon from "@/ui/Icons/PlusIcon"
+import MinusIcon from "@/ui/icons/MinusIcon"
+import PlusIcon from "@/ui/icons/PlusIcon"
 import { FC, memo, useRef, useState } from "react"
 import ColorPickerPopover from "@/containers/chart-management-modal/color-picker-popover/ColorPickerPopover"
-import Popover from "@/ui/Popover/Popover"
+import Popover from "@/ui/popover/Popover"
 
 interface Props
   extends Pick<ChartItem, "id" | "name" | "isSelected" | "color"> {

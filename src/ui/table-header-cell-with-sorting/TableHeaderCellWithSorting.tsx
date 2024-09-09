@@ -1,6 +1,6 @@
 import TableSortIcon from "@/components/table-sort-icon/TableSortIcon"
 import { ReactNode, ComponentProps, FC } from "react"
-import TableHeaderCell from "@/ui/TableHeaderCell/TableHeaderCell"
+import TableHeaderCell from "@/ui/table-header-cell/TableHeaderCell"
 
 interface TableHeaderCellWithSortingProps extends ComponentProps<"th"> {
   children: ReactNode

@@ -2,9 +2,9 @@
 
 import { FC } from "react"
 import useBookmark from "@/components/bookmark-button/useGetBookmarkData"
-import DropdownItem from "@/ui/Dropdown/DropdownItem"
-import BookmarkedIcon from "@/ui/Icons/BookmarkedIcon"
-import BookmarkIcon from "@/ui/Icons/BookmarkIcon"
+import DropdownItem from "@/ui/dropdown/DropdownItem"
+import BookmarkedIcon from "@/ui/icons/BookmarkedIcon"
+import BookmarkIcon from "@/ui/icons/BookmarkIcon"
 
 interface Props {
   countryId?: string

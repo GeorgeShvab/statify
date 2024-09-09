@@ -14,12 +14,12 @@ import {
   AlertContext,
   AlertProviderProps,
 } from "@/providers/alert-provider/AlertProvider.types"
-import { AlertSeverity } from "@/ui/Alert/Alert.types"
+import { AlertSeverity } from "@/ui/alert/Alert.types"
 import dynamic from "next/dynamic"
 
 const ALERT_DEFAULT_DURATION = 5000
 
-const Alert = dynamic(() => import("@/ui/Alert/Alert"), { ssr: false })
+const Alert = dynamic(() => import("@/ui/alert/Alert"), { ssr: false })
 
 const alertContext = createContext<AlertContext>({
   openAlert: () => {},

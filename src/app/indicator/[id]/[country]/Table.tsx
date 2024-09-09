@@ -5,8 +5,8 @@ import { FC } from "react"
 import Row from "@/app/indicator/[id]/[country]/Row"
 import useTableData from "@/app/indicator/[id]/[country]/useTableData"
 import { Indicator } from "@prisma/client"
-import TableComponent from "@/ui/Table/Table"
-import TableHeaderCellWithSorting from "@/ui/TableHeaderCellWithSorting/TableHeaderCellWithSorting"
+import TableComponent from "@/ui/table/Table"
+import TableHeaderCellWithSorting from "@/ui/table-header-cell-with-sorting/TableHeaderCellWithSorting"
 
 interface Props {
   data: Value[]

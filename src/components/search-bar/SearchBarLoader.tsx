@@ -1,7 +1,7 @@
-import Button from '@/ui/Button/Button'
-import IconButton from '@/ui/IconButton/IconButton'
-import SearchIcon from '@/ui/Icons/SearchIcon'
-import { FC } from 'react'
+import Button from "@/ui/button/Button"
+import IconButton from "@/ui/icon-button/IconButton"
+import SearchIcon from "@/ui/icons/SearchIcon"
+import { FC } from "react"
 
 interface Props {
   placeholder?: string
@@ -14,13 +14,16 @@ const SearchBarLoader: FC<Props> = ({ placeholder }) => {
         <div className="relative flex-1 z-20">
           <div className="border rounded-lg">
             <div className="flex bg-white overflow-hidden rounded-lg">
-              <span className="text-neutral-400 h-10 w-10 flex justify-center items-center" aria-hidden>
+              <span
+                className="text-neutral-400 h-10 w-10 flex justify-center items-center"
+                aria-hidden
+              >
                 <SearchIcon className="w-4 h-4" />
               </span>
               <input
                 name="query"
                 value=""
-                placeholder={placeholder || 'Search...'}
+                placeholder={placeholder || "Search..."}
                 autoComplete="off"
                 className="h-10 flex-1 outline-none text-sm text-neutral-800"
               />

@@ -1,7 +1,7 @@
-import Button from "@/ui/Button/Button"
-import IconButton from "@/ui/IconButton/IconButton"
+import Button from "@/ui/button/Button"
+import IconButton from "@/ui/icon-button/IconButton"
 import SearchBarLoader from "@/components/search-bar/SearchBarLoader"
-import BookmarkIcon from "@/ui/Icons/BookmarkIcon"
+import BookmarkIcon from "@/ui/icons/BookmarkIcon"
 
 const AdvancedSearchBarLoader = () => {
   return (

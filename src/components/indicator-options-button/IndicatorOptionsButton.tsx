@@ -1,13 +1,13 @@
 "use client"
 
-import IconButton from "@/ui/IconButton/IconButton"
+import IconButton from "@/ui/icon-button/IconButton"
 import { FC, useRef, useState } from "react"
 import BookmarkButton from "@/components/bookmark-button/BookmarkButton"
-import DropdownItem from "@/ui/Dropdown/DropdownItem"
-import Dropdown from "@/ui/Dropdown/Dropdown"
-import VerticalMoreIcon from "@/ui/Icons/VerticalMoreIcon"
-import CsvFileIcon from "@/ui/Icons/CsvFileIcon"
-import XlsxFileIcon from "@/ui/Icons/XlsxFileIcon"
+import DropdownItem from "@/ui/dropdown/DropdownItem"
+import Dropdown from "@/ui/dropdown/Dropdown"
+import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
+import CsvFileIcon from "@/ui/icons/CsvFileIcon"
+import XlsxFileIcon from "@/ui/icons/XlsxFileIcon"
 
 interface Props {
   countryId?: string

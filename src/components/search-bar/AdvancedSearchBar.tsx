@@ -1,8 +1,8 @@
-import Button from "@/ui/Button/Button"
-import IconButton from "@/ui/IconButton/IconButton"
+import Button from "@/ui/button/Button"
+import IconButton from "@/ui/icon-button/IconButton"
 import SearchBar from "@/components/search-bar/SearchBar"
 import { FC } from "react"
-import BookmarkSmallerIcon from "@/ui/Icons/BookmarkSmallerIcon"
+import BookmarkSmallerIcon from "@/ui/icons/BookmarkSmallerIcon"
 
 const AdvancedSearchBar: FC = () => {
   return (

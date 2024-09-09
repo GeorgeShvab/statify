@@ -1,5 +1,5 @@
 import { ChangeEvent, FC, useDeferredValue, useState } from "react"
-import SearchInput from "@/ui/SearchInput/SearchInput"
+import SearchInput from "@/ui/search-input/SearchInput"
 import ChartManagerSectionButtons from "@/containers/chart-management-modal/chart-manager/ChartManagerSectionButtons"
 import ChartManagerAllSection from "@/containers/chart-management-modal/chart-manager/ChartManagerAllSection"
 import ChartManagerSelectedSection from "@/containers/chart-management-modal/chart-manager/ChartManagerSelectedSection"
