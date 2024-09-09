@@ -1,4 +1,4 @@
-import { CountryRowValue, CountryWithValues, Value } from "@/types"
+import { CountryRowValue, CountryWithValues, Value } from "@/types/types"
 import prisma from "../../prisma/prisma"
 import { Country } from "@prisma/client"
 

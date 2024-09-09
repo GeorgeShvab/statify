@@ -1,13 +1,13 @@
-import AnimationWrapper from '@/components/Animation/AnimationWrapper'
-import OpacityAnimation from '@/components/Animation/OpacityAnimation'
-import DetectOutsideClick from '@/components/DetectOutsideClick'
-import FixedPosition from '@/components/FixedPosition'
-import useOnScroll from '@/hooks/useOnScroll'
-import { Position, PositionOptions } from '@/types'
-import dynamic from 'next/dynamic'
-import { FC, ReactNode, RefObject } from 'react'
+import AnimationWrapper from "@/components/animation/AnimationWrapper"
+import OpacityAnimation from "@/components/animation/OpacityAnimation"
+import DetectOutsideClick from "@/components/DetectOutsideClick"
+import FixedPosition from "@/components/FixedPosition"
+import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
+import { Position, PositionOptions } from "@/types/types"
+import dynamic from "next/dynamic"
+import { FC, ReactNode, RefObject } from "react"
 
-const Portal = dynamic(() => import('@/components/Portal'), { ssr: false })
+const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
 interface Props {
   children: ReactNode | ReactNode[]
@@ -26,7 +26,7 @@ const Popover: FC<Props> = ({
   onClose,
   closeOnScroll,
   renderHidden = false,
-  position = 'bottom-left',
+  position = "bottom-left",
 }) => {
   useOnScroll(() => closeOnScroll && onClose(), [closeOnScroll])
 

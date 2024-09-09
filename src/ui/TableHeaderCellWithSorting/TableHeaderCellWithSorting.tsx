@@ -1,4 +1,4 @@
-import TableSortIcon from "@/components/TableSortIcon/TableSortIcon"
+import TableSortIcon from "@/components/table-sort-icon/TableSortIcon"
 import { ReactNode, ComponentProps, FC } from "react"
 import TableHeaderCell from "@/ui/TableHeaderCell/TableHeaderCell"
 

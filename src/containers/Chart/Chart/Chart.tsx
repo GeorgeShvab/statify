@@ -1,14 +1,14 @@
-import ChartProvider from "@/containers/Chart/ChartProvider/ChartProvider";
-import ChartTitle from "@/containers/Chart/ChartTitle/ChartTitle";
-import CopyChartButton from "@/containers/Chart/CopyChartButton/CopyChartButton";
-import RangeSlider from "@/containers/Chart/RangeSlider/RangeSlider";
-import { FC } from "react";
-import { ChartProps } from "./Chart.types";
-import ManageRegionsButton from "@/containers/ChartManagementModal/ChartManager/ChartManagerButton";
-import ChartComponent from "../ChartContainer/ChartContainer";
+import ChartProvider from "@/containers/chart/chart-provider/ChartProvider"
+import ChartTitle from "@/containers/chart/chart-title/ChartTitle"
+import CopyChartButton from "@/containers/chart/copy-chart-button/CopyChartButton"
+import RangeSlider from "@/containers/chart/range-slider/RangeSlider"
+import { FC } from "react"
+import ManageRegionsButton from "@/containers/chart-management-modal/chart-manager/ChartManagerButton"
+import ChartComponent from "../chart-container/ChartContainer"
+import { ChartProps } from "./Chart.types"
 
 const Chart: FC<ChartProps> = ({ indicator, data }) => {
-  const isMultipleCountries = data.length > 1;
+  const isMultipleCountries = data.length > 1
 
   return (
     <ChartProvider regions={data}>
@@ -47,7 +47,7 @@ const Chart: FC<ChartProps> = ({ indicator, data }) => {
         </div>
       </>
     </ChartProvider>
-  );
-};
+  )
+}
 
-export default Chart;
+export default Chart

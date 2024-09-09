@@ -1,5 +1,5 @@
-import useOpenCloseAnimation from "@/hooks/useOpenCloseAnimation"
-import cn from "@/utils/cn"
+import useOpenCloseAnimation from "@/hooks/use-open-close-animation/useOpenCloseAnimation"
+import cn from "@/utils/cn/cn"
 import { FC, ReactNode } from "react"
 
 interface Props {

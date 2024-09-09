@@ -1,6 +1,6 @@
-import { Position, PositionOptions } from '@/types'
-import calculatePosition from '@/utils/calculateAbsolutePosition'
-import { FC, ReactNode, RefObject, useEffect, useRef, useState } from 'react'
+import { Position, PositionOptions } from "@/types/types"
+import calculatePosition from "@/utils/calculate-absolute-position/calculateAbsolutePosition"
+import { FC, ReactNode, RefObject, useEffect, useRef, useState } from "react"
 
 interface Props {
   anchor: RefObject<HTMLElement>
@@ -32,7 +32,11 @@ const AbsolutePosition: FC<Props> = ({ anchor, children, position }) => {
   }, [])
 
   return (
-    <div className="absolute" style={{ left: pos.x + 'px', top: pos.y + 'px' }} ref={containerRef}>
+    <div
+      className="absolute"
+      style={{ left: pos.x + "px", top: pos.y + "px" }}
+      ref={containerRef}
+    >
       {children}
     </div>
   )
