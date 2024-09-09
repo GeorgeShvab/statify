@@ -1,46 +1,46 @@
-import * as types from "@/types";
-import IndicatorService from "@/services/IndicatorService";
-import { Metadata } from "next";
-import Table from "@/app/indicator/[id]/[country]/Table";
-import CountryService from "@/services/CountryService";
-import { notFound } from "next/navigation";
-import axios from "axios";
-import IndicatorDetailsSection from "@/containers/IndicatorDetailsSection/IndicatorDetailsSection";
-import RelatedIndicatorsSection from "@/containers/RelatedIndicatorsSection/RelatedIndicatorsSection";
-import dynamicImport from "next/dynamic";
-import ChartLoader from "@/containers/Chart/ChartLoader/ChartLoader";
-import { Suspense } from "react";
+import * as types from "@/types"
+import IndicatorService from "@/services/IndicatorService"
+import { Metadata } from "next"
+import Table from "@/app/indicator/[id]/[country]/Table"
+import CountryService from "@/services/CountryService"
+import { notFound } from "next/navigation"
+import axios from "axios"
+import IndicatorDetailsSection from "@/containers/IndicatorDetailsSection/IndicatorDetailsSection"
+import RelatedIndicatorsSection from "@/containers/RelatedIndicatorsSection/RelatedIndicatorsSection"
+import dynamicImport from "next/dynamic"
+import ChartLoader from "@/containers/Chart/ChartLoader/ChartLoader"
+import { Suspense } from "react"
 
 const ChartSection = dynamicImport(
   () => import("@/containers/ChartSection/ChartSection"),
-  { ssr: false }
-);
+  { ssr: false, loading: () => <ChartLoader /> }
+)
 
 interface SearchParams {
-  id: string;
-  country: string;
+  id: string
+  country: string
 }
 
 async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
-  const indicatorPromise = IndicatorService.get({ id: params.id });
+  const indicatorPromise = IndicatorService.get({ id: params.id })
 
   const countryPromise = CountryService.getCountry({
     indicator: params.id,
     country: params.country,
-  });
+  })
 
   const relatedIndicatorsPromise = IndicatorService.getRelatedIndicators({
     id: params.id,
-  });
+  })
 
   const [country, indicator, relatedIndicators] = await Promise.all([
     countryPromise,
     indicatorPromise,
     relatedIndicatorsPromise,
-  ]);
+  ])
 
   if (!indicator || !country) {
-    notFound();
+    notFound()
   }
 
   return (
@@ -58,29 +58,29 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
         )}
       </div>
     </div>
-  );
+  )
 }
 
 export const generateMetadata = async ({
   params,
 }: types.PageProps<SearchParams>): Promise<Metadata> => {
-  const indicatorPromise = IndicatorService.get({ id: params.id });
-  const countryPromise = CountryService.get({ id: params.country });
+  const indicatorPromise = IndicatorService.get({ id: params.id })
+  const countryPromise = CountryService.get({ id: params.country })
 
   const [indicator, country] = await Promise.all([
     indicatorPromise,
     countryPromise,
-  ]);
+  ])
 
-  let ogImage = "/og.png";
+  let ogImage = "/og.png"
 
   try {
     if (indicator && country) {
       await axios.head(
         `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`
-      );
+      )
 
-      ogImage = `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`;
+      ogImage = `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`
     }
   } catch {}
 
@@ -103,7 +103,7 @@ export const generateMetadata = async ({
         card: "summary_large_image",
         site: "@Zhorrrro",
       },
-    };
+    }
   }
 
   return {
@@ -127,11 +127,11 @@ export const generateMetadata = async ({
     alternates: {
       canonical: `${process.env.SERVER_ADDRESS}/indicator/${params.id}/${params.country}`,
     },
-  };
-};
+  }
+}
 
-export const dynamicParams = true;
-export const revalidate = "force-cache";
-export const dynamic = "force-static";
+export const dynamicParams = true
+export const revalidate = "force-cache"
+export const dynamic = "force-static"
 
-export default IndicatorPage;
+export default IndicatorPage
