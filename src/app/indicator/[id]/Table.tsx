@@ -1,24 +1,24 @@
-"use client";
+"use client"
 
-import { CountryRowValue } from "@/types";
-import { FC } from "react";
-import Row from "@/app/indicator/[id]/Row";
-import useTableData from "@/app/indicator/[id]/useTableData";
-import { Indicator } from "@prisma/client";
-import TableComponent from "@/ui/Table/Table";
-import TableHeaderCell from "@/ui/TableHeaderCell/TableHeaderCell";
-import TableHeaderCellWithSorting from "@/ui/TableHeaderCellWithSorting/TableHeaderCellWithSorting";
+import { CountryRowValue } from "@/types/types"
+import { FC } from "react"
+import Row from "@/app/indicator/[id]/Row"
+import useTableData from "@/app/indicator/[id]/useTableData"
+import { Indicator } from "@prisma/client"
+import TableComponent from "@/ui/Table/Table"
+import TableHeaderCell from "@/ui/TableHeaderCell/TableHeaderCell"
+import TableHeaderCellWithSorting from "@/ui/TableHeaderCellWithSorting/TableHeaderCellWithSorting"
 
 interface Props {
-  data: CountryRowValue[];
-  indicator: Indicator;
+  data: CountryRowValue[]
+  indicator: Indicator
 }
 
 const Table: FC<Props> = (props) => {
-  const [data, handleSort] = useTableData(props.data);
+  const [data, handleSort] = useTableData(props.data)
 
-  const handleCountrySort = () => handleSort("country");
-  const handleValueSort = () => handleSort("value");
+  const handleCountrySort = () => handleSort("country")
+  const handleValueSort = () => handleSort("value")
 
   const renderHeader = () => (
     <tr>
@@ -48,11 +48,11 @@ const Table: FC<Props> = (props) => {
         Year
       </TableHeaderCell>
     </tr>
-  );
+  )
 
   const renderRow = (item: CountryRowValue) => (
     <Row key={item.id} indicator={props.indicator} country={item} />
-  );
+  )
 
   return (
     <section className="container mb-2 md:mb-3.5">
@@ -64,7 +64,7 @@ const Table: FC<Props> = (props) => {
         />
       </div>
     </section>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table

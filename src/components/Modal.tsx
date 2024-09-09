@@ -1,9 +1,9 @@
-import { FC, ReactNode, useEffect } from 'react'
-import AnimationWrapper from '@/components/Animation/AnimationWrapper'
-import OpacityAnimation from '@/components/Animation/OpacityAnimation'
-import dynamic from 'next/dynamic'
+import { FC, ReactNode, useEffect } from "react"
+import AnimationWrapper from "@/components/animation/AnimationWrapper"
+import OpacityAnimation from "@/components/animation/OpacityAnimation"
+import dynamic from "next/dynamic"
 
-const Portal = dynamic(() => import('@/components/Portal'), { ssr: false })
+const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
 interface Props {
   children: ReactNode
@@ -14,22 +14,22 @@ interface Props {
 const Modal: FC<Props> = ({ children, opened, onClose }) => {
   useEffect(() => {
     if (opened) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = 'auto'
+      document.body.style.overflow = "auto"
     }
   }, [opened])
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code !== '27') return
+      if (e.code !== "27") return
       onClose()
     }
 
-    window.addEventListener('keyup', handleKeyDown)
+    window.addEventListener("keyup", handleKeyDown)
 
     return () => {
-      window.removeEventListener('keyup', handleKeyDown)
+      window.removeEventListener("keyup", handleKeyDown)
     }
   }, [])
 
@@ -39,10 +39,10 @@ const Modal: FC<Props> = ({ children, opened, onClose }) => {
         <OpacityAnimation>
           <div>
             <div
-              className='fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20'
+              className="fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20"
               onClick={onClose}
             />
-            <div className='fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30'>
+            <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30">
               {children}
             </div>
           </div>

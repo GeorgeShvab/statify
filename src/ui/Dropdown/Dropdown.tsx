@@ -1,14 +1,14 @@
-import AbsolutePosition from '@/components/AbsolutePosition'
-import AnimationWrapper from '@/components/Animation/AnimationWrapper'
-import OpacityAnimation from '@/components/Animation/OpacityAnimation'
-import DetectOutsideClick from '@/components/DetectOutsideClick'
-import { FC, ReactNode, RefObject } from 'react'
-import DropdownContainer from '@/ui/Dropdown/DropdownContainer'
-import { Position, PositionOptions } from '@/types'
-import dynamic from 'next/dynamic'
-import useOnScroll from '@/hooks/useOnScroll'
+import AbsolutePosition from "@/components/AbsolutePosition"
+import AnimationWrapper from "@/components/animation/AnimationWrapper"
+import OpacityAnimation from "@/components/animation/OpacityAnimation"
+import DetectOutsideClick from "@/components/DetectOutsideClick"
+import { FC, ReactNode, RefObject } from "react"
+import DropdownContainer from "@/ui/Dropdown/DropdownContainer"
+import { Position, PositionOptions } from "@/types/types"
+import dynamic from "next/dynamic"
+import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
 
-const Portal = dynamic(() => import('@/components/Portal'), { ssr: false })
+const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
 interface Props {
   children: ReactNode | ReactNode[]
@@ -26,8 +26,8 @@ const Dropdown: FC<Props> = ({
   isOpen,
   onClose,
   closeOnScroll,
-  position = 'bottom-left',
-  renderHidden = false
+  position = "bottom-left",
+  renderHidden = false,
 }) => {
   useOnScroll(() => closeOnScroll && onClose(), [closeOnScroll])
 
