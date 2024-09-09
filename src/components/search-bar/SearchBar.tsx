@@ -1,14 +1,14 @@
 "use client"
 
 import { ChangeEvent, FC, FormEvent, useRef, useState } from "react"
-import Button from "@/ui/Button/Button"
+import Button from "@/ui/button/Button"
 import Link from "next/link"
 import useOutsideClick from "@/hooks/use-outside-click/useOutsideClick"
-import IconButton from "@/ui/IconButton/IconButton"
+import IconButton from "@/ui/icon-button/IconButton"
 import { useRouter, useSearchParams } from "next/navigation"
 import useAutocomplete from "@/components/search-bar/useAutocomplete"
-import SearchIcon from "@/ui/Icons/SearchIcon"
-import ResetIcon from "@/ui/Icons/ResetIcon"
+import SearchIcon from "@/ui/icons/SearchIcon"
+import ResetIcon from "@/ui/icons/ResetIcon"
 
 interface Props {
   placeholder?: string

@@ -1,7 +1,7 @@
 import { FC, memo } from "react"
 import { Value } from "@/types/types"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
-import TableCell from "@/ui/TableCell/TableCell"
+import TableCell from "@/ui/table-cell/TableCell"
 
 interface Props {
   value: Value

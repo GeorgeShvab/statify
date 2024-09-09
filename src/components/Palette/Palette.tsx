@@ -1,6 +1,6 @@
-import colorPickerPalette from '@/constants/colorPickerPalette'
-import ColorSample from '@/ui/ColorSample/ColorSample'
-import { FC } from 'react'
+import colorPickerPalette from "@/constants/colorPickerPalette"
+import ColorSample from "@/ui/color-sample/ColorSample"
+import { FC } from "react"
 
 interface Props {
   onChange: (color: string) => void
@@ -17,8 +17,8 @@ const Palette: FC<Props> = ({ color, onChange }) => {
           onClick={() => onChange(item)}
           style={{
             backgroundColor: item,
-            outlineOffset: '2px',
-            outline: item === color ? '1px solid #bbbbbb' : undefined,
+            outlineOffset: "2px",
+            outline: item === color ? "1px solid #bbbbbb" : undefined,
           }}
           className="h-7 md:h-8 w-7 md:w-8"
           element="button"

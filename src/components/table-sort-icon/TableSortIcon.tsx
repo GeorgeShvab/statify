@@ -1,7 +1,7 @@
 import { IconProps, SortOrder } from "@/types/types"
-import SortAscIcon from "@/ui/Icons/SortAscIcon"
-import SortDescIcon from "@/ui/Icons/SortDescIcon"
-import SortIcon from "@/ui/Icons/SortIcon"
+import SortAscIcon from "@/ui/icons/SortAscIcon"
+import SortDescIcon from "@/ui/icons/SortDescIcon"
+import SortIcon from "@/ui/icons/SortIcon"
 import { FC } from "react"
 
 interface TableSortIconProps extends IconProps {
