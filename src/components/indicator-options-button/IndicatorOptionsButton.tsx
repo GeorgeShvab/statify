@@ -5,9 +5,9 @@ import { FC, useRef, useState } from "react"
 import BookmarkButton from "@/components/bookmark-button/BookmarkButton"
 import DropdownItem from "@/ui/dropdown/DropdownItem"
 import Dropdown from "@/ui/dropdown/Dropdown"
-import VerticalMoreIcon from "@/ui/bicons/VerticalMoreIcon"
-import CsvFileIcon from "@/ui/bicons/CsvFileIcon"
-import XlsxFileIcon from "@/ui/bicons/XlsxFileIcon"
+import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
+import CsvFileIcon from "@/ui/icons/CsvFileIcon"
+import XlsxFileIcon from "@/ui/icons/XlsxFileIcon"
 
 interface Props {
   countryId?: string

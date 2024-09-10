@@ -1,6 +1,6 @@
 import Button from "@/ui/button/Button"
 import IconButton from "@/ui/icon-button/IconButton"
-import SearchIcon from "@/ui/bicons/SearchIcon"
+import SearchIcon from "@/ui/icons/SearchIcon"
 import { FC } from "react"
 
 interface Props {

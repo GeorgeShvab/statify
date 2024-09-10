@@ -7,8 +7,8 @@ import useOutsideClick from "@/hooks/use-outside-click/useOutsideClick"
 import IconButton from "@/ui/icon-button/IconButton"
 import { useRouter, useSearchParams } from "next/navigation"
 import useAutocomplete from "@/components/search-bar/useAutocomplete"
-import SearchIcon from "@/ui/bicons/SearchIcon"
-import ResetIcon from "@/ui/bicons/ResetIcon"
+import SearchIcon from "@/ui/icons/SearchIcon"
+import ResetIcon from "@/ui/icons/ResetIcon"
 
 interface Props {
   placeholder?: string

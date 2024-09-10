@@ -1,6 +1,6 @@
 import { ChartItem } from "@/types/types"
-import MinusIcon from "@/ui/bicons/MinusIcon"
-import PlusIcon from "@/ui/bicons/PlusIcon"
+import MinusIcon from "@/ui/icons/MinusIcon"
+import PlusIcon from "@/ui/icons/PlusIcon"
 import { FC, memo, useRef, useState } from "react"
 import ColorPickerPopover from "@/containers/chart-management-modal/color-picker-popover/ColorPickerPopover"
 import Popover from "@/ui/popover/Popover"
