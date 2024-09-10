@@ -1,5 +1,7 @@
+import "./styles.scss"
+
 const AdminPage = () => {
-  return <div></div>
+  return <div className="admin-dashboard-page"></div>
 }
 
 export default AdminPage
