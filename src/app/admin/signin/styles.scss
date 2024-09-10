@@ -1,0 +1,16 @@
+@import "@design-system";
+
+.signin-page {
+  @include view-height;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signin-page__form-container {
+  padding: sp(10) sp(10);
+  background-color: $white;
+  border-radius: $rounded-xl;
+}

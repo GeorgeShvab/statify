@@ -1,0 +1,32 @@
+@import "variables";
+
+@mixin view-height {
+  height: var(--mobile-view-height);
+
+  @include breakpoint("md") {
+    height: var(--desktop-view-height);
+  }
+}
+
+@mixin breakpoint($size) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+@mixin heading($fs) {
+  font-size: $fs;
+  font-weight: bold;
+}
+
+@mixin input-shadow() {
+  transition: box-shadow 0.25s;
+
+  &.error {
+    box-shadow: inset 0 0 2px rgba($color: $error, $alpha: 0.05);
+  }
+
+  &:focus {
+    box-shadow: inset 0 0 2px rgba($color: $black, $alpha: 0.05);
+  }
+}

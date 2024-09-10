@@ -1,5 +1,5 @@
-import CountryService from '@/services/CountryService'
-import { NextRequest, NextResponse } from 'next/server'
+import CountryService from "@/services/CountryService"
+import { NextRequest, NextResponse } from "next/server"
 
 interface Params {
   indicator: string

@@ -1,5 +1,5 @@
-import Prisma, { Country } from '@prisma/client'
-import { ComponentProps } from 'react'
+import Prisma, { Country } from "@prisma/client"
+import { ComponentProps } from "react"
 
 export interface PageProps<
   TParams extends {} = {},
@@ -19,33 +19,38 @@ export interface ChartItem extends CountryWithValues {
   color: string | undefined
 }
 
-export type RowValue = Pick<Prisma.Value, 'id' | 'year' | 'value'>
+export type RowValue = Pick<Prisma.Value, "id" | "year" | "value">
 
 export type Value<T = {}> = T & RowValue
 
-export type CountryRowValue = Value<Pick<Country, 'id' | 'name'>>
+export type CountryRowValue = Value<Pick<Country, "id" | "name">>
 
 export type Position =
-  | 'left-top'
-  | 'left-bottom'
-  | 'left-center'
-  | 'right-top'
-  | 'right-bottom'
-  | 'right-center'
-  | 'top-left'
-  | 'top-right'
-  | 'top-center'
-  | 'bottom-left'
-  | 'bottom-right'
-  | 'bottom-center'
+  | "left-top"
+  | "left-bottom"
+  | "left-center"
+  | "right-top"
+  | "right-bottom"
+  | "right-center"
+  | "top-left"
+  | "top-right"
+  | "top-center"
+  | "bottom-left"
+  | "bottom-right"
+  | "bottom-center"
 
 export type PositionOptions = { [key: number]: Position; default?: Position }
 
-export type IconProps = ComponentProps<'svg'>
+export type IconProps = ComponentProps<"svg">
 
-export type SortOrder = 'asc' | 'desc'
+export type SortOrder = "asc" | "desc"
 
 export interface CountryWithValues extends Country {
   values: Value[]
   maxValue: Value
+}
+
+export interface Credentials {
+  email: string
+  password: string
 }

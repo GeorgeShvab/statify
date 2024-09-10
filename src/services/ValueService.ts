@@ -1,4 +1,4 @@
-import prisma from '../../prisma/prisma'
+import prisma from "@/prisma"
 
 interface GetParams {
   indicator: string
@@ -23,7 +23,7 @@ const ValueService = {
             })),
             ...(country ? { countryId: country } : {}),
           },
-          orderBy: { year: 'asc' },
+          orderBy: { year: "asc" },
         })
       } else {
         data = await prisma.value.findMany({
@@ -33,7 +33,7 @@ const ValueService = {
             year: { in: years as number[] },
             ...(country ? { countryId: country } : {}),
           },
-          orderBy: { year: 'asc' },
+          orderBy: { year: "asc" },
         })
       }
     } else {
@@ -43,7 +43,7 @@ const ValueService = {
           ...(country ? { countryId: country } : {}),
           year: { lte: new Date().getFullYear() },
         },
-        orderBy: { year: 'asc' },
+        orderBy: { year: "asc" },
       })
     }
 

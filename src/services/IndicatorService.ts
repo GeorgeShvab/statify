@@ -1,9 +1,10 @@
-import prisma from '../../prisma/prisma'
-import { Indicator, Prisma } from '@prisma/client'
+import prisma from "@/prisma"
+import { Indicator, Prisma } from "@prisma/client"
 
 const perPage = Number(process.env.RESULTS_PER_PAGE)
 
-if (!perPage || Number.isNaN(perPage)) throw new Error('No RESULTS_PER_PAGE env')
+if (!perPage || Number.isNaN(perPage))
+  throw new Error("No RESULTS_PER_PAGE env")
 
 interface SearchParams {
   query: string
@@ -24,22 +25,30 @@ const IndicatorService = {
   },
 
   async search({ query, page }: SearchParams) {
-    const indicatorQuery = query.split(' ').map((item) => `%${item}%`.toLowerCase())
+    const indicatorQuery = query
+      .split(" ")
+      .map((item) => `%${item}%`.toLowerCase())
 
-    const countryQuery = query.split(' ').map((item) => `${item}%`.toLowerCase())
+    const countryQuery = query
+      .split(" ")
+      .map((item) => `${item}%`.toLowerCase())
 
-    const countrySearchTagsQuery = query.split(' ')
+    const countrySearchTagsQuery = query.split(" ")
 
     // To query Indicator and join Country. If any of words macthes any country name and has more than 4 characters (to exluce possibility of query only for indicator include country)
     // also search among searchTags
     const dataPromise =
       prisma.$queryRaw`SELECT i.*, c."name" as "countryName", c."id" as "countryId" FROM "Indicator" i 
-      LEFT JOIN "Country" c ON (CASE WHEN ${indicatorQuery.length} > 1 THEN (c."name" ILIKE ANY 
+      LEFT JOIN "Country" c ON (CASE WHEN ${
+        indicatorQuery.length
+      } > 1 THEN (c."name" ILIKE ANY 
       (SELECT query FROM UNNEST(ARRAY[${countryQuery}]) AS t(query) WHERE LENGTH(query) > 4) OR 
       LOWER(c."searchTags"::text)::text[] && (ARRAY[${countrySearchTagsQuery}])) ELSE FALSE END)
       WHERE (REGEXP_REPLACE(i.label, '\\([^)]*\\)', '', 'g') ILIKE ANY (ARRAY[${indicatorQuery}]) OR 
       ARRAY_TO_STRING(i."searchTags", ' ') ILIKE ANY (ARRAY[${indicatorQuery}])) AND i."hidden" = FALSE AND (c."hidden" = FALSE OR c."id" IS NULL) 
-       ORDER BY LENGTH("label") ASC OFFSET ${(page - 1) * perPage} LIMIT ${perPage}` as Prisma.PrismaPromise<
+       ORDER BY LENGTH("label") ASC OFFSET ${
+         (page - 1) * perPage
+       } LIMIT ${perPage}` as Prisma.PrismaPromise<
         (Indicator & { countryName?: string; countryId?: string })[]
       >
 
@@ -62,13 +71,18 @@ const IndicatorService = {
   // Check if hidden on indicator is false
 
   async autocomplete({ query }: { query: string }) {
-    const indicatorQuery = query.split(' ').map((item) => `%${item}%`.toLowerCase())
+    const indicatorQuery = query
+      .split(" ")
+      .map((item) => `%${item}%`.toLowerCase())
 
-    const countryQuery = query.split(' ').map((item) => `${item}%`.toLowerCase())
+    const countryQuery = query
+      .split(" ")
+      .map((item) => `${item}%`.toLowerCase())
 
-    const countrySearchTagsQuery = query.split(' ')
+    const countrySearchTagsQuery = query.split(" ")
 
-    const data = await prisma.$queryRaw`SELECT i.*, c."name" as "countryName", c."id" as "countryId" FROM "Indicator" i 
+    const data =
+      await prisma.$queryRaw`SELECT i.*, c."name" as "countryName", c."id" as "countryId" FROM "Indicator" i 
       LEFT JOIN "Country" c ON (CASE WHEN ${indicatorQuery.length} > 1 THEN (c."name" ILIKE ANY 
       (SELECT query FROM UNNEST(ARRAY[${countryQuery}]) AS t(query) WHERE LENGTH(query) > 4) OR 
       LOWER(c."searchTags"::text)::text[] && (ARRAY[${countrySearchTagsQuery}])) ELSE FALSE END)
@@ -84,7 +98,12 @@ const IndicatorService = {
   },
 
   async getRelatedIndicators({ id }: { id: string }) {
-    return (await prisma.indicator.findUnique({ where: { id }, include: { relatedTo: true } }))?.relatedTo
+    return (
+      await prisma.indicator.findUnique({
+        where: { id },
+        include: { relatedTo: true },
+      })
+    )?.relatedTo
   },
 }
 

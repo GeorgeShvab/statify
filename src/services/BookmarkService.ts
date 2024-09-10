@@ -1,9 +1,10 @@
-import { Indicator } from '@prisma/client'
-import prisma from '../../prisma/prisma'
+import { Indicator } from "@prisma/client"
+import prisma from "@/prisma"
 
 const perPage = Number(process.env.RESULTS_PER_PAGE)
 
-if (!perPage || Number.isNaN(perPage)) throw new Error('No RESULTS_PER_PAGE env')
+if (!perPage || Number.isNaN(perPage))
+  throw new Error("No RESULTS_PER_PAGE env")
 
 interface BookmarkAction {
   indicator: string
@@ -13,15 +14,20 @@ interface BookmarkAction {
 
 const BookmarkService = {
   async create({ indicator, country, client }: BookmarkAction) {
-    return await prisma.bookmark.create({ data: { client: client, countryId: country, indicatorId: indicator } })
+    return await prisma.bookmark.create({
+      data: { client: client, countryId: country, indicatorId: indicator },
+    })
   },
 
   async get({ client, page }: { client: string; page: number }) {
-    const dataPromise = prisma.$queryRaw`SELECT i.*, c.id AS "countryId", c.name AS "countryName" FROM "Bookmark" b 
+    const dataPromise =
+      prisma.$queryRaw`SELECT i.*, c.id AS "countryId", c.name AS "countryName" FROM "Bookmark" b 
       LEFT JOIN "Country" c ON b."countryId" = c."id" JOIN "Indicator" i ON b."indicatorId" = i."id" 
     WHERE b."client" = ${client} ORDER BY b."createdAt" DESC OFFSET ${
-      (page - 1) * perPage
-    } LIMIT ${perPage}` as Promise<(Indicator & { countryId?: string; countryName?: string })[]>
+        (page - 1) * perPage
+      } LIMIT ${perPage}` as Promise<
+        (Indicator & { countryId?: string; countryName?: string })[]
+      >
 
     const countPromise = prisma.bookmark.count({ where: { client } })
 
@@ -31,7 +37,9 @@ const BookmarkService = {
   },
 
   async getOne({ client, country, indicator }: BookmarkAction) {
-    return await prisma.bookmark.findFirst({ where: { client, countryId: country, indicatorId: indicator } })
+    return await prisma.bookmark.findFirst({
+      where: { client, countryId: country, indicatorId: indicator },
+    })
   },
 
   async delete(id: number) {

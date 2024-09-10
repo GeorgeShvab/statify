@@ -4,8 +4,8 @@ import CopyChartButton from "@/containers/chart/copy-chart-button/CopyChartButto
 import RangeSlider from "@/containers/chart/range-slider/RangeSlider"
 import { FC } from "react"
 import ManageRegionsButton from "@/containers/chart-management-modal/chart-manager/ChartManagerButton"
-import ChartComponent from "../chart-container/ChartContainer"
-import { ChartProps } from "./Chart.types"
+import ChartComponent from "@/containers/chart/chart-container/ChartContainer"
+import { ChartProps } from "@/containers/chart/chart/Chart.types"
 
 const Chart: FC<ChartProps> = ({ indicator, data }) => {
   const isMultipleCountries = data.length > 1
