@@ -17,7 +17,7 @@ const IndicatorDetailsSection = ({
 
   const descriptionElement = indicator.description && (
     <p
-      className="text-neutral-600 mt-2"
+      className="text-neutral-600 mt-2 leading-6"
       dangerouslySetInnerHTML={{ __html: indicator.description }}
     />
   )

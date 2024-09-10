@@ -7,6 +7,7 @@ import AlertProvider from "@/providers/alert-provider/AlertProvider"
 import ModalProvider from "@/providers/modal-provider/ModalProvider"
 import { PropsWithChildren } from "react"
 import { Analytics } from "@vercel/analytics/react"
+import "@/styles/global.scss"
 
 const roboto = Roboto({
   subsets: ["latin"],
