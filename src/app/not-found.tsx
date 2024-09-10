@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import { FC } from "react"
 import Link from "next/link"
-import NotFoundIcon from "@/ui/icons/NotFoundIcon"
+import NotFoundIcon from "@/ui/bicons/NotFoundIcon"
 
 const Home: FC = () => {
   return (

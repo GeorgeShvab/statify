@@ -2,7 +2,7 @@ import Button from "@/ui/button/Button"
 import IconButton from "@/ui/icon-button/IconButton"
 import SearchBar from "@/components/search-bar/SearchBar"
 import { FC } from "react"
-import BookmarkSmallerIcon from "@/ui/icons/BookmarkSmallerIcon"
+import BookmarkSmallerIcon from "@/ui/bicons/BookmarkSmallerIcon"
 
 const AdvancedSearchBar: FC = () => {
   return (

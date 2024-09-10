@@ -3,7 +3,7 @@
 import { FC, useState } from "react"
 import Modal from "@/components/Modal"
 import ChartManager from "@/containers/chart-management-modal/chart-manager/ChartManager"
-import AddItemIcon from "@/ui/icons/AddItemIcon"
+import AddItemIcon from "@/ui/bicons/AddItemIcon"
 
 const ChartManagerButton: FC = () => {
   const [isOpened, setIsOpened] = useState<boolean>(false)

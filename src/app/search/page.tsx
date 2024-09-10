@@ -2,7 +2,7 @@ import IndicatorCard from "@/components/indicator-card/IndicatorCard"
 import Pagination from "@/components/pagination/Pagination"
 import IndicatorService from "@/services/IndicatorService"
 import { PageProps } from "@/types/types"
-import SearchIcon from "@/ui/icons/SearchIcon"
+import SearchIcon from "@/ui/bicons/SearchIcon"
 import { Metadata } from "next"
 import { FC } from "react"
 

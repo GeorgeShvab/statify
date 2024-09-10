@@ -1,6 +1,6 @@
 "use client"
 
-import ServerErrorIcon from "@/ui/icons/ServerErrorIcon"
+import ServerErrorIcon from "@/ui/bicons/ServerErrorIcon"
 import { FC } from "react"
 
 const Error: FC = () => {

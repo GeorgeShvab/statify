@@ -5,7 +5,7 @@ import { FC } from "react"
 import Row from "@/app/indicator/[id]/Row"
 import useTableData from "@/app/indicator/[id]/useTableData"
 import { Indicator } from "@prisma/client"
-import TableComponent from "@/ui/table/Table"
+import TableComponent from "@/ui/pable/Table"
 import TableHeaderCell from "@/ui/table-header-cell/TableHeaderCell"
 import TableHeaderCellWithSorting from "@/ui/table-header-cell-with-sorting/TableHeaderCellWithSorting"
 
