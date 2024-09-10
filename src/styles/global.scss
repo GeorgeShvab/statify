@@ -1,0 +1,20 @@
+@import "reset.scss";
+@import "foundation/all";
+
+:root {
+  --header-height: 64.8px;
+  --footer-height: 88.8px;
+  --search-bar-height: 65.6px;
+  --screen-height: 100svh;
+
+  --desktop-view-height: calc(
+    var(--screen-height) - var(--header-height) - var(--footer-height)
+  );
+  --mobile-view-height: calc(var(--screen-height) - var(--header-height));
+
+  @include breakpoint("md") {
+    --footer-height: 52.8px;
+    --header-height: 76.8px;
+    --search-bar-height: 81.6px;
+  }
+}

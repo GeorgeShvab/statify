@@ -1,21 +1,22 @@
-'use client'
+"use client"
 
 import {
   createContext,
   FC,
-  memo,
-  PropsWithChildren,
   ReactNode,
   useContext,
   useMemo,
-  useState
-} from 'react'
-import { ModalContext, ModalProviderProps } from './ModalProvider.types'
-import Modal from '@/components/Modal'
+  useState,
+} from "react"
+import {
+  ModalContext,
+  ModalProviderProps,
+} from "@/providers/modal-provider/ModalProvider.types"
+import Modal from "@/components/Modal"
 
 const modalContext = createContext<ModalContext>({
   openModal: () => {},
-  closeModal: () => {}
+  closeModal: () => {},
 })
 
 const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
@@ -34,7 +35,7 @@ const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
   const value = useMemo(
     () => ({
       openModal,
-      closeModal
+      closeModal,
     }),
     []
   )
@@ -49,13 +50,13 @@ const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
   )
 }
 
-ModalProvider.displayName = 'ModalProvider'
+ModalProvider.displayName = "ModalProvider"
 
 export const useModal = () => {
   const modalData = useContext(modalContext)
 
   if (!modalData) {
-    throw new Error('useModal must be used within ModalProvider')
+    throw new Error("useModal must be used within ModalProvider")
   }
 
   return modalData

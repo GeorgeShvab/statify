@@ -1,14 +1,22 @@
-import { ComponentProps, FC } from 'react'
+import { ComponentProps, FC, forwardRef, ForwardRefRenderFunction } from "react"
 
-interface Props extends ComponentProps<'input'> {}
+interface Props extends ComponentProps<"input"> {
+  isError?: boolean
+}
 
-const Input: FC<Props> = ({ className = '', ...props }) => {
+const Input: ForwardRefRenderFunction<HTMLInputElement, Props> = (
+  { isError, className = "", ...props },
+  ref
+) => {
   return (
     <input
-      className={`h-10 flex-1 outline-none text-sm text-neutral-800 bg-white px-3.5 border rounded-lg ${className}`}
+      ref={ref}
+      className={`h-10 flex-1 outline-none text-sm text-neutral-800 bg-white px-3.5 border rounded-lg ${className} ${
+        isError && "error"
+      }`}
       {...props}
     />
   )
 }
 
-export default Input
+export default forwardRef(Input)

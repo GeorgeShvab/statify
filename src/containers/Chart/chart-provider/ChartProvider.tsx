@@ -2,7 +2,10 @@
 
 import React, { FC, createContext, useContext } from "react"
 import useChartState from "@/containers/chart/hooks/use-chart-state/useChartState"
-import { ChartProviderProps, type ChartContext } from "./ChartProvider.types"
+import {
+  ChartProviderProps,
+  type ChartContext,
+} from "@/containers/chart/chart-provider/ChartProvider.types"
 
 const ChartContext = createContext<ChartContext>({
   data: [],

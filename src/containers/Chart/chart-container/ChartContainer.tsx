@@ -16,7 +16,7 @@ import {
 import { Line } from "react-chartjs-2"
 import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
 import { ChartItem } from "@/types/types"
-import ChartErrorView from "../chart-error-view/ChartErrorView"
+import ChartErrorView from "@/containers/chart/chart-error-view/ChartErrorView"
 
 ChartJS.register(
   ArcElement,

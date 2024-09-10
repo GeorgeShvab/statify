@@ -2,7 +2,7 @@
 
 import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
 import { FC } from "react"
-import { ChartTitleProps } from "./ChartTitle.types"
+import { ChartTitleProps } from "@/containers/chart/chart-title/ChartTitle.types"
 
 const ChartTitle: FC<ChartTitleProps> = ({ label, unit }) => {
   const { data, shortening } = useChart()

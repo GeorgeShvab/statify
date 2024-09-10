@@ -6,7 +6,7 @@ import BrushIcon from "@/ui/icons/Brush"
 import Palette from "@/components/palette/Palette"
 import ColorPicker from "@/components/color-picker/ColorPicker"
 import ColorInput from "@/components/color-input/ColorInput"
-import { ColorPickerPopoverProps } from "./ColorPickerPopover.types"
+import { ColorPickerPopoverProps } from "@/containers/chart-management-modal/color-picker-popover/ColorPickerPopover.types"
 
 const ColorPickerPopover: FC<ColorPickerPopoverProps> = ({
   defaultColor,

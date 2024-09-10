@@ -1,0 +1,54 @@
+@import "@design-system";
+
+.signin-form {
+  width: 280px;
+}
+
+.signin-form__title {
+  @include heading($fs-2xl);
+
+  text-align: center;
+  margin-bottom: sp(8);
+}
+
+.signin-form__fieldset {
+  margin-bottom: sp(4);
+}
+
+.signin-form__input-container {
+  display: block;
+  margin-bottom: sp(3);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.signin-form__input {
+  @include input-shadow;
+
+  &.error {
+    border-color: $error;
+    background-color: transparentize($color: $error, $amount: 0.975);
+  }
+
+  width: 100%;
+}
+
+.signin-form__submit-button {
+  width: 100%;
+  margin-bottom: sp(4);
+}
+
+.signin-form__help-label {
+  text-align: center;
+  color: $gray;
+  font-size: $fs-sm;
+}
+
+.signin-form__error-message {
+  font-size: $fs-sm;
+  color: $error;
+  margin-bottom: sp(4);
+  padding-left: sp(2);
+}

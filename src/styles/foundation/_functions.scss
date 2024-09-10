@@ -1,0 +1,22 @@
+@import "variables";
+
+@function sp($value: 1) {
+  @if $value != round($value) or $value <= 0 {
+    @error "#{$value} should be an integer in range from 1 to 10 inclusive";
+  }
+
+  @return $spacing-scale-factor * $value;
+}
+
+@mixin text-truncate($line-clamp: 1) {
+  display: -webkit-box;
+  -webkit-line-clamp: $line-clamp;
+  -webkit-box-orient: vertical;
+}
+
+@mixin line-clamp($lines: 1) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+}

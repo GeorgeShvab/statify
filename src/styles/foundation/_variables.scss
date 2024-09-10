@@ -1,0 +1,82 @@
+/*=============================================
+=                   COLORS                    =
+=============================================*/
+
+$black-light: #262626;
+$black: #0c0c0b;
+$black-dark: #060606;
+
+$blue: #3484f0;
+
+$white: #ffffff;
+$white-darker: #fafafa;
+$white-dark: #f5f5f5;
+
+$gray-light: #d4d4d4;
+$gray-lighter: #a3a3a3;
+$gray: #737373;
+$gray-darker: #525252;
+$gray-dark: #404040;
+
+$error-ligher: #e8040f;
+$error: #d8000c;
+$error-darker: #bd020c;
+
+/*=============================================
+=                BREAKPOINTS                  =
+=============================================*/
+
+$screen-xs: 0;
+$screen-sm: 37.5rem; // 600px
+$screen-md: 56.25rem; // 900px
+$screen-lg: 75rem; // 1200px
+$screen-xl: 96rem; // 1536px
+
+$breakpoints: (
+  xs: $screen-xs,
+  sm: $screen-sm,
+  md: $screen-md,
+  lg: $screen-lg,
+  xl: $screen-xl,
+);
+
+/*=============================================
+=                   SIZING                    =
+=============================================*/
+
+$header-height: 64.8px;
+$footer-height: 88.8px;
+$search-bar-height: 65.6px;
+$screen-height: 100svh;
+
+/*=============================================
+=                   TYPOGRAPHY                =
+=============================================*/
+
+$fs-xs: 0.75rem; // 12px
+$fs-sm: 0.875rem; // 14px
+$fs-base: 1rem; // 16px
+$fs-lg: 1.25rem; // 20px
+$fs-xl: 1.375rem; // 22px
+$fs-2xl: 1.625rem; // 26px
+$fs-4xl: 2.75rem; // 44px
+
+/*=============================================
+=                   OTHERS                    =
+=============================================*/
+
+$spacing-scale-factor: 0.25rem;
+
+/*=============================================
+=                   ROUNDINGS                 =
+=============================================*/
+
+$rounded-none: 0px;
+$rounded-sm: 0.125rem; // 2px
+$rounded-base: 0.25rem; // 4px
+$rounded-md: 0.375rem; // 6px
+$rounded-lg: 0.5rem; // 8px
+$rounded-xl: 0.75rem; // 12px
+$rounded-2xl: 1rem; // 16px
+$rounded-4xl: 1.5rem; // 24px
+$rounded-full: 9999px;

@@ -3,7 +3,7 @@
 import Slider from "rc-slider"
 import { FC } from "react"
 import "rc-slider/assets/index.css"
-import { useChart } from "../chart-provider/ChartProvider"
+import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
 
 const RangeSlider: FC = () => {
   const { range, selectedRange, setSelectedRange } = useChart()
