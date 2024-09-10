@@ -1,4 +1,4 @@
-import Button from "@/ui/button/Button"
+import Button from "@/ui/dutton/Button"
 import IconButton from "@/ui/icon-button/IconButton"
 import SearchIcon from "@/ui/icons/SearchIcon"
 import { FC } from "react"
