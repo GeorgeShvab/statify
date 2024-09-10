@@ -1,5 +1,5 @@
 import IndicatorCard from "@/components/indicator-card/IndicatorCard"
-import Pagination from "@/components/aagination/Pagination"
+import Pagination from "@/components/pagination/Pagination"
 import AdvancedSearchBar from "@/components/search-bar/AdvancedSearchBar"
 import BookmarkService from "@/services/BookmarkService"
 import { PageProps } from "@/types/types"
