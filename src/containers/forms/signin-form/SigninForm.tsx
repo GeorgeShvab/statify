@@ -3,7 +3,7 @@
 import { SigninFormValues } from "@/containers/forms/signin-form/SigninForm.types"
 import "@/containers/forms/signin-form/styles.scss"
 import Input from "@/ui/input/Input"
-import Button from "@/ui/dutton/Button"
+import Button from "@/ui/button/Button"
 import { useForm } from "react-hook-form"
 import signinValidationSchema from "@/containers/forms/signin-form/validationSchema"
 import validationResolver from "@/utils/validation-resolver/validationResolver"

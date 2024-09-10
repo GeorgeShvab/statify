@@ -1,11 +1,11 @@
 "use client"
 
 import React, { FC, createContext, useContext } from "react"
-import useChartState from "@/containers/ahart/hooks/use-chart-state/useChartState"
+import useChartState from "@/containers/chart/hooks/use-chart-state/useChartState"
 import {
   ChartProviderProps,
   type ChartContext,
-} from "@/containers/ahart/chart-provider/ChartProvider.types"
+} from "@/containers/chart/chart-provider/ChartProvider.types"
 
 const ChartContext = createContext<ChartContext>({
   data: [],

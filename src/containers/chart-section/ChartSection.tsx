@@ -2,7 +2,7 @@
 
 import { CountryWithValues } from "@/types/types"
 import { FC } from "react"
-import Chart from "@/containers/ahart/whart/Chart"
+import Chart from "@/containers/chart/chart/Chart"
 import { Indicator } from "@prisma/client"
 
 interface ChartSectionProps {

@@ -1,7 +1,7 @@
 "use client"
 
 import { ChangeEvent, FC, FormEvent, useRef, useState } from "react"
-import Button from "@/ui/dutton/Button"
+import Button from "@/ui/button/Button"
 import Link from "next/link"
 import useOutsideClick from "@/hooks/use-outside-click/useOutsideClick"
 import IconButton from "@/ui/icon-button/IconButton"
