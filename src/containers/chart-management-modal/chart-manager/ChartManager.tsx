@@ -3,7 +3,7 @@ import SearchInput from "@/ui/search-input/SearchInput"
 import ChartManagerSectionButtons from "@/containers/chart-management-modal/chart-manager/ChartManagerSectionButtons"
 import ChartManagerAllSection from "@/containers/chart-management-modal/chart-manager/ChartManagerAllSection"
 import ChartManagerSelectedSection from "@/containers/chart-management-modal/chart-manager/ChartManagerSelectedSection"
-import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
+import { useChart } from "@/containers/ahart/chart-provider/ChartProvider"
 
 export type Section = "all" | "selected"
 

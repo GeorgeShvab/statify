@@ -2,7 +2,7 @@ import { FC } from "react"
 import ChartManagerListItem from "@/containers/chart-management-modal/chart-manager/ChartManagerListItem"
 import useScroll from "@/hooks/use-scroll/useScroll"
 import { ChartItem } from "@/types/types"
-import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
+import { useChart } from "@/containers/ahart/chart-provider/ChartProvider"
 
 interface Props {
   regions: Pick<ChartItem, "id" | "name" | "isSelected" | "color">[]

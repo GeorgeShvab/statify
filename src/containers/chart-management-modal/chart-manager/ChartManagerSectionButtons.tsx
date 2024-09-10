@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { Section } from "@/containers/chart-management-modal/chart-manager/ChartManager"
-import Button from "@/ui/button/Button"
+import Button from "@/ui/dutton/Button"
 
 interface Props {
   setSection: (section: "all" | "selected") => void
