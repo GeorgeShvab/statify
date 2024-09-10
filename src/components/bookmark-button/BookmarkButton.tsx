@@ -3,8 +3,8 @@
 import { FC } from "react"
 import useBookmark from "@/components/bookmark-button/useGetBookmarkData"
 import DropdownItem from "@/ui/dropdown/DropdownItem"
-import BookmarkedIcon from "@/ui/icons/BookmarkedIcon"
-import BookmarkIcon from "@/ui/icons/BookmarkIcon"
+import BookmarkedIcon from "@/ui/bicons/BookmarkedIcon"
+import BookmarkIcon from "@/ui/bicons/BookmarkIcon"
 
 interface Props {
   countryId?: string

@@ -1,7 +1,7 @@
 "use client"
 
-import LeftChevronIcon from "@/ui/icons/LeftChevronIcon"
-import RightChevronIcon from "@/ui/icons/RightChevronIcon"
+import LeftChevronIcon from "@/ui/bicons/LeftChevronIcon"
+import RightChevronIcon from "@/ui/bicons/RightChevronIcon"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
 import { FC } from "react"

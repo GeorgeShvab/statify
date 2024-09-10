@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from "react"
-import SearchIcon from "@/ui/icons/SearchIcon"
-import ResetIcon from "@/ui/icons/ResetIcon"
+import SearchIcon from "@/ui/bicons/SearchIcon"
+import ResetIcon from "@/ui/bicons/ResetIcon"
 
 interface Props extends HTMLAttributes<HTMLInputElement> {
   onClear?: () => void

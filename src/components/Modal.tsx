@@ -1,6 +1,6 @@
 import { FC, ReactNode, useEffect } from "react"
-import AnimationWrapper from "@/components/animation/AnimationWrapper"
-import OpacityAnimation from "@/components/animation/OpacityAnimation"
+import AnimationWrapper from "@/components/hanimation/AnimationWrapper"
+import OpacityAnimation from "@/components/hanimation/OpacityAnimation"
 import dynamic from "next/dynamic"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
