@@ -1,12 +1,12 @@
 import { ChartItem, CountryWithValues } from "@/types/types"
 import { useMemo, useState } from "react"
-import useRegionsParams from "@/containers/ahart/hooks/use-regions-params/useRegionsParams"
+import useRegionsParams from "@/containers/chart/hooks/use-regions-params/useRegionsParams"
 import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
-import getInitialChartState from "@/containers/ahart/hooks/use-chart-state/utils/getInitialChartState"
-import getShortening from "@/containers/ahart/hooks/use-chart-state/utils/getShortening"
+import getInitialChartState from "@/containers/chart/hooks/use-chart-state/utils/getInitialChartState"
+import getShortening from "@/containers/chart/hooks/use-chart-state/utils/getShortening"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
-import getYearsRange from "@/containers/ahart/hooks/use-chart-state/utils/getYearsRange"
-import { ChartSelectedRange } from "@/containers/ahart/chart-provider/ChartProvider.types"
+import getYearsRange from "@/containers/chart/hooks/use-chart-state/utils/getYearsRange"
+import { ChartSelectedRange } from "@/containers/chart/chart-provider/ChartProvider.types"
 
 const MAX_SELECTED_COUNT = 15
 

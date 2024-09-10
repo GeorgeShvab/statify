@@ -1,4 +1,4 @@
-import Button from "@/ui/dutton/Button"
+import Button from "@/ui/button/Button"
 import IconButton from "@/ui/icon-button/IconButton"
 import SearchBarLoader from "@/components/search-bar/SearchBarLoader"
 import BookmarkIcon from "@/ui/icons/BookmarkIcon"

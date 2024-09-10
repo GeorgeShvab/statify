@@ -8,7 +8,7 @@ import axios from "axios"
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
 import dynamicImport from "next/dynamic"
-import ChartLoader from "@/containers/ahart/chart-loader/ChartLoader"
+import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
 import { Suspense } from "react"
 
 const ChartSection = dynamicImport(

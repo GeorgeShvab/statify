@@ -1,8 +1,8 @@
 "use client"
 
-import { useChart } from "@/containers/ahart/chart-provider/ChartProvider"
+import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
 import { FC } from "react"
-import { ChartTitleProps } from "@/containers/ahart/chart-title/ChartTitle.types"
+import { ChartTitleProps } from "@/containers/chart/chart-title/ChartTitle.types"
 
 const ChartTitle: FC<ChartTitleProps> = ({ label, unit }) => {
   const { data, shortening } = useChart()

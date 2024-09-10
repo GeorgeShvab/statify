@@ -1,11 +1,11 @@
-import ChartProvider from "@/containers/ahart/chart-provider/ChartProvider"
-import ChartTitle from "@/containers/ahart/chart-title/ChartTitle"
-import CopyChartButton from "@/containers/ahart/copy-chart-button/CopyChartButton"
-import RangeSlider from "@/containers/ahart/range-slider/RangeSlider"
+import ChartProvider from "@/containers/chart/chart-provider/ChartProvider"
+import ChartTitle from "@/containers/chart/chart-title/ChartTitle"
+import CopyChartButton from "@/containers/chart/copy-chart-button/CopyChartButton"
+import RangeSlider from "@/containers/chart/range-slider/RangeSlider"
 import { FC } from "react"
 import ManageRegionsButton from "@/containers/chart-management-modal/chart-manager/ChartManagerButton"
-import ChartComponent from "@/containers/ahart/chart-container/ChartContainer"
-import { ChartProps } from "@/containers/ahart/whart/Chart.types"
+import ChartComponent from "@/containers/chart/chart-container/ChartContainer"
+import { ChartProps } from "@/containers/chart/chart/Chart.types"
 
 const Chart: FC<ChartProps> = ({ indicator, data }) => {
   const isMultipleCountries = data.length > 1

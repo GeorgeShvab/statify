@@ -1,5 +1,5 @@
 import { CountryWithValues } from "@/types/types"
-import getShortening from "@/containers/ahart/hooks/use-chart-state/utils/getShortening"
+import getShortening from "@/containers/chart/hooks/use-chart-state/utils/getShortening"
 import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
 
 const getInitialChartState = (regions: CountryWithValues[]) => {
