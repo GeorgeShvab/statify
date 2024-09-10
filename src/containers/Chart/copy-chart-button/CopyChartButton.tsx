@@ -1,6 +1,6 @@
 "use client"
 
-import CopyIcon from "@/ui/bicons/CopyIcon"
+import CopyIcon from "@/ui/icons/CopyIcon"
 import html2canvas from "html2canvas"
 import { FC } from "react"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"

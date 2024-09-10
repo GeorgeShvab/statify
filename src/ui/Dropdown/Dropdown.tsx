@@ -1,6 +1,6 @@
 import AbsolutePosition from "@/components/AbsolutePosition"
-import AnimationWrapper from "@/components/hanimation/AnimationWrapper"
-import OpacityAnimation from "@/components/hanimation/OpacityAnimation"
+import AnimationWrapper from "@/components/animation/AnimationWrapper"
+import OpacityAnimation from "@/components/animation/OpacityAnimation"
 import DetectOutsideClick from "@/components/DetectOutsideClick"
 import { FC, ReactNode, RefObject } from "react"
 import DropdownContainer from "@/ui/dropdown/DropdownContainer"

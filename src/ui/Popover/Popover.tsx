@@ -1,5 +1,5 @@
-import AnimationWrapper from "@/components/hanimation/AnimationWrapper"
-import OpacityAnimation from "@/components/hanimation/OpacityAnimation"
+import AnimationWrapper from "@/components/animation/AnimationWrapper"
+import OpacityAnimation from "@/components/animation/OpacityAnimation"
 import DetectOutsideClick from "@/components/DetectOutsideClick"
 import FixedPosition from "@/components/FixedPosition"
 import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
