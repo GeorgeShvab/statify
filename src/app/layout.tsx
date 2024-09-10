@@ -6,6 +6,7 @@ import Footer from "@/components/footer/Footer"
 import AlertProvider from "@/providers/alert-provider/AlertProvider"
 import ModalProvider from "@/providers/modal-provider/ModalProvider"
 import { PropsWithChildren } from "react"
+import { Analytics } from "@vercel/analytics/react"
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
             {children}
             <Footer />
             <div id="portal" />
+            <Analytics />
           </ModalProvider>
         </AlertProvider>
       </body>
