@@ -16,7 +16,7 @@ export interface Topic {
 
 export interface ChartItem extends CountryWithValues {
   isSelected: boolean
-  color: string | undefined
+  color?: string
 }
 
 export type RowValue = Pick<Prisma.Value, "id" | "year" | "value">
