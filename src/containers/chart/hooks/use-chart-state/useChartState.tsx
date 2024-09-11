@@ -1,12 +1,12 @@
 import { ChartItem, CountryWithValues } from "@/types/types"
-import { useMemo, useState } from "react"
-import useRegionsParams from "@/containers/chart/hooks/use-regions-params/useRegionsParams"
+import { useState } from "react"
 import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
-import getInitialChartState from "@/containers/chart/hooks/use-chart-state/utils/getInitialChartState"
 import getShortening from "@/containers/chart/hooks/use-chart-state/utils/getShortening"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
 import getYearsRange from "@/containers/chart/hooks/use-chart-state/utils/getYearsRange"
 import { ChartSelectedRange } from "@/containers/chart/chart-provider/ChartProvider.types"
+import useInitialState from "./useInitialState"
+import useRegionSearchParams from "./useRegionSearchParams"
 
 const MAX_SELECTED_COUNT = 15
 
@@ -35,10 +35,10 @@ const calculateNextSelectedRange = (
 const useChartState = (regions: CountryWithValues[]) => {
   const { openAlert } = useAlert()
 
-  const initial = useMemo(() => getInitialChartState(regions), [])
+  const initial = useInitialState(regions)
 
   const [data, setData] = useState(initial.regions)
-  const [largestValue, setLargestValue] = useState(initial.shortening)
+  const [largestValue, setLargestValue] = useState(initial.largestValue)
   const [selectedCount, setSelectedCount] = useState(initial.selectedCount)
 
   const [range, setRange] = useState(() => getYearsRange(data))
@@ -47,6 +47,10 @@ const useChartState = (regions: CountryWithValues[]) => {
     range[0],
     range[range.length - 1],
   ])
+
+  const { addRegionToParams, removeRegionFromParams } = useRegionSearchParams(
+    regions.length > 1 ? initial.selectedIds : undefined
+  )
 
   const setColor = (id: string, color: string) => {
     const newState = data.map((item) =>
@@ -76,6 +80,8 @@ const useChartState = (regions: CountryWithValues[]) => {
       }
 
       if (item.id !== id) return item
+
+      addRegionToParams(item.id)
 
       return { ...item, isSelected: true, color: generateRandomColor() }
     })
@@ -111,6 +117,8 @@ const useChartState = (regions: CountryWithValues[]) => {
 
       if (item.id !== id) return item
 
+      removeRegionFromParams(item.id)
+
       return { ...item, isSelected: false }
     })
 
@@ -128,8 +136,6 @@ const useChartState = (regions: CountryWithValues[]) => {
     )
     setSelectedRange(newSelectedRange)
   }
-
-  useRegionsParams(data)
 
   return {
     data,
