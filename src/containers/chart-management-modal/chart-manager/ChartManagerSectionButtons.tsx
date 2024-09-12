@@ -15,7 +15,7 @@ const ChartManagerSectionButtons: FC<Props> = ({ section, setSection }) => {
           section === "all" ? "!bg-white" : "!text-neutral-400 !bg-neutral-50"
         }`}
         onClick={() => setSection("all")}
-        color="white"
+        color="light"
       >
         All regions
       </Button>
@@ -26,7 +26,7 @@ const ChartManagerSectionButtons: FC<Props> = ({ section, setSection }) => {
             : "!text-neutral-400 !bg-neutral-50"
         }`}
         onClick={() => setSection("selected")}
-        color="white"
+        color="light"
       >
         Selected regions
       </Button>

@@ -30,3 +30,70 @@
     box-shadow: inset 0 0 2px rgba($color: $black, $alpha: 0.05);
   }
 }
+
+@mixin ui-scale($box: false) {
+  &.large {
+    height: $ui-elements-lg-height;
+    font-size: $fs-lg;
+
+    @if $box {
+      width: $ui-elements-lg-height;
+    }
+  }
+
+  &.medium {
+    height: $ui-elements-md-height;
+    font-size: $fs-base;
+
+    @if $box {
+      width: $ui-elements-md-height;
+    }
+  }
+
+  &.small {
+    height: $ui-elements-sm-height;
+    font-size: $fs-sm;
+
+    @if $box {
+      width: $ui-elements-sm-height;
+    }
+  }
+}
+
+@mixin ui-theme {
+  transition: 0.3s background-color;
+  border-radius: $rounded-lg;
+
+  &.light {
+    background-color: $white;
+    border: 1px solid $ui-elements-light-border;
+    color: $gray-dark;
+
+    &:hover {
+      background-color: $white-darker;
+      border-color: $ui-elements-light-border-hover;
+    }
+  }
+
+  &.dark {
+    background-color: $black;
+    border: 1px solid $ui-elements-dark-border;
+    color: $white;
+
+    &:hover {
+      background-color: $black-light;
+      border-color: $ui-elements-dark-border-hover;
+    }
+  }
+
+  &.danger {
+    background-color: $danger;
+    border: 1px solid $danger;
+    color: $white;
+
+    &:hover {
+      background-color: $danger-dark;
+      border-color: $danger-dark;
+    }
+  }
+}

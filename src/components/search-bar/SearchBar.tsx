@@ -146,7 +146,7 @@ const SearchBar: FC<Props> = ({ placeholder }) => {
         <Button type="submit" className="hidden md:flex">
           Search
         </Button>
-        <IconButton type="submit" className="md:hidden" aria-label="Search">
+        <IconButton type="submit" className="md:!hidden" aria-label="Search">
           <SearchIcon className="w-5 h-5" />
         </IconButton>
       </div>

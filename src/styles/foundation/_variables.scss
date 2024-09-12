@@ -18,9 +18,19 @@ $gray: #737373;
 $gray-darker: #525252;
 $gray-dark: #404040;
 
+$ui-elements-light-border: #e5e7eb;
+$ui-elements-light-border-hover: #e5e7eb;
+
+$ui-elements-dark-border: $black;
+$ui-elements-dark-border-hover: $black-dark;
+
 $error-ligher: #e8040f;
 $error: #d8000c;
 $error-darker: #bd020c;
+
+$danger-light: #e5484d;
+$danger: #da2f35;
+$danger-dark: #cb2a2f;
 
 /*=============================================
 =                BREAKPOINTS                  =
@@ -48,6 +58,10 @@ $header-height: 64.8px;
 $footer-height: 88.8px;
 $search-bar-height: 65.6px;
 $screen-height: 100svh;
+
+$ui-elements-lg-height: 46px;
+$ui-elements-md-height: 40px;
+$ui-elements-sm-height: 34px;
 
 /*=============================================
 =                   TYPOGRAPHY                =

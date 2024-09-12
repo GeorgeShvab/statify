@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.icon-button {
+  @include ui-scale(true);
+  @include ui-theme;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+}
