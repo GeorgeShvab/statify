@@ -10,12 +10,12 @@ const AdvancedSearchBar: FC = () => {
       <div className="flex-1">
         <SearchBar />
       </div>
-      <Button href="/bookmarks" className="hidden md:flex flex-initial">
+      <Button href="/bookmarks" className="!hidden md:!flex flex-initial">
         Bookmarks
       </Button>
       <IconButton
         href="/bookmarks"
-        className="md:hidden flex-initial"
+        className="md:!hidden flex-initial"
         aria-label="Search"
       >
         <BookmarkSmallerIcon className="w-5 h-5" />

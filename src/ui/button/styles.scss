@@ -1,0 +1,16 @@
+@import "@design-system";
+
+.button {
+  @include ui-scale;
+  @include ui-theme;
+
+  padding: sp(2) sp(6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+
+  &.small {
+    padding: sp(2) sp(4);
+  }
+}

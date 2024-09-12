@@ -1,5 +1,6 @@
 import Prisma, { Country } from "@prisma/client"
 import { ComponentProps } from "react"
+import { UrlObject } from "url"
 
 export interface PageProps<
   TParams extends {} = {},
@@ -54,3 +55,11 @@ export interface Credentials {
   email: string
   password: string
 }
+
+export type Size = "small" | "medium" | "large"
+
+export type Variant = "dark" | "light"
+
+export type ExtendedVariant = Variant | "danger"
+
+export type Url = string | UrlObject

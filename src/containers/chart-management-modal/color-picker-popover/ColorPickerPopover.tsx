@@ -23,7 +23,7 @@ const ColorPickerPopover: FC<ColorPickerPopoverProps> = ({
               ? "!bg-white"
               : "!text-neutral-400 !bg-neutral-50"
           }`}
-          color="white"
+          color="light"
           onClick={() => setSection("palette")}
         >
           <SquaresIcon className="w-[22px] h-[22px]" />
@@ -34,7 +34,7 @@ const ColorPickerPopover: FC<ColorPickerPopoverProps> = ({
               ? "!bg-white"
               : "!text-neutral-400 !bg-neutral-50"
           }`}
-          color="white"
+          color="light"
           onClick={() => setSection("picker")}
         >
           <BrushIcon className="w-5 h-5" />

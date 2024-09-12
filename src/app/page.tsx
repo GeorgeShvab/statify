@@ -25,7 +25,7 @@ const Home: FC = () => {
                 </div>
               </div>
               <div className="md:flex md:justify-center">
-                <p className="text-center text-gray-400 max-w-[600px] text-[13px] md:text-base">
+                <p className="text-center leading-6 text-gray-400 max-w-[600px] text-[13px] md:text-base">
                   Explore our database featuring 100+ indicators for hundreds of
                   regions worldwide. Create customizable charts, view trends,
                   and access hundreds of thousands of data points.
