@@ -5,18 +5,25 @@ import {
   ComponentProps,
   RefObject,
 } from "react"
-import { ButtonProps } from "../button/Button.types"
-import "./styles.scss"
+import { ButtonProps } from "@/ui/button/Button.types"
+import "@/ui/icon-button/styles.scss"
 import cn from "@/utils/cn/cn"
 
 const IconButton: ForwardRefRenderFunction<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
 > = (
-  { className = "", variant = "dark", size = "medium", href, ...props },
+  {
+    className = "",
+    variant = "contained",
+    color = "dark",
+    size = "medium",
+    href,
+    ...props
+  },
   ref
 ) => {
-  const btnClassName = cn("icon-button", variant, size, className)
+  const btnClassName = cn("icon-button", variant, color, size, className)
 
   if (href) {
     return (

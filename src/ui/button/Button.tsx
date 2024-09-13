@@ -5,18 +5,25 @@ import {
   RefObject,
   forwardRef,
 } from "react"
-import { ButtonProps } from "./Button.types"
-import "./styles.scss"
+import { ButtonProps } from "@/ui/button/Button.types"
+import "@/ui/button/styles.scss"
 import cn from "@/utils/cn/cn"
 
 const Button: ForwardRefRenderFunction<
   HTMLButtonElement | HTMLAnchorElement,
   ButtonProps
 > = (
-  { className = "", variant = "dark", size = "medium", href, ...props },
+  {
+    className = "",
+    variant = "contained",
+    color = "dark",
+    size = "medium",
+    href,
+    ...props
+  },
   ref
 ) => {
-  const btnClassName = cn("button", variant, size, className)
+  const btnClassName = cn("button", variant, color, size, className)
 
   if (href) {
     return (

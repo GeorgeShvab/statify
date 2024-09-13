@@ -1,0 +1,55 @@
+@import "@design-system";
+
+.select {
+  @include ui-scale;
+  @include ui-text-color;
+  @include ui-text-color-hover;
+  @include ui-border;
+  @include ui-border-hover;
+  @include ui-bg-color;
+  @include ui-bg-color-hover;
+
+  padding: sp(2) sp(4) sp(2) sp(4);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  justify-content: space-between;
+  gap: sp(4);
+  cursor: pointer;
+
+  &.small {
+    padding: sp(2) sp(4);
+  }
+}
+
+.select__chevron {
+  color: inherit;
+
+  svg {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.select__container {
+  @include ui-border;
+  @include ui-bg-color;
+
+  overflow: hidden;
+  padding: sp(2) 0;
+  box-shadow: 0 0 3px 0 rgba($color: $black, $alpha: 0.1);
+}
+
+.select__item {
+  @include ui-text-color;
+  @include ui-text-color-hover;
+  @include ui-bg-color;
+  @include ui-bg-color-hover;
+
+  padding: sp(2) sp(4);
+  cursor: pointer;
+
+  &.selected {
+    background-color: $white-darker;
+  }
+}

@@ -1,10 +1,10 @@
 @import "variables";
 
 @mixin view-height {
-  height: var(--mobile-view-height);
+  min-height: var(--mobile-view-height);
 
   @include breakpoint("md") {
-    height: var(--desktop-view-height);
+    min-height: var(--desktop-view-height);
   }
 }
 
@@ -60,40 +60,112 @@
   }
 }
 
-@mixin ui-theme {
-  transition: 0.3s background-color;
+@mixin ui-border {
   border-radius: $rounded-lg;
 
   &.light {
-    background-color: $white;
     border: 1px solid $ui-elements-light-border;
-    color: $gray-dark;
+  }
 
+  &.dark {
+    border: 1px solid $ui-elements-dark-border;
+  }
+
+  &.danger {
+    border: 1px solid $danger;
+  }
+}
+
+@mixin ui-border-hover {
+  transition: 0.3s border;
+
+  &.light {
     &:hover {
-      background-color: $white-darker;
       border-color: $ui-elements-light-border-hover;
     }
   }
 
   &.dark {
-    background-color: $black;
-    border: 1px solid $ui-elements-dark-border;
-    color: $white;
-
     &:hover {
-      background-color: $black-light;
       border-color: $ui-elements-dark-border-hover;
     }
   }
 
   &.danger {
-    background-color: $danger;
-    border: 1px solid $danger;
-    color: $white;
+    &:hover {
+      border-color: $ui-elements-danger-border-hover;
+    }
+  }
+}
 
+@mixin ui-text-color {
+  &.light {
+    color: $gray-dark;
+  }
+
+  &.dark {
+    color: $white;
+  }
+
+  &.danger {
+    color: $white;
+  }
+}
+
+@mixin ui-text-color-hover {
+  transition: 0.3s color;
+
+  &.light {
+    &:hover {
+      color: $gray;
+    }
+  }
+
+  &.dark {
+    &:hover {
+      color: $white-darker;
+    }
+  }
+
+  &.danger {
+    &:hover {
+      color: $white-darker;
+    }
+  }
+}
+
+@mixin ui-bg-color {
+  &.light {
+    background-color: $white;
+  }
+
+  &.dark {
+    background-color: $black;
+  }
+
+  &.danger {
+    background-color: $danger;
+  }
+}
+
+@mixin ui-bg-color-hover {
+  transition: 0.3s background-color;
+
+  &.light {
+    &:hover {
+      background-color: $white-darker;
+    }
+  }
+
+  &.dark {
+    &:hover {
+      background-color: $black-light;
+    }
+  }
+
+  &.danger {
     &:hover {
       background-color: $danger-dark;
-      border-color: $danger-dark;
     }
   }
 }

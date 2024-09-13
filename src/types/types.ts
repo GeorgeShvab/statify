@@ -58,8 +58,12 @@ export interface Credentials {
 
 export type Size = "small" | "medium" | "large"
 
-export type Variant = "dark" | "light"
+export type Color = "dark" | "light"
 
-export type ExtendedVariant = Variant | "danger"
+export type ExtendedColor = Color | "danger"
+
+export type Variant = "contained" | "text"
 
 export type Url = string | UrlObject
+
+export type QueryParams = Record<string, string | null>
