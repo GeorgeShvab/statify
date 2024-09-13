@@ -28,7 +28,7 @@ const IndicatorOptionsButton: FC<Props> = (props) => {
       <IconButton
         className="absolute right-2 top-2.5 md:right-5 md:top-4 !bg-transparent !text-black transition-all"
         onClick={handleToggleOptions}
-        variant="light"
+        color="light"
         ref={anchor}
         aria-label="Open options"
       >

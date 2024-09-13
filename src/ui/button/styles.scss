@@ -2,7 +2,25 @@
 
 .button {
   @include ui-scale;
-  @include ui-theme;
+  @include ui-text-color;
+  @include ui-text-color-hover;
+
+  &.contained {
+    @include ui-border;
+    @include ui-border-hover;
+    @include ui-bg-color;
+    @include ui-bg-color-hover;
+  }
+
+  &.text {
+    &.danger {
+      color: $danger;
+
+      &:hover {
+        color: $danger-dark;
+      }
+    }
+  }
 
   padding: sp(2) sp(6);
   display: flex;

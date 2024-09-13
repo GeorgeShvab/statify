@@ -11,7 +11,7 @@ const useSignin = () => {
     setIsLoading(true)
 
     const res = await signIn("credentials", {
-      callbackUrl: "/admin/dashboard",
+      callbackUrl: "/admin/dashboard/indicators",
       ...data,
     })
 

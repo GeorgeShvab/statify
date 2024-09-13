@@ -2,7 +2,28 @@
 
 .icon-button {
   @include ui-scale(true);
-  @include ui-theme;
+  @include ui-text-color;
+  @include ui-text-color-hover;
+
+  &.contained {
+    @include ui-border;
+    @include ui-border-hover;
+    @include ui-bg-color;
+    @include ui-bg-color-hover;
+  }
+
+  &.text {
+    @include ui-text-color;
+    @include ui-text-color-hover;
+
+    &.danger {
+      color: $danger;
+
+      &:hover {
+        color: $danger-dark;
+      }
+    }
+  }
 
   display: flex;
   justify-content: center;

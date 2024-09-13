@@ -1,0 +1,33 @@
+@import "@design-system";
+
+.admin-header__container {
+  display: flex;
+  justify-content: flex-end;
+  background-color: $white;
+  border-bottom: 1px solid $ui-elements-light-border;
+  padding: sp(3) sp(20);
+  position: relative;
+
+  @include breakpoint("md") {
+    padding: sp(5) sp(20);
+  }
+}
+
+.admin-header__nav {
+  padding: 1px 0;
+}
+
+.admin-header__nav-list {
+  display: flex;
+  gap: sp(2);
+}
+
+.admin-header__nav-item {
+  border: 1px solid transparent;
+}
+
+.admin-header__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}

@@ -45,10 +45,6 @@
     --search-bar-height: 81.6px;
   }
 
-  main {
-    min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height));
-  }
-
   .main-height {
     min-height: calc(100vh - var(--header-height) - var(--footer-height) - var(--search-bar-height));
   }

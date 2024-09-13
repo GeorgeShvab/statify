@@ -1,0 +1,12 @@
+@import "@design-system";
+
+.dashboard-heading__title {
+  @include heading($fs-2xl);
+
+  margin-bottom: sp(3);
+}
+
+.dashboard-heading__subtitle {
+  color: $gray;
+  font-size: $fs-sm;
+}
