@@ -1,8 +1,9 @@
 import "@/app/(admin)/admin/dashboard/indicators/styles.scss"
 import IndicatorsDashboardTools from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools"
 import IndicatorsDashboardHeader from "@/containers/indicators-dashboard-header/IndicatorsDashboardHeader"
+export { default as metadata } from "@/app/(admin)/admin/dashboard/indicators/metadata"
 
-const AdminPage = () => {
+const IndicatorsDashboardPage = () => {
   return (
     <main className="container">
       <div className="admin-dashboard">
@@ -13,4 +14,4 @@ const AdminPage = () => {
   )
 }
 
-export default AdminPage
+export default IndicatorsDashboardPage

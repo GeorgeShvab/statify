@@ -1,29 +1,29 @@
 import {
-  indicatorSortOptions,
-  indicatorStatusOptions,
-  indicatorTypeOptions,
-} from "@/containers/indicators-dashboard-tools/constants"
+  countrySortOptions,
+  countryStatusOptions,
+  countryTypeOptions,
+} from "@/containers/countries-dashboard-tools/constants"
 
 export const validateType = (value: string | null) => {
   const isValid =
-    value && indicatorTypeOptions.some((item) => item.value === value)
+    value && countryTypeOptions.some((item) => item.value === value)
 
-  if (isValid) return value.toLocaleLowerCase()
-  return indicatorTypeOptions[0].value
+  if (isValid) return value
+  return countryTypeOptions[0].value
 }
 
 export const validateStatus = (value: string | null) => {
   const isValid =
-    value && indicatorStatusOptions.some((item) => item.value === value)
+    value && countryStatusOptions.some((item) => item.value === value)
 
-  if (isValid) return value.toLocaleLowerCase()
-  return indicatorStatusOptions[0].value
+  if (isValid) return value
+  return countryStatusOptions[0].value
 }
 
 export const validateSort = (value: string | null) => {
   const isValid =
-    value && indicatorSortOptions.some((item) => item.value === value)
+    value && countrySortOptions.some((item) => item.value === value)
 
-  if (isValid) return value.toLocaleLowerCase()
-  return indicatorSortOptions[0].value
+  if (isValid) return value
+  return countrySortOptions[0].value
 }

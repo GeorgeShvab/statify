@@ -67,3 +67,5 @@ export type Variant = "contained" | "text"
 export type Url = string | UrlObject
 
 export type QueryParams = Record<string, string | null>
+
+export type SupportedDatasetDownloadExtension = "xlsx" | "csv"

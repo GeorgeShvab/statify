@@ -19,6 +19,7 @@ const Select: FC<SelectProps> = ({
   itemProps,
   className,
   containerProps,
+  size = "medium",
   renderItemLabel,
   renderSelectedLabel,
   ...props
@@ -49,11 +50,13 @@ const Select: FC<SelectProps> = ({
 
     return (
       <li
+        key={item.value}
         onClick={handleItemClick}
         {...itemProps}
         className={cn(
           "select__item",
           "light",
+          size,
           itemProps?.className,
           isSelected && "selected"
         )}
@@ -66,7 +69,7 @@ const Select: FC<SelectProps> = ({
   return (
     <>
       <div
-        className={cn("select", "light", className)}
+        className={cn("select", "light", size, className)}
         ref={selectEl}
         onClick={toggle}
         {...props}

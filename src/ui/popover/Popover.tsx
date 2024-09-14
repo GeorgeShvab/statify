@@ -1,6 +1,6 @@
 import AnimationWrapper from "@/components/animation/AnimationWrapper"
 import OpacityAnimation from "@/components/animation/OpacityAnimation"
-import DetectOutsideClick from "@/components/DetectOutsideClick"
+import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import FixedPosition from "@/components/FixedPosition"
 import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
 import { Position, PositionOptions } from "@/types/types"
@@ -35,7 +35,7 @@ const Popover: FC<Props> = ({
       <AnimationWrapper open={isOpen} renderHidden={renderHidden}>
         <FixedPosition position={position} anchor={anchor}>
           <OpacityAnimation>
-            <DetectOutsideClick exclude={anchor} onOutsideClick={onClose}>
+            <DetectOutsideClick ignore={anchor} onOutsideClick={onClose}>
               {children}
             </DetectOutsideClick>
           </OpacityAnimation>

@@ -1,47 +1,40 @@
-import AbsolutePosition from "@/components/AbsolutePosition"
-import AnimationWrapper from "@/components/animation/AnimationWrapper"
-import OpacityAnimation from "@/components/animation/OpacityAnimation"
-import DetectOutsideClick from "@/components/DetectOutsideClick"
-import { FC, ReactNode, RefObject } from "react"
-import DropdownContainer from "@/ui/dropdown/DropdownContainer"
-import { Position, PositionOptions } from "@/types/types"
+"use client"
+
+import { FC } from "react"
+import { DropdownProps } from "@/ui/dropdown/Dropdown.types"
+import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
 import dynamic from "next/dynamic"
-import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
+import "@/ui/dropdown/styles.scss"
+import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
+import cn from "@/utils/cn/cn"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
-interface Props {
-  children: ReactNode | ReactNode[]
-  anchor: RefObject<HTMLElement>
-  isOpen: boolean
-  renderHidden?: boolean
-  position?: Position | PositionOptions
-  onClose: () => void
-  closeOnScroll?: boolean
-}
-
-const Dropdown: FC<Props> = ({
+const Dropdown: FC<DropdownProps> = ({
   children,
   anchor,
   isOpen,
+  position,
   onClose,
-  closeOnScroll,
-  position = "bottom-left",
-  renderHidden = false,
+  className,
+  ...props
 }) => {
-  useOnScroll(() => closeOnScroll && onClose(), [closeOnScroll])
+  if (!isOpen) return null
 
   return (
     <Portal>
-      <AbsolutePosition anchor={anchor} position={position}>
-        <AnimationWrapper open={isOpen} renderHidden={renderHidden}>
-          <OpacityAnimation>
-            <DetectOutsideClick onOutsideClick={onClose} exclude={anchor}>
-              <DropdownContainer>{children}</DropdownContainer>
-            </DetectOutsideClick>
-          </OpacityAnimation>
-        </AnimationWrapper>
-      </AbsolutePosition>
+      <DetectOutsideClick onOutsideClick={onClose}>
+        <AbsolutePosition
+          anchor={anchor}
+          dependenciesForRecalculation={[isOpen]}
+          position={position}
+          offset={5}
+        >
+          <ul className={cn("dropdown", "light", className)} {...props}>
+            {children}
+          </ul>
+        </AbsolutePosition>
+      </DetectOutsideClick>
     </Portal>
   )
 }

@@ -5,8 +5,8 @@ import getShortening from "@/containers/chart/hooks/use-chart-state/utils/getSho
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
 import getYearsRange from "@/containers/chart/hooks/use-chart-state/utils/getYearsRange"
 import { ChartSelectedRange } from "@/containers/chart/chart-provider/ChartProvider.types"
-import useInitialState from "./useInitialState"
-import useRegionSearchParams from "./useRegionSearchParams"
+import useInitialState from "@/containers/chart/hooks/use-chart-state/useInitialState"
+import useRegionSearchParams from "@/containers/chart/hooks/use-chart-state/useRegionSearchParams"
 
 const MAX_SELECTED_COUNT = 15
 

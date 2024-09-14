@@ -3,29 +3,29 @@
 import Input from "@/ui/input/Input"
 import Select from "@/ui/select/Select"
 import { ChangeEvent, FC, useState } from "react"
-import "@/containers/indicators-dashboard-tools/styles.scss"
+import "@/containers/countries-dashboard-tools/styles.scss"
 import { Option } from "@/ui/select/Select.types"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import {
-  indicatorSortOptions,
-  indicatorStatusOptions,
-  indicatorTypeOptions,
+  countrySortOptions,
+  countryStatusOptions,
+  countryTypeOptions,
   searchQueryKey,
   sortQueryKey,
   statusQueryKey,
   typeQueryKey,
-} from "@/containers/indicators-dashboard-tools/constants"
+} from "@/containers/countries-dashboard-tools/constants"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import { DashboardIndicatorQueryParams } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
+import { DashboardCountryQueryParams } from "@/containers/countries-dashboard-tools/CountriesDashboardTools.types"
 import {
   validateSort,
   validateStatus,
   validateType,
-} from "@/containers/indicators-dashboard-tools/utils/validators/validators"
+} from "@/containers/countries-dashboard-tools/utils/validators/validators"
 
-const IndicatorsDashboardTools: FC = () => {
+const CountryDashboardTools: FC = () => {
   const [searchParams, setSearchParams] =
-    useQueryParams<DashboardIndicatorQueryParams>()
+    useQueryParams<DashboardCountryQueryParams>()
 
   const sortSearchParam = validateSort(searchParams.sort)
   const statusSearchParam = validateStatus(searchParams.status)
@@ -62,29 +62,29 @@ const IndicatorsDashboardTools: FC = () => {
         onChange={handleSearchInput}
       />
       <Select
-        options={indicatorSortOptions}
+        options={countrySortOptions}
         value={sortSearchParam}
         onChange={handleSelectChange(sortQueryKey)}
         renderSelectedLabel={renderSortLabel}
         className="dashboard-tools__sort-select"
-        itemProps={{ className: "dashboard-tools__select-item" }}
+        size="small"
       />
       <Select
-        options={indicatorStatusOptions}
+        options={countryStatusOptions}
         value={statusSearchParam}
         onChange={handleSelectChange(statusQueryKey)}
         className="dashboard-tools__select"
-        itemProps={{ className: "dashboard-tools__select-item" }}
+        size="small"
       />
       <Select
-        options={indicatorTypeOptions}
+        options={countryTypeOptions}
         value={typeSearchParam}
         onChange={handleSelectChange(typeQueryKey)}
-        className="dashboard-tools__select"
-        itemProps={{ className: "dashboard-tools__select-item" }}
+        className="dashboard-tools__region-type-select"
+        size="small"
       />
     </div>
   )
 }
 
-export default IndicatorsDashboardTools
+export default CountryDashboardTools

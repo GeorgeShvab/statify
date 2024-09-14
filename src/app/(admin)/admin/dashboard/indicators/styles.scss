@@ -3,9 +3,3 @@
 .admin-dashboard {
   @include view-height;
 }
-
-body {
-  //display: flex;
-  //flex-direction: column;
-  min-height: 100svh;
-}

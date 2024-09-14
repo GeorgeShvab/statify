@@ -60,6 +60,20 @@
   }
 }
 
+@mixin ui-text-scale {
+  &.large {
+    font-size: $fs-lg;
+  }
+
+  &.medium {
+    font-size: $fs-base;
+  }
+
+  &.small {
+    font-size: $fs-sm;
+  }
+}
+
 @mixin ui-border {
   border-radius: $rounded-lg;
 

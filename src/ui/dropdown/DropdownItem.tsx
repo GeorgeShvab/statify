@@ -1,43 +1,36 @@
-import { FC, LiHTMLAttributes, ReactElement, ReactNode, createElement } from 'react'
+import { FC } from "react"
+import { DropdownItemProps } from "@/ui/dropdown/Dropdown.types"
+import cn from "@/utils/cn/cn"
 
-interface Props extends LiHTMLAttributes<HTMLLIElement> {
-  className?: string
-  containerClassName?: string
-  containerProps?: any
-  children: ReactElement | string
-  icon?: ReactNode
-  containerEl?: keyof JSX.IntrinsicElements
-}
-
-const DropdownItem: FC<Props> = ({
+const DropdownItem: FC<DropdownItemProps> = ({
+  className,
+  startIcon,
+  endIcon,
   children,
-  icon,
-  containerProps,
-  containerEl = 'div',
-  className = '',
-  containerClassName = '',
-  ...rest
+  size = "medium",
+  ...props
 }) => {
-  const container = createElement(
-    containerEl,
-    { ...containerProps, className: `text-sm whitespace-nowrap flex items-center gap-4 ${containerClassName}` },
-    icon ? (
-      <>
-        <span>{icon}</span>
-        {children ? <span>{children}</span> : null}
-      </>
-    ) : (
-      children
-    )
+  const content = (
+    <>
+      {startIcon}
+      {children}
+      {endIcon}
+    </>
   )
 
   return (
     <li
-      role="button"
-      className={`h-10 px-4 py-1.5 first:pt-2 last:pb-2 active:bg-neutral-100 md:hover:bg-neutral-100 flex items-center ${className}`}
-      {...rest}
+      className={cn(
+        "dropdown__item",
+        "light",
+        startIcon && "start-icon",
+        endIcon && "end-icon",
+        className,
+        size
+      )}
+      {...props}
     >
-      {container}
+      {content}
     </li>
   )
 }

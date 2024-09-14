@@ -1,10 +1,11 @@
 export const indicatorSortOptions = [
+  { value: "id", label: "ID" },
   { value: "label", label: "Label" },
   { value: "source", label: "Source" },
   { value: "dataset", label: "Dataset" },
   { value: "datapoints", label: "Datapoints" },
-  { value: "updatedAt", label: "Date of updation" },
   { value: "createdAt", label: "Date of creation" },
+  { value: "updatedAt", label: "Date of updation" },
 ]
 
 export const indicatorStatusOptions = [
