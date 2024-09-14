@@ -1,0 +1,17 @@
+@import "@design-system";
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  padding: sp(8) 0;
+}
+
+.dashboard-header__create-button {
+  padding-left: sp(4);
+  gap: sp(3);
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}

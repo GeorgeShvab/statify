@@ -1,4 +1,4 @@
-export const countrySortOptions = [
+export const valueSortOptions = [
   { value: "id", label: "ID" },
   { value: "label", label: "Label" },
   { value: "geocode", label: "Geocode" },
@@ -8,7 +8,7 @@ export const countrySortOptions = [
   { value: "updatedAt", label: "Date of updation" },
 ]
 
-export const countryStatusOptions = [
+export const valueStatusOptions = [
   {
     value: "all",
     label: "All statuses",
@@ -23,7 +23,7 @@ export const countryStatusOptions = [
   },
 ]
 
-export const countryTypeOptions = [
+export const valueTypeOptions = [
   {
     value: "all",
     label: "All types",

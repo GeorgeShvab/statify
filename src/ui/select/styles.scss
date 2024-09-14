@@ -1,13 +1,13 @@
 @import "@design-system";
 
 .select {
-  @include ui-scale;
   @include ui-text-color;
   @include ui-text-color-hover;
   @include ui-border;
   @include ui-border-hover;
   @include ui-bg-color;
   @include ui-bg-color-hover;
+  @include ui-text-scale;
 
   padding: sp(2) sp(4) sp(2) sp(4);
   display: flex;
@@ -45,6 +45,7 @@
   @include ui-text-color-hover;
   @include ui-bg-color;
   @include ui-bg-color-hover;
+  @include ui-text-scale;
 
   padding: sp(2) sp(4);
   cursor: pointer;

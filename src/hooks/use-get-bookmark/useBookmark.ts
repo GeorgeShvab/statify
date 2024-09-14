@@ -1,6 +1,6 @@
-import axios from 'axios'
-import { useParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import axios from "axios"
+import { useParams } from "next/navigation"
+import { useEffect, useState } from "react"
 
 const useBookmark = (indicatorId: string, countryId?: string) => {
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false)
@@ -10,13 +10,13 @@ const useBookmark = (indicatorId: string, countryId?: string) => {
   const handleBookmark = async () => {
     setIsBookmarked((prev) => !prev)
 
-    await axios.post('/api/bookmark', { country, indicator: id })
+    await axios.post("/api/bookmark", { country, indicator: id })
   }
 
   useEffect(() => {
     ;(async () => {
       try {
-        await axios.get('/api/bookmark', { params: { countryId, indicatorId } })
+        await axios.get("/api/bookmark", { params: { countryId, indicatorId } })
 
         setIsBookmarked(true)
       } catch (e: any) {
@@ -25,7 +25,7 @@ const useBookmark = (indicatorId: string, countryId?: string) => {
         }
       }
     })()
-  }, [])
+  }, [indicatorId, countryId])
 
   return { handleBookmark, isBookmarked }
 }

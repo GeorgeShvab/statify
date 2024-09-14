@@ -1,4 +1,4 @@
-export type DashboardCountryQueryParams = {
+export type DashboardValueQueryParams = {
   sort: string
   search: string
   status: string
