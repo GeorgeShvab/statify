@@ -1,48 +1,24 @@
 export const valueSortOptions = [
   { value: "id", label: "ID" },
-  { value: "label", label: "Label" },
-  { value: "geocode", label: "Geocode" },
-  { value: "iso2code", label: "Iso2Code" },
-  { value: "datapoints", label: "Datapoints" },
+  { value: "country", label: "Country" },
+  { value: "indicator", label: "Indicator" },
+  { value: "value", label: "Value" },
+  { value: "year", label: "Year" },
   { value: "createdAt", label: "Date of creation" },
   { value: "updatedAt", label: "Date of updation" },
 ]
 
-export const valueStatusOptions = [
+export const valueIndicatorOptions = [
   {
     value: "all",
-    label: "All statuses",
-  },
-  {
-    value: "visible",
-    label: "Visible",
-  },
-  {
-    value: "hidden",
-    label: "Hidden",
+    label: "All indicators",
   },
 ]
 
-export const valueTypeOptions = [
+export const valueCountryOptions = [
   {
     value: "all",
-    label: "All types",
-  },
-  {
-    value: "country",
-    label: "Country",
-  },
-  {
-    value: "state",
-    label: "State",
-  },
-  {
-    value: "union",
-    label: "Union",
-  },
-  {
-    value: "geographicRegion",
-    label: "Geographic Region",
+    label: "All countries",
   },
 ]
 

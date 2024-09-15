@@ -8,8 +8,8 @@ import { Option } from "@/ui/select/Select.types"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import {
   valueSortOptions,
-  valueStatusOptions,
-  valueTypeOptions,
+  valueIndicatorOptions,
+  valueCountryOptions,
   searchQueryKey,
   sortQueryKey,
   statusQueryKey,
@@ -19,8 +19,8 @@ import useQueryParams from "@/hooks/use-query-params/useQueryParams"
 import { DashboardValueQueryParams } from "@/containers/values-dashboard-tools/ValuesDashboardTools.types"
 import {
   validateSort,
-  validateStatus,
-  validateType,
+  validateCountry,
+  validateIndicator,
 } from "@/containers/values-dashboard-tools/utils/validators/validators"
 
 const ValueDashboardTools: FC = () => {
@@ -28,8 +28,8 @@ const ValueDashboardTools: FC = () => {
     useQueryParams<DashboardValueQueryParams>()
 
   const sortSearchParam = validateSort(searchParams.sort)
-  const statusSearchParam = validateStatus(searchParams.status)
-  const typeSearchParam = validateType(searchParams.type)
+  const countrySearchParam = validateCountry(searchParams.status)
+  const indicatorSearchParam = validateIndicator(searchParams.type)
   const searchSearchParam = searchParams.search || ""
 
   const [searchValue, setSearchValue] = useState(searchSearchParam)
@@ -70,15 +70,15 @@ const ValueDashboardTools: FC = () => {
         size="small"
       />
       <Select
-        options={valueStatusOptions}
-        value={statusSearchParam}
+        options={valueIndicatorOptions}
+        value={countrySearchParam}
         onChange={handleSelectChange(statusQueryKey)}
         className="dashboard-tools__select"
         size="small"
       />
       <Select
-        options={valueTypeOptions}
-        value={typeSearchParam}
+        options={valueCountryOptions}
+        value={indicatorSearchParam}
         onChange={handleSelectChange(typeQueryKey)}
         className="dashboard-tools__region-type-select"
         size="small"
