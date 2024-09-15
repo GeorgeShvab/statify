@@ -1,22 +1,23 @@
 import {
   valueSortOptions,
-  valueStatusOptions,
-  valueTypeOptions,
+  valueIndicatorOptions,
+  valueCountryOptions,
 } from "@/containers/values-dashboard-tools/constants"
 
-export const validateType = (value: string | null) => {
-  const isValid = value && valueTypeOptions.some((item) => item.value === value)
+export const validateCountry = (value: string | null) => {
+  const isValid =
+    value && valueCountryOptions.some((item) => item.value === value)
 
   if (isValid) return value
-  return valueTypeOptions[0].value
+  return valueCountryOptions[0].value
 }
 
-export const validateStatus = (value: string | null) => {
+export const validateIndicator = (value: string | null) => {
   const isValid =
-    value && valueStatusOptions.some((item) => item.value === value)
+    value && valueIndicatorOptions.some((item) => item.value === value)
 
   if (isValid) return value
-  return valueStatusOptions[0].value
+  return valueIndicatorOptions[0].value
 }
 
 export const validateSort = (value: string | null) => {
