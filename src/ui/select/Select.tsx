@@ -9,6 +9,7 @@ import cn from "@/utils/cn/cn"
 import { SelectProps } from "@/ui/select/Select.types"
 import UpChevronIcon from "@/ui/icons/UpChevronIcon"
 import DownChevronIcon from "@/ui/icons/DownChevronIcon"
+import SelectItem from "./components/select-item/SelectItem"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
@@ -49,20 +50,14 @@ const Select: FC<SelectProps> = ({
     }
 
     return (
-      <li
+      <SelectItem
         key={item.value}
+        isSelected={isSelected}
+        size={size}
         onClick={handleItemClick}
-        {...itemProps}
-        className={cn(
-          "select__item",
-          "light",
-          size,
-          itemProps?.className,
-          isSelected && "selected"
-        )}
       >
         {label}
-      </li>
+      </SelectItem>
     )
   })
 
@@ -74,7 +69,7 @@ const Select: FC<SelectProps> = ({
         onClick={toggle}
         {...props}
       >
-        <div>{mainLabel}</div>
+        <span role="button">{mainLabel}</span>
         <div className="select__chevron">{chevronIcon}</div>
       </div>
       {isOpen && (

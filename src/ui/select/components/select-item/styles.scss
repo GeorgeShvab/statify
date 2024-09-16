@@ -1,0 +1,16 @@
+@import "@design-system";
+
+.select__item {
+  @include ui-text-color;
+  @include ui-text-color-hover;
+  @include ui-bg-color;
+  @include ui-bg-color-hover;
+  @include ui-text-scale;
+
+  padding: sp(2) sp(4);
+  cursor: pointer;
+
+  &.selected {
+    background-color: $white-darker;
+  }
+}

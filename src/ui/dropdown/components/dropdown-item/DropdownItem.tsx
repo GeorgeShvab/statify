@@ -1,6 +1,7 @@
 import { FC } from "react"
-import { DropdownItemProps } from "@/ui/dropdown/Dropdown.types"
+import { DropdownItemProps } from "@/ui/dropdown/components/dropdown-item/DropdownItem.types"
 import cn from "@/utils/cn/cn"
+import "@/ui/dropdown/components/dropdown-item/styles.scss"
 
 const DropdownItem: FC<DropdownItemProps> = ({
   className,

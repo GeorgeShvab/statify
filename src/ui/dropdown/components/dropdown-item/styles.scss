@@ -1,0 +1,25 @@
+@import "@design-system";
+
+.dropdown__item {
+  @include ui-text-color;
+  @include ui-text-color-hover;
+  @include ui-bg-color;
+  @include ui-bg-color-hover;
+  @include ui-text-scale;
+
+  padding: sp(2) sp(4);
+  cursor: pointer;
+  white-space: nowrap;
+
+  &.start-icon,
+  &.end-icon {
+    display: flex;
+    gap: sp(4);
+    align-items: center;
+
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+}
