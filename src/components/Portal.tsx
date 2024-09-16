@@ -6,7 +6,15 @@ interface Props {
 }
 
 const Portal: FC<Props> = ({ children }) => {
-  const container = useRef(document.querySelector("#portal")!)
+  let container = useRef(document.querySelector("#portal")!)
+
+  if (!container.current) {
+    const el = document.createElement("div")
+    el.id = "portal"
+    document.body.appendChild(el)
+
+    container.current = el
+  }
 
   return createPortal(children, container.current)
 }
