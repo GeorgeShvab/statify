@@ -37,8 +37,6 @@ const useChartState = (regions: CountryWithValues[]) => {
 
   const initial = useInitialState(regions)
 
-  console.log(initial)
-
   const [data, setData] = useState(initial.regions)
   const [largestValue, setLargestValue] = useState(initial.largestValue)
   const [selectedCount, setSelectedCount] = useState(initial.selectedCount)

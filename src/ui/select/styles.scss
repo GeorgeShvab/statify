@@ -22,6 +22,11 @@
   }
 }
 
+.select__selected-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .select__chevron {
   color: inherit;
 
@@ -35,8 +40,9 @@
   @include ui-border;
   @include ui-bg-color;
 
-  padding: sp(2) 0;
+  padding-top: sp(2);
   box-shadow: 0 0 3px 0 rgba($color: $black, $alpha: 0.1);
+  overflow: hidden;
 }
 
 .select__options {
@@ -44,4 +50,10 @@
 
   max-height: $screen-height / 3;
   overflow: auto;
+
+  padding: 0 0 sp(2) 0;
+
+  &:first-child {
+    padding: sp(2) 0;
+  }
 }

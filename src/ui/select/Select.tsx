@@ -69,7 +69,9 @@ const Select: FC<SelectProps> = ({
         onClick={toggle}
         {...props}
       >
-        <span role="button">{mainLabel}</span>
+        <span className="select__selected-label" role="button">
+          {mainLabel}
+        </span>
         <div className="select__chevron">{chevronIcon}</div>
       </div>
       {isOpen && (
