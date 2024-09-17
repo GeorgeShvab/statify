@@ -2,13 +2,13 @@ import * as types from "@/types/types"
 import IndicatorService from "@/services/IndicatorService"
 import { Metadata } from "next"
 import CountryService from "@/services/CountryService"
-import Table from "@/app/(public)/indicator/[id]/Table"
 import { notFound } from "next/navigation"
 import axios from "axios"
 import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import dynamic from "next/dynamic"
 import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
+import IndicatorTable from "@/containers/indicator-table/IndicatorTable"
 
 const ChartSection = dynamic(
   () => import("@/containers/chart-section/ChartSection"),
@@ -59,7 +59,7 @@ async function IndicatorPage({
         {indicator.showChart && (
           <ChartSection indicator={indicator} data={chartData} />
         )}
-        <Table data={countries} indicator={indicator} />
+        <IndicatorTable data={countries} indicator={indicator} />
         {!!relatedIndicators?.length && (
           <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
         )}

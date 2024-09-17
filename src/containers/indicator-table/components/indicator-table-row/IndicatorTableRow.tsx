@@ -1,42 +1,37 @@
-import { CountryRowValue } from "@/types/types"
-import TableCell from "@/ui/table-cell/TableCell"
+import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
+import TableRow from "@/ui/table/components/table-row/TableRow"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
-import { Indicator } from "@prisma/client"
 import Link from "next/link"
 import { FC, memo } from "react"
+import { IndicatorTableRowProps } from "@/containers/indicator-table/components/indicator-table-row/IndicatorTableRow.types"
 
-interface Props {
-  indicator: Indicator
-  country: CountryRowValue
-}
-
-const Row: FC<Props> = ({ indicator, country }) => {
+const Row: FC<IndicatorTableRowProps> = ({ indicator, country, ...props }) => {
   return (
-    <tr className="country-row group">
-      <TableCell className="pl-4 w-24 md:w-[350px]">
+    <TableRow {...props}>
+      <TableCell>
         <Link
           href={`/indicator/${indicator.id}/${country.id}`}
-          className="hover:text-neutral-600 transition-colors"
+          className="indicator-table__region-link"
         >
           {country.name}
         </Link>
       </TableCell>
-      <TableCell className="text-right w-32 md:w-64">
+      <TableCell className="indicator-table__value-cell">
         {prettifyValue(country.value, indicator.precision)}
       </TableCell>
-      <TableCell className="text-right w-[100px] md:w-48 !p-0">
+      <TableCell className="indicator-table__trend-cell">
         <div className="w-full flex justify-center">
           <img
             alt="Trend"
             src={`${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/row-charts/${indicator.id}/${country.id}.png`}
-            className="w-[60px] md:w-auto"
+            className="indicator-table__trend-img"
           />
         </div>
       </TableCell>
-      <TableCell className="pr-4 text-right w-[5px] md:w-[75px]">
+      <TableCell className="indicator-table__year-cell">
         {country.year}
       </TableCell>
-    </tr>
+    </TableRow>
   )
 }
 

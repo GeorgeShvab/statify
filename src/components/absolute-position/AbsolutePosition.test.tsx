@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import AbsolutePosition from "./AbsolutePosition"
-import { AbsolutePositionProps } from "./AbsolutePosition.types"
+import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
+import { AbsolutePositionProps } from "@/components/absolute-position/AbsolutePosition.types"
 
 // Would be good to test whether top and left properties are correct
 

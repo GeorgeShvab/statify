@@ -1,0 +1,86 @@
+// @import "@design-system";
+
+// .table-wrapper {
+//   @include ui-border;
+//   border-radius: $rounded-lg;
+//   overflow: hidden;
+// }
+
+// .table {
+//   width: 100%;
+//   border-collapse: collapse;
+//   background-color: $white-darker;
+//   table-layout: fixed;
+// }
+
+// .table__head-cell {
+//   @include heading($fs-sm);
+
+//   white-space: nowrap;
+//   color: $gray-darker;
+//   text-align: left;
+// }
+
+// .table__body-cell {
+//   //@include ui-text-color;
+
+//   white-space: nowrap;
+//   color: $gray-darker;
+//   font-size: $fs-sm;
+//   text-align: left;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   padding: 0 sp(4) 0 0;
+// }
+
+// .table__body-row {
+//   @include ui-border;
+
+//   border-top: none !important;
+//   border-left: none !important;
+//   border-right: none !important;
+//   background-color: $white;
+//   box-sizing: border-box;
+// }
+
+// .id-cell {
+//   width: 7.5%;
+//   padding: 0;
+// }
+
+// .boolean-cell {
+//   text-align: center;
+//   padding: 0;
+// }
+
+// .selection-cell {
+//   width: 50px;
+// }
+
+// .label-cell {
+//   width: 20%;
+// }
+
+// .date-cell {
+//   width: 10%;
+//   text-align: center;
+//   padding: 0;
+// }
+
+// .description-cell {
+//   width: 20%;
+// }
+
+// .source-cell {
+//   width: 15%;
+// }
+
+// .table__head-row {
+//   height: 40px;
+// }
+
+// .unit-cell {
+//   width: 5%;
+//   text-align: center;
+//   padding: 0;
+// }

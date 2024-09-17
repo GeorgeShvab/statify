@@ -1,5 +1,5 @@
 import apiRoutes from "@/constants/apiRoutes"
-import { GetDatasetDownloadLinkParams } from "./getDatasetDonwloadLink.types"
+import { GetDatasetDownloadLinkParams } from "@/utils/get-dataset-donwload-link/getDatasetDonwloadLink.types"
 
 const getDatasetDonwloadLink = ({
   indicatorId,

@@ -9,7 +9,7 @@ import cn from "@/utils/cn/cn"
 import { SelectProps } from "@/ui/select/Select.types"
 import UpChevronIcon from "@/ui/icons/UpChevronIcon"
 import DownChevronIcon from "@/ui/icons/DownChevronIcon"
-import SelectItem from "./components/select-item/SelectItem"
+import SelectItem from "@/ui/select/components/select-item/SelectItem"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 

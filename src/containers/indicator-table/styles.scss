@@ -1,0 +1,53 @@
+@import "@design-system";
+
+.indicator-table__region-cell {
+  text-align: left;
+}
+
+.indicator-table__region-link {
+  text-align: left;
+  transition: 0.3s color;
+
+  &:hover {
+    color: $black-light;
+  }
+}
+
+.indicator-table__value-cell {
+  text-align: right;
+  width: 30%;
+
+  @include breakpoint("md") {
+    width: 20%;
+  }
+}
+
+.indicator-table__value-sorting-button {
+  justify-content: end;
+}
+
+.indicator-table__trend-cell {
+  text-align: center;
+  width: 22.5%;
+
+  @include breakpoint("md") {
+    width: 20%;
+  }
+}
+
+.indicator-table__year-cell {
+  text-align: center;
+  width: 15%;
+
+  @include breakpoint("md") {
+    width: 7.5%;
+  }
+}
+
+.indicator-table__trend-img {
+  width: 50px;
+
+  @include breakpoint("md") {
+    width: auto;
+  }
+}

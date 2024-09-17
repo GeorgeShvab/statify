@@ -1,6 +1,6 @@
-import Dropdown from "./Dropdown"
-import { DropdownProps } from "./Dropdown.types"
-import DropdownItem from "./components/dropdown-item/DropdownItem"
+import Dropdown from "@/ui/dropdown/Dropdown"
+import { DropdownProps } from "@/ui/dropdown/Dropdown.types"
+import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import { fireEvent, render, screen } from "@testing-library/react"
 
 const mockOnClose = jest.fn()

@@ -1,7 +1,6 @@
 import * as types from "@/types/types"
 import IndicatorService from "@/services/IndicatorService"
 import { Metadata } from "next"
-import Table from "@/app/(public)/indicator/[id]/[country]/Table"
 import CountryService from "@/services/CountryService"
 import { notFound } from "next/navigation"
 import axios from "axios"
@@ -10,6 +9,7 @@ import RelatedIndicatorsSection from "@/containers/related-indicators-section/Re
 import dynamicImport from "next/dynamic"
 import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
 import { Suspense } from "react"
+import IndicatorCountryTable from "@/containers/indicator-country-table/IndicatorCountryTable"
 
 const ChartSection = dynamicImport(
   () => import("@/containers/chart-section/ChartSection"),
@@ -52,7 +52,7 @@ async function IndicatorPage({ params }: types.PageProps<SearchParams>) {
             <ChartSection indicator={indicator} data={[country]} />
           </Suspense>
         )}
-        <Table data={country.values} indicator={indicator} />
+        <IndicatorCountryTable data={country.values} indicator={indicator} />
         {!!relatedIndicators?.length && (
           <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
         )}

@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import { Option } from "./Select.types"
-import Select from "./Select"
+import { Option } from "@/ui/select/Select.types"
+import Select from "@/ui/select/Select"
 
 const mockOnChange = jest.fn()
 

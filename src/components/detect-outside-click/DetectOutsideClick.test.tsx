@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import DetectOutsideClick from "./DetectOutsideClick"
+import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 
 const mockOnOutsideClick = jest.fn()
 
