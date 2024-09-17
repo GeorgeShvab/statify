@@ -1,0 +1,398 @@
+[
+  { "label": "Gross debt position", "value": "G_XWDG_G01_GDP_PT" },
+  { "label": "Homicides", "value": "VC.IHR.PSRC.P5" },
+  { "label": "Infant mortality rate", "value": "SP.DYN.IMRT.IN" },
+  { "label": "Poverty (national poverty line)", "value": "SI.POV.NAHC" },
+  { "label": "Human Capital Index", "value": "HD.HCI.OVRL" },
+  { "label": "Literacy rate", "value": "SE.ADT.LITR.ZS" },
+  { "label": "Population growth", "value": "SP.POP.GROW" },
+  {
+    "label": "Deaths due to non-communicable diseases",
+    "value": "SH.DTH.NCOM.ZS"
+  },
+  { "label": "Maternal mortality ratio", "value": "SH.STA.MMRT" },
+  { "label": "Death rate", "value": "SP.DYN.CDRT.IN" },
+  { "label": "Poverty", "value": "SI.POV.DDAY" },
+  { "label": "Derivative investment openness index", "value": "Ka_dr" },
+  { "label": "Life expectancy at birth", "value": "SP.DYN.LE00.IN" },
+  { "label": "Real GDP growth", "value": "NGDP_RPCH" },
+  { "label": "Share of world GDP (PPP)", "value": "PPPSH" },
+  { "label": "Fertility rate", "value": "SP.DYN.TFRT.IN" },
+  { "label": "Current account balance (percent of GDP)", "value": "BCA_NGDPD" },
+  {
+    "label": "Private Outflows excluding Direct Investment",
+    "value": "PrivOutexDIGDP"
+  },
+  { "label": "Population", "value": "LP" },
+  { "label": "GDP per capita", "value": "NGDPDPC" },
+  { "label": "Implied PPP conversion rate", "value": "PPPEX" },
+  { "label": "GDP (PPP)", "value": "NY.GDP.MKTP.PP.CD" },
+  { "label": "GDP", "value": "NGDPD" },
+  {
+    "label": "Private Outflows excluding Direct Investment",
+    "value": "PrivOutexDI"
+  },
+  { "label": "GDP (PPP)", "value": "PPPGDP" },
+  { "label": "Unemployment rate", "value": "LUR" },
+  { "label": "Inflation rate", "value": "PCPIPCH" },
+  {
+    "label": "Inflation rate, end of period consumer prices",
+    "value": "PCPIEPCH"
+  },
+  { "label": "GDP growth", "value": "NY.GDP.MKTP.KD.ZG" },
+  {
+    "label": "Private Inflows excluding Direct Investment",
+    "value": "PrivInexDIGDP"
+  },
+  { "label": "Urban population", "value": "SP.URB.TOTL.IN.ZS" },
+  { "label": "Government primary balance", "value": "pb" },
+  { "label": "Gross public debt", "value": "d" },
+  {
+    "label": "Real long term government bond yield, percent",
+    "value": "rltir"
+  },
+  { "label": "Export Diversification Index", "value": "total_theil" },
+  { "label": "Intensive Margin", "value": "intensive" },
+  { "label": "Export Quality Index", "value": "SITC1_total" },
+  { "label": "Government primary expenditure", "value": "prim_exp" },
+  { "label": "Government expenditure", "value": "exp" },
+  { "label": "Portfolio Investment Assets", "value": "Portfa" },
+  {
+    "label": "Private Inflows excluding Direct Investment",
+    "value": "PrivInexDI"
+  },
+  { "label": "Extensive Margin", "value": "extensive" },
+  { "label": "Interest paid on public debt", "value": "ie" },
+  { "label": "Government revenue", "value": "rev" },
+  { "label": "Direct Investment In Country", "value": "DirectIn" },
+  { "label": "Food and live animals", "value": "SITC1_0" },
+  { "label": "Birth rate", "value": "SP.DYN.CBRT.IN" },
+  { "label": "Real GDP growth rate", "value": "rgc" },
+  {
+    "label": "Electricity production from oil, gas and coal sources",
+    "value": "EG.ELC.FOSL.ZS"
+  },
+  { "label": "Access to electricity", "value": "EG.ELC.ACCS.ZS" },
+  { "label": "Gini index", "value": "SI.POV.GINI" },
+  { "label": "Collective investment openness index", "value": "Ka_ci" },
+  { "label": "Debt Securities Assets", "value": "DebtA" },
+  { "label": "Money market openness index", "value": "Ka_mm" },
+  { "label": "Debt Securities Liabilities", "value": "DebtL" },
+  { "label": "Debt Forgiveness", "value": "DebtForg" },
+  { "label": "Other Investment Assets", "value": "OtherA" },
+  { "label": "Overall Openness Index", "value": "ka_new" },
+  { "label": "Openness of Capital Inflows Index", "value": "ka_in" },
+  {
+    "label": "Political Stability and Absence of Violence/Terrorism",
+    "value": "PV.PER.RNK.UPPER"
+  },
+  { "label": "Nonresident Openness Index", "value": "Nonres_ka" },
+  { "label": "Resident Openness Index", "value": "Res_ka" },
+  {
+    "label": "Proxy for Official Other Investment Liabilities",
+    "value": "OtherGov"
+  },
+  { "label": "Other Investment Liabilities", "value": "OtherL" },
+  { "label": "Equity Securities Assets", "value": "EquityA" },
+  { "label": "Bond openness index", "value": "Ka_bo" },
+  { "label": "Equity Securities Liabilities", "value": "EquityL" },
+  { "label": "Equity openness index", "value": "Ka_eq" },
+  { "label": "Financial Derivatives", "value": "Deriv" },
+  { "label": "Nominal GDP", "value": "GDP" },
+  { "label": "Household debt", "value": "HH_ALL" },
+  { "label": "Ratio of reserve", "value": "Reserves_ARA" },
+  { "label": "Gender Budgeting Indicator", "value": "GRB_dummy" },
+  { "label": "Household debt", "value": "HH_LS" },
+  { "label": "Reserves/Broad Money", "value": "Reserves_M2" },
+  { "label": "Private debt, all instruments", "value": "Privatedebt_all" },
+  { "label": "Net migration", "value": "SM.POP.NETM" },
+  { "label": "Private debt, loans and debt securities", "value": "PVD_LS" },
+  { "label": "General Government Debt", "value": "GG_DEBT_GDP" },
+  { "label": "Financial credit openness index", "value": "Ka_fc" },
+  { "label": "Reserves/Short-term Debt (STD)", "value": "Reserves_STD" },
+  {
+    "label": "Nonfinancial corporate debt, loans and debt securities",
+    "value": "NFC_LS"
+  },
+  { "label": "Nonfinancial corporate debt", "value": "NFC_ALL" },
+  { "label": "Direct investment openness index", "value": "Ka_di" },
+  {
+    "label": "Real estate capital transaction openness index",
+    "value": "ka_ret"
+  },
+  { "label": "Openness of Capital Outflows Index", "value": "ka_out" },
+  { "label": "Gender Inequality Index", "value": "GII_TC" },
+  { "label": "Public Sector Debt", "value": "PS_DEBT_GDP" },
+  { "label": "Nonfinancial Public Sector Debt", "value": "NFPS_DEBT_GDP" },
+  { "label": "Reserve (Months of Imports / 12)", "value": "Reserves_M" },
+  { "label": "Rail lines", "value": "IS.RRS.TOTL.KM" },
+  {
+    "label": "Import of international tourism services (% of imports)",
+    "value": "ST.INT.XPND.MP.ZS"
+  },
+  { "label": "Exports of Goods and Services", "value": "BX_GDP" },
+  { "label": "Real Effective Exchange Rates", "value": "EREER" },
+  { "label": "Total Investment", "value": "NI_GDP" },
+  {
+    "label": "Cyclically adjusted primary balance",
+    "value": "GGCBP_G01_PGDP_PT"
+  },
+  { "label": "Government Debt", "value": "GGXWDG_GDP" },
+  { "label": "Overall Fiscal Balance", "value": "GGXCNLXG_GDP" },
+  { "label": "Nominal Effective Exchange Rates", "value": "ENEER" },
+  { "label": "External Debt, Official Debt, Debtor Based", "value": "DG_GDP" },
+  { "label": "Claims on Nonfinancial Private Sector", "value": "FDSAOP_GDP" },
+  { "label": "Expenditure", "value": "G_X_G01_GDP_PT" },
+  { "label": "Gross National Savings", "value": "NGS_GDP" },
+  { "label": "Consumer Prices, Average", "value": "PCPI_PCH" },
+  {
+    "label": "Claims on Nonfinancial Private Sector, percent",
+    "value": "FDSAOP_PCH"
+  },
+  { "label": "Trade Balance", "value": "BT_GDP" },
+  { "label": "Overall Fiscal Balance", "value": "GGXCNL_GDP" },
+  { "label": "Consumer Prices", "value": "PCPIE_PCH" },
+  { "label": "Net Foreign Direct Investment", "value": "BFD_GDP" },
+  {
+    "label": "Primary net lending/borrowing (Primary balance)",
+    "value": "GGXONLB_G01_GDP_PT"
+  },
+  { "label": "Broad Money", "value": "FMB_GDP" },
+  { "label": "Government Expenditure", "value": "GGX_GDP" },
+  { "label": "Real GDP growth per capita", "value": "NGDPRPC_PCH" },
+  { "label": "Real Non-Oil GDP Growth", "value": "NGDPXO_RPCH" },
+  { "label": "Real GDP Growth", "value": "NGDP_R_PCH" },
+  { "label": "Revenue", "value": "GGR_G01_GDP_PT" },
+  { "label": "Broad Money Growth", "value": "FMB_PCH" },
+  { "label": "Government Revenue", "value": "GGRXG_GDP" },
+  { "label": "External Current Account", "value": "BCA_GDP" },
+  { "label": "Imports of Goods and Services", "value": "BM_GDP" },
+  { "label": "Terms of Trade", "value": "TTT" },
+  { "label": "Beverages and tobacco", "value": "SITC1_1" },
+  { "label": "Commercial credit openness index", "value": "Ka_cc" },
+  { "label": "Fiscal Rule Indicator", "value": "FR_ind" },
+  { "label": "Central Government Debt", "value": "CG_DEBT_GDP" },
+  { "label": "Fiscal Council Indicator", "value": "FC_dummy" },
+  { "label": "Reserves (Months of Imports)", "value": "BRASS_MI" },
+  { "label": "Current account balance", "value": "BCA" },
+  { "label": "Personal capital transaction openness index", "value": "ka_pct" },
+  { "label": "Gender Development Index", "value": "GDI_TC" },
+  { "label": "Portfolio Investment Liabilities", "value": "Portfl" },
+  { "label": "Health expenditure", "value": "SH.XPD.CHEX.GD.ZS" },
+  { "label": "Crude materials, inedible, except fuels", "value": "SITC1_2" },
+  { "label": "Individuals using the Internet", "value": "IT.NET.USER.ZS" },
+  { "label": "Net debt", "value": "GGXWDN_G01_GDP_PT" },
+  { "label": "DEBT", "value": "DEBT1" },
+  { "label": "Financial Market Openness Index", "value": "FM_ka" },
+  { "label": "Direct Investment Abroad", "value": "DirectAbroad" },
+  { "label": "Cyclically adjusted balance", "value": "GGCB_G01_PGDP_PT" },
+  {
+    "label": "Government expenditure on education",
+    "value": "SE.XPD.TOTL.GB.ZS"
+  },
+  {
+    "label": "Mineral fuels, lubricants and related materials",
+    "value": "SITC1_3"
+  },
+  { "label": "Renewable energy consumption", "value": "EG.FEC.RNEW.ZS" },
+  { "label": "Electric power consumption", "value": "EG.USE.ELEC.KH.PC" },
+  {
+    "label": "Direct investment liquidation openness index",
+    "value": "ka_ldi"
+  },
+  {
+    "label": "Commodity & transactions not classified accord to kind",
+    "value": "SITC1_9"
+  },
+  {
+    "label": "Net lending/borrowing (Overall balance)",
+    "value": "GGXCNL_G01_GDP_PT"
+  },
+  { "label": "Forest area", "value": "AG.LND.FRST.ZS" },
+  { "label": "Animal and vegetable oils and fats", "value": "SITC1_4" },
+  { "label": "Miscellaneous manufactured articles", "value": "SITC1_8" },
+  {
+    "label": "Manufact goods classified chiefly by material",
+    "value": "SITC1_6"
+  },
+  { "label": "Machinery and transport equipment", "value": "SITC1_7" },
+  { "label": "General government gross debt", "value": "GGXWDG_NGDP" },
+  { "label": "Guarantee openness index", "value": "Ka_gu" },
+  { "label": "Chemicals", "value": "SITC1_5" },
+  { "label": "Military expenditure", "value": "MS.MIL.XPND.GD.ZS" },
+  {
+    "label": "General government net lending/borrowing",
+    "value": "GGXCNL_NGDP"
+  },
+  { "label": "Fossil fuel energy consumption", "value": "EG.USE.COMM.FO.ZS" },
+  { "label": "CO2 emissions from transport", "value": "EN.CO2.TRAN.ZS" },
+  { "label": "Prevalence of HIV, total", "value": "SH.DYN.AIDS.ZS" },
+  { "label": "Armed forces personnel", "value": "MS.MIL.TOTL.P1" },
+  { "label": "Land area", "value": "AG.LND.TOTL.K2" },
+  { "label": "Hospital beds", "value": "SH.MED.BEDS.ZS" },
+  { "label": "Female population", "value": "SP.POP.TOTL.FE.ZS" },
+  { "label": "Population density", "value": "EN.POP.DNST" },
+  { "label": "Energy imports", "value": "EG.IMP.CONS.ZS" },
+  {
+    "label": "Electricity production from coal sources",
+    "value": "EG.ELC.COAL.ZS"
+  },
+  { "label": "CO2 emissions", "value": "EN.ATM.CO2E.PC" },
+  {
+    "label": "Electricity production from nuclear sources",
+    "value": "EG.ELC.NUCL.ZS"
+  },
+  { "label": "Population living in slums", "value": "EN.POP.SLUM.UR.ZS" },
+  {
+    "label": "Agriculture, forestry, and fishing, value added",
+    "value": "NV.AGR.TOTL.ZS"
+  },
+  { "label": "Agricultural land", "value": "AG.LND.AGRI.ZS" },
+  { "label": "Population ages 65 and above", "value": "SP.POP.65UP.TO.ZS" },
+  { "label": "Population ages 0-14", "value": "SP.POP.0014.TO.ZS" },
+  { "label": "Population ages 15-64", "value": "SP.POP.1564.TO.ZS" },
+  { "label": "Manufacturing, value added", "value": "NV.IND.MANF.ZS" },
+  { "label": "Industry, value added", "value": "NV.IND.TOTL.ZS" },
+  { "label": "Services, value added", "value": "NV.SRV.TOTL.ZS" },
+  { "label": "Physicians", "value": "SH.MED.PHYS.ZS" },
+  { "label": "Urban population growth", "value": "SP.URB.GROW" },
+  { "label": "Population", "value": "SP.POP.TOTL" },
+  { "label": "Age dependency ratio", "value": "SP.POP.DPND" },
+  { "label": "GDP", "value": "NY.GDP.MKTP.CD" },
+  { "label": "Central government debt", "value": "GC.DOD.TOTL.GD.ZS" },
+  { "label": "Unemployment rate", "value": "SL.UEM.TOTL.ZS" },
+  { "label": "Inflation", "value": "FP.CPI.TOTL.ZG" },
+  { "label": "Tax revenue", "value": "GC.TAX.TOTL.GD.ZS" },
+  { "label": "Revenue", "value": "GC.REV.XGRT.GD.ZS" },
+  { "label": "Social contributions", "value": "GC.REV.SOCL.ZS" },
+  { "label": "Interest payments", "value": "GC.XPN.INTP.RV.ZS" },
+  { "label": "Expense", "value": "GC.XPN.TOTL.GD.ZS" },
+  {
+    "label": "Research and development expenditure",
+    "value": "GB.XPD.RSDV.GD.ZS"
+  },
+  { "label": "Gross national expenditure", "value": "NE.DAB.TOTL.ZS" },
+  { "label": "Goods and services expense", "value": "GC.XPN.GSRV.ZS" },
+  { "label": "GDP per capita (PPP)", "value": "PPPPC" },
+  {
+    "label": "Current account balance (% of GDP)",
+    "value": "BN.CAB.XOKA.GD.ZS"
+  },
+  { "label": "Imports of goods and services", "value": "BM.GSR.GNFS.CD" },
+  { "label": "Current account balance", "value": "BN.CAB.XOKA.CD" },
+  {
+    "label": "Exports of goods and services (% of GDP)",
+    "value": "NE.EXP.GNFS.ZS"
+  },
+  {
+    "label": "Imports of goods and services (% of GDP)",
+    "value": "NE.IMP.GNFS.ZS"
+  },
+  {
+    "label": "Foreign direct investment, net inflows (% of GDP)",
+    "value": "BX.KLT.DINV.WD.GD.ZS"
+  },
+  { "label": "Alternative and nuclear energy", "value": "EG.USE.COMM.CL.ZS" },
+  { "label": "Renewable electricity output", "value": "EG.ELC.RNEW.ZS" },
+  { "label": "Fuel exports", "value": "TX.VAL.FUEL.ZS.UN" },
+  { "label": "Surface area", "value": "AG.SRF.TOTL.K2" },
+  { "label": "Agricultural irrigated land", "value": "AG.LND.IRIG.AG.ZS" },
+  { "label": "Exports of goods and services", "value": "BX.GSR.GNFS.CD" },
+  {
+    "label": "Foreign direct investment, net inflows",
+    "value": "BX.KLT.DINV.CD.WD"
+  },
+  {
+    "label": "Ratio of female to male labor force participation rate",
+    "value": "SL.TLF.CACT.FM.ZS"
+  },
+  { "label": "Labor force", "value": "SL.TLF.TOTL.IN" },
+  { "label": "Arable land", "value": "AG.LND.ARBL.ZS" },
+  { "label": "Rural population", "value": "SP.RUR.TOTL.ZS" },
+  { "label": "Total reserves", "value": "FI.RES.TOTL.CD" },
+  { "label": "Natural resources rents", "value": "NY.GDP.TOTL.RT.ZS" },
+  { "label": "Endangered bird species", "value": "EN.BIR.THRD.NO" },
+  { "label": "Endangered fish species", "value": "EN.FSH.THRD.NO" },
+  { "label": "Endangered plant species", "value": "EN.HPT.THRD.NO" },
+  { "label": "Endangered mammal species", "value": "EN.MAM.THRD.NO" },
+  { "label": "Deposit interest rate", "value": "FR.INR.DPST" },
+  { "label": "Use of IMF credit", "value": "DT.DOD.DIMF.CD" },
+  { "label": "Broad money", "value": "FM.LBL.BMNY.GD.ZS" },
+  { "label": "Broad money growth", "value": "FM.LBL.BMNY.ZG" },
+  { "label": "Lending interest rate", "value": "FR.INR.LEND" },
+  { "label": "Real interest rate", "value": "FR.INR.RINR" },
+  { "label": "Female labor force", "value": "SL.TLF.TOTL.FE.ZS" },
+  { "label": "Incidence of tuberculosis", "value": "SH.TBS.INCD" },
+  { "label": "Fixed telephone subscriptions", "value": "IT.MLT.MAIN.P2" },
+  { "label": "Mobile cellular subscriptions", "value": "IT.CEL.SETS.P2" },
+  { "label": "Life expectancy at birth, male", "value": "SP.DYN.LE00.MA.IN" },
+  { "label": "Life expectancy at birth, female", "value": "SP.DYN.LE00.FE.IN" },
+  {
+    "label": "Refugee population by country of origin",
+    "value": "SM.POP.REFG.OR"
+  },
+  {
+    "label": "Registered carrier departures worldwide",
+    "value": "IS.AIR.DPRT"
+  },
+  { "label": "Ores and metals exports", "value": "TX.VAL.MMTL.ZS.UN" },
+  { "label": "Total tax and contribution rate", "value": "IC.TAX.TOTL.CP.ZS" },
+  { "label": "Merchandise trade", "value": "TG.VAL.TOTL.GD.ZS" },
+  { "label": "High-technology exports", "value": "TX.VAL.TECH.MF.ZS" },
+  {
+    "label": "Proportion of seats held by women in national parliaments",
+    "value": "SG.GEN.PARL.ZS"
+  },
+  {
+    "label": "Net lending (+) / net borrowing (-)",
+    "value": "GC.NLD.TOTL.GD.ZS"
+  },
+  { "label": "Population in the largest city", "value": "EN.URB.LCTY.UR.ZS" },
+  {
+    "label": "Population in urban agglomerations of more than 1 million",
+    "value": "EN.URB.MCTY.TL.ZS"
+  },
+  { "label": "GDP per capita", "value": "NY.GDP.PCAP.CD" },
+  {
+    "label": "Renewable internal freshwater resources",
+    "value": "ER.H2O.INTR.K3"
+  },
+  { "label": "Annual freshwater withdrawals", "value": "ER.H2O.FWTL.K3" },
+  {
+    "label": "Refugee population by country of asylum",
+    "value": "SM.POP.REFG"
+  },
+  { "label": "GDP per capita (PPP)", "value": "NY.GDP.PCAP.PP.CD" },
+  { "label": "Suicide mortality rate", "value": "SH.STA.SUIC.P5" },
+  { "label": "Suicide mortality rate, male", "value": "SH.STA.SUIC.MA.P5" },
+  { "label": "Suicide mortality rate, female", "value": "SH.STA.SUIC.FE.P5" },
+  {
+    "label": "Import of international tourism services",
+    "value": "ST.INT.XPND.CD"
+  },
+  {
+    "label": "Freight transported by air transport",
+    "value": "IS.AIR.GOOD.MT.K1"
+  },
+  { "label": "Goods transported by railways", "value": "IS.RRS.GOOD.MT.K6" },
+  { "label": "Passangers carried by railways", "value": "IS.RRS.PASG.KM" },
+  { "label": "Container port traffic", "value": "IS.SHP.GOOD.TU" },
+  { "label": "Liner shipping connectivity index", "value": "IS.SHP.GCNW.XQ" },
+  { "label": "Passengers caried by air transport", "value": "IS.AIR.PSGR" },
+  {
+    "label": "Export of international tourism services",
+    "value": "ST.INT.RCPT.CD"
+  },
+  {
+    "label": "Export of international tourism services (% of exports)",
+    "value": "ST.INT.RCPT.XP.ZS"
+  },
+  {
+    "label": "Number of international tourist arrivals",
+    "value": "ST.INT.ARVL"
+  },
+  {
+    "label": "Number of international tourist departures",
+    "value": "ST.INT.DPRT"
+  }
+]

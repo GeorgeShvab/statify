@@ -6,7 +6,6 @@ const worldId = "WEOWORLD"
 const usaId = "USA"
 
 const getDefaultInitialRegion = (regions: CountryWithValues[]) => {
-  console.log(regions)
   if (regions.length === 1) return regions[0].id
 
   const hasWordlData = regions.find(({ id }) => id === worldId)

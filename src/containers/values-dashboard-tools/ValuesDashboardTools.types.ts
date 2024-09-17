@@ -1,6 +1,6 @@
 export type DashboardValueQueryParams = {
   sort: string
   search: string
-  status: string
-  type: string
+  indicator: string
+  country: string
 }
