@@ -35,7 +35,13 @@
   @include ui-border;
   @include ui-bg-color;
 
-  overflow: hidden;
   padding: sp(2) 0;
   box-shadow: 0 0 3px 0 rgba($color: $black, $alpha: 0.1);
+}
+
+.select__options {
+  @include pretty-scrollbar;
+
+  max-height: $screen-height / 3;
+  overflow: auto;
 }

@@ -1,19 +1,21 @@
 "use client"
 
-import { FC, useRef, useState } from "react"
+import { ChangeEvent, FC, useDeferredValue, useRef, useState } from "react"
 import "@/ui/select/styles.scss"
 import dynamic from "next/dynamic"
 import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import cn from "@/utils/cn/cn"
-import { SelectProps } from "@/ui/select/Select.types"
 import UpChevronIcon from "@/ui/icons/UpChevronIcon"
 import DownChevronIcon from "@/ui/icons/DownChevronIcon"
 import SelectItem from "@/ui/select/components/select-item/SelectItem"
+import Input from "../input/Input"
+import "./styles.scss"
+import { SelectWithSearchProps } from "./SelectWithSearch.types"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
-const Select: FC<SelectProps> = ({
+const SelectWithSearch: FC<SelectWithSearchProps> = ({
   value,
   options,
   onChange,
@@ -25,9 +27,13 @@ const Select: FC<SelectProps> = ({
   renderSelectedLabel,
   ...props
 }) => {
+  const selectEl = useRef<HTMLDivElement>(null)
+
   const [isOpen, setIsOpen] = useState(false)
 
-  const selectEl = useRef<HTMLDivElement>(null)
+  const [searchValue, setSearchValue] = useState("")
+
+  const deferredSearchValue = useDeferredValue(searchValue)
 
   const toggle = () => setIsOpen((prev) => !prev)
   const onClose = () => setIsOpen(false)
@@ -40,7 +46,13 @@ const Select: FC<SelectProps> = ({
 
   const chevronIcon = isOpen ? <UpChevronIcon /> : <DownChevronIcon />
 
-  const selectItems = options.map((item) => {
+  const filteredOptions = deferredSearchValue.trim()
+    ? options.filter((item) =>
+        new RegExp("^" + deferredSearchValue, "i").test(item.label)
+      )
+    : options
+
+  const selectItems = filteredOptions.map((item) => {
     const label = renderItemLabel ? renderItemLabel(item) : item.label
     const isSelected = item.value === selectedOption.value
 
@@ -60,6 +72,16 @@ const Select: FC<SelectProps> = ({
       </SelectItem>
     )
   })
+
+  const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value)
+  }
+
+  const content = selectItems.length ? (
+    <ul className="select__options">{selectItems}</ul>
+  ) : (
+    <p className="select__message">No matches found</p>
+  )
 
   return (
     <>
@@ -81,20 +103,26 @@ const Select: FC<SelectProps> = ({
               position="bottom-start"
               offset={5}
             >
-              <ul
+              <div
                 style={{
                   width: selectEl.current?.clientWidth + "px",
                 }}
                 {...containerProps}
                 className={cn(
-                  "select__container",
-                  "select__options",
+                  "select__container select-with-search",
                   "light",
                   containerProps?.className
                 )}
               >
-                {selectItems}
-              </ul>
+                <div className="select__input-container">
+                  <Input
+                    className="select__input"
+                    onChange={handleInput}
+                    value={searchValue}
+                  />
+                </div>
+                {content}
+              </div>
             </AbsolutePosition>
           </DetectOutsideClick>
         </Portal>
@@ -103,4 +131,4 @@ const Select: FC<SelectProps> = ({
   )
 }
 
-export default Select
+export default SelectWithSearch
