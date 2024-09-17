@@ -1,0 +1,45 @@
+@import "@design-system";
+
+.table__body-cell {
+  @include ui-border;
+
+  font-size: $fs-xxs;
+  color: $gray;
+
+  border-top: none !important;
+  border-right: none !important;
+  border-left: none !important;
+
+  line-height: 1.3;
+
+  padding: 0 sp(1);
+
+  &:last-child {
+    padding: 0 sp(4) 0 sp(1);
+  }
+
+  &:first-child {
+    padding: 0 sp(1) 0 sp(4);
+  }
+
+  letter-spacing: 0.0025em;
+
+  @include breakpoint("md") {
+    padding: 0 sp(2);
+    font-size: $fs-base;
+
+    &:last-child {
+      padding: 0 sp(6) 0 sp(2);
+    }
+
+    &:first-child {
+      padding: 0 sp(2) 0 sp(6);
+    }
+  }
+}
+
+tr:last-child {
+  .table__body-cell {
+    border: none;
+  }
+}

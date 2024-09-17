@@ -1,0 +1,9 @@
+@import "@design-system";
+
+.table__row {
+  height: 44px;
+
+  @include breakpoint("md") {
+    height: 46px;
+  }
+}

@@ -1,18 +1,14 @@
-export interface TableProps<T> {
-  renderRow: (data: T) => JSX.Element
-  renderHeader: () => JSX.Element
-  renderFooter?: () => JSX.Element
-  data: T[]
-}
+import { TableProps } from "@/ui/table/Table.types"
+import "@/ui/table/styles.scss"
 
 const Table = <T,>({
   renderFooter,
   renderHeader,
   renderRow,
-  data
+  data,
 }: TableProps<T>) => {
   return (
-    <table className='table-auto w-full relative country-table'>
+    <table className="table country-table">
       <thead>{renderHeader()}</thead>
       <tbody>{data.map(renderRow)}</tbody>
       {renderFooter ? <tfoot>{renderFooter()}</tfoot> : null}

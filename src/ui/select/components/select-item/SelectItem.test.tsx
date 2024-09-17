@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import SelectItem from "./SelectItem"
+import SelectItem from "@/ui/select/components/select-item/SelectItem"
 
 describe("Test SelectItem", () => {
   test("Should render SelectItem", () => {

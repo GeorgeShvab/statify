@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import DropdownItem from "./DropdownItem"
+import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 
 describe("Test DropdownItem", () => {
   beforeEach(() => {

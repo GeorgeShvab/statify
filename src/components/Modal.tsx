@@ -36,17 +36,15 @@ const Modal: FC<Props> = ({ children, opened, onClose }) => {
   return (
     <Portal>
       <AnimationWrapper ms={250} open={opened}>
-        <OpacityAnimation>
-          <div>
-            <div
-              className="fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20"
-              onClick={onClose}
-            />
-            <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30">
-              {children}
-            </div>
+        <div>
+          <div
+            className="fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20"
+            onClick={onClose}
+          />
+          <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30">
+            {children}
           </div>
-        </OpacityAnimation>
+        </div>
       </AnimationWrapper>
     </Portal>
   )

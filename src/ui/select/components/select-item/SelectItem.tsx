@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { SelectItemProps } from "./SelectItem.types"
+import { SelectItemProps } from "@/ui/select/components/select-item/SelectItem.types"
 import cn from "@/utils/cn/cn"
 import "@/ui/select/components/select-item/styles.scss"
 

@@ -1,0 +1,22 @@
+@import "@design-system";
+
+.table__head-sorting-button {
+  display: flex;
+  align-items: center;
+  gap: sp(2);
+  justify-content: flex-start;
+  width: 100%;
+  text-align: right;
+
+  @include breakpoint("md") {
+    gap: sp(3);
+  }
+}
+
+.table__head-sorting-icon {
+  height: 16px;
+  width: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
