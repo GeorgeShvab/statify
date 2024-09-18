@@ -7,7 +7,7 @@ export interface Option {
 }
 
 export interface SelectProps extends Omit<ComponentProps<"div">, "onChange"> {
-  options: Option[]
+  options: readonly Option[] | Option[]
   value: string
   size?: Size
   itemProps?: ComponentProps<"li">

@@ -1,5 +1,5 @@
 import * as types from "@/types/types"
-import IndicatorService from "@/services/IndicatorService"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { Metadata } from "next"
 import CountryService from "@/services/CountryService"
 import { notFound } from "next/navigation"

@@ -8,11 +8,13 @@ const Table = <T,>({
   data,
 }: TableProps<T>) => {
   return (
-    <table className="table country-table">
-      <thead>{renderHeader()}</thead>
-      <tbody>{data.map(renderRow)}</tbody>
-      {renderFooter ? <tfoot>{renderFooter()}</tfoot> : null}
-    </table>
+    <div className="table__container light">
+      <table className="table">
+        <thead>{renderHeader()}</thead>
+        <tbody>{data.map(renderRow)}</tbody>
+        {renderFooter ? <tfoot>{renderFooter()}</tfoot> : null}
+      </table>
+    </div>
   )
 }
 

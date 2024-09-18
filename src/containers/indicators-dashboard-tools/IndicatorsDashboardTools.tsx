@@ -6,38 +6,33 @@ import { ChangeEvent, FC, useState } from "react"
 import "@/containers/indicators-dashboard-tools/styles.scss"
 import { Option } from "@/ui/select/Select.types"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
+import useQueryParams from "@/hooks/use-query-params/useQueryParams"
+import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
 import {
+  indicatorSearchQueryKey,
+  indicatorSortQueryKey,
+  indicatorStatusQueryKey,
+  indicatorTypeQueryKey,
   indicatorSortOptions,
   indicatorStatusOptions,
   indicatorTypeOptions,
-  searchQueryKey,
-  sortQueryKey,
-  statusQueryKey,
-  typeQueryKey,
-} from "@/containers/indicators-dashboard-tools/constants"
-import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import { DashboardIndicatorQueryParams } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
-import {
-  validateSort,
-  validateStatus,
-  validateType,
-} from "@/containers/indicators-dashboard-tools/utils/validators/validators"
+} from "@/app/(admin)/admin/dashboard/indicators/constants"
+import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
 
-const IndicatorsDashboardTools: FC = () => {
-  const [searchParams, setSearchParams] =
-    useQueryParams<DashboardIndicatorQueryParams>()
+const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
+  sort,
+  search,
+  status,
+  type,
+}) => {
+  const [_, setSearchParams] = useQueryParams<DashboardIndicatorQueryParams>()
 
-  const sortSearchParam = validateSort(searchParams.sort)
-  const statusSearchParam = validateStatus(searchParams.status)
-  const typeSearchParam = validateType(searchParams.type)
-  const searchSearchParam = searchParams.search || ""
-
-  const [searchValue, setSearchValue] = useState(searchSearchParam)
+  const [searchValue, setSearchValue] = useState(search)
 
   const debouncedSetSearch = useDebounce(
-    (value: string) => setSearchParams(searchQueryKey, value),
-    300,
-    [searchParams.sort, searchParams.status, searchParams.type]
+    (value: string) => setSearchParams(indicatorSearchQueryKey, value),
+    750,
+    [sort, status, type]
   )
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,25 +57,25 @@ const IndicatorsDashboardTools: FC = () => {
         onChange={handleSearchInput}
       />
       <Select
-        options={indicatorSortOptions}
-        value={sortSearchParam}
-        onChange={handleSelectChange(sortQueryKey)}
-        renderSelectedLabel={renderSortLabel}
-        className="dashboard-tools__sort-select"
-        size="small"
-      />
-      <Select
         options={indicatorStatusOptions}
-        value={statusSearchParam}
-        onChange={handleSelectChange(statusQueryKey)}
+        value={status}
+        onChange={handleSelectChange(indicatorStatusQueryKey)}
         className="dashboard-tools__select"
         size="small"
       />
       <Select
         options={indicatorTypeOptions}
-        value={typeSearchParam}
-        onChange={handleSelectChange(typeQueryKey)}
+        value={type}
+        onChange={handleSelectChange(indicatorTypeQueryKey)}
         className="dashboard-tools__select"
+        size="small"
+      />
+      <Select
+        options={indicatorSortOptions}
+        value={sort}
+        onChange={handleSelectChange(indicatorSortQueryKey)}
+        renderSelectedLabel={renderSortLabel}
+        className="dashboard-tools__sort-select"
         size="small"
       />
     </div>

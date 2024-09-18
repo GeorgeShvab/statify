@@ -1,5 +1,15 @@
+@import "@design-system";
+
 .table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
+}
+
+.table__container {
+  @include ui-border;
+
+  border-radius: $rounded-lg;
+  overflow: hidden;
+  background-color: $white;
 }
