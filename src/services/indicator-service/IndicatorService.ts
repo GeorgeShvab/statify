@@ -13,6 +13,10 @@ interface SearchParams {
 }
 
 const IndicatorService = {
+  async updateOne(id: string, data: Partial<Indicator>) {
+    await prisma.indicator.update({ where: { id }, data })
+  },
+
   async get({ id }: { id: string }) {
     const data = await prisma.indicator.findUnique({ where: { id } })
 

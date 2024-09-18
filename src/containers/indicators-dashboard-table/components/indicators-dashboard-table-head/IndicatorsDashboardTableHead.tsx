@@ -29,11 +29,11 @@ const IndicatorsDashboardTableHead = () => (
     <TableHeadCell className="indicators-dashboard-table__last-updated-cell">
       Last update
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__absolute-cell">
-      Absolute
-    </TableHeadCell>
     <TableHeadCell className="indicators-dashboard-table__hidden-cell">
       Hidden
+    </TableHeadCell>
+    <TableHeadCell className="indicators-dashboard-table__more-cell">
+      <></>
     </TableHeadCell>
   </TableRow>
 )

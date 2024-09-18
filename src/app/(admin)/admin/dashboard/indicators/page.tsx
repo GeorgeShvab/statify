@@ -36,7 +36,7 @@ const IndicatorsDashboardPage: FC<
     possibleIndicatorSortDirection
   )
 
-  const search = searchParams.search
+  const search = searchParams.search || ""
 
   const indicators = await IndicatorService.getAdminIndicators({
     sort,
@@ -46,6 +46,9 @@ const IndicatorsDashboardPage: FC<
     absolute: type === "all" ? undefined : type === "absolute",
   })
 
+  const key =
+    indicators[0].id + indicators.length + indicators[indicators.length - 1].id
+
   return (
     <main className="container">
       <div className="admin-dashboard">
@@ -54,9 +57,10 @@ const IndicatorsDashboardPage: FC<
           sort={sort}
           type={type}
           status={status}
-          search={search || ""}
+          search={search}
+          sortDirection={sortDirection}
         />
-        <IndicatorsDashboardTable indicators={indicators} />
+        <IndicatorsDashboardTable key={key} indicators={indicators} />
       </div>
     </main>
   )
