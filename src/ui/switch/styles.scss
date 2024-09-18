@@ -9,14 +9,15 @@
   position: relative;
   transition: 0.3s background-color;
   cursor: pointer;
+  display: block;
+}
 
-  &.checked {
-    background-color: $gray-dark;
+.switch-input:checked + label {
+  background-color: $gray-dark;
 
-    .switch__circle {
-      background-color: $white;
-      left: 16px;
-    }
+  .switch__circle {
+    background-color: $white;
+    left: 16px;
   }
 }
 

@@ -3,4 +3,5 @@ export type IndicatorsDashboardToolsProps = {
   search: string
   status: string
   type: string
+  sortDirection: string
 }

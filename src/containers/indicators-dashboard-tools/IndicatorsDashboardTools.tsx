@@ -16,14 +16,19 @@ import {
   indicatorSortOptions,
   indicatorStatusOptions,
   indicatorTypeOptions,
+  indicatorSortDirectionQueryKey,
 } from "@/app/(admin)/admin/dashboard/indicators/constants"
 import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
+import IconButton from "@/ui/icon-button/IconButton"
+import SortAscendingIcon from "@/ui/icons/SortAscendingIcon"
+import SortDescendingIcon from "@/ui/icons/SortDescendingIcon"
 
 const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   sort,
   search,
   status,
   type,
+  sortDirection,
 }) => {
   const [_, setSearchParams] = useQueryParams<DashboardIndicatorQueryParams>()
 
@@ -45,8 +50,18 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
     setSearchParams(key, option.value)
   }
 
+  const handleSortDirectionChange = () => {
+    setSearchParams(
+      indicatorSortDirectionQueryKey,
+      sortDirection === "asc" ? "desc" : "asc"
+    )
+  }
+
   const renderSortLabel = ({ label }: Option) =>
     `Sort by ${label.toLowerCase()}`
+
+  const sortIcon =
+    sortDirection === "asc" ? <SortAscendingIcon /> : <SortDescendingIcon />
 
   return (
     <div className="dashboard-tools">
@@ -64,13 +79,6 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         size="small"
       />
       <Select
-        options={indicatorTypeOptions}
-        value={type}
-        onChange={handleSelectChange(indicatorTypeQueryKey)}
-        className="dashboard-tools__select"
-        size="small"
-      />
-      <Select
         options={indicatorSortOptions}
         value={sort}
         onChange={handleSelectChange(indicatorSortQueryKey)}
@@ -78,6 +86,9 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         className="dashboard-tools__sort-select"
         size="small"
       />
+      <IconButton color="light" onClick={handleSortDirectionChange}>
+        {sortIcon}
+      </IconButton>
     </div>
   )
 }

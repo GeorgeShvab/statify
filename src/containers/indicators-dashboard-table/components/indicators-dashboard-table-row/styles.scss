@@ -27,6 +27,10 @@
     }
   }
 
+  .table__body-cell {
+    transition: 0.3s background-color;
+  }
+
   .selected {
     .table__body-cell {
       background-color: $white-darker;
@@ -38,6 +42,15 @@
       path {
         fill: $gray-dark;
       }
+    }
+  }
+
+  .indicators-dashboard__more-button {
+    width: 20px;
+    color: $gray !important;
+
+    &:hover {
+      color: $gray-dark !important;
     }
   }
 }

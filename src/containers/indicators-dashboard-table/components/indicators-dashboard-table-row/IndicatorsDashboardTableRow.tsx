@@ -3,18 +3,32 @@ import SquareIcon from "@/ui/icons/SquareIcon"
 import Switch from "@/ui/switch/Switch"
 import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
-import { FC, useState } from "react"
+import { FC, useRef, useState } from "react"
 import { IndicatorsDashboardTableRowProps } from "./types"
 import cn from "@/utils/cn/cn"
 import "./styles.scss"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
+import useMutation from "@/hooks/use-mutation/useMutation"
+import { updateIndicator } from "@/api/indicator/update"
+import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
+import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
+import Dropdown from "@/ui/dropdown/Dropdown"
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,
 }) => {
-  const [absolute, setAbsolute] = useState(indicator.absolute)
-  const [hidden, setHidden] = useState(indicator.hidden)
+  const moreButtonContainer = useRef(null)
+
+  const [isOptionDropdownOpened, setIsOptionsDropdownOpened] = useState(false)
   const [isSelected, setIsSelected] = useState(false)
+  const [isHidden, setIsHidden] = useState(indicator.hidden)
+
+  const [data, mutate] = useMutation(updateIndicator)
+
+  const handleIsHiddenChange = async () => {
+    setIsHidden((prev) => !prev)
+    await mutate({ id: indicator.id, hidden: !isHidden })
+  }
 
   const lastUpdateDate = new Date(indicator.updatedAt).toLocaleDateString()
 
@@ -50,15 +64,46 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
       <TableCell className="indicators-dashboard-table__last-updated-cell">
         {lastUpdateDate}
       </TableCell>
-      <TableCell className="indicators-dashboard-table__absolute-cell">
-        <div className="indicators-dashboard-table__switch-container">
-          <Switch checked={absolute} onChange={setAbsolute} />
-        </div>
-      </TableCell>
       <TableCell className="indicators-dashboard-table__hidden-cell">
         <div className="indicators-dashboard-table__switch-container">
-          <Switch checked={hidden} onChange={setHidden} />
+          <Switch checked={isHidden} onChange={handleIsHiddenChange} />
         </div>
+      </TableCell>
+      <TableCell className="indicators-dashboard-table__more-cell">
+        <IconButton
+          variant="text"
+          color="light"
+          className="indicators-dashboard__more-button"
+          ref={moreButtonContainer}
+          onClick={() => setIsOptionsDropdownOpened(true)}
+        >
+          <VerticalMoreIcon />
+        </IconButton>
+        <Dropdown
+          anchor={moreButtonContainer}
+          position="bottom-end"
+          isOpen={isOptionDropdownOpened}
+          onClose={() => setIsOptionsDropdownOpened(false)}
+        >
+          <DropdownItem
+            className="indicator-options-dropdown__item"
+            size="small"
+          >
+            More Information
+          </DropdownItem>
+          <DropdownItem
+            className="indicator-options-dropdown__item"
+            size="small"
+          >
+            Update Indicator
+          </DropdownItem>
+          <DropdownItem
+            className="indicator-options-dropdown__item"
+            size="small"
+          >
+            Delete Indicator
+          </DropdownItem>
+        </Dropdown>
       </TableCell>
     </TableRow>
   )

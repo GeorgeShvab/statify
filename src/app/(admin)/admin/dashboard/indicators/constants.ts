@@ -2,12 +2,12 @@ export const indicatorSearchQueryKey = "search"
 export const indicatorSortQueryKey = "sort"
 export const indicatorStatusQueryKey = "status"
 export const indicatorTypeQueryKey = "type"
+export const indicatorSortDirectionQueryKey = "sortDirection"
 
 export const indicatorSortOptions = [
   { value: "id", label: "ID" },
   { value: "label", label: "Label" },
   { value: "datapoints", label: "Datapoints" },
-  { value: "createdAt", label: "Date of creation" },
   { value: "updatedAt", label: "Date of updation" },
 ] as const
 

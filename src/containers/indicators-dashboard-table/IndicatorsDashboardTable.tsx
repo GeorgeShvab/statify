@@ -7,10 +7,15 @@ import TableRow from "@/ui/table/components/table-row/TableRow"
 import TableHeadCell from "@/ui/table/components/table-head-cell/TableHeadCell"
 import { Indicator } from "@prisma/client"
 import { FC } from "react"
-import { IndicatorsDashboardTableProps } from "./IndicatorsDashboardTable.types"
+import {
+  IndicatorsDashboardTableFormValues,
+  IndicatorsDashboardTableProps,
+} from "./IndicatorsDashboardTable.types"
 import SquareIcon from "@/ui/icons/SquareIcon"
 import IndicatorsDashboardTableRow from "./components/indicators-dashboard-table-row/IndicatorsDashboardTableRow"
 import IndicatorsDashboardTableHead from "./components/indicators-dashboard-table-head/IndicatorsDashboardTableHead"
+import { useForm } from "react-hook-form"
+import getInitialValues from "./utils/get-initial-values/getInitialValues"
 
 const renderHeader = () => <IndicatorsDashboardTableHead />
 
