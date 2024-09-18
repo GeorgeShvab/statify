@@ -1,4 +1,4 @@
-import IndicatorService from "@/services/IndicatorService"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { NextRequest, NextResponse } from "next/server"
 
 export const GET = async (req: NextRequest) => {

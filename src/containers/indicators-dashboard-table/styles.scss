@@ -1,86 +1,77 @@
-// @import "@design-system";
+@import "@design-system";
 
-// .table-wrapper {
-//   @include ui-border;
-//   border-radius: $rounded-lg;
-//   overflow: hidden;
-// }
+.table {
+  // .table used to not use !important
+  .indicators-dashboard-table__id-cell {
+    text-align: left;
+    font-size: $fs-xs;
+    width: 12.5%;
+  }
 
-// .table {
-//   width: 100%;
-//   border-collapse: collapse;
-//   background-color: $white-darker;
-//   table-layout: fixed;
-// }
+  .indicators-dashboard-table__label-cell {
+    text-align: left;
+    font-size: $fs-xs;
+    width: 22.5%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-// .table__head-cell {
-//   @include heading($fs-sm);
+  .indicators-dashboard-table__description-cell {
+    font-size: $fs-xs;
+    width: 20%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 
-//   white-space: nowrap;
-//   color: $gray-darker;
-//   text-align: left;
-// }
+  .indicators-dashboard-table__source-cell {
+    font-size: $fs-xs;
+    width: 20%;
+    text-align: left;
+  }
 
-// .table__body-cell {
-//   //@include ui-text-color;
+  .indicators-dashboard-table__unit-cell {
+    font-size: $fs-xs;
+    width: 10%;
+  }
 
-//   white-space: nowrap;
-//   color: $gray-darker;
-//   font-size: $fs-sm;
-//   text-align: left;
-//   overflow: hidden;
-//   text-overflow: ellipsis;
-//   padding: 0 sp(4) 0 0;
-// }
+  .indicators-dashboard-table__last-updated-cell {
+    font-size: $fs-xs;
+    width: 9%;
+    text-align: center;
+  }
 
-// .table__body-row {
-//   @include ui-border;
+  .indicators-dashboard-table__absolute-cell {
+    font-size: $fs-xs;
+    width: 7.5%;
+    text-align: center;
+  }
 
-//   border-top: none !important;
-//   border-left: none !important;
-//   border-right: none !important;
-//   background-color: $white;
-//   box-sizing: border-box;
-// }
+  .indicators-dashboard-table__hidden-cell {
+    font-size: $fs-xs;
+    width: 7.5%;
+    text-align: center;
+  }
 
-// .id-cell {
-//   width: 7.5%;
-//   padding: 0;
-// }
+  .indicators-dashboard-table__check-cell {
+    font-size: $fs-xs;
+    width: 4%;
+    padding-left: sp(4) !important;
+  }
 
-// .boolean-cell {
-//   text-align: center;
-//   padding: 0;
-// }
+  .indicators-dashboard-table__datapoints-cell {
+    font-size: $fs-xs;
+    width: 7.5%;
+    text-align: center;
+  }
+}
 
-// .selection-cell {
-//   width: 50px;
-// }
+.indicators-dashboard-table__container {
+  margin-bottom: sp(2);
 
-// .label-cell {
-//   width: 20%;
-// }
-
-// .date-cell {
-//   width: 10%;
-//   text-align: center;
-//   padding: 0;
-// }
-
-// .description-cell {
-//   width: 20%;
-// }
-
-// .source-cell {
-//   width: 15%;
-// }
-
-// .table__head-row {
-//   height: 40px;
-// }
-
-// .unit-cell {
-//   width: 5%;
-//   text-align: center;
-//   padding: 0;
-// }
+  @include breakpoint("md") {
+    margin-bottom: sp(4);
+  }
+}

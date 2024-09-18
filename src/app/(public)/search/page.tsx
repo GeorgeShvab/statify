@@ -1,6 +1,6 @@
 import IndicatorCard from "@/components/indicator-card/IndicatorCard"
 import Pagination from "@/components/pagination/Pagination"
-import IndicatorService from "@/services/IndicatorService"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { PageProps } from "@/types/types"
 import SearchIcon from "@/ui/icons/SearchIcon"
 import { Metadata } from "next"

@@ -1,5 +1,5 @@
 import CountryService from "@/services/CountryService"
-import IndicatorService from "@/services/IndicatorService"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { NextRequest, NextResponse } from "next/server"
 import XLSX from "xlsx"
 

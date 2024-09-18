@@ -1,0 +1,33 @@
+@import "@design-system";
+
+.switch {
+  @include ui-border;
+
+  height: 20px;
+  border-radius: $rounded-full;
+  width: 34px;
+  position: relative;
+  transition: 0.3s background-color;
+  cursor: pointer;
+
+  &.checked {
+    background-color: $gray-dark;
+
+    .switch__circle {
+      background-color: $white;
+      left: 16px;
+    }
+  }
+}
+
+.switch__circle {
+  position: absolute;
+  background-color: $gray-light;
+  height: 14px;
+  width: 14px;
+  border-radius: $rounded-full;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 3px;
+  transition: 0.3s background-color, 0.3s left;
+}

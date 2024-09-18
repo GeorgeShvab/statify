@@ -1,5 +1,6 @@
 import prisma from "@/prisma"
 import { Indicator, Prisma } from "@prisma/client"
+import { GetAdminIndicatorsParams } from "./types"
 
 const perPage = Number(process.env.RESULTS_PER_PAGE)
 
@@ -104,6 +105,40 @@ const IndicatorService = {
         include: { relatedTo: true },
       })
     )?.relatedTo
+  },
+
+  async getAdminIndicators({
+    sort,
+    search,
+    hidden,
+    absolute,
+    sortDirection,
+  }: GetAdminIndicatorsParams) {
+    const hiddenCondition = Prisma.sql([
+      hidden !== undefined ? `"hidden" = ${hidden}` : "TRUE",
+    ])
+    const absoluteCondition = Prisma.sql([
+      absolute !== undefined ? `"absolute" = ${absolute}` : "TRUE",
+    ])
+    const searchCondition = Prisma.sql([
+      search
+        ? `(LOWER("label") LIKE LOWER('%${search}%') OR LOWER("description") LIKE LOWER('%${search}%') OR LOWER("id") LIKE LOWER('%${search}%'))`
+        : "TRUE",
+    ])
+
+    const sortByDatapoints =
+      '(SELECT COUNT(id) FROM "Value" WHERE "indicatorId" = i.id)'
+
+    const sortStatement = Prisma.sql([
+      `ORDER BY ${
+        sort === "datapoints" ? sortByDatapoints : `"${sort}"`
+      } ${sortDirection}`,
+    ])
+
+    const indicators =
+      await prisma.$queryRaw`SELECT i.*, (SELECT COUNT(id) FROM "Value" WHERE "indicatorId" = i.id)::int as datapoints FROM "Indicator" i WHERE ${searchCondition} AND ${absoluteCondition} AND ${hiddenCondition} ${sortStatement}`
+
+    return indicators as (Indicator & { datapoints: number })[]
   },
 }
 

@@ -1,6 +1,6 @@
 import BookmarkService from "@/services/BookmarkService"
 import CountryService from "@/services/CountryService"
-import IndicatorService from "@/services/IndicatorService"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 import generateId from "@/utils/generate-id/generateId"
 import { cookies } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"

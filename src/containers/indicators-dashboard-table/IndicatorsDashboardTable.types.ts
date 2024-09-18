@@ -1,3 +1,5 @@
-import { ComponentProps } from "react"
+import { Indicator } from "@prisma/client"
 
-export interface IndicatorsDashboardTable extends ComponentProps<"table"> {}
+export interface IndicatorsDashboardTableProps {
+  indicators: (Indicator & { datapoints: number })[]
+}
