@@ -26,15 +26,6 @@
   width: 100%;
 }
 
-.indicator-form__content {
-  display: flex;
-  gap: sp(5);
-
-  & > div {
-    flex: 3 0 auto;
-  }
-}
-
 .indicator-form__label-container {
   margin-bottom: sp(4);
 }
