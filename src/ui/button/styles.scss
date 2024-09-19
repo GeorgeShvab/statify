@@ -5,6 +5,11 @@
   @include ui-text-color;
   @include ui-text-color-hover;
 
+  &:disabled {
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
   &.contained {
     @include ui-border;
     @include ui-border-hover;

@@ -1,10 +1,10 @@
 import { ComponentProps, FC, forwardRef, ForwardRefRenderFunction } from "react"
 
-interface Props extends ComponentProps<"input"> {
+export interface InputProps extends ComponentProps<"input"> {
   isError?: boolean
 }
 
-const Input: ForwardRefRenderFunction<HTMLInputElement, Props> = (
+const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { isError, className = "", ...props },
   ref
 ) => {

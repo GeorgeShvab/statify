@@ -18,3 +18,8 @@
     --search-bar-height: 81.6px;
   }
 }
+
+.error {
+  border-color: $error;
+  background-color: transparentize($color: $error, $amount: 0.975);
+}

@@ -1,7 +1,7 @@
 "use client"
 
 import { FC, useState } from "react"
-import Modal from "@/components/Modal"
+import Modal from "@/components/modal/Modal"
 import ChartManager from "@/containers/chart-management-modal/chart-manager/ChartManager"
 import AddItemIcon from "@/ui/icons/AddItemIcon"
 

@@ -13,6 +13,8 @@ import { updateIndicator } from "@/api/indicator/update"
 import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import Dropdown from "@/ui/dropdown/Dropdown"
+import { useModal } from "@/providers/modal-provider/ModalProvider"
+import EditIndicatorModal from "@/containers/modals/edit-indicator-modal/EditIndicatorModal"
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,
@@ -22,6 +24,8 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   const [isOptionDropdownOpened, setIsOptionsDropdownOpened] = useState(false)
   const [isSelected, setIsSelected] = useState(false)
   const [isHidden, setIsHidden] = useState(indicator.hidden)
+
+  const { openModal } = useModal()
 
   const [data, mutate] = useMutation(updateIndicator)
 
@@ -84,6 +88,7 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
           position="bottom-end"
           isOpen={isOptionDropdownOpened}
           onClose={() => setIsOptionsDropdownOpened(false)}
+          closeOneClick
         >
           <DropdownItem
             className="indicator-options-dropdown__item"
@@ -94,6 +99,11 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
           <DropdownItem
             className="indicator-options-dropdown__item"
             size="small"
+            onClick={() =>
+              openModal(<EditIndicatorModal indicator={indicator} />, {
+                scrollable: true,
+              })
+            }
           >
             Update Indicator
           </DropdownItem>

@@ -1,0 +1,10 @@
+@import "@design-system";
+
+.tag {
+  @include ui-border;
+
+  line-height: 1.2;
+  font-size: $fs-xs;
+  padding: sp(1) sp(2);
+  color: $gray-dark;
+}

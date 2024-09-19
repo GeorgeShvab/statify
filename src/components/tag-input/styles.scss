@@ -1,0 +1,18 @@
+@import "@design-system";
+
+.tag-input {
+  display: flex;
+  gap: sp(1);
+  flex-wrap: wrap;
+}
+
+.tag-input__input {
+  border: none;
+  outline: none;
+  width: 63px;
+  font-size: $fs-xs;
+}
+
+.tag-input__remove-button {
+  //cursor: pointer;
+}

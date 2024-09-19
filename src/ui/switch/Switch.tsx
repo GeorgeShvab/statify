@@ -1,41 +1,42 @@
-import { FC, useId, useState } from "react"
+import {
+  FC,
+  forwardRef,
+  ForwardRefRenderFunction,
+  useId,
+  useState,
+} from "react"
 import "./styles.scss"
 import { SwitchProps } from "./Switch.types"
 import cn from "@/utils/cn/cn"
 
-const Switch: FC<SwitchProps> = ({
-  checked,
-  onChange,
-  className,
-  inputProps,
-  ...props
-}) => {
-  const handleChange = () => {
-    onChange && onChange(!checked)
-  }
-
+const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
+  { checked, onChange, className, labelProps, children, ...props },
+  ref
+) => {
   const inputId = useId()
 
   return (
-    <div>
+    <label
+      htmlFor={inputId}
+      {...labelProps}
+      className={cn("switch", labelProps?.className)}
+    >
       <input
-        className="switch-input"
+        ref={ref}
+        className="switch__input"
         type="checkbox"
         checked={checked}
-        onChange={handleChange}
+        onChange={onChange}
         id={inputId}
-        {...inputProps}
+        {...props}
         hidden
       />
-      <label
-        className={cn("switch light", className)}
-        htmlFor={inputId}
-        {...props}
-      >
-        <div className="switch__circle" />
-      </label>
-    </div>
+      <div className="switch__container light">
+        <div className="switch__container-circle" />
+      </div>
+      {children && <p className="switch__label">{children}</p>}
+    </label>
   )
 }
 
-export default Switch
+export default forwardRef(Switch)

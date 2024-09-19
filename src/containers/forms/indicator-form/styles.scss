@@ -1,0 +1,49 @@
+@import "@design-system";
+
+.indicator-form {
+  width: 440px;
+}
+
+.indicator-form__title {
+  @include heading($fs-lg);
+
+  text-align: center;
+  margin-bottom: sp(8);
+}
+
+.indicator-form__input {
+  width: 100%;
+}
+
+.indicator-form__content {
+  display: flex;
+  gap: sp(5);
+
+  & > div {
+    flex: 3 0 auto;
+  }
+}
+
+.indicator-form__label-container {
+  margin-bottom: sp(4);
+}
+
+.indicator-form__input-group {
+  display: flex;
+  gap: sp(3);
+}
+
+.indicator-form__input-label {
+  width: 100%;
+}
+
+.indicator-form__switchers {
+  padding: sp(2) 0 sp(4);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: sp(6);
+}
+
+.indicator-form__save-button {
+  width: 100%;
+}
