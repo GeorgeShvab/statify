@@ -1,0 +1,14 @@
+@import "@design-system";
+
+.modal-container {
+  padding: sp(10);
+  border-radius: $rounded-xl;
+  background-color: $white;
+  position: relative;
+}
+
+.modal-container__close-button {
+  position: absolute;
+  right: sp(4);
+  top: sp(4);
+}

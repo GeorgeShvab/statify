@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.textarea__input {
+  line-height: 1.3;
+  color: $black-light;
+  resize: none;
+  width: 100%;
+  outline: none;
+  border: none;
+  overflow: hidden;
+}

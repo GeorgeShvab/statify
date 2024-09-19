@@ -1,6 +1,18 @@
 @import "@design-system";
 
 .switch {
+  display: flex;
+  align-items: center;
+  gap: sp(3);
+  cursor: pointer;
+}
+
+.switch__label {
+  font-size: $fs-sm;
+  color: $gray;
+}
+
+.switch__container {
   @include ui-border;
 
   height: 20px;
@@ -12,16 +24,16 @@
   display: block;
 }
 
-.switch-input:checked + label {
+.switch__input:checked + .switch__container {
   background-color: $gray-dark;
 
-  .switch__circle {
+  .switch__container-circle {
     background-color: $white;
     left: 16px;
   }
 }
 
-.switch__circle {
+.switch__container-circle {
   position: absolute;
   background-color: $gray-light;
   height: 14px;

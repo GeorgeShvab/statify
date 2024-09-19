@@ -6,5 +6,6 @@ export interface DropdownProps extends ComponentProps<"ul"> {
   children: ReactNode
   isOpen: boolean
   position: SidePosition
+  closeOneClick?: boolean
   onClose: () => void
 }

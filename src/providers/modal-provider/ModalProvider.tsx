@@ -9,10 +9,11 @@ import {
   useState,
 } from "react"
 import {
+  ModalConfiguration,
   ModalContext,
   ModalProviderProps,
 } from "@/providers/modal-provider/ModalProvider.types"
-import Modal from "@/components/Modal"
+import Modal from "@/components/modal/Modal"
 
 const modalContext = createContext<ModalContext>({
   openModal: () => {},
@@ -22,14 +23,22 @@ const modalContext = createContext<ModalContext>({
 const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [element, setElement] = useState<ReactNode>(null)
+  const [configuration, setConfiguration] = useState<ModalConfiguration | null>(
+    null
+  )
 
-  const openModal = (element: ReactNode) => {
+  const openModal = (
+    element: ReactNode,
+    modalConfiguration?: ModalConfiguration
+  ) => {
     setIsOpen(true)
     setElement(element)
+    modalConfiguration && setConfiguration(modalConfiguration)
   }
 
   const closeModal = () => {
     setIsOpen(false)
+    setConfiguration(null)
   }
 
   const value = useMemo(
@@ -42,7 +51,7 @@ const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
 
   return (
     <modalContext.Provider value={value}>
-      <Modal opened={isOpen} onClose={closeModal}>
+      <Modal opened={isOpen} onClose={closeModal} {...configuration}>
         {element}
       </Modal>
       {children}

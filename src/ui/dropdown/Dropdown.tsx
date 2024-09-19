@@ -1,6 +1,6 @@
 "use client"
 
-import { FC } from "react"
+import { FC, MouseEvent } from "react"
 import { DropdownProps } from "@/ui/dropdown/Dropdown.types"
 import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
 import dynamic from "next/dynamic"
@@ -17,9 +17,16 @@ const Dropdown: FC<DropdownProps> = ({
   position,
   onClose,
   className,
+  closeOneClick,
+  onClick,
   ...props
 }) => {
   if (!isOpen) return null
+
+  const handleDropdownClick = (e: MouseEvent<HTMLUListElement>) => {
+    if (onClick) onClick(e)
+    if (closeOneClick) onClose()
+  }
 
   return (
     <Portal>
@@ -30,7 +37,11 @@ const Dropdown: FC<DropdownProps> = ({
           position={position}
           offset={5}
         >
-          <ul className={cn("dropdown", "light", className)} {...props}>
+          <ul
+            className={cn("dropdown", "light", className)}
+            onClick={handleDropdownClick}
+            {...props}
+          >
             {children}
           </ul>
         </AbsolutePosition>

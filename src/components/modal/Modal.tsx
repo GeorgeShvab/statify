@@ -1,17 +1,18 @@
 import { FC, ReactNode, useEffect } from "react"
-import AnimationWrapper from "@/components/animation/AnimationWrapper"
-import OpacityAnimation from "@/components/animation/OpacityAnimation"
 import dynamic from "next/dynamic"
+import ModalScrollContainer from "./components/modal-scroll-container/ModalScrollContainer"
+import ModalCenterContainer from "./components/modal-center-container/ModalCenterContainer"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
 interface Props {
   children: ReactNode
   opened: boolean
+  scrollable?: boolean
   onClose: () => void
 }
 
-const Modal: FC<Props> = ({ children, opened, onClose }) => {
+const Modal: FC<Props> = ({ children, opened, scrollable, onClose }) => {
   useEffect(() => {
     if (opened) {
       document.body.style.overflow = "hidden"
@@ -22,7 +23,7 @@ const Modal: FC<Props> = ({ children, opened, onClose }) => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.code !== "27") return
+      if (e.code !== "Escape") return
       onClose()
     }
 
@@ -33,21 +34,13 @@ const Modal: FC<Props> = ({ children, opened, onClose }) => {
     }
   }, [])
 
-  return (
-    <Portal>
-      <AnimationWrapper ms={250} open={opened}>
-        <div>
-          <div
-            className="fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20"
-            onClick={onClose}
-          />
-          <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30">
-            {children}
-          </div>
-        </div>
-      </AnimationWrapper>
-    </Portal>
+  const content = scrollable ? (
+    <ModalScrollContainer onClose={onClose}>{children}</ModalScrollContainer>
+  ) : (
+    <ModalCenterContainer onClose={onClose}>{children}</ModalCenterContainer>
   )
+
+  return <Portal>{opened && content}</Portal>
 }
 
 export default Modal
