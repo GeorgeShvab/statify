@@ -8,7 +8,18 @@
   @include heading($fs-lg);
 
   text-align: center;
-  margin-bottom: sp(8);
+  margin-bottom: sp(3);
+}
+
+.create-indicator-form__title {
+  margin-bottom: sp(7);
+}
+
+.indicator-form__subtitle {
+  font-size: $fs-xs;
+  text-align: center;
+  color: $gray-light;
+  margin-bottom: sp(6);
 }
 
 .indicator-form__input {

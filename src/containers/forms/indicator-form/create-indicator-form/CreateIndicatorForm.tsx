@@ -1,6 +1,5 @@
 import { FC } from "react"
 import "../styles.scss"
-import { EditIndicatorFormProps, EditIndicatorFormValues } from "./types"
 import Input from "@/ui/input/Input"
 import InputLabel from "@/ui/input-label/InputLabel"
 import Textarea from "@/ui/textarea/Textarea"
@@ -8,29 +7,27 @@ import Switch from "@/ui/switch/Switch"
 import TagInput from "@/components/tag-input/TagInput"
 import Button from "@/ui/button/Button"
 import { useForm } from "react-hook-form"
-import getInitialValues from "./utils/getInitialValues"
-import filterDirtyValues from "./utils/filterDirtyValues"
 import useMutation from "@/hooks/use-mutation/useMutation"
-import { updateIndicator } from "@/api/indicator/update"
 import { yupResolver } from "@hookform/resolvers/yup"
 import validationSchema from "./validationSchema"
+import { CreateIndicatorFormProps, CreateIndicatorFormValues } from "./types"
+import { initialValues } from "../constants"
+import { createIndicator } from "@/api/indicator/create"
+import prepareValues from "./utils/prepareValues"
 
-const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
-  indicator,
-  onSuccess,
-}) => {
-  const [data, mutate] = useMutation(updateIndicator, {
-    successMessage: "Indicator was updated successffully",
+const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
+  const [data, mutate] = useMutation(createIndicator, {
+    successMessage: "Indicator was created successffully",
     errorMessage: "Unexpected error occured",
   })
 
   const {
     handleSubmit,
     register,
-    formState: { dirtyFields, isDirty, errors },
+    formState: { isDirty, errors },
     setValue,
-  } = useForm<EditIndicatorFormValues>({
-    values: getInitialValues(indicator),
+  } = useForm<CreateIndicatorFormValues>({
+    values: initialValues,
     resolver: yupResolver(validationSchema),
   })
 
@@ -38,21 +35,32 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
     setValue("searchTags", tags, { shouldDirty: true })
   }
 
-  const onSubmit = async (data: EditIndicatorFormValues) => {
+  const onSubmit = async (data: CreateIndicatorFormValues) => {
     if (!isDirty) return
 
-    const filteredValues = filterDirtyValues(data, dirtyFields)
+    const preparedData = prepareValues(data)
 
-    await mutate({ ...filteredValues, id: indicator.id })
+    await mutate(preparedData)
 
     onSuccess()
   }
 
   return (
     <form className="indicator-form" onSubmit={handleSubmit(onSubmit)}>
-      <h3 className="indicator-form__title">Edit Indicator</h3>
-      <p className="indicator-form__subtitle">{indicator.id}</p>
+      <h3 className="indicator-form__title create-indicator-form__title">
+        New Indicator
+      </h3>
       <div>
+        <InputLabel
+          className="indicator-form__label-container"
+          label="Indicator ID"
+        >
+          <Input
+            className="indicator-form__input"
+            isError={Boolean(errors.id)}
+            {...register("id")}
+          />
+        </InputLabel>
         <InputLabel
           className="indicator-form__label-container"
           label="Indicator name"
@@ -76,7 +84,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
           className="indicator-form__label-container"
           label="Search tags"
         >
-          <TagInput tags={indicator.searchTags} onChange={handleTagsChange} />
+          <TagInput tags={[]} onChange={handleTagsChange} />
         </InputLabel>
         <div className="indicator-form__input-group indicator-form__label-container">
           <InputLabel label="Source" className="indicator-form__input-label">
@@ -150,4 +158,4 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
   )
 }
 
-export default EditIndicatorForm
+export default CreateIndicatorForm

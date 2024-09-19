@@ -1,6 +1,6 @@
 import prisma from "@/prisma"
 import { Indicator, Prisma } from "@prisma/client"
-import { GetAdminIndicatorsParams } from "./types"
+import { CreateIndicatorParams, GetAdminIndicatorsParams } from "./types"
 
 const perPage = Number(process.env.RESULTS_PER_PAGE)
 
@@ -13,6 +13,10 @@ interface SearchParams {
 }
 
 const IndicatorService = {
+  async create(data: CreateIndicatorParams) {
+    return prisma.indicator.create({ data })
+  },
+
   async updateOne(id: string, data: Partial<Indicator>) {
     await prisma.indicator.update({ where: { id }, data })
   },

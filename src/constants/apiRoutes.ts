@@ -9,6 +9,7 @@ export default {
   admin: {
     indicator: {
       update: (id: string) => `/api/admin/indicator/${id}`,
+      create: "/api/admin/indicator",
     },
   },
 }
