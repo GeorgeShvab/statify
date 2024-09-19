@@ -1,6 +1,7 @@
 import * as yup from "yup"
 
 const validationSchema = yup.object({
+  id: yup.string().max(50).required(),
   label: yup.string().max(200).required(),
   description: yup.string().max(1000),
   source: yup.string().max(150).required(),
