@@ -61,3 +61,14 @@ After a break, I started working on the project again over the last two weeks. I
 So far, I’ve created parts of the design system, including components like Select and Dropdown, and set up SCSS and Jest. I also implemented NextAuth for authorization, where only admins can log in.
 
 I’ve built the Login, Indicators, Values, and Countries pages. Right now, only the Indicators page works (viewing, editing, and creating indicators), while the other pages still have mock data and need more development.
+
+Admin panel indicators page:
+![image](https://github.com/user-attachments/assets/045c6260-32c6-4fa1-9894-f4f2c57393da)
+
+Indicator edit form:
+![image](https://github.com/user-attachments/assets/e08364f2-c41c-40ee-b6b5-2c4c5ceb4968)
+
+Signin page:
+![image](https://github.com/user-attachments/assets/76be1c6a-c4de-4cfc-b1b6-cb2765341efc)
+
+
