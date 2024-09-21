@@ -1,6 +1,6 @@
-import { useAlert } from "@/providers/alert-provider/AlertProvider"
 import { useState } from "react"
-import { MutationConfiguration } from "./types"
+import { useAlert } from "@/providers/alert-provider/AlertProvider"
+import { MutationConfiguration } from "@/hooks/use-mutation/types"
 
 const useMutation = <TArguments, TResult>(
   fn: (args: TArguments) => Promise<TResult>,

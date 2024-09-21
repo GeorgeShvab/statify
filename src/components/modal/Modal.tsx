@@ -1,7 +1,7 @@
 import { FC, ReactNode, useEffect } from "react"
 import dynamic from "next/dynamic"
-import ModalScrollContainer from "./components/modal-scroll-container/ModalScrollContainer"
-import ModalCenterContainer from "./components/modal-center-container/ModalCenterContainer"
+import ModalCenterContainer from "@/components/modal/components/modal-center-container/ModalCenterContainer"
+import ModalScrollContainer from "@/components/modal/components/modal-scroll-container/ModalScrollContainer"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 

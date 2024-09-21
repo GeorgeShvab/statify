@@ -1,5 +1,5 @@
 import { Indicator } from "@prisma/client"
-import { IndicatorsDashboardTableFormValues } from "../../IndicatorsDashboardTable.types"
+import { IndicatorsDashboardTableFormValues } from "@/containers/indicators-dashboard-table/IndicatorsDashboardTable.types"
 
 const getInitialValues = (
   indicators: Indicator[]

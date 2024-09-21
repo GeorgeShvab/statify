@@ -1,8 +1,8 @@
 import { FC } from "react"
-import { EditIndicatorModalProps } from "./types"
-import { useModal } from "@/providers/modal-provider/ModalProvider"
-import ModalContainer from "@/components/modal-container/ModalContainer"
 import EditIndicatorForm from "@/containers/forms/indicator-form/edit-indicator-form/EditIndicatorForm"
+import { EditIndicatorModalProps } from "@/containers/modals/edit-indicator-modal/types"
+import ModalContainer from "@/components/modal-container/ModalContainer"
+import { useModal } from "@/providers/modal-provider/ModalProvider"
 
 const EditIndicatorModal: FC<EditIndicatorModalProps> = ({ indicator }) => {
   const { closeModal } = useModal()

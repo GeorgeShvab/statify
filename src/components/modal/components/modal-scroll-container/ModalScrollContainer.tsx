@@ -1,5 +1,5 @@
 import { FC, MouseEvent, useRef } from "react"
-import { ModalScrollContainerProps } from "./types"
+import { ModalScrollContainerProps } from "@/components/modal/components/modal-scroll-container/types"
 
 const ModalScrollContainer: FC<ModalScrollContainerProps> = ({
   children,

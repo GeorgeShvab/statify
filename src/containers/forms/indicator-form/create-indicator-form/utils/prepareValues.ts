@@ -1,4 +1,4 @@
-import { CreateIndicatorFormValues } from "../types"
+import { CreateIndicatorFormValues } from "@/containers/forms/indicator-form/create-indicator-form/types"
 
 const prepareValues = (values: CreateIndicatorFormValues) => {
   const result = (

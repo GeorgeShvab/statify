@@ -1,9 +1,9 @@
 import { FC } from "react"
-import { ModalContainerProps } from "./types"
 import IconButton from "@/ui/icon-button/IconButton"
 import CloseIcon from "@/ui/icons/CloseIcon"
-import "./styles.scss"
+import { ModalContainerProps } from "@/components/modal-container/types"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import "@/components/modal-container/styles.scss"
 
 const ModalContainer: FC<ModalContainerProps> = ({ children }) => {
   const { closeModal } = useModal()

@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
-import Input from "./Input"
+import Input from "@/ui/input/Input"
+import { InputProps } from "@/ui/input/Input.types"
 import fireChange from "@/test-utils/fire-change"
-import { InputProps } from "./Input.types"
 
 const mockOnChange = jest.fn()
 const initialValue = "Some text"

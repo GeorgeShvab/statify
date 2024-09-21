@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { ModalCenterContainerProps } from "./types"
+import { ModalCenterContainerProps } from "@/components/modal/components/modal-center-container/types"
 
 const ModalCenterContainer: FC<ModalCenterContainerProps> = ({
   children,

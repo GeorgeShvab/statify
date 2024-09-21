@@ -1,11 +1,11 @@
 "use client"
 
-import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import Button from "@/ui/button/Button"
 import PlusIcon from "@/ui/icons/PlusIcon"
-import "@/containers/indicators-dashboard-header/styles.scss"
+import CreateIndicatorModal from "@/containers/modals/create-indicator-modal/IndicatorModal"
+import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
-import CreateIndicatorModal from "../modals/create-indicator-modal/IndicatorModal"
+import "@/containers/indicators-dashboard-header/styles.scss"
 
 const IndicatorsDashboardHeader = () => {
   const { openModal } = useModal()
