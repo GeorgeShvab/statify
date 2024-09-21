@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { InputLabelProps } from "./types"
-import "./styles.scss"
+import { InputLabelProps } from "@/ui/input-label/types"
 import cn from "@/utils/cn/cn"
+import "@/ui/input-label/styles.scss"
 
 const InputLabel: FC<InputLabelProps> = ({
   label,

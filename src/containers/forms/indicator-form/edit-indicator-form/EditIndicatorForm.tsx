@@ -1,19 +1,22 @@
 import { FC } from "react"
-import "../styles.scss"
-import { EditIndicatorFormProps, EditIndicatorFormValues } from "./types"
-import Input from "@/ui/input/Input"
-import InputLabel from "@/ui/input-label/InputLabel"
-import Textarea from "@/ui/textarea/Textarea"
-import Switch from "@/ui/switch/Switch"
-import TagInput from "@/components/tag-input/TagInput"
-import Button from "@/ui/button/Button"
 import { useForm } from "react-hook-form"
-import getInitialValues from "./utils/getInitialValues"
-import filterDirtyValues from "./utils/filterDirtyValues"
+import { yupResolver } from "@hookform/resolvers/yup"
+import Button from "@/ui/button/Button"
+import InputLabel from "@/ui/input-label/InputLabel"
+import Input from "@/ui/input/Input"
+import Switch from "@/ui/switch/Switch"
+import Textarea from "@/ui/textarea/Textarea"
+import {
+  EditIndicatorFormProps,
+  EditIndicatorFormValues,
+} from "@/containers/forms/indicator-form/edit-indicator-form/types"
+import filterDirtyValues from "@/containers/forms/indicator-form/edit-indicator-form/utils/filterDirtyValues"
+import getInitialValues from "@/containers/forms/indicator-form/edit-indicator-form/utils/getInitialValues"
+import validationSchema from "@/containers/forms/indicator-form/edit-indicator-form/validationSchema"
+import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { updateIndicator } from "@/api/indicator/update"
-import { yupResolver } from "@hookform/resolvers/yup"
-import validationSchema from "./validationSchema"
+import "@/containers/forms/indicator-form/styles.scss"
 
 const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
   indicator,

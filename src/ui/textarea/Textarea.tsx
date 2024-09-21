@@ -1,7 +1,7 @@
 import { ChangeEvent, forwardRef, ForwardRefRenderFunction } from "react"
-import { TextareaProps } from "./types"
-import "./styles.scss"
+import { TextareaProps } from "@/ui/textarea/types"
 import cn from "@/utils/cn/cn"
+import "@/ui/textarea/styles.scss"
 
 const Textarea: ForwardRefRenderFunction<HTMLTextAreaElement, TextareaProps> = (
   { className, onChange, isError, ...props },

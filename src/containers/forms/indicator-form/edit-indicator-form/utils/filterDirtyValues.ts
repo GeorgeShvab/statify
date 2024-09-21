@@ -1,4 +1,4 @@
-import { EditIndicatorFormValues } from "../types"
+import { EditIndicatorFormValues } from "@/containers/forms/indicator-form/edit-indicator-form/types"
 
 const filterDirtyValues = (
   data: EditIndicatorFormValues,

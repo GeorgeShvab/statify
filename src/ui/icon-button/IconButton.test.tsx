@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react"
-import IconButton from "./IconButton"
 import { ButtonProps } from "@/ui/button/Button.types"
-import AddItemIcon from "../icons/AddItemIcon"
+import IconButton from "@/ui/icon-button/IconButton"
+import AddItemIcon from "@/ui/icons/AddItemIcon"
 
 // TODO: Add cases to test whether appropriate styles are applied with dark, light and other design-system classes
 

@@ -1,5 +1,5 @@
 import { forwardRef, ForwardRefRenderFunction } from "react"
-import { InputProps } from "./Input.types"
+import { InputProps } from "@/ui/input/Input.types"
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { isError, className = "", ...props },

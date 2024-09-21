@@ -1,20 +1,20 @@
+import { FC, useRef, useState } from "react"
+import Dropdown from "@/ui/dropdown/Dropdown"
+import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import IconButton from "@/ui/icon-button/IconButton"
 import SquareIcon from "@/ui/icons/SquareIcon"
+import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
 import Switch from "@/ui/switch/Switch"
 import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
-import { FC, useRef, useState } from "react"
-import { IndicatorsDashboardTableRowProps } from "./types"
-import cn from "@/utils/cn/cn"
-import "./styles.scss"
-import prettifyValue from "@/utils/prettify-value/prettifyValue"
-import useMutation from "@/hooks/use-mutation/useMutation"
-import { updateIndicator } from "@/api/indicator/update"
-import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
-import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
-import Dropdown from "@/ui/dropdown/Dropdown"
-import { useModal } from "@/providers/modal-provider/ModalProvider"
+import { IndicatorsDashboardTableRowProps } from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/types"
 import EditIndicatorModal from "@/containers/modals/edit-indicator-modal/EditIndicatorModal"
+import { useModal } from "@/providers/modal-provider/ModalProvider"
+import useMutation from "@/hooks/use-mutation/useMutation"
+import cn from "@/utils/cn/cn"
+import prettifyValue from "@/utils/prettify-value/prettifyValue"
+import { updateIndicator } from "@/api/indicator/update"
+import "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/styles.scss"
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,
@@ -106,12 +106,6 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
             }
           >
             Update Indicator
-          </DropdownItem>
-          <DropdownItem
-            className="indicator-options-dropdown__item"
-            size="small"
-          >
-            Delete Indicator
           </DropdownItem>
         </Dropdown>
       </TableCell>

@@ -1,12 +1,12 @@
 "use client"
 
-import "@/containers/indicators-dashboard-table/styles.scss"
-import Table from "@/ui/table/Table"
-import { Indicator } from "@prisma/client"
 import { FC } from "react"
-import { IndicatorsDashboardTableProps } from "./IndicatorsDashboardTable.types"
-import IndicatorsDashboardTableRow from "./components/indicators-dashboard-table-row/IndicatorsDashboardTableRow"
-import IndicatorsDashboardTableHead from "./components/indicators-dashboard-table-head/IndicatorsDashboardTableHead"
+import { Indicator } from "@prisma/client"
+import Table from "@/ui/table/Table"
+import { IndicatorsDashboardTableProps } from "@/containers/indicators-dashboard-table/IndicatorsDashboardTable.types"
+import IndicatorsDashboardTableHead from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-head/IndicatorsDashboardTableHead"
+import IndicatorsDashboardTableRow from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/IndicatorsDashboardTableRow"
+import "@/containers/indicators-dashboard-table/styles.scss"
 
 const renderHeader = () => <IndicatorsDashboardTableHead />
 

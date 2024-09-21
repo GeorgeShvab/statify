@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { TagWithInputProps } from "./types"
 import Tag from "@/ui/tag/Tag"
-import calculateTagInputWidth from "../../utils/calculate-tag-input-width/calculateTagInputWidth"
+import { TagWithInputProps } from "@/components/tag-input/components/tag-with-input/types"
+import calculateTagInputWidth from "@/components/tag-input/utils/calculate-tag-input-width/calculateTagInputWidth"
 
 const TagWithInput: FC<TagWithInputProps> = ({ onRemove, ...props }) => {
   const handleRef = (el: HTMLInputElement) => {

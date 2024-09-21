@@ -1,6 +1,9 @@
-import prisma from "@/prisma"
 import { Indicator, Prisma } from "@prisma/client"
-import { CreateIndicatorParams, GetAdminIndicatorsParams } from "./types"
+import {
+  CreateIndicatorParams,
+  GetAdminIndicatorsParams,
+} from "@/services/indicator-service/types"
+import prisma from "@/prisma"
 
 const perPage = Number(process.env.RESULTS_PER_PAGE)
 

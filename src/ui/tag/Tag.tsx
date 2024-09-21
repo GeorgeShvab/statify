@@ -1,6 +1,6 @@
 import { FC } from "react"
-import { TagProps } from "./types"
-import "./styles.scss"
+import { TagProps } from "@/ui/tag/types"
+import "@/ui/tag/styles.scss"
 
 const Tag: FC<TagProps> = ({ children }) => {
   return (

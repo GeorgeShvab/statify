@@ -1,5 +1,5 @@
 import { ComponentProps } from "react"
-import { SelectProps } from "../select/Select.types"
+import { SelectProps } from "@/ui/select/Select.types"
 
 export interface SelectWithSearchProps
   extends Omit<SelectProps, "containerProps">,

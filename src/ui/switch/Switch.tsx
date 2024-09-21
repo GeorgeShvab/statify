@@ -1,7 +1,7 @@
 import { forwardRef, ForwardRefRenderFunction, useId } from "react"
-import "./styles.scss"
-import { SwitchProps } from "./Switch.types"
+import { SwitchProps } from "@/ui/switch/Switch.types"
 import cn from "@/utils/cn/cn"
+import "@/ui/switch/styles.scss"
 
 const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
   { checked, onChange, className, labelProps, children, ...props },

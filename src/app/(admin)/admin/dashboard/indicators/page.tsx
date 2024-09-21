@@ -1,18 +1,19 @@
-import "@/app/(admin)/admin/dashboard/indicators/styles.scss"
-import IndicatorsDashboardTools from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools"
-import IndicatorsDashboardHeader from "@/containers/indicators-dashboard-header/IndicatorsDashboardHeader"
-import IndicatorsDashboardTable from "@/containers/indicators-dashboard-table/IndicatorsDashboardTable"
-import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { FC } from "react"
-import { PageProps } from "@/types/types"
-import { DashboardIndicatorQueryParams } from "./types"
-import validateQueryParam from "@/utils/validate-query-param/validate-query-param"
 import {
   possibleIndicatorSortDirection,
   possibleIndicatorSortQueryParam,
   possibleIndicatorStatusQueryParam,
   possibleIndicatorTypeQueryParam,
-} from "./constants"
+} from "@/app/(admin)/admin/dashboard/indicators/constants"
+import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
+import IndicatorsDashboardHeader from "@/containers/indicators-dashboard-header/IndicatorsDashboardHeader"
+import IndicatorsDashboardTable from "@/containers/indicators-dashboard-table/IndicatorsDashboardTable"
+import IndicatorsDashboardTools from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools"
+import validateQueryParam from "@/utils/validate-query-param/validate-query-param"
+import "@/app/(admin)/admin/dashboard/indicators/styles.scss"
+import { PageProps } from "@/types/types"
+
 export { default as metadata } from "@/app/(admin)/admin/dashboard/indicators/metadata"
 
 const IndicatorsDashboardPage: FC<

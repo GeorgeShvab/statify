@@ -1,7 +1,7 @@
-import { screen } from "@testing-library/dom"
 import { render } from "@testing-library/react"
-import Switch from "./Switch"
-import { SwitchProps } from "./Switch.types"
+import { screen } from "@testing-library/dom"
+import Switch from "@/ui/switch/Switch"
+import { SwitchProps } from "@/ui/switch/Switch.types"
 
 const testLabelText = "Switch Me"
 const mockOnChange = jest.fn()

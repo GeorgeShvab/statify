@@ -1,19 +1,22 @@
 import { FC } from "react"
-import "../styles.scss"
-import Input from "@/ui/input/Input"
-import InputLabel from "@/ui/input-label/InputLabel"
-import Textarea from "@/ui/textarea/Textarea"
-import Switch from "@/ui/switch/Switch"
-import TagInput from "@/components/tag-input/TagInput"
-import Button from "@/ui/button/Button"
 import { useForm } from "react-hook-form"
-import useMutation from "@/hooks/use-mutation/useMutation"
 import { yupResolver } from "@hookform/resolvers/yup"
-import validationSchema from "./validationSchema"
-import { CreateIndicatorFormProps, CreateIndicatorFormValues } from "./types"
-import { initialValues } from "../constants"
+import Button from "@/ui/button/Button"
+import InputLabel from "@/ui/input-label/InputLabel"
+import Input from "@/ui/input/Input"
+import Switch from "@/ui/switch/Switch"
+import Textarea from "@/ui/textarea/Textarea"
+import { initialValues } from "@/containers/forms/indicator-form/constants"
+import {
+  CreateIndicatorFormProps,
+  CreateIndicatorFormValues,
+} from "@/containers/forms/indicator-form/create-indicator-form/types"
+import prepareValues from "@/containers/forms/indicator-form/create-indicator-form/utils/prepareValues"
+import validationSchema from "@/containers/forms/indicator-form/create-indicator-form/validationSchema"
+import TagInput from "@/components/tag-input/TagInput"
+import useMutation from "@/hooks/use-mutation/useMutation"
 import { createIndicator } from "@/api/indicator/create"
-import prepareValues from "./utils/prepareValues"
+import "@/containers/forms/indicator-form/styles.scss"
 
 const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
   const [, mutate] = useMutation(createIndicator, {

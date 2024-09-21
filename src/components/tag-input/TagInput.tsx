@@ -1,9 +1,9 @@
 import { FC, useState } from "react"
-import { TagInputProps } from "./types"
-import "./styles.scss"
 import Tag from "@/ui/tag/Tag"
-import TagWithInput from "./components/tag-with-input/TagWithInput"
+import TagWithInput from "@/components/tag-input/components/tag-with-input/TagWithInput"
+import { TagInputProps } from "@/components/tag-input/types"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
+import "@/components/tag-input/styles.scss"
 
 // TODO: Add input focus when new tag is added
 
