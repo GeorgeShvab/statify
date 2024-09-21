@@ -82,7 +82,9 @@ export const generateMetadata = async ({
 
       ogImage = `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/WEOWORLD.png`
     }
-  } catch {}
+  } catch {
+    // Do nothing if such error occurs. It indicates that there is no image for this indicator. There is no sense of image for some indicators.
+  }
 
   if (!indicator) {
     return {

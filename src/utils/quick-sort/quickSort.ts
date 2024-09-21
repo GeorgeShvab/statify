@@ -1,6 +1,6 @@
 import { SortOrder } from "@/types/types"
 
-function quickSort<T = any>(
+function quickSort<T extends string | number | object>(
   array: T[],
   order: SortOrder = "asc",
   fn?: (item: T) => number | string
@@ -8,8 +8,8 @@ function quickSort<T = any>(
   if (array.length < 2) return array
 
   const pivot = array[Math.floor(array.length / 2)]
-  const left = []
-  const right = []
+  const left: T[] = []
+  const right: T[] = []
 
   array.splice(Math.floor(array.length / 2), 1)
 

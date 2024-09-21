@@ -55,6 +55,7 @@ const Select: FC<SelectProps> = ({
         isSelected={isSelected}
         size={size}
         onClick={handleItemClick}
+        {...itemProps}
       >
         {label}
       </SelectItem>

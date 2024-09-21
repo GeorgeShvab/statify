@@ -1,3 +1,4 @@
+import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus"
 import axios from "axios"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
@@ -14,17 +15,19 @@ const useBookmark = (indicatorId: string, countryId?: string) => {
   }
 
   useEffect(() => {
-    ;(async () => {
+    const fetch = async () => {
       try {
         await axios.get("/api/bookmark", { params: { countryId, indicatorId } })
 
         setIsBookmarked(true)
-      } catch (e: any) {
-        if (e?.response?.status === 404) {
+      } catch (e: unknown) {
+        if (isErrorWithStatus(e) && e.response.status === 404) {
           setIsBookmarked(false)
         }
       }
-    })()
+    }
+
+    fetch()
   }, [indicatorId, countryId])
 
   return { handleBookmark, isBookmarked }

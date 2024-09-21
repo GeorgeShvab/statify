@@ -8,12 +8,15 @@ import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
 const RangeSlider: FC = () => {
   const { range, selectedRange, setSelectedRange } = useChart()
 
-  let shortenedRange = range.filter(
+  const shortenedRange = range.filter(
     (item, index) => item % 5 === 0 || index === 0 || index === range.length - 1
   )
 
-  const handleChangeYears: any = (minMax: [number, number]) => {
-    setSelectedRange([shortenedRange[minMax[0]], shortenedRange[minMax[1]]])
+  const handleChangeYears = (minMax: number[] | number) => {
+    if (Array.isArray(minMax)) {
+      setSelectedRange([shortenedRange[minMax[0]], shortenedRange[minMax[1]]])
+    }
+    // In current implementation minMax is always array
   }
 
   return (

@@ -35,8 +35,6 @@ const Button: ForwardRefRenderFunction<
     )
   }
 
-  const a = <Link href=""></Link>
-
   return (
     <button
       className={btnClassName}

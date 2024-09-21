@@ -5,7 +5,6 @@ import IndicatorsDashboardTable from "@/containers/indicators-dashboard-table/In
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { FC } from "react"
 import { PageProps } from "@/types/types"
-import { GetAdminIndicatorsParams } from "@/services/indicator-service/types"
 import { DashboardIndicatorQueryParams } from "./types"
 import validateQueryParam from "@/utils/validate-query-param/validate-query-param"
 import {
@@ -17,7 +16,7 @@ import {
 export { default as metadata } from "@/app/(admin)/admin/dashboard/indicators/metadata"
 
 const IndicatorsDashboardPage: FC<
-  PageProps<{}, DashboardIndicatorQueryParams>
+  PageProps<object, DashboardIndicatorQueryParams>
 > = async ({ searchParams }) => {
   const sort = validateQueryParam(
     searchParams.sort,

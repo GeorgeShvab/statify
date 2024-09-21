@@ -65,7 +65,7 @@ const CopyChartButton: FC = () => {
           })
         }
       })
-    } catch (e) {
+    } catch {
       openAlert({ text: "Unable to copy the chart", severity: "danger" })
     }
   }

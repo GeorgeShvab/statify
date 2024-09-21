@@ -1,5 +1,4 @@
 import CountryService from "@/services/CountryService"
-import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { NextRequest, NextResponse } from "next/server"
 
 interface Params {

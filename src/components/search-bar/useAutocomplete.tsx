@@ -18,15 +18,16 @@ const useAutocomplete = () => {
 
   const fetch = useCallback(
     throttle(async (value: string) => {
-      try {
-        const { data } = await axios.get<
-          (Indicator & { countryName?: string; countryId?: string })[]
-        >("/api/autocomplete?query=" + value, {
-          signal: abortController.current?.signal,
-        })
+      const { data } = await axios
+        .get<(Indicator & { countryName?: string; countryId?: string })[]>(
+          "/api/autocomplete?query=" + value,
+          {
+            signal: abortController.current?.signal,
+          }
+        )
+        .catch()
 
-        setAutocomplete({ data, isOpened: true })
-      } catch (e) {}
+      setAutocomplete({ data, isOpened: true })
     }, 750),
     []
   )

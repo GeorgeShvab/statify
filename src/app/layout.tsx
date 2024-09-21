@@ -5,7 +5,6 @@ import ModalProvider from "@/providers/modal-provider/ModalProvider"
 import { PropsWithChildren } from "react"
 import { Analytics } from "@vercel/analytics/react"
 import "@/styles/global.scss"
-import Select from "@/ui/select/Select"
 
 const roboto = Roboto({
   subsets: ["latin"],

@@ -1,5 +1,4 @@
 import apiRoutes from "@/constants/apiRoutes"
-import { Indicator } from "@prisma/client"
 import axios from "axios"
 import { UpdateIndicatorParams } from "./types"
 

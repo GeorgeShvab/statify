@@ -11,15 +11,14 @@ const useScroll = () => {
   const [state, setState] = useState<State>({ isAtStart: true, isAtEnd: false })
 
   const handleScroll = useCallback(
-    throttle((e: UIEvent<HTMLDivElement> & { target: HTMLDivElement }) => {
-      const scrollTop = e.target.scrollTop
+    throttle((e: UIEvent<HTMLElement> & { target: EventTarget }) => {
+      const target = e.target as HTMLElement
+
+      const scrollTop = target.scrollTop
 
       if (scrollTop < 50) {
         setState({ isAtEnd: false, isAtStart: true })
-      } else if (
-        scrollTop + e.target.offsetHeight >
-        e.target.scrollHeight - 50
-      ) {
+      } else if (scrollTop + target.offsetHeight > target.scrollHeight - 50) {
         setState({ isAtEnd: true, isAtStart: false })
       } else {
         setState({ isAtEnd: false, isAtStart: false })

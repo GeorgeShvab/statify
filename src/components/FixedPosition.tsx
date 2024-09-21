@@ -22,7 +22,11 @@ const FixedPosition: FC<Props> = ({ anchor, children, position }) => {
       const anchorDomRect = anchor.current.getBoundingClientRect()
       const elementDomRect = containerRef.current.getBoundingClientRect()
 
-      let { x, y } = calculatePosition(anchorDomRect, elementDomRect, position)
+      const { x, y } = calculatePosition(
+        anchorDomRect,
+        elementDomRect,
+        position
+      )
 
       if (pos.x !== x || pos.y !== y) setPos({ x, y })
     }

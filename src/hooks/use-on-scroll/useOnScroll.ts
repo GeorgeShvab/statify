@@ -1,9 +1,9 @@
 import throttle from "@/utils/throttle/throttle"
-import { useEffect } from "react"
+import { DependencyList, useEffect } from "react"
 
 const useOnScroll = (
   cb: (e: WheelEvent) => void,
-  dependencyArray: any[] = []
+  dependencyArray: DependencyList
 ) => {
   const handleWheel = throttle((e: WheelEvent) => cb(e), 50)
 
