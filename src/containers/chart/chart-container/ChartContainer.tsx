@@ -49,14 +49,15 @@ const Chart: FC = () => {
         (item) => item.year >= selectedRange[0] && item.year <= selectedRange[1]
       )
 
-      let data = []
+      const data = []
       let i = 0,
         j = 0
 
       while (i < filteredRange.length) {
         if (filteredRange[i] === values[j]?.year) {
           data.push(values[j]?.value)
-          i++, j++
+          i++
+          j++
         } else {
           data.push(null)
           i++

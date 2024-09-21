@@ -6,4 +6,4 @@ export interface EditIndicatorFormProps {
   onSuccess: () => void
 }
 
-export interface EditIndicatorFormValues extends IndicatorFormValues {}
+export type EditIndicatorFormValues = IndicatorFormValues

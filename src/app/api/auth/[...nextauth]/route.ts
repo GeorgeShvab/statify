@@ -1,6 +1,7 @@
 import userService from "@/services/UserService"
 import serialize from "@/utils/serialize/serialize"
-import NextAuth from "next-auth"
+import { User } from "@prisma/client"
+import NextAuth, { User as NextAuthUser } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 const AUTH_SECRET = process.env.AUTH_SECRET
@@ -23,7 +24,7 @@ const handler = NextAuth({
 
         if (!user) throw new Error("Incorrect email or password")
 
-        return serialize(user) as any
+        return serialize(user) as unknown as NextAuthUser
       },
     }),
   ],
@@ -44,7 +45,8 @@ const handler = NextAuth({
     },
     jwt: ({ token, user }) => {
       if (user) {
-        const u = user as unknown as any
+        const u = user as unknown as User
+
         return {
           ...token,
           id: u.id,

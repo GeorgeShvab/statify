@@ -27,7 +27,7 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
 
   const { openModal } = useModal()
 
-  const [data, mutate] = useMutation(updateIndicator)
+  const [, mutate] = useMutation(updateIndicator)
 
   const handleIsHiddenChange = async () => {
     setIsHidden((prev) => !prev)

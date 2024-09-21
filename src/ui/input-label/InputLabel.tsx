@@ -1,5 +1,4 @@
 import { FC } from "react"
-import Input from "../input/Input"
 import { InputLabelProps } from "./types"
 import "./styles.scss"
 import cn from "@/utils/cn/cn"

@@ -1,6 +1,6 @@
 import { CountryWithValues } from "@/types/types"
 import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
-import { useMemo, useRef } from "react"
+import { useMemo } from "react"
 
 const worldId = "WEOWORLD"
 const usaId = "USA"
@@ -20,7 +20,7 @@ const getDefaultInitialRegion = (regions: CountryWithValues[]) => {
 // So if user shares url, other users will have the same items by that link
 const useInitialState = (regions: CountryWithValues[]) => {
   const initialState = useMemo(() => {
-    let paramsRegions = new URL(window.location.href).searchParams
+    const paramsRegions = new URL(window.location.href).searchParams
       .get("chart_items")
       ?.split(",")
 

@@ -12,10 +12,8 @@ import {
   indicatorSearchQueryKey,
   indicatorSortQueryKey,
   indicatorStatusQueryKey,
-  indicatorTypeQueryKey,
   indicatorSortOptions,
   indicatorStatusOptions,
-  indicatorTypeOptions,
   indicatorSortDirectionQueryKey,
 } from "@/app/(admin)/admin/dashboard/indicators/constants"
 import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
@@ -30,7 +28,7 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   type,
   sortDirection,
 }) => {
-  const [_, setSearchParams] = useQueryParams<DashboardIndicatorQueryParams>()
+  const [, setSearchParams] = useQueryParams<DashboardIndicatorQueryParams>()
 
   const [searchValue, setSearchValue] = useState(search)
 

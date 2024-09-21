@@ -19,7 +19,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
   indicator,
   onSuccess,
 }) => {
-  const [data, mutate] = useMutation(updateIndicator, {
+  const [, mutate] = useMutation(updateIndicator, {
     successMessage: "Indicator was updated successffully",
     errorMessage: "Unexpected error occured",
   })

@@ -12,7 +12,7 @@ interface SearchParams {
   page?: string
 }
 
-const SearchPage: FC<PageProps<{}, SearchParams>> = async ({
+const SearchPage: FC<PageProps<object, SearchParams>> = async ({
   searchParams,
 }) => {
   const result = searchParams.query
@@ -67,7 +67,7 @@ const SearchPage: FC<PageProps<{}, SearchParams>> = async ({
 
 export const generateMetadata = async ({
   searchParams,
-}: PageProps<{}, SearchParams>): Promise<Metadata> => {
+}: PageProps<object, SearchParams>): Promise<Metadata> => {
   return {
     title: `Results for ${searchParams.query}`,
     description: `Indicator results for ${searchParams.query}`,

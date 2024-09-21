@@ -16,7 +16,7 @@ import { createIndicator } from "@/api/indicator/create"
 import prepareValues from "./utils/prepareValues"
 
 const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
-  const [data, mutate] = useMutation(createIndicator, {
+  const [, mutate] = useMutation(createIndicator, {
     successMessage: "Indicator was created successffully",
     errorMessage: "Unexpected error occured",
   })

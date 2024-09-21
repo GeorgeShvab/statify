@@ -1,5 +1,4 @@
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
-import axios from "axios"
 import { useState } from "react"
 import { MutationConfiguration } from "./types"
 

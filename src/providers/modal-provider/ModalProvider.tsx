@@ -33,7 +33,7 @@ const ModalProvider: FC<ModalProviderProps> = ({ children }) => {
   ) => {
     setIsOpen(true)
     setElement(element)
-    modalConfiguration && setConfiguration(modalConfiguration)
+    if (modalConfiguration) setConfiguration(modalConfiguration)
   }
 
   const closeModal = () => {

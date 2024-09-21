@@ -23,7 +23,7 @@ const useTableData = (data: Value[]) => {
         by: "year",
         data: quickSort(
           prev.data,
-          (prev.order === "asc" && prev.by === "year" ? "desc" : "asc") as any,
+          prev.order === "asc" && prev.by === "year" ? "desc" : "asc",
           (item) => item.year
         ),
       }))
@@ -34,7 +34,7 @@ const useTableData = (data: Value[]) => {
         by: "value",
         data: quickSort(
           prev.data,
-          (prev.order === "asc" && prev.by === "value" ? "desc" : "asc") as any,
+          prev.order === "asc" && prev.by === "value" ? "desc" : "asc",
           (item) => item.value
         ),
       }))

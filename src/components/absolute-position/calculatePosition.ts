@@ -68,7 +68,7 @@ const calculatePosition = (
     case "right-end":
       top += anchorTop + anchorHeight - containerHeight
       left += anchorRight + offset
-
+      break
     default:
       return {} as never
   }

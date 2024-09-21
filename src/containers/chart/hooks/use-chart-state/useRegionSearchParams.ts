@@ -1,5 +1,5 @@
 import { chartItemsKey } from "@/constants/searchParamsKeys"
-import { useEffect, useRef } from "react"
+import { useEffect } from "react"
 
 const setParamsArray = (arr: string[]) => {
   const paramsObject = new URLSearchParams(`?${chartItemsKey}=${arr.join(",")}`)

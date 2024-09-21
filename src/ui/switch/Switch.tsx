@@ -25,7 +25,7 @@ const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
         {...props}
         hidden
       />
-      <div className="switch__container light">
+      <div className={cn("switch__container light", className)}>
         <div className="switch__container-circle" />
       </div>
       {children && <p className="switch__label">{children}</p>}

@@ -67,6 +67,7 @@ const SelectWithSearch: FC<SelectWithSearchProps> = ({
         isSelected={isSelected}
         size={size}
         onClick={handleItemClick}
+        {...itemProps}
       >
         {label}
       </SelectItem>

@@ -1,5 +1,5 @@
 import { IconProps } from "@/types/types"
-import { ComponentProps, FC } from "react"
+import { FC } from "react"
 
 const ServerErrorIcon: FC<IconProps> = (props) => (
   <svg

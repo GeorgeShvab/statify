@@ -1,8 +1,8 @@
 import debounce from "@/utils/debounce/debounce"
 import { DependencyList, useCallback } from "react"
 
-const useDebounce = (
-  func: (...args: any[]) => void,
+const useDebounce = <T>(
+  func: (...args: T[]) => void,
   ms: number = 250,
   dependencies: DependencyList = []
 ) => {

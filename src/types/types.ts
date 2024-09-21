@@ -3,8 +3,8 @@ import { ComponentProps } from "react"
 import { UrlObject } from "url"
 
 export interface PageProps<
-  TParams extends {} = {},
-  TSearchParams extends {} = {}
+  TParams extends object = object,
+  TSearchParams extends object = object
 > {
   params: TParams
   searchParams: TSearchParams
@@ -22,7 +22,7 @@ export interface ChartItem extends CountryWithValues {
 
 export type RowValue = Pick<Prisma.Value, "id" | "year" | "value">
 
-export type Value<T = {}> = T & RowValue
+export type Value<T = object> = T & RowValue
 
 export type CountryRowValue = Value<Pick<Country, "id" | "name">>
 

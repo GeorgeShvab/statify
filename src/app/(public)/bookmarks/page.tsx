@@ -12,7 +12,9 @@ interface SearchParams {
   page: number
 }
 
-const Bookmarks: FC<PageProps<{}, SearchParams>> = async ({ searchParams }) => {
+const Bookmarks: FC<PageProps<object, SearchParams>> = async ({
+  searchParams,
+}) => {
   const client = cookies().get("client_id")?.value
 
   const page = searchParams.page || 1

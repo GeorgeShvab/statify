@@ -1,6 +1,5 @@
-import { CountryRowValue, CountryWithValues, Value } from "@/types/types"
+import { CountryRowValue, CountryWithValues } from "@/types/types"
 import prisma from "@/prisma"
-import { Country } from "@prisma/client"
 
 const CountryService = {
   async get({ id }: { id: string }) {
