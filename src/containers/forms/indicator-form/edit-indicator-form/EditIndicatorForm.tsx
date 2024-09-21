@@ -2,8 +2,8 @@ import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import Button from "@/ui/button/Button"
-import InputLabel from "@/ui/input-label/InputLabel"
 import Input from "@/ui/input/Input"
+import Label from "@/ui/label/Label"
 import Switch from "@/ui/switch/Switch"
 import Textarea from "@/ui/textarea/Textarea"
 import {
@@ -56,7 +56,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
       <h3 className="indicator-form__title">Edit Indicator</h3>
       <p className="indicator-form__subtitle">{indicator.id}</p>
       <div>
-        <InputLabel
+        <Label
           className="indicator-form__label-container"
           label="Indicator name"
         >
@@ -65,8 +65,8 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
             isError={Boolean(errors.label)}
             {...register("label")}
           />
-        </InputLabel>
-        <InputLabel
+        </Label>
+        <Label
           className="indicator-form__label-container"
           label="Indicator description"
         >
@@ -74,50 +74,44 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
             {...register("description")}
             isError={Boolean(errors.description)}
           />
-        </InputLabel>
-        <InputLabel
-          className="indicator-form__label-container"
-          label="Search tags"
-        >
+        </Label>
+        <Label className="indicator-form__label-container" label="Search tags">
           <TagInput tags={indicator.searchTags} onChange={handleTagsChange} />
-        </InputLabel>
+        </Label>
         <div className="indicator-form__input-group indicator-form__label-container">
-          <InputLabel label="Source" className="indicator-form__input-label">
+          <Label label="Source" className="indicator-form__input-label">
             <Input
               className="indicator-form__input"
               isError={Boolean(errors.source)}
               {...register("source")}
             />
-          </InputLabel>
-          <InputLabel label="Dataset" className="indicator-form__input-label">
+          </Label>
+          <Label label="Dataset" className="indicator-form__input-label">
             <Input
               className="indicator-form__input"
               isError={Boolean(errors.dataset)}
               {...register("dataset")}
             />
-          </InputLabel>
+          </Label>
         </div>
         <div className="indicator-form__input-group indicator-form__label-container">
-          <InputLabel label="Unit" className="indicator-form__input-label">
+          <Label label="Unit" className="indicator-form__input-label">
             <Input
               className="indicator-form__input"
               isError={Boolean(errors.unit)}
               {...register("unit")}
             />
-          </InputLabel>
-          <InputLabel
-            label="Unit symbol"
-            className="indicator-form__input-label"
-          >
+          </Label>
+          <Label label="Unit symbol" className="indicator-form__input-label">
             <Input
               className="indicator-form__input"
               isError={Boolean(errors.unitSymbol)}
               {...register("unitSymbol")}
             />
-          </InputLabel>
+          </Label>
         </div>
         <div className="indicator-form__input-group indicator-form__label-container">
-          <InputLabel label="Precision" className="indicator-form__input-label">
+          <Label label="Precision" className="indicator-form__input-label">
             <Input
               className="indicator-form__input"
               isError={Boolean(errors.precision)}
@@ -125,8 +119,8 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
               min={0}
               {...register("precision", { valueAsNumber: true })}
             />
-          </InputLabel>
-          <InputLabel label="Rank" className="indicator-form__input-label">
+          </Label>
+          <Label label="Rank" className="indicator-form__input-label">
             <Input
               className="indicator-form__input"
               isError={Boolean(errors.ranking)}
@@ -134,7 +128,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
               min={0}
               {...register("ranking", { valueAsNumber: true })}
             />
-          </InputLabel>
+          </Label>
         </div>
         <div className="indicator-form__input-group indicator-form__switchers">
           <Switch {...register("hidden")}>Hidden</Switch>

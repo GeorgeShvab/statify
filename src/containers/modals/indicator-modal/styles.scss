@@ -1,0 +1,41 @@
+@import "@design-system";
+
+.indicator-modal {
+  width: 440px;
+}
+
+.indicator-modal__title {
+  @include heading($fs-lg);
+
+  text-align: center;
+  margin-bottom: sp(3);
+}
+
+.indicator-modal__subtitle {
+  font-size: $fs-xs;
+  text-align: center;
+  color: $gray-light;
+  margin-bottom: sp(6);
+}
+
+.indicator-modal__text {
+  font-size: $fs-sm;
+  line-height: 1.4;
+}
+
+.indicator-modal__label-container {
+  margin-bottom: sp(4);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.indicator-modal__label-group {
+  display: flex;
+  gap: sp(3);
+}
+
+.indicator-form__label {
+  width: 100%;
+}
