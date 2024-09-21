@@ -1,10 +1,4 @@
-import {
-  FC,
-  forwardRef,
-  ForwardRefRenderFunction,
-  useId,
-  useState,
-} from "react"
+import { forwardRef, ForwardRefRenderFunction, useId } from "react"
 import "./styles.scss"
 import { SwitchProps } from "./Switch.types"
 import cn from "@/utils/cn/cn"
