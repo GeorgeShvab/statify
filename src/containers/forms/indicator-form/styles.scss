@@ -2,6 +2,10 @@
 
 .indicator-form {
   width: 440px;
+
+  .input-label__title {
+    padding-left: sp(1);
+  }
 }
 
 .indicator-form__title {

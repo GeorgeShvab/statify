@@ -9,6 +9,7 @@ import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 import { IndicatorsDashboardTableRowProps } from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/types"
 import EditIndicatorModal from "@/containers/modals/edit-indicator-modal/EditIndicatorModal"
+import IndicatorModal from "@/containers/modals/indicator-modal/IndicatorModal"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import cn from "@/utils/cn/cn"
@@ -32,6 +33,18 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   const handleIsHiddenChange = async () => {
     setIsHidden((prev) => !prev)
     await mutate({ id: indicator.id, hidden: !isHidden })
+  }
+
+  const handleEditIndicator = () => {
+    openModal(<EditIndicatorModal indicator={indicator} />, {
+      scrollable: true,
+    })
+  }
+
+  const handleMoreIndicatorInformation = () => {
+    openModal(<IndicatorModal indicator={indicator} />, {
+      scrollable: true,
+    })
   }
 
   const lastUpdateDate = new Date(indicator.updatedAt).toLocaleDateString()
@@ -93,17 +106,14 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
           <DropdownItem
             className="indicator-options-dropdown__item"
             size="small"
+            onClick={handleMoreIndicatorInformation}
           >
             More Information
           </DropdownItem>
           <DropdownItem
             className="indicator-options-dropdown__item"
             size="small"
-            onClick={() =>
-              openModal(<EditIndicatorModal indicator={indicator} />, {
-                scrollable: true,
-              })
-            }
+            onClick={handleEditIndicator}
           >
             Update Indicator
           </DropdownItem>

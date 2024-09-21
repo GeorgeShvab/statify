@@ -1,14 +1,9 @@
 import { FC } from "react"
-import { InputLabelProps } from "@/ui/input-label/types"
+import { LabelProps } from "@/ui/label/types"
 import cn from "@/utils/cn/cn"
-import "@/ui/input-label/styles.scss"
+import "@/ui/label/styles.scss"
 
-const InputLabel: FC<InputLabelProps> = ({
-  label,
-  children,
-  className,
-  ...props
-}) => {
+const Label: FC<LabelProps> = ({ label, children, className, ...props }) => {
   return (
     <div className={cn("input-label", className)} {...props}>
       <p className="input-label__title">{label}</p>
@@ -17,4 +12,4 @@ const InputLabel: FC<InputLabelProps> = ({
   )
 }
 
-export default InputLabel
+export default Label

@@ -1,6 +1,6 @@
 import { ComponentProps, ReactNode } from "react"
 
-export interface InputLabelProps extends ComponentProps<"div"> {
+export interface LabelProps extends ComponentProps<"div"> {
   children: ReactNode
   label: string
 }
