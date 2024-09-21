@@ -1,6 +1,27 @@
 {
-    "trailingComma": "es5",
-    "tabWidth": 2,
-    "semi": false,
-    "singleQuote": false
-  }
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^(.*)react(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^@/app/(?!.*\\.scss$)(.*)$",
+    "^@/services/(?!.*\\.scss$)(.*)$",
+    "^@/ui/(?!.*\\.scss$)(.*)$",
+    "^@/layout/(?!.*\\.scss$)(.*)$",
+    "^@/containers/(?!.*\\.scss$)(.*)$",
+    "^@/components/(?!.*\\.scss$)(.*)$",
+    "^@/providers/(?!.*\\.scss$)(.*)$",
+    "^@/hooks/(?!.*\\.scss$)(.*)$",
+    "^@/utils/(?!.*\\.scss$)(.*)$",
+    "^@/test-utils/(?!.*\\.scss$)(.*)$",
+    "^@/api/(?!.*\\.scss$)(.*)$",
+    "^@/constants/(?!.*\\.scss$)(.*)$",
+    "^@/(?!.*\\.types.scss$)(.*)$",
+    "^@/(?!.*\\.scss$)(.*)$",
+    "^.+\\.scss$",
+    "^[./]"
+  ],
+  "trailingComma": "es5",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": false
+}
