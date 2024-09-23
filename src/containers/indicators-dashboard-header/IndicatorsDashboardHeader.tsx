@@ -2,7 +2,7 @@
 
 import Button from "@/ui/button/Button"
 import PlusIcon from "@/ui/icons/PlusIcon"
-import CreateIndicatorModal from "@/containers/modals/create-indicator-modal/IndicatorModal"
+import CreateIndicatorModal from "@/containers/modals/create-indicator-modal/CreateIndicatorModal"
 import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
 import "@/containers/indicators-dashboard-header/styles.scss"
