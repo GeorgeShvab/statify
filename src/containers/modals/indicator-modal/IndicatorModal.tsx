@@ -7,7 +7,7 @@ import { IndicatorModalProps } from "./types"
 
 const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
   const searchTags = indicator.searchTags.length ? (
-    indicator.tags.map((item) => <Tag>{item}</Tag>)
+    indicator.tags.map((item, index) => <Tag key={item + index}>{item}</Tag>)
   ) : (
     <p className="indicator-modal__text">Unset</p>
   )
