@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import { Option } from "@/ui/select/Select.types"
 import Select from "@/ui/select/Select"
+import { Option, SelectProps } from "@/ui/select/Select.types"
 
 const mockOnChange = jest.fn()
 
@@ -15,20 +15,34 @@ const testOptions: Option[] = [
   },
 ]
 
+const mockRenderItemLabel = jest.fn()
+const mockRenderSelectedLabel = jest.fn()
+
+const renderItemLabel = (option: Option) => {
+  mockRenderItemLabel()
+  return option.label
+}
+
+const renderSelectedLabel = (option: Option) => {
+  mockRenderSelectedLabel()
+  return option.label
+}
+
+const renderWithProps = (props?: Partial<SelectProps>) => {
+  return render(
+    <Select
+      options={testOptions}
+      value={testOptions[0].value}
+      onChange={mockOnChange}
+      {...props}
+    />
+  )
+}
+
 describe("Test Select component", () => {
-  let container: HTMLElement
-
-  beforeEach(() => {
-    container = render(
-      <Select
-        options={testOptions}
-        value={testOptions[0].value}
-        onChange={mockOnChange}
-      />
-    ).container
-  })
-
   test("Should display only initial option initially", () => {
+    renderWithProps()
+
     const initialOption = screen.getByText("All")
     expect(initialOption).toBeInTheDocument()
 
@@ -37,6 +51,8 @@ describe("Test Select component", () => {
   })
 
   test("Should open options after select is clicked", async () => {
+    renderWithProps()
+
     const initialOption = screen.getByText("All")
     fireEvent.click(initialOption)
 
@@ -45,6 +61,8 @@ describe("Test Select component", () => {
   })
 
   test("Should select new option and close options list", async () => {
+    renderWithProps()
+
     const initialOption = screen.getByText("All")
     fireEvent.click(initialOption)
 
@@ -55,6 +73,8 @@ describe("Test Select component", () => {
   })
 
   test("Should close options when user clicks outside", async () => {
+    const { container } = renderWithProps()
+
     const initialOption = screen.getByText("All")
 
     fireEvent.click(initialOption)
@@ -67,5 +87,15 @@ describe("Test Select component", () => {
     const hiddenOptionFromList = screen.queryByText("Selected")
 
     expect(hiddenOptionFromList)
+  })
+
+  test("Should apply passed renderSelectedLabel and renderItemLabel", () => {
+    renderWithProps({
+      renderItemLabel,
+      renderSelectedLabel,
+    })
+
+    expect(mockRenderItemLabel).toHaveBeenCalled()
+    expect(mockRenderSelectedLabel).toHaveBeenCalled()
   })
 })
