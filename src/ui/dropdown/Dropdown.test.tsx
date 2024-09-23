@@ -1,9 +1,10 @@
+import { fireEvent, render, screen } from "@testing-library/react"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import { DropdownProps } from "@/ui/dropdown/Dropdown.types"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
-import { fireEvent, render, screen } from "@testing-library/react"
 
 const mockOnClose = jest.fn()
+const mockOnClick = jest.fn()
 
 const dropdownItems = new Array(10)
   .fill(null)
@@ -15,9 +16,14 @@ const props: DropdownProps = {
   position: "bottom-start",
   children: dropdownItems,
   onClose: mockOnClose,
+  onClick: mockOnClick,
 }
 
 describe("Test Dropdown component", () => {
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   test("Should not render anything when passed isOpen is false", () => {
     render(<Dropdown {...props} />)
 
@@ -45,6 +51,27 @@ describe("Test Dropdown component", () => {
 
     const openedDropdown = await screen.findByRole("list")
     expect(openedDropdown).toBeInTheDocument()
+  })
+
+  test("Should close dropdown when passed closeOnClick equals true and user clicks on one of the items", () => {
+    render(<Dropdown {...props} isOpen={true} closeOneClick={true} />)
+
+    const dropdownItem = screen.getAllByRole("listitem")[0]
+
+    fireEvent.click(dropdownItem)
+
+    expect(mockOnClose).toHaveBeenCalled()
+  })
+
+  test("Should not close dropdown and just call passed onClick if closeOnClick equals false", () => {
+    render(<Dropdown {...props} isOpen={true} />)
+
+    const dropdownItem = screen.getAllByRole("listitem")[0]
+
+    fireEvent.click(dropdownItem)
+
+    expect(mockOnClick).toHaveBeenCalled()
+    expect(mockOnClose).not.toHaveBeenCalled()
   })
 
   test("Should close Dropdown when user clicks outside", async () => {
