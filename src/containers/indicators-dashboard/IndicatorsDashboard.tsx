@@ -10,9 +10,15 @@ import { StoreProvider } from "@/providers/store-provider/StoreProvider"
 import indicatorsStore from "@/store/indicators-store/indicators-store"
 
 const IndicatorsDashboard: FC<IndicatorsDashboardProps> = (props) => {
+  const key =
+    JSON.stringify(props.indicators) +
+    props.sort +
+    props.search +
+    props.sortDirection // I use it to reinitialize indicators store.
+
   return (
     <SelectableProvider>
-      <StoreProvider createStore={indicatorsStore(props.indicators)}>
+      <StoreProvider key={key} createStore={indicatorsStore(props.indicators)}>
         <IndicatorsDashboardHeader />
         <IndicatorsDashboardTools {...props} />
         <IndicatorsDashboardTable />

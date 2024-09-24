@@ -3,7 +3,6 @@ import {
   possibleIndicatorSortDirection,
   possibleIndicatorSortQueryParam,
   possibleIndicatorStatusQueryParam,
-  possibleIndicatorTypeQueryParam,
 } from "@/app/(admin)/admin/dashboard/indicators/constants"
 import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
@@ -25,10 +24,6 @@ const IndicatorsDashboardPage: FC<
     searchParams.status,
     possibleIndicatorStatusQueryParam
   )
-  const type = validateQueryParam(
-    searchParams.type,
-    possibleIndicatorTypeQueryParam
-  )
   const sortDirection = validateQueryParam(
     searchParams.sortDirection,
     possibleIndicatorSortDirection
@@ -41,17 +36,13 @@ const IndicatorsDashboardPage: FC<
     search,
     sortDirection,
     hidden: status === "all" ? undefined : status === "hidden",
-    absolute: type === "all" ? undefined : type === "absolute",
   })
 
-  const key = JSON.stringify(indicators) + sort + type + search + sortDirection
-
   return (
-    <main className="container" key={key}>
+    <main className="container">
       <div className="admin-dashboard">
         <IndicatorsDashboard
           sort={sort}
-          type={type}
           status={status}
           search={search}
           sortDirection={sortDirection}

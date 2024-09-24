@@ -1,13 +1,13 @@
-import Link from "next/link"
 import {
   ForwardRefRenderFunction,
   forwardRef,
   ComponentProps,
   RefObject,
 } from "react"
+import Link from "next/link"
 import { ButtonProps } from "@/ui/button/Button.types"
-import "@/ui/icon-button/styles.scss"
 import cn from "@/utils/cn/cn"
+import "@/ui/icon-button/styles.scss"
 
 const IconButton: ForwardRefRenderFunction<
   HTMLButtonElement | HTMLAnchorElement,
