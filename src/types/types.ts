@@ -1,10 +1,10 @@
-import Prisma, { Country } from "@prisma/client"
 import { ComponentProps } from "react"
+import Prisma, { Country, Indicator } from "@prisma/client"
 import { UrlObject } from "url"
 
 export interface PageProps<
   TParams extends object = object,
-  TSearchParams extends object = object
+  TSearchParams extends object = object,
 > {
   params: TParams
   searchParams: TSearchParams
@@ -71,3 +71,7 @@ export type QueryParams = Record<string, string | null>
 export type SupportedDatasetDownloadExtension = "xlsx" | "csv"
 
 export type SortDirection = "asc" | "desc"
+
+export interface IndicatorWithDatapoints extends Indicator {
+  datapoints: number
+}
