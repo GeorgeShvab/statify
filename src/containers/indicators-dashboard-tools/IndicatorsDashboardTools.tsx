@@ -1,13 +1,6 @@
 "use client"
 
-import Input from "@/ui/input/Input"
-import Select from "@/ui/select/Select"
 import { ChangeEvent, FC, useState } from "react"
-import "@/containers/indicators-dashboard-tools/styles.scss"
-import { Option } from "@/ui/select/Select.types"
-import useDebounce from "@/hooks/use-debounce/useDebounce"
-import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
 import {
   indicatorSearchQueryKey,
   indicatorSortQueryKey,
@@ -18,30 +11,39 @@ import {
 } from "@/app/(admin)/admin/dashboard/indicators/constants"
 import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
 import IconButton from "@/ui/icon-button/IconButton"
+import CloseIcon from "@/ui/icons/CloseIcon"
 import SortAscendingIcon from "@/ui/icons/SortAscendingIcon"
 import SortDescendingIcon from "@/ui/icons/SortDescendingIcon"
+import Input from "@/ui/input/Input"
+import Select from "@/ui/select/Select"
+import { Option } from "@/ui/select/Select.types"
+import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
+import useDebounce from "@/hooks/use-debounce/useDebounce"
+import useQueryParams from "@/hooks/use-query-params/useQueryParams"
+import "@/containers/indicators-dashboard-tools/styles.scss"
+import isFiltersApplied from "./utils/is-filters-applied/isFiltersApplied"
 
 const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   sort,
   search,
   status,
-  type,
   sortDirection,
 }) => {
-  const [, setSearchParams] = useQueryParams<DashboardIndicatorQueryParams>()
+  const [, setSearchParams, clearAllParams] =
+    useQueryParams<DashboardIndicatorQueryParams>()
 
   const [searchValue, setSearchValue] = useState(search)
 
   const debouncedSetSearch = useDebounce(
     (value: string) => setSearchParams(indicatorSearchQueryKey, value),
     750,
-    [sort, status, type]
+    [sort, status]
   )
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setSearchValue(value)
-    debouncedSetSearch(value)
+    debouncedSetSearch(value.trim())
   }
 
   const handleSelectChange = (key: string) => (option: Option) => {
@@ -60,6 +62,13 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
 
   const sortIcon =
     sortDirection === "asc" ? <SortAscendingIcon /> : <SortDescendingIcon />
+
+  const showClearFiltersButton = !isFiltersApplied({
+    search,
+    status,
+    sort,
+    sortDirection,
+  })
 
   return (
     <div className="dashboard-tools">
@@ -86,6 +95,15 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
       />
       <IconButton color="light" onClick={handleSortDirectionChange}>
         {sortIcon}
+      </IconButton>
+      <IconButton
+        onClick={clearAllParams}
+        disabled={showClearFiltersButton}
+        color="light"
+        aria-label="Clear filters"
+        title="Clear filters"
+      >
+        <CloseIcon />
       </IconButton>
     </div>
   )
