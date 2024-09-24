@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useRef, useState } from "react"
+import { FC, memo, useRef, useState } from "react"
 import IconButton from "@/ui/icon-button/IconButton"
 import SquareIcon from "@/ui/icons/SquareIcon"
 import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
@@ -8,7 +8,7 @@ import TableRow from "@/ui/table/components/table-row/TableRow"
 import IndicatorsDashboardTableRowDropdown from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row-dropdown/IndicatorsDashboardTableRowDropdown"
 import { IndicatorsDashboardTableRowProps } from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/types"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
-import useMutation from "@/hooks/use-mutation/useMutation"
+import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpdate"
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
 import { updateIndicator } from "@/api/indicator/update"
@@ -21,24 +21,17 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
 
   const [isOptionDropdownOpened, setIsOptionsDropdownOpened] = useState(false)
 
-  const [isHidden, setIsHidden] = useState(indicator.hidden)
-
-  useEffect(() => {
-    setIsHidden(indicator.hidden)
-  }, [indicator.hidden])
+  const [{ value }, mutate] = useOptimisticUpdate(updateIndicator, {
+    initialValue: indicator.hidden,
+  })
 
   const { select, selectedItems } = useContextStore()
 
-  const [, mutate] = useMutation(updateIndicator)
-
   const handleIsHiddenChange = async () => {
-    setIsHidden((prev) => !prev)
-    await mutate({ id: indicator.id, hidden: !isHidden })
+    await mutate({ id: indicator.id, hidden: !value }, !value)
   }
 
-  const handleSelect = () => {
-    select(indicator.id)
-  }
+  const handleSelect = () => select(indicator.id)
 
   const lastUpdateDate = new Date(indicator.updatedAt).toLocaleDateString()
 
@@ -76,7 +69,7 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
       </TableCell>
       <TableCell className="indicators-dashboard-table__hidden-cell">
         <div className="indicators-dashboard-table__switch-container">
-          <Switch checked={isHidden} onChange={handleIsHiddenChange} />
+          <Switch checked={value} onChange={handleIsHiddenChange} />
         </div>
       </TableCell>
       <TableCell className="indicators-dashboard-table__more-cell">
