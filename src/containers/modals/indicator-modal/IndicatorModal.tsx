@@ -1,9 +1,9 @@
 import { FC } from "react"
 import Label from "@/ui/label/Label"
 import Tag from "@/ui/tag/Tag"
+import "@/containers/modals/indicator-modal"
+import { IndicatorModalProps } from "@/containers/modals/indicator-modal/types"
 import ModalContainer from "@/components/modal-container/ModalContainer"
-import "./styles.scss"
-import { IndicatorModalProps } from "./types"
 
 const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
   const searchTags = indicator.searchTags.length ? (
@@ -11,6 +11,9 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
   ) : (
     <p className="indicator-modal__text">Unset</p>
   )
+
+  const createdAtDate = new Date(indicator.createdAt).toLocaleDateString()
+  const updatedAtDate = new Date(indicator.updatedAt).toLocaleDateString()
 
   return (
     <ModalContainer>
@@ -74,6 +77,17 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
               <p className="indicator-modal__text">
                 {indicator.ranking ?? "Unset"}
               </p>
+            </Label>
+          </div>
+          <div className="indicator-modal__label-group indicator-modal__label-container">
+            <Label label="Date of creation" className="indicator-form__label">
+              <p className="indicator-modal__text">{createdAtDate}</p>
+            </Label>
+            <Label
+              label="Date of last updation"
+              className="indicator-form__label"
+            >
+              <p className="indicator-modal__text">{updatedAtDate}</p>
             </Label>
           </div>
         </div>

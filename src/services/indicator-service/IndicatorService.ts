@@ -4,6 +4,7 @@ import {
   GetAdminIndicatorsParams,
 } from "@/services/indicator-service/types"
 import prisma from "@/prisma"
+import { IndicatorWithDatapoints } from "@/types/types"
 
 const perPage = Number(process.env.RESULTS_PER_PAGE)
 
@@ -146,10 +147,12 @@ const IndicatorService = {
       } ${sortDirection}`,
     ])
 
-    const indicators =
-      await prisma.$queryRaw`SELECT i.*, (SELECT COUNT(id) FROM "Value" WHERE "indicatorId" = i.id)::int as datapoints FROM "Indicator" i WHERE ${searchCondition} AND ${absoluteCondition} AND ${hiddenCondition} ${sortStatement}`
+    const fieldsToSelect = Prisma.sql(["i.*"])
 
-    return indicators as (Indicator & { datapoints: number })[]
+    const indicators =
+      await prisma.$queryRaw`SELECT ${fieldsToSelect}, (SELECT COUNT(id) FROM "Value" WHERE "indicatorId" = i.id)::int as datapoints FROM "Indicator" i WHERE ${searchCondition} AND ${absoluteCondition} AND ${hiddenCondition} ${sortStatement}`
+
+    return indicators as IndicatorWithDatapoints[]
   },
 }
 

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
-import { DropdownItemProps } from "./DropdownItem.types"
+import { DropdownItemProps } from "@/ui/dropdown/components/dropdown-item/DropdownItem.types"
 
 const renderWithProps = (props?: Partial<DropdownItemProps>) => {
   return render(<DropdownItem {...props}>Dropdown Item</DropdownItem>)
