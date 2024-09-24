@@ -1,5 +1,5 @@
-import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { NextRequest, NextResponse } from "next/server"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 
 export const PATCH = async (
   req: NextRequest,
@@ -9,5 +9,5 @@ export const PATCH = async (
 
   await IndicatorService.updateOne(params.indicator, body)
 
-  return NextResponse.json(body)
+  return NextResponse.json({})
 }

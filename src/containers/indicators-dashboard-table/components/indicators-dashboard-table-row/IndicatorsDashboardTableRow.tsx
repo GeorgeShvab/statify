@@ -1,16 +1,13 @@
-import { FC, memo, useRef, useState } from "react"
-import Dropdown from "@/ui/dropdown/Dropdown"
-import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
+import { FC, memo, useEffect, useRef, useState } from "react"
 import IconButton from "@/ui/icon-button/IconButton"
 import SquareIcon from "@/ui/icons/SquareIcon"
 import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
 import Switch from "@/ui/switch/Switch"
 import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
+import IndicatorsDashboardTableRowDropdown from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row-dropdown/IndicatorsDashboardTableRowDropdown"
 import { IndicatorsDashboardTableRowProps } from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/types"
-import EditIndicatorModal from "@/containers/modals/edit-indicator-modal/EditIndicatorModal"
-import IndicatorModal from "@/containers/modals/indicator-modal/IndicatorModal"
-import { useModal } from "@/providers/modal-provider/ModalProvider"
+import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
@@ -19,15 +16,18 @@ import "@/containers/indicators-dashboard-table/components/indicators-dashboard-
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,
-  onSelect,
-  isSelected,
 }) => {
   const moreButtonContainer = useRef(null)
 
   const [isOptionDropdownOpened, setIsOptionsDropdownOpened] = useState(false)
+
   const [isHidden, setIsHidden] = useState(indicator.hidden)
 
-  const { openModal } = useModal()
+  useEffect(() => {
+    setIsHidden(indicator.hidden)
+  }, [indicator.hidden])
+
+  const { select, selectedItems } = useContextStore()
 
   const [, mutate] = useMutation(updateIndicator)
 
@@ -36,20 +36,8 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
     await mutate({ id: indicator.id, hidden: !isHidden })
   }
 
-  const handleEditIndicator = () => {
-    openModal(<EditIndicatorModal indicator={indicator} />, {
-      scrollable: true,
-    })
-  }
-
-  const handleMoreIndicatorInformation = () => {
-    openModal(<IndicatorModal indicator={indicator} />, {
-      scrollable: true,
-    })
-  }
-
   const handleSelect = () => {
-    onSelect(indicator.id)
+    select(indicator.id)
   }
 
   const lastUpdateDate = new Date(indicator.updatedAt).toLocaleDateString()
@@ -58,7 +46,7 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
     <TableRow
       className={cn(
         "indicators-dashboard-table__row",
-        isSelected && "selected"
+        selectedItems.includes(indicator.id) && "selected"
       )}
     >
       <TableCell className="indicators-dashboard-table__check-cell">
@@ -101,28 +89,12 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
         >
           <VerticalMoreIcon />
         </IconButton>
-        <Dropdown
+        <IndicatorsDashboardTableRowDropdown
+          indicator={indicator}
           anchor={moreButtonContainer}
-          position="bottom-end"
           isOpen={isOptionDropdownOpened}
           onClose={() => setIsOptionsDropdownOpened(false)}
-          closeOneClick
-        >
-          <DropdownItem
-            className="indicator-options-dropdown__item"
-            size="small"
-            onClick={handleMoreIndicatorInformation}
-          >
-            More Information
-          </DropdownItem>
-          <DropdownItem
-            className="indicator-options-dropdown__item"
-            size="small"
-            onClick={handleEditIndicator}
-          >
-            Update Indicator
-          </DropdownItem>
-        </Dropdown>
+        />
       </TableCell>
     </TableRow>
   )

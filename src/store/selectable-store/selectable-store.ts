@@ -15,13 +15,10 @@ export const selectableStore = () =>
           ? state.selectedItems.filter((item) => item !== id)
           : [...state.selectedItems, id]
 
-        const count = isAlreadySelected
-          ? state.selectedCount + 1
-          : state.selectedCount - 1
-
         return {
-          selectedCount: count,
+          selectedCount: result.length,
           selectedItems: result,
         }
       }),
+    clearSelection: () => set(() => ({ selectedItems: [], selectedCount: 0 })),
   }))

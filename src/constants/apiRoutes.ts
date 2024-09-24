@@ -7,9 +7,11 @@ export default {
     download: (indicatorId: string) => `/api/download/${indicatorId}`,
   },
   admin: {
-    indicator: {
-      update: (id: string) => `/api/admin/indicator/${id}`,
-      create: "/api/admin/indicator",
+    indicators: {
+      update: (id: string) => `/api/admin/indicators/${id}`,
+      hide: "/api/admin/indicators/hide",
+      expose: "/api/admin/indicators/expose",
+      create: "/api/admin/indicators",
     },
   },
 }

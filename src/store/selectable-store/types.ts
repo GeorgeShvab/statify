@@ -1,5 +1,10 @@
+import { StoreApi } from "zustand"
+
 export interface SelectableStore {
   selectedCount: number
-  selectedItems: (string | number)[]
-  select: (item: string | number) => void
+  selectedItems: string[]
+  select: (item: string) => void
+  clearSelection: () => void
 }
+
+export type SelectableApi = StoreApi<SelectableStore>
