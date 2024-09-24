@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from "react"
+import { FC, memo, useRef, useState } from "react"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import IconButton from "@/ui/icon-button/IconButton"
@@ -19,11 +19,12 @@ import "@/containers/indicators-dashboard-table/components/indicators-dashboard-
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,
+  onSelect,
+  isSelected,
 }) => {
   const moreButtonContainer = useRef(null)
 
   const [isOptionDropdownOpened, setIsOptionsDropdownOpened] = useState(false)
-  const [isSelected, setIsSelected] = useState(false)
   const [isHidden, setIsHidden] = useState(indicator.hidden)
 
   const { openModal } = useModal()
@@ -47,6 +48,10 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
     })
   }
 
+  const handleSelect = () => {
+    onSelect(indicator.id)
+  }
+
   const lastUpdateDate = new Date(indicator.updatedAt).toLocaleDateString()
 
   return (
@@ -61,7 +66,7 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
           variant="text"
           color="dark"
           className="indicators-dashboard__check"
-          onClick={() => setIsSelected((prev) => !prev)}
+          onClick={handleSelect}
         >
           <SquareIcon />
         </IconButton>
@@ -123,4 +128,4 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   )
 }
 
-export default IndicatorsDashboardTableRow
+export default memo(IndicatorsDashboardTableRow)

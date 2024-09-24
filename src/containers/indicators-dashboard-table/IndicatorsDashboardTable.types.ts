@@ -1,7 +1,7 @@
-import { Indicator } from "@prisma/client"
+import { IndicatorWithDatapoints } from "@/types/types"
 
 export interface IndicatorsDashboardTableProps {
-  indicators: (Indicator & { datapoints: number })[]
+  indicators: IndicatorWithDatapoints[]
 }
 
 export type IndicatorsDashboardTableFormValues = Record<

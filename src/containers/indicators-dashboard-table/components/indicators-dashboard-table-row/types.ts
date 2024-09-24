@@ -1,5 +1,7 @@
-import { Indicator } from "@prisma/client"
+import { IndicatorWithDatapoints } from "@/types/types"
 
 export interface IndicatorsDashboardTableRowProps {
-  indicator: Indicator & { datapoints: number }
+  indicator: IndicatorWithDatapoints
+  isSelected: boolean
+  onSelect: (item: string) => void
 }
