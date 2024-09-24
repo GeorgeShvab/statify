@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import useMutation from "../use-mutation/useMutation"
 import { OptimisticUpdateConfig } from "./types"
 
@@ -8,6 +8,10 @@ const useOptimisticUpdate = <TArguments, TResult, TValue>(
 ) => {
   const [data, mutate] = useMutation(fn, config)
   const [value, setValue] = useState(config.initialValue)
+
+  useEffect(() => {
+    setValue(config.initialValue)
+  }, config.deps || [])
 
   const makeMutation = async (args: TArguments, optimisticValue: TValue) => {
     const prevValue = value

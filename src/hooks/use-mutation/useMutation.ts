@@ -25,12 +25,20 @@ const useMutation = <TArguments, TResult>(
       if (config?.successMessage) {
         openAlert({ text: config.successMessage, severity: "success" })
       }
+
+      if (config?.onSuccess) {
+        config.onSuccess()
+      }
     } catch (e) {
       setError(e)
       setIsLoading(false)
 
       if (config?.errorMessage) {
         openAlert({ text: config.errorMessage, severity: "danger" })
+      }
+
+      if (config?.onError) {
+        config.onError()
       }
 
       throw e

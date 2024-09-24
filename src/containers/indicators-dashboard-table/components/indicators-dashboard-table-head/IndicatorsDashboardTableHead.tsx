@@ -1,5 +1,4 @@
 import IconButton from "@/ui/icon-button/IconButton"
-import SquareIcon from "@/ui/icons/SquareIcon"
 import TableHeadCell from "@/ui/table/components/table-head-cell/TableHeadCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 
