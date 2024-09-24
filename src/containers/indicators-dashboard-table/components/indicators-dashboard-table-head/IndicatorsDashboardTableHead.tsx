@@ -11,7 +11,7 @@ const IndicatorsDashboardTableHead = () => (
         color="light"
         className="indicators-dashboard__check"
       >
-        <SquareIcon />
+        <></>
       </IconButton>
     </TableHeadCell>
     <TableHeadCell className="indicators-dashboard-table__id-cell">

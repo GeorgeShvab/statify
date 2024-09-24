@@ -1,9 +1,9 @@
 import { FC } from "react"
 import Label from "@/ui/label/Label"
 import Tag from "@/ui/tag/Tag"
-import "@/containers/modals/indicator-modal"
 import { IndicatorModalProps } from "@/containers/modals/indicator-modal/types"
 import ModalContainer from "@/components/modal-container/ModalContainer"
+import "@/containers/modals/indicator-modal/styles.scss"
 
 const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
   const searchTags = indicator.searchTags.length ? (

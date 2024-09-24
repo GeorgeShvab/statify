@@ -13,3 +13,11 @@ export interface CreateIndicatorParams extends Partial<Indicator> {
   precision: number
   ranking: number
 }
+
+export interface HideIndicatorsParams {
+  ids: string[]
+}
+
+export interface ExposeIndicatorsParams {
+  ids: string[]
+}

@@ -9,16 +9,11 @@ import { StoreProvider } from "@/providers/store-provider/StoreProvider"
 import { selectableStore } from "@/store/selectable-store/selectable-store"
 
 const IndicatorsDashboard: FC<IndicatorsDashboardProps> = (props) => {
-  const key =
-    props.indicators[0].id +
-    props.indicators.length +
-    props.indicators[props.indicators.length - 1].id
-
   return (
     <StoreProvider createStore={selectableStore}>
       <IndicatorsDashboardHeader />
       <IndicatorsDashboardTools {...props} />
-      <IndicatorsDashboardTable key={key} {...props} />
+      <IndicatorsDashboardTable {...props} />
     </StoreProvider>
   )
 }

@@ -21,6 +21,20 @@ const IndicatorService = {
     return prisma.indicator.create({ data })
   },
 
+  async hideMany(ids: string[]) {
+    return prisma.indicator.updateMany({
+      where: { id: { in: ids } },
+      data: { hidden: true },
+    })
+  },
+
+  async exposeMany(ids: string[]) {
+    return prisma.indicator.updateMany({
+      where: { id: { in: ids } },
+      data: { hidden: false },
+    })
+  },
+
   async updateOne(id: string, data: Partial<Indicator>) {
     await prisma.indicator.update({ where: { id }, data })
   },
