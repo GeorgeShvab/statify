@@ -1,7 +1,6 @@
 "use client"
 
 import { FC } from "react"
-import { Indicator } from "@prisma/client"
 import Table from "@/ui/table/Table"
 import { IndicatorsDashboardTableProps } from "@/containers/indicators-dashboard-table/IndicatorsDashboardTable.types"
 import IndicatorsDashboardTableHead from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-head/IndicatorsDashboardTableHead"

@@ -44,9 +44,6 @@ const IndicatorsDashboardPage: FC<
     absolute: type === "all" ? undefined : type === "absolute",
   })
 
-  const key =
-    indicators[0].id + indicators.length + indicators[indicators.length - 1].id
-
   return (
     <main className="container">
       <div className="admin-dashboard">

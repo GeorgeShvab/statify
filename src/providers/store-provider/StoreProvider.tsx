@@ -1,6 +1,6 @@
 import { useRef, useContext, FC, createContext } from "react"
 import { StoreApi, useStore } from "zustand"
-import { StoreProviderProps, Stores } from "./types"
+import { StoreProviderProps, Stores } from "@/providers/store-provider/types"
 
 const StoreContext = createContext<StoreApi<Stores>>({} as StoreApi<Stores>)
 

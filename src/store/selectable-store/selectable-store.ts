@@ -1,5 +1,5 @@
 import { createStore } from "zustand"
-import { SelectableStore } from "./types"
+import { SelectableStore } from "@/store/selectable-store/types"
 
 export const selectableStore = () =>
   createStore<SelectableStore>()((set) => ({
