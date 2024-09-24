@@ -1,8 +1,8 @@
 import { ReactNode } from "react"
 import { StoreApi } from "zustand"
-import { SelectableStore } from "@/store/selectable-store/types"
+import { IndicatorsStore } from "@/store/indicators-store/types"
 
-export type Stores = SelectableStore
+export type Stores = IndicatorsStore
 
 export interface StoreProviderProps {
   children: ReactNode

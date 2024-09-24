@@ -44,8 +44,10 @@ const IndicatorsDashboardPage: FC<
     absolute: type === "all" ? undefined : type === "absolute",
   })
 
+  const key = JSON.stringify(indicators) + sort + type + search + sortDirection
+
   return (
-    <main className="container">
+    <main className="container" key={key}>
       <div className="admin-dashboard">
         <IndicatorsDashboard
           sort={sort}

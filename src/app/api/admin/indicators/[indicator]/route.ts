@@ -7,13 +7,7 @@ export const PATCH = async (
 ) => {
   const body = await req.json()
 
-  await new Promise((resolve, reject) => {
-    setTimeout(() => reject(), 2000)
-  })
+  await IndicatorService.updateOne(params.indicator, body)
 
-  throw new Error()
-
-  //await IndicatorService.updateOne(params.indicator, body)
-
-  return NextResponse.json({})
+  return NextResponse.json(body)
 }

@@ -7,7 +7,7 @@ import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 import IndicatorsDashboardTableRowDropdown from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row-dropdown/IndicatorsDashboardTableRowDropdown"
 import { IndicatorsDashboardTableRowProps } from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/types"
-import { useContextStore } from "@/providers/store-provider/StoreProvider"
+import { useSelectable } from "@/providers/selectable-provider/SelectableProvider"
 import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpdate"
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
@@ -23,9 +23,11 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
 
   const [{ value }, mutate] = useOptimisticUpdate(updateIndicator, {
     initialValue: indicator.hidden,
+    errorMessage: "Unexpected error occured",
+    deps: [indicator.hidden],
   })
 
-  const { select, selectedItems } = useContextStore()
+  const { select, selectedItems } = useSelectable()
 
   const handleIsHiddenChange = async () => {
     await mutate({ id: indicator.id, hidden: !value }, !value)
