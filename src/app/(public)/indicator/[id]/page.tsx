@@ -1,14 +1,14 @@
-import * as types from "@/types/types"
-import IndicatorService from "@/services/indicator-service/IndicatorService"
-import { Metadata } from "next"
-import CountryService from "@/services/CountryService"
-import { notFound } from "next/navigation"
 import axios from "axios"
-import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
-import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
+import { Metadata } from "next"
 import dynamic from "next/dynamic"
+import { notFound } from "next/navigation"
+import CountryService from "@/services/country-service/CountryService"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
+import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import IndicatorTable from "@/containers/indicator-table/IndicatorTable"
+import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
+import * as types from "@/types/types"
 
 const ChartSection = dynamic(
   () => import("@/containers/chart-section/ChartSection"),
