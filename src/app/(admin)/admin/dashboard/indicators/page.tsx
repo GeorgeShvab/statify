@@ -7,7 +7,7 @@ import {
 import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import IndicatorsDashboard from "@/containers/indicators-dashboard/IndicatorsDashboard"
-import validateQueryParam from "@/utils/validate-query-param/validate-query-param"
+import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
 import "@/app/(admin)/admin/dashboard/indicators/styles.scss"
 import { PageProps } from "@/types/types"
 
