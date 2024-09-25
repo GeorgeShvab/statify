@@ -7,11 +7,13 @@ function quickSort<T extends string | number | object>(
 ): T[] {
   if (array.length < 2) return array
 
-  const pivot = array[Math.floor(array.length / 2)]
+  const pivotIndex = Math.floor(array.length / 2)
+
+  const pivot = array[pivotIndex]
   const left: T[] = []
   const right: T[] = []
 
-  array.splice(Math.floor(array.length / 2), 1)
+  array.splice(pivotIndex, 1)
 
   for (let i = 0; i < array.length; i++) {
     if (order === "asc") {

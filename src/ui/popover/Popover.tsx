@@ -1,8 +1,6 @@
 import { FC, ReactNode, RefObject } from "react"
 import dynamic from "next/dynamic"
 import FixedPosition from "@/components/FixedPosition"
-import AnimationWrapper from "@/components/animation/AnimationWrapper"
-import OpacityAnimation from "@/components/animation/OpacityAnimation"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
 import { Position, PositionOptions } from "@/types/types"

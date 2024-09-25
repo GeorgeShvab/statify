@@ -1,13 +1,13 @@
 "use client"
 
-import { SigninFormValues } from "@/containers/forms/signin-form/SigninForm.types"
-import "@/containers/forms/signin-form/styles.scss"
-import Input from "@/ui/input/Input"
-import Button from "@/ui/button/Button"
 import { useForm } from "react-hook-form"
+import { yupResolver } from "@hookform/resolvers/yup"
+import Button from "@/ui/button/Button"
+import Input from "@/ui/input/Input"
+import { SigninFormValues } from "@/containers/forms/signin-form/SigninForm.types"
 import signinValidationSchema from "@/containers/forms/signin-form/validationSchema"
-import validationResolver from "@/utils/validation-resolver/validationResolver"
 import useSignin from "@/hooks/use-signin/useSignin"
+import "@/containers/forms/signin-form/styles.scss"
 
 const SigninForm = () => {
   const {
@@ -15,7 +15,7 @@ const SigninForm = () => {
     register,
     handleSubmit,
   } = useForm<SigninFormValues>({
-    resolver: validationResolver(signinValidationSchema),
+    resolver: yupResolver(signinValidationSchema),
     reValidateMode: "onSubmit",
   })
 
