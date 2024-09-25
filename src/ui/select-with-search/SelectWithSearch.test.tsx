@@ -1,6 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
-import Select from "@/ui/select/Select"
-import { Option, SelectProps } from "@/ui/select/Select.types"
+import SelectWithSearch from "@/ui/select-with-search/SelectWithSearch"
+import { Option } from "@/ui/select/Select.types"
+import fireChange from "@/test-utils/fire-change"
+import { SelectWithSearchProps } from "./SelectWithSearch.types"
 
 const containerClassName = "container-class"
 
@@ -20,11 +22,6 @@ const testOptions: Option[] = [
 const mockRenderItemLabel = jest.fn()
 const mockRenderSelectedLabel = jest.fn()
 
-const openOptions = () => {
-  const initialOption = screen.getByText("All")
-  fireEvent.click(initialOption)
-}
-
 const renderItemLabel = (option: Option) => {
   mockRenderItemLabel()
   return option.label
@@ -35,9 +32,9 @@ const renderSelectedLabel = (option: Option) => {
   return option.label
 }
 
-const renderWithProps = (props?: Partial<SelectProps>) => {
+const renderWithProps = (props?: Partial<SelectWithSearchProps>) => {
   return render(
-    <Select
+    <SelectWithSearch
       options={testOptions}
       value={testOptions[0].value}
       onChange={mockOnChange}
@@ -46,7 +43,20 @@ const renderWithProps = (props?: Partial<SelectProps>) => {
   )
 }
 
+const openOptions = () => {
+  const initialOption = screen.getByText("All")
+  fireEvent.click(initialOption)
+}
+
 describe("Test Select component", () => {
+  test("Should display input when options are opened", async () => {
+    renderWithProps()
+    openOptions()
+
+    const inputEl = await screen.findByRole("textbox")
+    expect(inputEl).toBeInTheDocument()
+  })
+
   test("Should display only initial option initially", () => {
     renderWithProps()
 
@@ -77,6 +87,7 @@ describe("Test Select component", () => {
 
   test("Should close options when user clicks outside", async () => {
     const { container } = renderWithProps()
+
     openOptions()
 
     const optionFromList = await screen.findByText("Selected")
@@ -97,6 +108,23 @@ describe("Test Select component", () => {
 
     expect(mockRenderItemLabel).toHaveBeenCalled()
     expect(mockRenderSelectedLabel).toHaveBeenCalled()
+  })
+
+  test("Should display filtered by search options", () => {
+    renderWithProps()
+    openOptions()
+
+    const optionsBeforeSearch = screen.getAllByRole("option")
+
+    expect(optionsBeforeSearch).toHaveLength(2)
+
+    const inputEl = screen.getByRole("textbox")
+
+    fireChange(inputEl, "Sele")
+
+    const optionsAfterSearch = screen.getAllByRole("option")
+
+    expect(optionsAfterSearch).toHaveLength(1)
   })
 
   test("Should apply passed throught containerProps class", () => {
