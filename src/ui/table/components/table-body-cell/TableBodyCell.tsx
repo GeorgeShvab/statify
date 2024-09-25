@@ -1,9 +1,9 @@
 import { FC } from "react"
 import { TableBodyCellProps } from "@/ui/table/components/table-body-cell/TableBodyCell.types"
-import "@/ui/table/components/table-body-cell/styles.scss"
 import cn from "@/utils/cn/cn"
+import "@/ui/table/components/table-body-cell/styles.scss"
 
-const TableCell: FC<TableBodyCellProps> = ({
+const TableBodyCell: FC<TableBodyCellProps> = ({
   children,
   className,
   ...props
@@ -15,4 +15,4 @@ const TableCell: FC<TableBodyCellProps> = ({
   )
 }
 
-export default TableCell
+export default TableBodyCell
