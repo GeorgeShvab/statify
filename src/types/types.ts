@@ -75,3 +75,7 @@ export type SortDirection = "asc" | "desc"
 export interface IndicatorWithDatapoints extends Indicator {
   datapoints: number
 }
+
+export interface CountryWithDatapoints extends Country {
+  datapoints: number
+}

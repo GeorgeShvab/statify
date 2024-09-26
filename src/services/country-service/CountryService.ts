@@ -1,9 +1,31 @@
-import { Prisma } from "@prisma/client"
+import { Country, Prisma } from "@prisma/client"
 import prisma from "@/prisma"
-import { CountryRowValue, CountryWithValues } from "@/types/types"
+import {
+  CountryRowValue,
+  CountryWithDatapoints,
+  CountryWithValues,
+} from "@/types/types"
 import { GetAdminCountriesParams } from "./types"
 
 const CountryService = {
+  async hideMany(ids: string[]) {
+    return prisma.country.updateMany({
+      where: { id: { in: ids } },
+      data: { hidden: true },
+    })
+  },
+
+  async exposeMany(ids: string[]) {
+    return prisma.country.updateMany({
+      where: { id: { in: ids } },
+      data: { hidden: false },
+    })
+  },
+
+  async updateOne(id: string, data: Partial<Country> & { mapping?: object }) {
+    await prisma.country.update({ where: { id }, data })
+  },
+
   async get({ id }: { id: string }) {
     return await prisma.country.findUnique({ where: { id } })
   },
@@ -60,7 +82,10 @@ const CountryService = {
     hidden,
     sort,
     sortDirection,
-    type,
+    isCountry,
+    isRegion,
+    isState,
+    isUnion,
   }: GetAdminCountriesParams) {
     const searchCondition = Prisma.sql([
       search
@@ -68,17 +93,12 @@ const CountryService = {
         : "TRUE",
     ])
 
-    // TODO: Refactor all the services later
+    // TODO: Refactor all the services later, i guess I will add a tuple instead of separate columns
     const typeCondition = Prisma.sql([
-      type === "country"
-        ? '"country" = TRUE'
-        : type === "region"
-          ? '"geographicRegion" = TRUE'
-          : type === "state"
-            ? '"independentState" = TRUE'
-            : type === "union"
-              ? '"union" = TRUE'
-              : "TRUE",
+      `${isCountry ? '"country" = TRUE' : "TRUE"} AND ` +
+        `${isState ? '"independentState" = TRUE' : "TRUE"} AND ` +
+        `${isUnion ? '"union" = TRUE' : "TRUE"} AND ` +
+        `${isRegion ? '"geographicRegion" = TRUE' : "TRUE"}`,
     ])
 
     const hiddenCondition = Prisma.sql([
@@ -95,8 +115,7 @@ const CountryService = {
     ])
 
     const data =
-      await prisma.$queryRaw`SELECT *, (SELECT COUNT(id) FROM "Value" WHERE "countryId" = c.id)::int as datapoints FROM "Country" c WHERE ${searchCondition} AND ${typeCondition} AND ${hiddenCondition} ${sortStatement}`
-
+      (await prisma.$queryRaw`SELECT *, (SELECT COUNT(id) FROM "Value" WHERE "countryId" = c.id)::int as datapoints FROM "Country" c WHERE ${searchCondition} AND ${typeCondition} AND ${hiddenCondition} ${sortStatement}`) as CountryWithDatapoints[]
     return data
   },
 }

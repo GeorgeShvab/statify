@@ -3,17 +3,18 @@ import { SortDirection } from "@/types/types"
 export type AdminCountrySort =
   | "id"
   | "name"
-  | "geocode"
-  | "iso2code"
+  | "geoCode"
+  | "iso2Code"
   | "datapoints"
   | "updatedAt"
-
-export type AdminCountryType = "country" | "state" | "union" | "region"
 
 export interface GetAdminCountriesParams {
   search?: string
   sortDirection: SortDirection
   sort: AdminCountrySort
   hidden?: boolean
-  type?: AdminCountryType
+  isCountry?: boolean
+  isState?: boolean
+  isUnion?: boolean
+  isRegion?: boolean
 }

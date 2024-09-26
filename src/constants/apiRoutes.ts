@@ -13,5 +13,10 @@ export default {
       expose: "/api/admin/indicators/expose",
       create: "/api/admin/indicators",
     },
+    countries: {
+      update: (id: string) => `/api/admin/countries/${id}`,
+      hide: "/api/admin/countries/hide",
+      expose: "/api/admin/countries/expose",
+    },
   },
 }

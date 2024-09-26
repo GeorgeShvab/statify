@@ -1,43 +1,48 @@
 "use client"
 
+import { ChangeEvent, FC, useState } from "react"
+import {
+  countrySearchQueryKey,
+  countrySortDirectionQueryKey,
+  countrySortOptions,
+  countrySortQueryKey,
+  countryStatusOptions,
+  countryStatusQueryKey,
+  countryTypeOptions,
+  countryTypeQueryKey,
+} from "@/app/(admin)/admin/dashboard/countries/constants"
+import IconButton from "@/ui/icon-button/IconButton"
+import CloseIcon from "@/ui/icons/CloseIcon"
+import SortAscendingIcon from "@/ui/icons/SortAscendingIcon"
+import SortDescendingIcon from "@/ui/icons/SortDescendingIcon"
 import Input from "@/ui/input/Input"
 import Select from "@/ui/select/Select"
-import { ChangeEvent, FC, useState } from "react"
-import "@/containers/countries-dashboard-tools/styles.scss"
 import { Option } from "@/ui/select/Select.types"
+import {
+  CountriesDashboardToolsProps,
+  DashboardCountryQueryParams,
+} from "@/containers/countries-dashboard-tools/CountriesDashboardTools.types"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
-import {
-  countrySortOptions,
-  countryStatusOptions,
-  countryTypeOptions,
-  searchQueryKey,
-  sortQueryKey,
-  statusQueryKey,
-  typeQueryKey,
-} from "@/containers/countries-dashboard-tools/constants"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import { DashboardCountryQueryParams } from "@/containers/countries-dashboard-tools/CountriesDashboardTools.types"
-import {
-  validateSort,
-  validateStatus,
-  validateType,
-} from "@/containers/countries-dashboard-tools/utils/validators/validators"
+import "@/containers/countries-dashboard-tools/styles.scss"
+import isFiltersApplied from "./utils/is-filters-applied/isFiltersApplied"
 
-const CountryDashboardTools: FC = () => {
-  const [searchParams, setSearchParams] =
+const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
+  search,
+  sort,
+  sortDirection,
+  status,
+  type,
+}) => {
+  const [, setSearchParams, clearAllParams] =
     useQueryParams<DashboardCountryQueryParams>()
 
-  const sortSearchParam = validateSort(searchParams.sort)
-  const statusSearchParam = validateStatus(searchParams.status)
-  const typeSearchParam = validateType(searchParams.type)
-  const searchSearchParam = searchParams.search || ""
-
-  const [searchValue, setSearchValue] = useState(searchSearchParam)
+  const [searchValue, setSearchValue] = useState(search)
 
   const debouncedSetSearch = useDebounce(
-    (value: string) => setSearchParams(searchQueryKey, value),
+    (value: string) => setSearchParams(countrySearchQueryKey, value),
     300,
-    [searchParams.sort, searchParams.status, searchParams.type]
+    [type, sort, sortDirection, status]
   )
 
   const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +58,24 @@ const CountryDashboardTools: FC = () => {
   const renderSortLabel = ({ label }: Option) =>
     `Sort by ${label.toLowerCase()}`
 
+  const handleSortDirectionChange = () => {
+    setSearchParams(
+      countrySortDirectionQueryKey,
+      sortDirection === "asc" ? "desc" : "asc"
+    )
+  }
+
+  const sortIcon =
+    sortDirection === "asc" ? <SortAscendingIcon /> : <SortDescendingIcon />
+
+  const showClearFiltersButton = !isFiltersApplied({
+    search,
+    status,
+    sort,
+    sortDirection,
+    type,
+  })
+
   return (
     <div className="dashboard-tools">
       <Input
@@ -63,28 +86,40 @@ const CountryDashboardTools: FC = () => {
       />
       <Select
         options={countrySortOptions}
-        value={sortSearchParam}
-        onChange={handleSelectChange(sortQueryKey)}
+        value={sort}
+        onChange={handleSelectChange(countrySortQueryKey)}
         renderSelectedLabel={renderSortLabel}
         className="dashboard-tools__sort-select"
         size="small"
       />
       <Select
         options={countryStatusOptions}
-        value={statusSearchParam}
-        onChange={handleSelectChange(statusQueryKey)}
+        value={status}
+        onChange={handleSelectChange(countryStatusQueryKey)}
         className="dashboard-tools__select"
         size="small"
       />
       <Select
         options={countryTypeOptions}
-        value={typeSearchParam}
-        onChange={handleSelectChange(typeQueryKey)}
+        value={type}
+        onChange={handleSelectChange(countryTypeQueryKey)}
         className="dashboard-tools__region-type-select"
         size="small"
       />
+      <IconButton color="light" onClick={handleSortDirectionChange}>
+        {sortIcon}
+      </IconButton>
+      <IconButton
+        onClick={clearAllParams}
+        disabled={showClearFiltersButton}
+        color="light"
+        aria-label="Clear filters"
+        title="Clear filters"
+      >
+        <CloseIcon />
+      </IconButton>
     </div>
   )
 }
 
-export default CountryDashboardTools
+export default CountriesDashboardTools
