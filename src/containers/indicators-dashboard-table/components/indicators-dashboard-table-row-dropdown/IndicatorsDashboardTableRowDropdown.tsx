@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { StoreApi } from "zustand"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import EditIndicatorModal from "@/containers/modals/edit-indicator-modal/EditIndicatorModal"
@@ -8,6 +9,7 @@ import { useSelectable } from "@/providers/selectable-provider/SelectableProvide
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { hideIndicators, exposeIndicators } from "@/api/indicator/update"
+import { IndicatorsStore } from "@/store/indicators-store/types"
 import { IndicatorsDashboardTableRowDropdownProps } from "./types"
 
 const IndicatorsDashboardTableRowDropdown: FC<
@@ -17,7 +19,7 @@ const IndicatorsDashboardTableRowDropdown: FC<
   const {
     hideIndicators: hideStoreIndicators,
     exposeIndicators: exposeStoreIndicators,
-  } = useContextStore()
+  } = useContextStore<StoreApi<IndicatorsStore>>()
 
   const { openModal } = useModal()
 

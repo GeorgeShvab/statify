@@ -21,12 +21,12 @@ export const StoreProvider: FC<StoreProviderProps> = ({
   )
 }
 
-export const useContextStore = () => {
+export const useContextStore = <TStore extends StoreApi<Stores>>() => {
   const store = useContext(StoreContext)
 
   if (!store) {
     throw new Error("useContextStore must be used within StoreProvider")
   }
 
-  return useStore(store)
+  return useStore(store as TStore)
 }
