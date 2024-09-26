@@ -20,10 +20,12 @@ const IndicatorsDashboardPage: FC<
     searchParams.sort,
     possibleIndicatorSortQueryParam
   )
+
   const status = validateQueryParam(
     searchParams.status,
     possibleIndicatorStatusQueryParam
   )
+
   const sortDirection = validateQueryParam(
     searchParams.sortDirection,
     possibleIndicatorSortDirection
