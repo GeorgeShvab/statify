@@ -1,6 +1,5 @@
 "use client"
 
-import { CountryRowValue } from "@/types/types"
 import { FC } from "react"
 import useTableData from "@/app/(public)/indicator/[id]/useTableData"
 import TableComponent from "@/ui/table/Table"
@@ -10,6 +9,7 @@ import TableRow from "@/ui/table/components/table-row/TableRow"
 import { IndicatorTableProps } from "@/containers/indicator-table/IndicatorTable.types"
 import IndicatorTableRow from "@/containers/indicator-table/components/indicator-table-row/IndicatorTableRow"
 import "@/containers/indicator-table/styles.scss"
+import { CountryRowValue } from "@/types/types"
 
 const IndicatorTable: FC<IndicatorTableProps> = (props) => {
   const [data, handleSort] = useTableData(props.data)
@@ -55,7 +55,7 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
 
   return (
     <section className="container mb-2 md:mb-3.5">
-      <div className="bg-white rounded-lg border">
+      <div className="bg-white">
         <TableComponent
           data={data.data}
           renderRow={renderRow}
