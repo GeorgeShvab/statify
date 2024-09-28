@@ -1,11 +1,11 @@
 import { Country, Prisma } from "@prisma/client"
+import { GetAdminCountriesParams } from "@/services/country-service/types"
 import prisma from "@/prisma"
 import {
   CountryRowValue,
   CountryWithDatapoints,
   CountryWithValues,
 } from "@/types/types"
-import { GetAdminCountriesParams } from "./types"
 
 const CountryService = {
   async hideMany(ids: string[]) {

@@ -22,10 +22,10 @@ import {
   CountriesDashboardToolsProps,
   DashboardCountryQueryParams,
 } from "@/containers/countries-dashboard-tools/CountriesDashboardTools.types"
+import isFiltersApplied from "@/containers/countries-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
 import "@/containers/countries-dashboard-tools/styles.scss"
-import isFiltersApplied from "./utils/is-filters-applied/isFiltersApplied"
 
 const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   search,

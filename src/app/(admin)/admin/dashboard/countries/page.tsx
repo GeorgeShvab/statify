@@ -1,16 +1,16 @@
 import { FC } from "react"
-import CountryService from "@/services/country-service/CountryService"
-import CountriesDashboard from "@/containers/countries-dashboard/CountriesDashboard"
-import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import "@/app/(admin)/admin/dashboard/countries/styles.scss"
-import { PageProps } from "@/types/types"
 import {
   possibleCountrySortDirectionQueryParams,
   possibleCountrySortQueryParams,
   possibleCountryStatusQueryParams,
   possibleCountryTypeQueryParams,
-} from "./constants"
-import { DashboardCountryQueryParams } from "./types"
+} from "@/app/(admin)/admin/dashboard/countries/constants"
+import { DashboardCountryQueryParams } from "@/app/(admin)/admin/dashboard/countries/types"
+import CountryService from "@/services/country-service/CountryService"
+import CountriesDashboard from "@/containers/countries-dashboard/CountriesDashboard"
+import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
+import "@/app/(admin)/admin/dashboard/countries/styles.scss"
+import { PageProps } from "@/types/types"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/countries/metadata"
 

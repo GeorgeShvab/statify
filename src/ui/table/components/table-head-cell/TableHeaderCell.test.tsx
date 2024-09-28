@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import TableHeadCell from "./TableHeadCell"
+import TableHeadCell from "@/ui/table/components/table-head-cell/TableHeadCell"
 
 const headCellContent = "This is head table cell"
 

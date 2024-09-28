@@ -1,5 +1,8 @@
-import { IndicatorsDashboardToolsProps } from "../../IndicatorsDashboardTools.types"
-import { indicatorSortOptions, indicatorStatusOptions } from "../../constants"
+import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
+import {
+  indicatorSortOptions,
+  indicatorStatusOptions,
+} from "@/containers/indicators-dashboard-tools/constants"
 
 const isFiltersApplied = ({
   sort,
