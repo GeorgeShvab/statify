@@ -1,6 +1,6 @@
-import { Credentials } from "@/types/types"
 import { signIn, SignInResponse } from "next-auth/react"
 import { useState } from "react"
+import { Credentials } from "@/types/types"
 
 const useSignin = () => {
   const [status, setStatus] = useState<number | null>(null)

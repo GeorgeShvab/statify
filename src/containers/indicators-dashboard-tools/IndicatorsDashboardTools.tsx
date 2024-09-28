@@ -18,10 +18,10 @@ import Input from "@/ui/input/Input"
 import Select from "@/ui/select/Select"
 import { Option } from "@/ui/select/Select.types"
 import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
+import isFiltersApplied from "@/containers/indicators-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
 import "@/containers/indicators-dashboard-tools/styles.scss"
-import isFiltersApplied from "./utils/is-filters-applied/isFiltersApplied"
 
 const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   sort,

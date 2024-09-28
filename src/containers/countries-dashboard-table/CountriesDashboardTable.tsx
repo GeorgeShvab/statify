@@ -1,12 +1,12 @@
 import { FC } from "react"
 import { StoreApi } from "zustand"
 import Table from "@/ui/table/Table"
+import CountriesDashboardTableHead from "@/containers/countries-dashboard-table/components/countries-dashboard-table-head/CountriesDashboardTableHead"
+import CountriesDashboardTableRow from "@/containers/countries-dashboard-table/components/countries-dashboard-table-row/CountriesDashboardTableRow"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
+import "@/containers/countries-dashboard-table/styles.scss"
 import { CountriesStore } from "@/store/countries-store/types"
 import { CountryWithDatapoints } from "@/types/types"
-import "./styles.scss"
-import CountriesDashboardTableHead from "./components/countries-dashboard-table-head/CountriesDashboardTableHead"
-import CountriesDashboardTableRow from "./components/countries-dashboard-table-row/CountriesDashboardTableRow"
 
 const renderHeader = () => <CountriesDashboardTableHead />
 

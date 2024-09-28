@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react"
-import Table from "./Table"
-import { TableProps } from "./Table.types"
+import Table from "@/ui/table/Table"
+import { TableProps } from "@/ui/table/Table.types"
 
 interface TableData {
   text: string

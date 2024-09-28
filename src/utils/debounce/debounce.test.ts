@@ -1,4 +1,4 @@
-import debounce from "./debounce"
+import debounce from "@/utils/debounce/debounce"
 
 const mockCallback = jest.fn()
 

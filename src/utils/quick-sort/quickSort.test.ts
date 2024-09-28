@@ -1,4 +1,4 @@
-import quickSort from "./quickSort"
+import quickSort from "@/utils/quick-sort/quickSort"
 
 const testNumberData = [1, 5, 2, 9, 4, 2, 34, 2, 4, 54]
 const testObjectData = [{ id: 44 }, { id: 2 }, { id: 5 }, { id: 33 }]

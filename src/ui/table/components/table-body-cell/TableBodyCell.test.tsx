@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import TableBodyCell from "./TableBodyCell"
+import TableBodyCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 
 const cellContent = "This is body table cell"
 

@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import SelectWithSearch from "@/ui/select-with-search/SelectWithSearch"
+import { SelectWithSearchProps } from "@/ui/select-with-search/SelectWithSearch.types"
 import { Option } from "@/ui/select/Select.types"
 import fireChange from "@/test-utils/fire-change"
-import { SelectWithSearchProps } from "./SelectWithSearch.types"
 
 const containerClassName = "container-class"
 

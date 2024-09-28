@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import TableRow from "./TableRow"
+import TableRow from "@/ui/table/components/table-row/TableRow"
 
 const rowContent = "This is row"
 

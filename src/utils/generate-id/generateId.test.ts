@@ -1,4 +1,4 @@
-import generateId from "./generateId"
+import generateId from "@/utils/generate-id/generateId"
 
 describe("Test generateId util", () => {
   test("Should return string id", () => {

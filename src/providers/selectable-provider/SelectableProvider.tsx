@@ -1,8 +1,8 @@
 import { useRef, useContext, FC, createContext } from "react"
 import { StoreApi, useStore } from "zustand"
+import { SelectableProviderProps } from "@/providers/selectable-provider/types"
 import { selectableStore } from "@/store/selectable-store/selectable-store"
 import { SelectableStore } from "@/store/selectable-store/types"
-import { SelectableProviderProps } from "./types"
 
 const SelectableContext = createContext<StoreApi<SelectableStore>>(
   {} as StoreApi<SelectableStore>

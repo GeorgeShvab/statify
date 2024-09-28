@@ -2,6 +2,7 @@ import { FC } from "react"
 import { StoreApi } from "zustand"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
+import { IndicatorsDashboardTableRowDropdownProps } from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row-dropdown/types"
 import EditIndicatorModal from "@/containers/modals/edit-indicator-modal/EditIndicatorModal"
 import IndicatorModal from "@/containers/modals/indicator-modal/IndicatorModal"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
@@ -10,7 +11,6 @@ import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { hideIndicators, exposeIndicators } from "@/api/indicator/update"
 import { IndicatorsStore } from "@/store/indicators-store/types"
-import { IndicatorsDashboardTableRowDropdownProps } from "./types"
 
 const IndicatorsDashboardTableRowDropdown: FC<
   IndicatorsDashboardTableRowDropdownProps
