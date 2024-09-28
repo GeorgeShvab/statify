@@ -1,30 +1,33 @@
-import { useEffect, useState } from "react"
-import useMutation from "../use-mutation/useMutation"
-import { OptimisticUpdateConfig } from "./types"
+import { useEffect, useRef, useState } from "react"
+import useMutation from "@/hooks/use-mutation/useMutation"
+import { OptimisticUpdateConfig } from "@/hooks/use-optimistic-update/types"
 
 const useOptimisticUpdate = <TArguments, TResult, TValue>(
   fn: (args: TArguments) => Promise<TResult>,
   config: OptimisticUpdateConfig<TValue>
 ) => {
-  const [data, mutate] = useMutation(fn, config)
+  const prevValue = useRef<TValue>()
+
   const [value, setValue] = useState(config.initialValue)
+
+  const handleError = () => {
+    setValue(prevValue.current)
+
+    if (config.onError) config.onError()
+  }
+
+  const [data, mutate] = useMutation(fn, { ...config, onError: handleError })
 
   useEffect(() => {
     setValue(config.initialValue)
   }, config.deps || [])
 
   const makeMutation = async (args: TArguments, optimisticValue: TValue) => {
-    const prevValue = value
+    prevValue.current = value
 
-    try {
-      setValue(optimisticValue)
+    setValue(optimisticValue)
 
-      await mutate(args)
-    } catch (e) {
-      setValue(prevValue)
-
-      throw e
-    }
+    await mutate(args)
   }
 
   return [{ ...data, value }, makeMutation] as const

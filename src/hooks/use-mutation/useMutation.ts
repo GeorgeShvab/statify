@@ -40,8 +40,6 @@ const useMutation = <TArguments, TResult>(
       if (config?.onError) {
         config.onError()
       }
-
-      throw e
     }
   }
 
