@@ -1,14 +1,15 @@
 import { FC, useEffect, useRef } from "react"
-import "@/components/detect-outside-click/styles.scss"
-
 import { DetectOutsideClickProps } from "@/components/detect-outside-click/DetectOutsideClick.types"
+import cn from "@/utils/cn/cn"
+import "@/components/detect-outside-click/styles.scss"
 
 const DetectOutsideClick: FC<DetectOutsideClickProps> = ({
   children,
   ignore,
   onOutsideClick,
+  isAbsolute = true,
 }) => {
-  const containerRef = useRef<HTMLSpanElement>(null)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
@@ -35,9 +36,12 @@ const DetectOutsideClick: FC<DetectOutsideClickProps> = ({
   }, [])
 
   return (
-    <span ref={containerRef} className="outside-click-container">
+    <div
+      ref={containerRef}
+      className={cn(isAbsolute && "outside-click-container")}
+    >
       {children}
-    </span>
+    </div>
   )
 }
 
