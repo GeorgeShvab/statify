@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react"
-import TableHeadCellWithSorting from "./TableHeadSortingCell"
-import { TableHeadSortingCellProps } from "./TableHeadSortingCell.types"
+import TableHeadCellWithSorting from "@/ui/table/components/table-head-sorting-cell/TableHeadSortingCell"
+import { TableHeadSortingCellProps } from "@/ui/table/components/table-head-sorting-cell/TableHeadSortingCell.types"
 
 const cellContent = "This is head sorting cell"
 

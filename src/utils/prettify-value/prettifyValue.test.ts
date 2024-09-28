@@ -1,4 +1,4 @@
-import prettifyValue from "./prettifyValue"
+import prettifyValue from "@/utils/prettify-value/prettifyValue"
 
 const testValue = 1_000_000.0008
 

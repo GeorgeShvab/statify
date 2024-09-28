@@ -1,10 +1,10 @@
 import axios from "axios"
-import apiRoutes from "@/constants/apiRoutes"
 import {
   ExposeCountriesParams,
   HideCountriesParams,
   UpdateCountryParams,
-} from "./types"
+} from "@/api/country/types"
+import apiRoutes from "@/constants/apiRoutes"
 
 export const hideCountries = (arg: HideCountriesParams) =>
   axios.patch(apiRoutes.admin.countries.hide, arg)

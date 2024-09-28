@@ -1,4 +1,4 @@
-import throttle from "./throttle"
+import throttle from "@/utils/throttle/throttle"
 
 const mockCallback = jest.fn()
 

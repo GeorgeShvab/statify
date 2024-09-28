@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react"
-import Label from "./Label"
+import Label from "@/ui/label/Label"
 
 const titleText = "This is label"
 const labelContent = "Some text inside of a label"

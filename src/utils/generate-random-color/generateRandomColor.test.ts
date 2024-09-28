@@ -1,4 +1,4 @@
-import generateRandomColor from "./generateRandomColor"
+import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
 
 describe("Test generateRandomColor util", () => {
   test("Should return random color hex", () => {

@@ -3,7 +3,7 @@ import {
   countryStatusOptions,
   countryTypeOptions,
 } from "@/app/(admin)/admin/dashboard/countries/constants"
-import { CountriesDashboardToolsProps } from "../../CountriesDashboardTools.types"
+import { CountriesDashboardToolsProps } from "@/containers/countries-dashboard-tools/CountriesDashboardTools.types"
 
 const isFiltersApplied = ({
   sort,

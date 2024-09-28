@@ -2,12 +2,12 @@ import { FC } from "react"
 import { StoreApi } from "zustand"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
+import { CountriesDashboardTableRowDropdownProps } from "@/containers/countries-dashboard-table/components/countries-dashboard-table-row-dropdown/types"
 import { useSelectable } from "@/providers/selectable-provider/SelectableProvider"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { exposeCountries, hideCountries } from "@/api/country/update"
 import { CountriesStore } from "@/store/countries-store/types"
-import { CountriesDashboardTableRowDropdownProps } from "./types"
 
 const CountriesDashboardTableRowDropdown: FC<
   CountriesDashboardTableRowDropdownProps

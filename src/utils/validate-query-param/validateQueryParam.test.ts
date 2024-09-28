@@ -1,4 +1,4 @@
-import validateQueryParam from "./validateQueryParam"
+import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
 
 const possibleValues = ["a", "b"]
 

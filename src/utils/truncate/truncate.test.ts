@@ -1,4 +1,4 @@
-import truncate from "./truncate"
+import truncate from "@/utils/truncate/truncate"
 
 const testString =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
