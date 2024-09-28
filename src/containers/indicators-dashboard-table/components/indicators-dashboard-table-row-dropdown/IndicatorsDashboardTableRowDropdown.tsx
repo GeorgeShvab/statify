@@ -9,8 +9,8 @@ import { useModal } from "@/providers/modal-provider/ModalProvider"
 import { useSelectable } from "@/providers/selectable-provider/SelectableProvider"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
-import { hideIndicators, exposeIndicators } from "@/api/indicator/update"
 import { IndicatorsStore } from "@/store/indicators-store/types"
+import { hideIndicators, exposeIndicators } from "@/api/indicator/update"
 
 const IndicatorsDashboardTableRowDropdown: FC<
   IndicatorsDashboardTableRowDropdownProps
