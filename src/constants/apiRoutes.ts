@@ -17,6 +17,7 @@ export default {
       update: (id: string) => `/api/admin/countries/${id}`,
       hide: "/api/admin/countries/hide",
       expose: "/api/admin/countries/expose",
+      create: "/api/admin/countries",
     },
   },
 }
