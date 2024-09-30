@@ -8,22 +8,22 @@ import SelectController from "@/ui/select/components/select-controller/SelectCon
 import {
   countryStatusOptions,
   countryTypeOptions,
+  initialValues,
 } from "@/containers/forms/country-form/constants"
 import {
-  EditCountryFormProps,
-  EditCountryFormValues,
-} from "@/containers/forms/country-form/edit-country-form/types"
-import getInitialValues from "@/containers/forms/country-form/edit-country-form/utils/getInitialValues"
+  CreateCountryFormProps,
+  CreateCountryFormValues,
+} from "@/containers/forms/country-form/create-country-form/types"
+import createCountryValidationSchema from "@/containers/forms/country-form/create-country-form/validationSchema"
+import { EditableCountryFields } from "@/containers/forms/country-form/edit-country-form/types"
 import prepareData from "@/containers/forms/country-form/edit-country-form/utils/prepareData"
-import editCountryValidationSchema from "@/containers/forms/country-form/edit-country-form/validationSchema"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
-import filterDirtyValues from "@/utils/filter-dirty-values/filterDirtyValues"
-import { updateCountry } from "@/api/country/update"
+import { createCountry } from "@/api/country/create"
 import "@/containers/forms/country-form/styles.scss"
 
-const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
-  const [, mutate] = useMutation(updateCountry, {
+const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
+  const [, mutate] = useMutation(createCountry, {
     successMessage: "Country was updated successffully",
     errorMessage: "Unexpected error occured",
     onSuccess,
@@ -33,35 +33,39 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
     handleSubmit,
     register,
     control,
-    formState: { dirtyFields, isDirty, errors },
+    formState: { isDirty, errors },
     setValue,
-  } = useForm<EditCountryFormValues>({
-    values: getInitialValues(country),
-    resolver: yupResolver(editCountryValidationSchema),
+  } = useForm<CreateCountryFormValues>({
+    values: initialValues,
+    resolver: yupResolver(createCountryValidationSchema),
   })
 
   const handleTagsChange = (tags: string[]) => {
     setValue("searchTags", tags, { shouldDirty: true })
   }
 
-  const onSubmit = async (data: EditCountryFormValues) => {
+  const onSubmit = async (data: CreateCountryFormValues) => {
     if (!isDirty) return
 
-    const filteredValues = filterDirtyValues<EditCountryFormValues>(
-      data,
-      dirtyFields
-    )
+    const preparedData = prepareData<
+      CreateCountryFormValues,
+      EditableCountryFields & { id: string }
+    >(data)
 
-    const preparedData = prepareData(filteredValues)
-
-    await mutate({ ...preparedData, id: country.id })
+    await mutate(preparedData)
   }
 
   return (
     <form className="country-form" onSubmit={handleSubmit(onSubmit)}>
       <h3 className="country-form__title">Edit Country</h3>
-      <p className="country-form__subtitle">{country.id}</p>
       <div>
+        <Label className="country-form__label-container" label="Country ID">
+          <Input
+            className="country-form__input"
+            isError={Boolean(errors.id)}
+            {...register("id")}
+          />
+        </Label>
         <Label className="country-form__label-container" label="Country name">
           <Input
             className="country-form__input"
@@ -86,10 +90,10 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
           </Label>
         </div>
         <Label className="country-form__label-container" label="Search tags">
-          <TagInput tags={country.searchTags} onChange={handleTagsChange} />
+          <TagInput tags={[]} onChange={handleTagsChange} />
         </Label>
         <Label className="country-form__label-container" label="Type">
-          <SelectController<EditCountryFormValues>
+          <SelectController<CreateCountryFormValues>
             name="type"
             options={countryTypeOptions}
             size="small"
@@ -97,7 +101,7 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
           />
         </Label>
         <Label className="country-form__label-container" label="Status">
-          <SelectController<EditCountryFormValues>
+          <SelectController<CreateCountryFormValues>
             name="status"
             options={countryStatusOptions}
             size="small"
@@ -116,4 +120,4 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
   )
 }
 
-export default EditCountryForm
+export default CreateCountryForm
