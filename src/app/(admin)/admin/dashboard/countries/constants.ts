@@ -45,7 +45,7 @@ export const countryTypeOptions = [
   },
   {
     value: "region",
-    label: "Geographic Region",
+    label: "Region",
   },
   {
     value: "other",

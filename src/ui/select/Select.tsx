@@ -1,15 +1,15 @@
 "use client"
 
 import { FC, useRef, useState } from "react"
-import "@/ui/select/styles.scss"
 import dynamic from "next/dynamic"
+import DownChevronIcon from "@/ui/icons/DownChevronIcon"
+import UpChevronIcon from "@/ui/icons/UpChevronIcon"
+import { SelectProps } from "@/ui/select/Select.types"
+import SelectItem from "@/ui/select/components/select-item/SelectItem"
 import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import cn from "@/utils/cn/cn"
-import { SelectProps } from "@/ui/select/Select.types"
-import UpChevronIcon from "@/ui/icons/UpChevronIcon"
-import DownChevronIcon from "@/ui/icons/DownChevronIcon"
-import SelectItem from "@/ui/select/components/select-item/SelectItem"
+import "@/ui/select/styles.scss"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 

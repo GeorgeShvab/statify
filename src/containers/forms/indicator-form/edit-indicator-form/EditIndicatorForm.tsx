@@ -25,6 +25,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
   const [, mutate] = useMutation(updateIndicator, {
     successMessage: "Indicator was updated successffully",
     errorMessage: "Unexpected error occured",
+    onSuccess,
   })
 
   const {
@@ -47,8 +48,6 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
     const filteredValues = filterDirtyValues(data, dirtyFields)
 
     await mutate({ ...filteredValues, id: indicator.id })
-
-    onSuccess()
   }
 
   return (

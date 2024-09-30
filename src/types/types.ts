@@ -79,3 +79,5 @@ export interface IndicatorWithDatapoints extends Indicator {
 export interface CountryWithDatapoints extends Country {
   datapoints: number
 }
+
+export type Status = "visible" | "hidden"

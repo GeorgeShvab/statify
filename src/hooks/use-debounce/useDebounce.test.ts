@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react"
 import { DependencyList } from "react"
-import useDebounce from "./useDebounce"
+import useDebounce from "@/hooks/use-debounce/useDebounce"
 
 const callback = jest.fn()
 

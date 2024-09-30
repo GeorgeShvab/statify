@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:Welcome_Home@localhost:5432/statify-test"
 }
 
 model Indicator {
@@ -55,6 +55,7 @@ enum AreaType {
   region
   union
   country
+  other
 }
 
 model Country {
