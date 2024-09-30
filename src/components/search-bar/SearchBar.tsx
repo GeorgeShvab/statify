@@ -7,8 +7,8 @@ import Button from "@/ui/button/Button"
 import IconButton from "@/ui/icon-button/IconButton"
 import ResetIcon from "@/ui/icons/ResetIcon"
 import SearchIcon from "@/ui/icons/SearchIcon"
+import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import useAutocomplete from "@/components/search-bar/useAutocomplete"
-import DetectOutsideClick from "../detect-outside-click/DetectOutsideClick"
 
 interface Props {
   placeholder?: string
