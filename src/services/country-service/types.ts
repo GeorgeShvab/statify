@@ -1,3 +1,4 @@
+import { AreaType } from "@prisma/client"
 import { SortDirection } from "@/types/types"
 
 export type AdminCountrySort =
@@ -17,4 +18,14 @@ export interface GetAdminCountriesParams {
   isState?: boolean
   isUnion?: boolean
   isRegion?: boolean
+}
+
+export interface CreateCountryParams {
+  id: string
+  name: string
+  geoCode?: string
+  iso2Code?: string
+  hidden: boolean
+  type: AreaType
+  searchTags?: string[]
 }

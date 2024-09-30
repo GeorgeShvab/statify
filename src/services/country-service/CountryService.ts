@@ -1,13 +1,20 @@
 import { Country, Prisma } from "@prisma/client"
-import { GetAdminCountriesParams } from "@/services/country-service/types"
-import prisma from "@/prisma"
+import {
+  CreateCountryParams,
+  GetAdminCountriesParams,
+} from "@/services/country-service/types"
 import {
   CountryRowValue,
   CountryWithDatapoints,
   CountryWithValues,
 } from "@/types/types"
+import prisma from "@/prisma"
 
 const CountryService = {
+  async create(data: CreateCountryParams) {
+    return prisma.country.create({ data })
+  },
+
   async hideMany(ids: string[]) {
     return prisma.country.updateMany({
       where: { id: { in: ids } },

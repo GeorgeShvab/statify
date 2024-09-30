@@ -7,7 +7,7 @@ const filterDirtyValues = <TData extends object>(
     {}
   )
 
-  return result as Partial<TData>
+  return result as TData
 }
 
 export default filterDirtyValues

@@ -6,3 +6,10 @@ import {
 export const countryStatusOptions = allStatusOptions.slice(1)
 
 export const countryTypeOptions = allTypeOptions.slice(1)
+
+export const initialValues = {
+  id: "",
+  name: "",
+  status: "hidden",
+  type: "country",
+}
