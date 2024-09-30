@@ -22,6 +22,7 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
   const [, mutate] = useMutation(createIndicator, {
     successMessage: "Indicator was created successffully",
     errorMessage: "Unexpected error occured",
+    onSuccess,
   })
 
   const {
@@ -44,8 +45,6 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
     const preparedData = prepareValues(data)
 
     await mutate(preparedData)
-
-    onSuccess()
   }
 
   return (

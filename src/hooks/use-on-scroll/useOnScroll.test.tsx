@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react"
-import useOnScroll from "./useOnScroll"
+import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
 
 const mockHandleScroll = jest.fn()
 

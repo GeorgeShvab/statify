@@ -69,7 +69,7 @@ const IndicatorsDashboardTableRowDropdown: FC<
         size="small"
         onClick={handleEditIndicator}
       >
-        Update Indicator
+        Edit Indicator
       </DropdownItem>
       {selectedCount > 0 && (
         <>

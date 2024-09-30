@@ -3,22 +3,24 @@ import { StoreApi } from "zustand"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import { CountriesDashboardTableRowDropdownProps } from "@/containers/countries-dashboard-table/components/countries-dashboard-table-row-dropdown/types"
+import EditCountryModal from "@/containers/modals/edit-country-modal/EditCountryModal"
+import { useModal } from "@/providers/modal-provider/ModalProvider"
 import { useSelectable } from "@/providers/selectable-provider/SelectableProvider"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
-import { exposeCountries, hideCountries } from "@/api/country/update"
 import { CountriesStore } from "@/store/countries-store/types"
+import { exposeCountries, hideCountries } from "@/api/country/update"
 
 const CountriesDashboardTableRowDropdown: FC<
   CountriesDashboardTableRowDropdownProps
-> = (props) => {
+> = ({ country, ...props }) => {
   const { selectedItems, selectedCount, clearSelection } = useSelectable()
   const {
     hideCountries: hideStoreCountries,
     exposeCountries: exposeStoreCountries,
   } = useContextStore<StoreApi<CountriesStore>>()
 
-  //const { openModal } = useModal()
+  const { openModal } = useModal()
 
   const [, hideManyCountries] = useMutation(hideCountries, {
     onError: () => exposeStoreCountries(selectedItems),
@@ -31,9 +33,9 @@ const CountriesDashboardTableRowDropdown: FC<
   })
 
   const handleEditIndicator = () => {
-    // openModal(<EditIndicatorModal indicator={indicator} />, {
-    //   scrollable: true,
-    // })
+    openModal(<EditCountryModal country={country} />, {
+      scrollable: true,
+    })
   }
 
   const handleMoreIndicatorInformation = () => {
@@ -58,7 +60,7 @@ const CountriesDashboardTableRowDropdown: FC<
         More Information
       </DropdownItem>
       <DropdownItem size="small" onClick={handleEditIndicator}>
-        Update Indicator
+        Edit Country
       </DropdownItem>
       {selectedCount > 0 && (
         <>

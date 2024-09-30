@@ -1,4 +1,4 @@
-import getDatasetDonwloadLink from "./getDatasetDownloadLink"
+import getDatasetDonwloadLink from "@/utils/get-dataset-donwload-link/getDatasetDownloadLink"
 
 describe("Test getDatasetDownloadLink unit", () => {
   test("Should return correct download link for indicator dataset", () => {
