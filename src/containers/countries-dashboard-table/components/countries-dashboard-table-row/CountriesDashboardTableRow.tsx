@@ -7,7 +7,6 @@ import TableBodyCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 import CountriesDashboardTableRowDropdown from "@/containers/countries-dashboard-table/components/countries-dashboard-table-row-dropdown/CountriesDashboardTableRowDropdown"
 import { CountriesDashboardTableRowProps } from "@/containers/countries-dashboard-table/components/countries-dashboard-table-row/types"
-import getType from "@/containers/countries-dashboard-table/utils/get-type/getType"
 import { useSelectable } from "@/providers/selectable-provider/SelectableProvider"
 import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpdate"
 import cn from "@/utils/cn/cn"
@@ -38,8 +37,6 @@ const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
 
   const lastUpdateDate = new Date(country.updatedAt).toLocaleDateString()
 
-  const type = getType(country)
-
   return (
     <TableRow
       className={cn(
@@ -64,7 +61,7 @@ const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
         {country.name}
       </TableBodyCell>
       <TableBodyCell className="countries-dashboard-table__type-cell">
-        {type}
+        {country.type}
       </TableBodyCell>
       <TableBodyCell className="countries-dashboard-table__iso2code-cell">
         {country.iso2Code}

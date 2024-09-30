@@ -51,6 +51,12 @@ model Value {
   @@index([indicatorId(sort: Asc)])
 }
 
+enum AreaType {
+  region
+  union
+  country
+}
+
 model Country {
   id                        String     @id @unique
   name                      String
@@ -60,12 +66,10 @@ model Country {
   mapping                   Json?
   createdAt                 DateTime   @default(now())
   updatedAt                 DateTime   @updatedAt
-  country                   Boolean    @default(false)
   independentState          Boolean    @default(true)
-  union                     Boolean    @default(false)
   internationallyRecognized Boolean    @default(true)
-  geographicRegion          Boolean    @default(false)
   searchTags                String[]
+  type                      AreaType
   values                    Value[]
   Bookmark                  Bookmark[]
 
