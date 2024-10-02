@@ -24,12 +24,12 @@ export const SelectableProvider: FC<SelectableProviderProps> = ({
   )
 }
 
-export const useSelectable = () => {
+export const useSelectable = <TId extends number | string = string>() => {
   const store = useContext(SelectableContext)
 
   if (!store) {
     throw new Error("useSelectable must be used within SelectableProvider")
   }
 
-  return useStore(store)
+  return useStore(store as unknown as StoreApi<SelectableStore<TId>>)
 }

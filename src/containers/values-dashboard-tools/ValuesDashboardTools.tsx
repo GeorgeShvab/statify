@@ -1,51 +1,36 @@
 "use client"
 
-import Input from "@/ui/input/Input"
-import Select from "@/ui/select/Select"
-import { ChangeEvent, FC, useState } from "react"
-import "@/containers/values-dashboard-tools/styles.scss"
-import { Option } from "@/ui/select/Select.types"
-import useDebounce from "@/hooks/use-debounce/useDebounce"
+import { FC } from "react"
+import { countrySortDirectionQueryKey } from "@/app/(admin)/admin/dashboard/countries/constants"
 import {
-  valueSortOptions,
-  valueIndicatorOptions,
   valueCountryOptions,
-  searchQueryKey,
-  sortQueryKey,
-  countryQueryKey,
-  indicatorQueryKey,
-} from "@/containers/values-dashboard-tools/constants"
-import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import { DashboardValueQueryParams } from "@/containers/values-dashboard-tools/ValuesDashboardTools.types"
-import {
-  validateSort,
-  validateCountry,
-  validateIndicator,
-} from "@/containers/values-dashboard-tools/utils/validators/validators"
+  valueCountryQueryKey,
+  valueIndicatorOptions,
+  valueIndicatorQueryKey,
+  valueSortOptions,
+  valueSortQueryKey,
+} from "@/app/(admin)/admin/dashboard/values/constants"
+import { DashboardValueQueryParams } from "@/app/(admin)/admin/dashboard/values/types"
+import IconButton from "@/ui/icon-button/IconButton"
+import CloseIcon from "@/ui/icons/CloseIcon"
+import SortAscendingIcon from "@/ui/icons/SortAscendingIcon"
+import SortDescendingIcon from "@/ui/icons/SortDescendingIcon"
 import SelectWithSearch from "@/ui/select-with-search/SelectWithSearch"
+import Select from "@/ui/select/Select"
+import { Option } from "@/ui/select/Select.types"
+import { ValuesDashboardToolsProps } from "@/containers/values-dashboard-tools/ValuesDashboardTools.types"
+import isFiltersApplied from "@/containers/values-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
+import useQueryParams from "@/hooks/use-query-params/useQueryParams"
+import "@/containers/values-dashboard-tools/styles.scss"
 
-const ValueDashboardTools: FC = () => {
-  const [searchParams, setSearchParams] =
+const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
+  sort,
+  sortDirection,
+  indicator,
+  country,
+}) => {
+  const [, setSearchParams, clearAllParams] =
     useQueryParams<DashboardValueQueryParams>()
-
-  const sortSearchParam = validateSort(searchParams.sort)
-  const countrySearchParam = validateCountry(searchParams.country)
-  const indicatorSearchParam = validateIndicator(searchParams.indicator)
-  const searchSearchParam = searchParams.search || ""
-
-  const [searchValue, setSearchValue] = useState(searchSearchParam)
-
-  const debouncedSetSearch = useDebounce(
-    (value: string) => setSearchParams(searchQueryKey, value),
-    300,
-    [searchParams.sort, searchParams.country, searchParams.indicator]
-  )
-
-  const handleSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setSearchValue(value)
-    debouncedSetSearch(value)
-  }
 
   const handleSelectChange = (key: string) => (option: Option) => {
     setSearchParams(key, option.value)
@@ -54,36 +39,59 @@ const ValueDashboardTools: FC = () => {
   const renderSortLabel = ({ label }: Option) =>
     `Sort by ${label.toLowerCase()}`
 
+  const handleSortDirectionChange = () => {
+    setSearchParams(
+      countrySortDirectionQueryKey,
+      sortDirection === "asc" ? "desc" : "asc"
+    )
+  }
+
+  const sortIcon =
+    sortDirection === "asc" ? <SortAscendingIcon /> : <SortDescendingIcon />
+
+  const showClearFiltersButton = !isFiltersApplied({
+    sortDirection,
+    indicator,
+    country,
+    sort,
+  })
+
   return (
     <div className="dashboard-tools">
-      <Input
-        className="dashboard-tools__searchbar"
-        placeholder="Search by ID, country or indicator"
-        value={searchValue}
-        onChange={handleSearchInput}
-      />
       <Select
         options={valueSortOptions}
-        value={sortSearchParam}
-        onChange={handleSelectChange(sortQueryKey)}
+        value={sort}
+        onChange={handleSelectChange(valueSortQueryKey)}
         renderSelectedLabel={renderSortLabel}
-        className="dashboard-tools__sort-select"
+        className="dashboard-tools__values-select"
         size="small"
       />
       <SelectWithSearch
         options={valueIndicatorOptions}
-        value={indicatorSearchParam}
-        onChange={handleSelectChange(indicatorQueryKey)}
-        className="dashboard-tools__region-select"
+        value={indicator}
+        onChange={handleSelectChange(valueIndicatorQueryKey)}
+        className="dashboard-tools__values-select"
         size="small"
       />
       <SelectWithSearch
         options={valueCountryOptions}
-        value={countrySearchParam}
-        onChange={handleSelectChange(countryQueryKey)}
-        className="dashboard-tools__indicator-select"
+        value={country}
+        onChange={handleSelectChange(valueCountryQueryKey)}
+        className="dashboard-tools__values-select"
         size="small"
       />
+      <IconButton color="light" onClick={handleSortDirectionChange}>
+        {sortIcon}
+      </IconButton>
+      <IconButton
+        onClick={clearAllParams}
+        disabled={showClearFiltersButton}
+        color="light"
+        aria-label="Clear filters"
+        title="Clear filters"
+      >
+        <CloseIcon />
+      </IconButton>
     </div>
   )
 }

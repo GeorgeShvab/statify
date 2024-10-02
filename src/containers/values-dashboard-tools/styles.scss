@@ -3,24 +3,14 @@
 .dashboard-tools {
   display: flex;
   gap: sp(2);
+  margin-bottom: sp(4);
 }
 
-.dashboard-tools__searchbar {
-  flex: 3 0 auto;
-}
+.dashboard-tools__values-select {
+  width: 260px;
 
-.dashboard-tools__select {
-  width: 144px;
-}
-
-.dashboard-tools__sort-select {
-  width: 220px;
-}
-
-.dashboard-tools__region-select {
-  width: 190px;
-}
-
-.dashboard-tools__indicator-select {
-  width: 190px;
+  &:first-child {
+    width: auto;
+    flex: 3 0 auto;
+  }
 }
