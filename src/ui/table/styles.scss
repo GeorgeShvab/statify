@@ -1,9 +1,29 @@
 @import "@design-system";
 
+$table-cell-sizes: (5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25, 27.5, 30, 40, 50);
+
 .table {
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
+
+  @each $size in $table-cell-sizes {
+    .table-cell-#{replace-dot-with-hyphen($size)} {
+      width: $size * 1%;
+    }
+  }
+
+  .table-cell-left {
+    text-align: left;
+  }
+
+  .table-cell-center {
+    text-align: center;
+  }
+
+  .table-cell-right {
+    text-align: right;
+  }
 }
 
 .table__container {

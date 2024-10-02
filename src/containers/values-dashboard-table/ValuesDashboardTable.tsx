@@ -8,8 +8,6 @@ import ValuesDashboardTableHead from "@/containers/values-dashboard-table/compon
 import ValuesDashboardTableRow from "@/containers/values-dashboard-table/components/values-dashboard-table-row/ValuesDashboardTableRow"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import { ValuesStore } from "@/store/values-store/types"
-import "@/containers/indicators-dashboard-table/styles.scss"
-import "@/containers/values-dashboard-table/styles.scss"
 
 const renderHeader = () => <ValuesDashboardTableHead />
 
@@ -21,9 +19,7 @@ const ValuesDashboardTable: FC = () => {
   )
 
   return (
-    <div className="indicators-dashboard-table__container">
-      <Table data={values} renderRow={renderRow} renderHeader={renderHeader} />
-    </div>
+    <Table data={values} renderRow={renderRow} renderHeader={renderHeader} />
   )
 }
 

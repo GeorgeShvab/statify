@@ -8,7 +8,6 @@ import RefreshIcon from "@/ui/icons/RefreshIcon"
 import CreateIndicatorModal from "@/containers/modals/create-indicator-modal/CreateIndicatorModal"
 import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
-import "@/containers/indicators-dashboard-header/styles.scss"
 
 const IndicatorsDashboardHeader = () => {
   const router = useRouter()
@@ -22,14 +21,14 @@ const IndicatorsDashboardHeader = () => {
   const handleRefresh = () => router.refresh()
 
   return (
-    <div className="dashboard-header">
+    <div className="admin-dashboard-header">
       <DashboardHeading
         title="Indicators Dashboard"
         subtitle="Manage indicators here: view and edit information, add new datapoints."
       />
       <Button
         color="dark"
-        className="dashboard-header__create-button"
+        className="admin-dashboard-header__create-button"
         onClick={handleCreateIndicatorClick}
       >
         <PlusIcon />

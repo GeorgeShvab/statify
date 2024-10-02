@@ -1,5 +1,7 @@
 @import "@design-system";
 
+$table-cell-sizes: (5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25, 27.5, 30, 40, 50);
+
 .table__head-cell {
   @include ui-border;
   @include ui-text-color;
@@ -7,7 +9,6 @@
   background-color: $white-darker;
   color: $gray !important;
 
-  font-size: $fs-xxs;
   font-weight: 500;
   border-radius: 0 !important;
 
@@ -18,6 +19,18 @@
   line-height: 1.3;
 
   padding: 0 sp(1);
+
+  &.small {
+    font-size: $fs-xs;
+  }
+
+  &.medium {
+    font-size: $fs-base;
+  }
+
+  &.large {
+    font-size: $fs-lg;
+  }
 
   &:last-child {
     padding: 0 sp(4) 0 sp(1);

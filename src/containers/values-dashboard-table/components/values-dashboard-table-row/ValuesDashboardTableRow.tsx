@@ -5,9 +5,7 @@ import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 import ValuesDashboardTableRowDropdown from "@/containers/values-dashboard-table/components/values-dashboard-table-row-dropdown/ValuesDashboardTableRowDropdown"
 import { ValuesDashboardTableRowProps } from "@/containers/values-dashboard-table/components/values-dashboard-table-row/types"
-import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
-import "@/containers/values-dashboard-table/components/values-dashboard-table-row/styles.scss"
 
 const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
   value,
@@ -25,33 +23,26 @@ const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
   const lastUpdateDate = new Date(value.updatedAt).toLocaleDateString()
 
   return (
-    <TableRow className={cn("values-dashboard-table__row")}>
-      <TableCell className="values-dashboard-table__check-cell">
+    <TableRow>
+      <TableCell className="admin-dashboard-table__check-cell">
         <></>
       </TableCell>
-      <TableCell className="values-dashboard-table__id-cell">
-        {prettifyValue(value.id)}
-      </TableCell>
-      <TableCell className="values-dashboard-table__indicator-cell">
-        {value.indicatorId}
-      </TableCell>
-      <TableCell className="values-dashboard-table__country-cell">
-        {value.countryId}
-      </TableCell>
-      <TableCell className="values-dashboard-table__value-cell">
+      <TableCell size="small">{prettifyValue(value.id)}</TableCell>
+      <TableCell size="small">{value.indicatorId}</TableCell>
+      <TableCell size="small">{value.countryId}</TableCell>
+      <TableCell className="table-cell-center" size="small">
         {prettifyValue(value.value)}
       </TableCell>
-      <TableCell className="values-dashboard-table__year-cell">
+      <TableCell className="table-cell-center" size="small">
         {prettifyValue(value.year)}
       </TableCell>
-      <TableCell className="values-dashboard-table__last-updated-cell">
+      <TableCell className="table-cell-center" size="small">
         {lastUpdateDate}
       </TableCell>
-      <TableCell className="values-dashboard-table__more-cell">
+      <TableCell className="admin-dashboard-table__more-cell">
         <IconButton
           variant="text"
           color="light"
-          className="values-dashboard__more-button"
           ref={moreButtonContainer}
           onClick={() => setIsOptionsDropdownOpened(true)}
         >

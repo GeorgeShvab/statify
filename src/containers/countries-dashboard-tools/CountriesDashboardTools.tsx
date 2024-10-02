@@ -25,7 +25,6 @@ import {
 import isFiltersApplied from "@/containers/countries-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import "@/containers/countries-dashboard-tools/styles.scss"
 
 const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   search,
@@ -77,33 +76,33 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   })
 
   return (
-    <div className="dashboard-tools">
+    <div className="admin-dashboard-tools">
       <Input
-        className="dashboard-tools__searchbar"
+        className="flex-grow"
         placeholder="Search by ID, name, geocode or iso2code..."
         value={searchValue}
         onChange={handleSearchInput}
       />
       <Select
-        options={countrySortOptions}
-        value={sort}
-        onChange={handleSelectChange(countrySortQueryKey)}
-        renderSelectedLabel={renderSortLabel}
-        className="dashboard-tools__sort-select"
-        size="small"
-      />
-      <Select
         options={countryStatusOptions}
         value={status}
         onChange={handleSelectChange(countryStatusQueryKey)}
-        className="dashboard-tools__select"
+        className="flex-15"
         size="small"
       />
       <Select
         options={countryTypeOptions}
         value={type}
         onChange={handleSelectChange(countryTypeQueryKey)}
-        className="dashboard-tools__region-type-select"
+        className="flex-15"
+        size="small"
+      />
+      <Select
+        options={countrySortOptions}
+        value={sort}
+        onChange={handleSelectChange(countrySortQueryKey)}
+        renderSelectedLabel={renderSortLabel}
+        className="flex-22-5"
         size="small"
       />
       <IconButton color="light" onClick={handleSortDirectionChange}>

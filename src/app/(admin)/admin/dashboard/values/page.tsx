@@ -7,6 +7,7 @@ import {
 } from "@/app/(admin)/admin/dashboard/values/constants"
 import { DashboardValueQueryParams } from "@/app/(admin)/admin/dashboard/values/types"
 import ValueService from "@/services/value-service/ValueService"
+import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import ValuesDashboard from "@/containers/values-dashboard/ValuesDashboard"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
 import { PageProps } from "@/types/types"
@@ -46,7 +47,7 @@ const ValuesDashboardPage: FC<
 
   return (
     <main className="container">
-      <div className="admin-dashboard">
+      <AdminDashboard>
         <ValuesDashboard
           sort={sort}
           sortDirection={sortDirection}
@@ -54,7 +55,7 @@ const ValuesDashboardPage: FC<
           indicator={indicator}
           values={data}
         />
-      </div>
+      </AdminDashboard>
     </main>
   )
 }
