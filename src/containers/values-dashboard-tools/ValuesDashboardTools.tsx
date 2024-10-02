@@ -21,7 +21,6 @@ import { Option } from "@/ui/select/Select.types"
 import { ValuesDashboardToolsProps } from "@/containers/values-dashboard-tools/ValuesDashboardTools.types"
 import isFiltersApplied from "@/containers/values-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import "@/containers/values-dashboard-tools/styles.scss"
 
 const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   sort,
@@ -57,27 +56,27 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   })
 
   return (
-    <div className="dashboard-tools">
-      <Select
-        options={valueSortOptions}
-        value={sort}
-        onChange={handleSelectChange(valueSortQueryKey)}
-        renderSelectedLabel={renderSortLabel}
-        className="dashboard-tools__values-select"
-        size="small"
-      />
+    <div className="admin-dashboard-tools">
       <SelectWithSearch
         options={valueIndicatorOptions}
         value={indicator}
         onChange={handleSelectChange(valueIndicatorQueryKey)}
-        className="dashboard-tools__values-select"
+        className="flex-grow"
         size="small"
       />
       <SelectWithSearch
         options={valueCountryOptions}
         value={country}
         onChange={handleSelectChange(valueCountryQueryKey)}
-        className="dashboard-tools__values-select"
+        className="flex-grow"
+        size="small"
+      />
+      <Select
+        options={valueSortOptions}
+        value={sort}
+        onChange={handleSelectChange(valueSortQueryKey)}
+        renderSelectedLabel={renderSortLabel}
+        className="flex-22-5"
         size="small"
       />
       <IconButton color="light" onClick={handleSortDirectionChange}>

@@ -1,37 +1,30 @@
-import IconButton from "@/ui/icon-button/IconButton"
 import TableHeadCell from "@/ui/table/components/table-head-cell/TableHeadCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 
 const IndicatorsDashboardTableHead = () => (
   <TableRow>
-    <TableHeadCell className="indicators-dashboard-table__check-cell">
-      <IconButton
-        variant="text"
-        color="light"
-        className="indicators-dashboard__check"
-      >
-        <></>
-      </IconButton>
+    <TableHeadCell className="admin-dashboard-table__check-cell">
+      <></>
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__id-cell">
+    <TableHeadCell className="table-cell-15 table-cell-left" size="small">
       ID
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__label-cell">
+    <TableHeadCell className="table-cell-left" size="small">
       Label
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__description-cell">
+    <TableHeadCell className="table-cell-left" size="small">
       Description
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__datapoints-cell">
+    <TableHeadCell className="table-cell-10" size="small">
       Datapoints
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__last-updated-cell">
+    <TableHeadCell className="table-cell-10 table-cell-center" size="small">
       Last update
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__hidden-cell">
+    <TableHeadCell className="table-cell-7-5 table-cell-center" size="small">
       Hidden
     </TableHeadCell>
-    <TableHeadCell className="indicators-dashboard-table__more-cell">
+    <TableHeadCell className="admin-dashboard-table__more-cell">
       <></>
     </TableHeadCell>
   </TableRow>

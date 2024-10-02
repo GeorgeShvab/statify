@@ -6,10 +6,11 @@ import {
 } from "@/app/(admin)/admin/dashboard/indicators/constants"
 import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
+import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import IndicatorsDashboard from "@/containers/indicators-dashboard/IndicatorsDashboard"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import "@/app/(admin)/admin/dashboard/indicators/styles.scss"
 import { PageProps } from "@/types/types"
+import "@/app/(admin)/admin/dashboard/indicators/styles.scss"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/indicators/metadata"
 
@@ -42,7 +43,7 @@ const IndicatorsDashboardPage: FC<
 
   return (
     <main className="container">
-      <div className="admin-dashboard">
+      <AdminDashboard>
         <IndicatorsDashboard
           sort={sort}
           status={status}
@@ -50,7 +51,7 @@ const IndicatorsDashboardPage: FC<
           sortDirection={sortDirection}
           indicators={indicators}
         />
-      </div>
+      </AdminDashboard>
     </main>
   )
 }

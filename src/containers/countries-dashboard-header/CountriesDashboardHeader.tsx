@@ -6,7 +6,6 @@ import RefreshIcon from "@/ui/icons/RefreshIcon"
 import CreateCountryModal from "@/containers/modals/create-country-modal/CreateCountryModal"
 import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
-import "@/containers/countries-dashboard-header/styles.scss"
 
 const CountriesDashboardHeader = () => {
   const router = useRouter()
@@ -20,14 +19,14 @@ const CountriesDashboardHeader = () => {
   const handleRefresh = () => router.refresh()
 
   return (
-    <div className="dashboard-header">
+    <div className="admin-dashboard-header">
       <DashboardHeading
         title="Countries Dashboard"
         subtitle="Manage countries: view and edit information, add new countries."
       />
       <Button
         color="dark"
-        className="dashboard-header__create-button"
+        className="admin-dashboard-header__create-button"
         onClick={handleCreateCountryClick}
       >
         <PlusIcon />
