@@ -1,6 +1,6 @@
-export type DashboardValueQueryParams = {
+export type ValuesDashboardToolsProps = {
   sort: string
-  search: string
+  sortDirection: string
   indicator: string
   country: string
 }

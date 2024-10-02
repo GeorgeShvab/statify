@@ -1,9 +1,9 @@
 import { StoreApi } from "zustand"
 
-export interface SelectableStore {
+export interface SelectableStore<TId extends number | string = string> {
   selectedCount: number
-  selectedItems: string[]
-  select: (item: string) => void
+  selectedItems: TId[]
+  select: (item: TId) => void
   clearSelection: () => void
 }
 

@@ -1,3 +1,5 @@
+import { Prisma, Value } from "@prisma/client"
+import { GetAdminValuesParams } from "@/services/value-service/types"
 import prisma from "@/prisma"
 
 interface GetParams {
@@ -7,6 +9,28 @@ interface GetParams {
 }
 
 const ValueService = {
+  async getAdminValues({
+    sort,
+    sortDirection,
+    country,
+    indicator,
+  }: GetAdminValuesParams) {
+    const sortStatement = Prisma.sql([`ORDER BY "${sort}" ${sortDirection}`])
+
+    const countryCondition = Prisma.sql([
+      country ? `"countryId" = '${country}'` : "TRUE",
+    ])
+
+    const indicatorCondition = Prisma.sql([
+      indicator ? `"indicatorId" = '${indicator}'` : "TRUE",
+    ])
+
+    const data =
+      await prisma.$queryRaw`SELECT * FROM "Value" WHERE ${indicatorCondition} AND ${countryCondition} ${sortStatement} LIMIT 100`
+
+    return data as Value[]
+  },
+
   async get({ indicator, country, years }: GetParams) {
     let data
 
