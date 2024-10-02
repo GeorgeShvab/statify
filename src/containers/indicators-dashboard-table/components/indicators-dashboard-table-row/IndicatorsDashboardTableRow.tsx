@@ -12,7 +12,6 @@ import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpda
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
 import { updateIndicator } from "@/api/indicator/update"
-import "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/styles.scss"
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,
@@ -39,46 +38,35 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
 
   return (
     <TableRow
-      className={cn(
-        "indicators-dashboard-table__row",
-        selectedItems.includes(indicator.id) && "selected"
-      )}
+      className={cn(selectedItems.includes(indicator.id) && "selected")}
     >
-      <TableCell className="indicators-dashboard-table__check-cell">
-        <IconButton
-          variant="text"
-          color="dark"
-          className="indicators-dashboard__check"
-          onClick={handleSelect}
-        >
+      <TableCell className="admin-dashboard-table__check-cell">
+        <IconButton variant="text" color="dark" onClick={handleSelect}>
           <SquareIcon />
         </IconButton>
       </TableCell>
-      <TableCell className="indicators-dashboard-table__id-cell">
-        {indicator.id}
-      </TableCell>
-      <TableCell className="indicators-dashboard-table__label-cell">
+      <TableCell size="small">{indicator.id}</TableCell>
+      <TableCell size="small" className="text-overflow">
         {indicator.label}
       </TableCell>
-      <TableCell className="indicators-dashboard-table__description-cell">
+      <TableCell size="small" className="text-overflow">
         {indicator.description}
       </TableCell>
-      <TableCell className="indicators-dashboard-table__datapoints-cell">
+      <TableCell className="table-cell-center" size="small">
         {prettifyValue(indicator.datapoints)}
       </TableCell>
-      <TableCell className="indicators-dashboard-table__last-updated-cell">
+      <TableCell className="table-cell-center" size="small">
         {lastUpdateDate}
       </TableCell>
-      <TableCell className="indicators-dashboard-table__hidden-cell">
-        <div className="indicators-dashboard-table__switch-container">
+      <TableCell size="small">
+        <div className="admin-dashboard-table__cell-switch">
           <Switch checked={value} onChange={handleIsHiddenChange} />
         </div>
       </TableCell>
-      <TableCell className="indicators-dashboard-table__more-cell">
+      <TableCell className="admin-dashboard-table__more-cell">
         <IconButton
           variant="text"
           color="light"
-          className="indicators-dashboard__more-button"
           ref={moreButtonContainer}
           onClick={() => setIsOptionsDropdownOpened(true)}
         >

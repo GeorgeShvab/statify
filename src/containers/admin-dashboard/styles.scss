@@ -1,0 +1,98 @@
+@import "@design-system";
+
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: sp(4);
+  padding-top: sp(8);
+  margin-bottom: sp(2);
+
+  @include breakpoint("md") {
+    margin-bottom: sp(4);
+  }
+
+  .table__body-cell {
+    transition: 0.3s background-color;
+  }
+
+  .selected {
+    .table__body-cell {
+      background-color: $white-darker;
+    }
+  }
+}
+
+.admin-dashboard-header {
+  display: flex;
+  padding: sp(2) 0;
+  align-items: center;
+  gap: sp(2);
+}
+
+.admin-dashboard-tools {
+  display: flex;
+  gap: sp(2);
+}
+
+.admin-dashboard-table__check-cell {
+  font-size: $fs-xs;
+  width: 4.75%;
+  padding: 0 0 0 6px !important;
+
+  button {
+    color: $gray-light !important;
+    transition:
+      0.3s background-color,
+      0.3s color;
+
+    &:hover {
+      color: $gray !important;
+    }
+
+    svg {
+      path {
+        fill: transparent;
+        transition: 0.3s fill;
+      }
+    }
+
+    .selected {
+      color: $gray-dark !important;
+
+      path {
+        fill: $gray-dark;
+      }
+    }
+  }
+}
+
+.admin-dashboard-table__more-cell {
+  font-size: $fs-xs;
+  width: 4.75%;
+  padding: 0 6px 0 0 !important;
+
+  button {
+    color: $gray !important;
+
+    &:hover {
+      color: $gray-dark !important;
+    }
+  }
+}
+
+.admin-dashboard-header__create-button {
+  padding-left: sp(4);
+  gap: sp(3);
+  margin-left: auto;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.admin-dashboard-table__cell-switch {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

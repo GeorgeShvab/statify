@@ -1,37 +1,30 @@
-import IconButton from "@/ui/icon-button/IconButton"
 import TableHeadCell from "@/ui/table/components/table-head-cell/TableHeadCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 
 const ValuesDashboardTableHead = () => (
   <TableRow>
-    <TableHeadCell className="values-dashboard-table__check-cell">
-      <IconButton
-        variant="text"
-        color="light"
-        className="values-dashboard__check"
-      >
-        <></>
-      </IconButton>
+    <TableHeadCell className="admin-dashboard-table__check-cell">
+      <></>
     </TableHeadCell>
-    <TableHeadCell className="values-dashboard-table__id-cell">
+    <TableHeadCell className="table-cell-left" size="small">
       ID
     </TableHeadCell>
-    <TableHeadCell className="values-dashboard-table__indicator-cell">
+    <TableHeadCell className="table-cell-left" size="small">
       Indicator ID
     </TableHeadCell>
-    <TableHeadCell className="values-dashboard-table__country-cell">
+    <TableHeadCell className="table-cell-left" size="small">
       Country ID
     </TableHeadCell>
-    <TableHeadCell className="values-dashboard-table__value-cell">
+    <TableHeadCell className="table-cell-7-5 table-cell-center" size="small">
       Value
     </TableHeadCell>
-    <TableHeadCell className="values-dashboard-table__year-cell">
+    <TableHeadCell className="table-cell-7-5 table-cell-center" size="small">
       Year
     </TableHeadCell>
-    <TableHeadCell className="values-dashboard-table__last-updated-cell">
+    <TableHeadCell className="table-cell-10 table-cell-center" size="small">
       Last update
     </TableHeadCell>
-    <TableHeadCell className="values-dashboard-table__more-cell">
+    <TableHeadCell className="admin-dashboard-table__more-cell">
       <></>
     </TableHeadCell>
   </TableRow>

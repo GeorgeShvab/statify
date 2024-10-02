@@ -1,46 +1,38 @@
 import { FC } from "react"
-import IconButton from "@/ui/icon-button/IconButton"
 import TableHeadCell from "@/ui/table/components/table-head-cell/TableHeadCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
 
 const CountriesDashboardTableHead: FC = () => {
   return (
     <TableRow>
-      <TableHeadCell className="countries-dashboard-table__check-cell">
-        <IconButton
-          variant="text"
-          color="light"
-          className="countries-dashboard__check"
-        >
-          <></>
-        </IconButton>
+      <TableHeadCell className="admin-dashboard-table__check-cell">
+        <></>
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__id-cell">
+      <TableHeadCell className="table-cell-10 table-cell-left" size="small">
         ID
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__name-cell">
+      <TableHeadCell className="table-cell-left" size="small">
         Name
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__type-cell">
+      <TableHeadCell className="table-cell-7-5" size="small">
         Type
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__iso2code-cell">
+      <TableHeadCell className="table-cell-7-5" size="small">
         Iso2Code
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__geocode-cell">
+      <TableHeadCell className="table-cell-7-5" size="small">
         GeoCode
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__datapoints-cell">
+      <TableHeadCell className="table-cell-10" size="small">
         Datapoints
       </TableHeadCell>
-
-      <TableHeadCell className="countries-dashboard-table__last-updated-cell">
+      <TableHeadCell className="table-cell-10" size="small">
         Last update
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__hidden-cell">
+      <TableHeadCell className="table-cell-7-5" size="small">
         Hidden
       </TableHeadCell>
-      <TableHeadCell className="countries-dashboard-table__more-cell">
+      <TableHeadCell className="admin-dashboard-table__more-cell">
         <></>
       </TableHeadCell>
     </TableRow>

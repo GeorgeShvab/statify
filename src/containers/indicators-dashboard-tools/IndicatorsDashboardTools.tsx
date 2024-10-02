@@ -21,7 +21,6 @@ import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard
 import isFiltersApplied from "@/containers/indicators-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
-import "@/containers/indicators-dashboard-tools/styles.scss"
 
 const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   sort,
@@ -71,9 +70,9 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   })
 
   return (
-    <div className="dashboard-tools">
+    <div className="admin-dashboard-tools">
       <Input
-        className="dashboard-tools__searchbar"
+        className="flex-grow"
         placeholder="Search by ID, name or description..."
         value={searchValue}
         onChange={handleSearchInput}
@@ -82,7 +81,7 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         options={indicatorStatusOptions}
         value={status}
         onChange={handleSelectChange(indicatorStatusQueryKey)}
-        className="dashboard-tools__select"
+        className="flex-22-5"
         size="small"
       />
       <Select
@@ -90,7 +89,7 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         value={sort}
         onChange={handleSelectChange(indicatorSortQueryKey)}
         renderSelectedLabel={renderSortLabel}
-        className="dashboard-tools__sort-select"
+        className="flex-22-5"
         size="small"
       />
       <IconButton color="light" onClick={handleSortDirectionChange}>

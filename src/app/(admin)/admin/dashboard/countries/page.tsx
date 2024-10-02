@@ -7,10 +7,11 @@ import {
 } from "@/app/(admin)/admin/dashboard/countries/constants"
 import { DashboardCountryQueryParams } from "@/app/(admin)/admin/dashboard/countries/types"
 import CountryService from "@/services/country-service/CountryService"
+import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import CountriesDashboard from "@/containers/countries-dashboard/CountriesDashboard"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import "@/app/(admin)/admin/dashboard/countries/styles.scss"
 import { PageProps } from "@/types/types"
+import "@/app/(admin)/admin/dashboard/countries/styles.scss"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/countries/metadata"
 
@@ -58,7 +59,7 @@ const CountriesDashboardPage: FC<
 
   return (
     <main className="container">
-      <div className="admin-dashboard">
+      <AdminDashboard>
         <CountriesDashboard
           countries={countries}
           search={search}
@@ -67,7 +68,7 @@ const CountriesDashboardPage: FC<
           sortDirection={sortDirection}
           status={status}
         />
-      </div>
+      </AdminDashboard>
     </main>
   )
 }

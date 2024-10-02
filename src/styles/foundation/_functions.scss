@@ -20,3 +20,17 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: $lines;
 }
+
+@function replace-dot-with-hyphen($number) {
+  $string: str-slice(#{$number}, 1);
+  $new-string: "";
+  @for $i from 1 through str-length($string) {
+    $char: str-slice($string, $i, $i);
+    @if $char == "." {
+      $new-string: $new-string + "-";
+    } @else {
+      $new-string: $new-string + $char;
+    }
+  }
+  @return $new-string;
+}

@@ -23,3 +23,25 @@
   border-color: $error;
   background-color: transparentize($color: $error, $amount: 0.975);
 }
+
+@each $size in $flex-sizes {
+  .flex-#{replace-dot-with-hyphen($size)} {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: $size * 1%;
+  }
+}
+
+.flex-grow {
+  flex: 3 0 auto;
+}
+
+.flex-static {
+  flex: 0 0 auto;
+}
+
+.text-overflow {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

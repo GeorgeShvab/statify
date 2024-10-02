@@ -12,7 +12,6 @@ import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpda
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
 import { updateCountry } from "@/api/country/update"
-import "@/containers/countries-dashboard-table/components/countries-dashboard-table-row/styles.scss"
 
 const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
   country,
@@ -38,54 +37,38 @@ const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
   const lastUpdateDate = new Date(country.updatedAt).toLocaleDateString()
 
   return (
-    <TableRow
-      className={cn(
-        "countries-dashboard-table__row",
-        selectedItems.includes(country.id) && "selected"
-      )}
-    >
-      <TableBodyCell className="countries-dashboard-table__check-cell">
-        <IconButton
-          variant="text"
-          color="dark"
-          className="countries-dashboard__check"
-          onClick={handleSelect}
-        >
+    <TableRow className={cn(selectedItems.includes(country.id) && "selected")}>
+      <TableBodyCell className="admin-dashboard-table__check-cell">
+        <IconButton variant="text" color="dark" onClick={handleSelect}>
           <SquareIcon />
         </IconButton>
       </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__id-cell">
-        {country.id}
-      </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__name-cell">
-        {country.name}
-      </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__type-cell">
+      <TableBodyCell size="small">{country.id}</TableBodyCell>
+      <TableBodyCell size="small">{country.name}</TableBodyCell>
+      <TableBodyCell className="table-cell-center" size="small">
         {country.type}
       </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__iso2code-cell">
+      <TableBodyCell className="table-cell-center" size="small">
         {country.iso2Code}
       </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__geocode-cell">
+      <TableBodyCell className="table-cell-center" size="small">
         {country.geoCode}
       </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__datapoints-cell">
+      <TableBodyCell className="table-cell-center" size="small">
         {prettifyValue(country.datapoints)}
       </TableBodyCell>
-
-      <TableBodyCell className="countries-dashboard-table__last-updated-cell">
+      <TableBodyCell className="table-cell-center" size="small">
         {lastUpdateDate}
       </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__hidden-cell">
-        <div className="countries-dashboard-table__switch-container">
+      <TableBodyCell>
+        <div className="admin-dashboard-table__cell-switch">
           <Switch checked={value} onChange={handleIsHiddenChange} />
         </div>
       </TableBodyCell>
-      <TableBodyCell className="countries-dashboard-table__more-cell">
+      <TableBodyCell className="admin-dashboard-table__more-cell">
         <IconButton
           variant="text"
           color="light"
-          className="countries-dashboard__more-button"
           ref={moreButtonContainer}
           onClick={() => setIsOptionsDropdownOpened(true)}
         >
