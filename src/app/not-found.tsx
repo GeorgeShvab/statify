@@ -4,6 +4,7 @@ import Link from "next/link"
 import NotFoundIcon from "@/ui/icons/NotFoundIcon"
 import Footer from "@/layout/footer/Footer"
 import Header from "@/layout/header/Header"
+import { SERVER_ADDRESS } from "@/constants/general"
 
 const NotFoundPage: FC = () => {
   return (
@@ -34,6 +35,7 @@ const NotFoundPage: FC = () => {
 }
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SERVER_ADDRESS),
   title: "Not Found",
   description: "This page is not exist",
   themeColor: "#ffffff",
