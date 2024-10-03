@@ -10,7 +10,6 @@ import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import IndicatorsDashboard from "@/containers/indicators-dashboard/IndicatorsDashboard"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
 import { PageProps } from "@/types/types"
-import "@/app/(admin)/admin/dashboard/indicators/styles.scss"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/indicators/metadata"
 
