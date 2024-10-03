@@ -33,7 +33,22 @@
   align-items: center;
   white-space: nowrap;
 
+  &.start-icon {
+    padding-left: sp(4);
+    gap: sp(3);
+  }
+
+  &.end-icon {
+    padding-right: sp(4);
+    gap: sp(3);
+  }
+
   &.small {
     padding: sp(2) sp(4);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
   }
 }

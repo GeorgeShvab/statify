@@ -28,9 +28,9 @@ const CountriesDashboardHeader = () => {
         color="dark"
         className="admin-dashboard-header__create-button"
         onClick={handleCreateCountryClick}
+        startIcon={<PlusIcon />}
       >
-        <PlusIcon />
-        <span>Create</span>
+        Create
       </Button>
       <IconButton onClick={handleRefresh}>
         <RefreshIcon />
