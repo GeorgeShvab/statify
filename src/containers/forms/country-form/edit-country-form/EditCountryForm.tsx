@@ -19,7 +19,7 @@ import editCountryValidationSchema from "@/containers/forms/country-form/edit-co
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import filterDirtyValues from "@/utils/filter-dirty-values/filterDirtyValues"
-import { updateCountry } from "@/api/country/update"
+import { updateCountry } from "@/api/admin"
 import "@/containers/forms/country-form/styles.scss"
 
 const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {

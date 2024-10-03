@@ -19,7 +19,7 @@ import { EditableCountryFields } from "@/containers/forms/country-form/edit-coun
 import prepareData from "@/containers/forms/country-form/edit-country-form/utils/prepareData"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
-import { createCountry } from "@/api/country/create"
+import { createCountry } from "@/api/admin"
 import "@/containers/forms/country-form/styles.scss"
 
 const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {

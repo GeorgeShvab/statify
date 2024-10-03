@@ -11,7 +11,7 @@ import { useSelectable } from "@/providers/selectable-provider/SelectableProvide
 import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpdate"
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
-import { updateIndicator } from "@/api/indicator/update"
+import { updateIndicator } from "@/api/admin"
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,

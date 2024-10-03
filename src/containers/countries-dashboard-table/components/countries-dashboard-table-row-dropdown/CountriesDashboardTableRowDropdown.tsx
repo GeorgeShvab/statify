@@ -9,7 +9,7 @@ import { useSelectable } from "@/providers/selectable-provider/SelectableProvide
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { CountriesStore } from "@/store/countries-store/types"
-import { exposeCountries, hideCountries } from "@/api/country/update"
+import { exposeCountries, hideCountries } from "@/api/admin"
 
 const CountriesDashboardTableRowDropdown: FC<
   CountriesDashboardTableRowDropdownProps

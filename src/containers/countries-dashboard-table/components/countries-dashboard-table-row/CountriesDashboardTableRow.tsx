@@ -11,7 +11,7 @@ import { useSelectable } from "@/providers/selectable-provider/SelectableProvide
 import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpdate"
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
-import { updateCountry } from "@/api/country/update"
+import { updateCountry } from "@/api/admin"
 
 const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
   country,

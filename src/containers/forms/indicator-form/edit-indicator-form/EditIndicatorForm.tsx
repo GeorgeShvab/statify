@@ -15,7 +15,7 @@ import getInitialValues from "@/containers/forms/indicator-form/edit-indicator-f
 import validationSchema from "@/containers/forms/indicator-form/edit-indicator-form/validationSchema"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
-import { updateIndicator } from "@/api/indicator/update"
+import { updateIndicator } from "@/api/admin"
 import "@/containers/forms/indicator-form/styles.scss"
 
 const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
