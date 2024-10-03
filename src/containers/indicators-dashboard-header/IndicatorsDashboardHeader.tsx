@@ -30,9 +30,9 @@ const IndicatorsDashboardHeader = () => {
         color="dark"
         className="admin-dashboard-header__create-button"
         onClick={handleCreateIndicatorClick}
+        startIcon={<PlusIcon />}
       >
-        <PlusIcon />
-        <span>Create</span>
+        Create
       </Button>
       <IconButton onClick={handleRefresh}>
         <RefreshIcon />

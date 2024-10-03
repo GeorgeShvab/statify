@@ -1,13 +1,13 @@
-import Link from "next/link"
 import {
   ComponentProps,
   ForwardRefRenderFunction,
   RefObject,
   forwardRef,
 } from "react"
+import Link from "next/link"
 import { ButtonProps } from "@/ui/button/Button.types"
-import "@/ui/button/styles.scss"
 import cn from "@/utils/cn/cn"
+import "@/ui/button/styles.scss"
 
 const Button: ForwardRefRenderFunction<
   HTMLButtonElement | HTMLAnchorElement,
@@ -18,12 +18,33 @@ const Button: ForwardRefRenderFunction<
     variant = "contained",
     color = "dark",
     size = "medium",
+    startIcon,
+    endIcon,
+    children,
     href,
     ...props
   },
   ref
 ) => {
-  const btnClassName = cn("button", variant, color, size, className)
+  const btnClassName = cn(
+    "button",
+    variant,
+    color,
+    size,
+    className,
+    startIcon && "start-icon",
+    endIcon && "end-icon"
+  )
+
+  const contentWithIcons = (
+    <>
+      {startIcon}
+      <span>{children}</span>
+      {endIcon}
+    </>
+  )
+
+  const content = startIcon || endIcon ? contentWithIcons : children
 
   if (href) {
     return (
@@ -31,7 +52,9 @@ const Button: ForwardRefRenderFunction<
         className={btnClassName}
         href={href}
         {...(props as Omit<ComponentProps<"a">, "ref">)}
-      />
+      >
+        {content}
+      </Link>
     )
   }
 
@@ -40,7 +63,9 @@ const Button: ForwardRefRenderFunction<
       className={btnClassName}
       ref={ref as RefObject<HTMLButtonElement>}
       {...(props as ComponentProps<"button">)}
-    />
+    >
+      {content}
+    </button>
   )
 }
 
