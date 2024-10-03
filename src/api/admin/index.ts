@@ -1,5 +1,4 @@
 import axios from "axios"
-import apiRoutes from "@/constants/apiRoutes"
 import {
   CreateCountryParams,
   HideCountriesParams,
@@ -9,7 +8,8 @@ import {
   CreateIndicatorParams,
   ExposeIndicatorsParams,
   HideIndicatorsParams,
-} from "./types"
+} from "@/api/admin/types"
+import apiRoutes from "@/constants/apiRoutes"
 
 export const createIndicator = (args: CreateIndicatorParams) =>
   axios.post(apiRoutes.admin.indicators.create, args)

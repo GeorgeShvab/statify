@@ -3,6 +3,7 @@ import {
   CreateIndicatorParams,
   GetAdminIndicatorsParams,
 } from "@/services/indicator-service/types"
+import { Option } from "@/ui/select/Select.types"
 import { IndicatorWithDatapoints } from "@/types/types"
 import prisma from "@/prisma"
 
@@ -17,6 +18,10 @@ interface SearchParams {
 }
 
 const IndicatorService = {
+  async getIndicatorsSelectAutocomplete(): Promise<Option[]> {
+    return prisma.$queryRaw`SELECT "label", "id" as value FROM "Indicator" WHERE "hidden" = FALSE ORDER BY "label" ASC`
+  },
+
   async create(data: CreateIndicatorParams) {
     return prisma.indicator.create({ data })
   },
