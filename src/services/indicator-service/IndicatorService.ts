@@ -3,8 +3,8 @@ import {
   CreateIndicatorParams,
   GetAdminIndicatorsParams,
 } from "@/services/indicator-service/types"
-import prisma from "@/prisma"
 import { IndicatorWithDatapoints } from "@/types/types"
+import prisma from "@/prisma"
 
 const perPage = Number(process.env.RESULTS_PER_PAGE)
 
@@ -45,8 +45,12 @@ const IndicatorService = {
     return data
   },
 
-  async getAll() {
-    const data = await prisma.indicator.findMany({ where: { hidden: false } })
+  async getAll(select?: Partial<Record<keyof Indicator, boolean | undefined>>) {
+    const data = prisma.indicator.findMany({
+      where: { hidden: false },
+      orderBy: { id: "asc" },
+      select,
+    })
 
     return data
   },

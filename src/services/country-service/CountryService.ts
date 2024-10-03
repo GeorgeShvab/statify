@@ -11,6 +11,14 @@ import {
 import prisma from "@/prisma"
 
 const CountryService = {
+  async getAll(select?: Partial<Record<keyof Country, boolean | undefined>>) {
+    return prisma.country.findMany({
+      where: { hidden: false },
+      orderBy: { id: "asc" },
+      select: select,
+    })
+  },
+
   async create(data: CreateCountryParams) {
     return prisma.country.create({ data })
   },

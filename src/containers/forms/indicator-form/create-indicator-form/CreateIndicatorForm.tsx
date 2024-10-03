@@ -15,7 +15,7 @@ import prepareValues from "@/containers/forms/indicator-form/create-indicator-fo
 import validationSchema from "@/containers/forms/indicator-form/create-indicator-form/validationSchema"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
-import { createIndicator } from "@/api/indicator/create"
+import { createIndicator } from "@/api/admin"
 import "@/containers/forms/indicator-form/styles.scss"
 
 const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
