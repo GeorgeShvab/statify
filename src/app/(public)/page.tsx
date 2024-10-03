@@ -7,7 +7,7 @@ const Home: FC = () => {
   return (
     <main className="bg-white">
       <div className="container">
-        <div className="flex flex-col h-[calc(100svh-var(--header-height))] md:h-[calc(100vh-var(--header-height)-var(--footer-height))] justify-center items-center">
+        <div className="flex flex-col justify-center items-center view-height">
           <div>
             <div className="px-2 md:px-0">
               <h1 className="text-center text-[42px] md:text-6xl font-bold text-black mb-20 md:mb-16 leading-normal">
