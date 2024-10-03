@@ -14,10 +14,7 @@ export interface GetAdminCountriesParams {
   sortDirection: SortDirection
   sort: AdminCountrySort
   hidden?: boolean
-  isCountry?: boolean
-  isState?: boolean
-  isUnion?: boolean
-  isRegion?: boolean
+  type?: AreaType
 }
 
 export interface CreateCountryParams {
