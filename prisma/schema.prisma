@@ -55,6 +55,7 @@ enum AreaType {
   region
   union
   country
+  other
 }
 
 model Country {
