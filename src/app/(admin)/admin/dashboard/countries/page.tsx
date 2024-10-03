@@ -40,21 +40,12 @@ const CountriesDashboardPage: FC<
 
   const search = searchParams.search || ""
 
-  const typeCondition =
-    type === "other"
-      ? { isCountry: false, isUnion: false, isRegion: false }
-      : {
-          isCountry: type ? type === "country" : undefined,
-          isUnion: type ? type === "union" : undefined,
-          isRegion: type ? type === "region" : undefined,
-        }
-
   const countries = await CountryService.getAdminCountries({
     search,
     sort,
     sortDirection,
     hidden: status === "all" ? undefined : status === "hidden",
-    ...typeCondition,
+    type: type === "all" ? undefined : type,
   })
 
   return (

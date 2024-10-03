@@ -89,10 +89,7 @@ const CountryService = {
     hidden,
     sort,
     sortDirection,
-    isCountry,
-    isRegion,
-    isState,
-    isUnion,
+    type,
   }: GetAdminCountriesParams) {
     const searchCondition = Prisma.sql([
       search
@@ -101,12 +98,7 @@ const CountryService = {
     ])
 
     // TODO: Refactor all the services later, i guess I will add a tuple instead of separate columns
-    const typeCondition = Prisma.sql([
-      `${isCountry ? '"country" = TRUE' : "TRUE"} AND ` +
-        `${isState ? '"independentState" = TRUE' : "TRUE"} AND ` +
-        `${isUnion ? '"union" = TRUE' : "TRUE"} AND ` +
-        `${isRegion ? '"geographicRegion" = TRUE' : "TRUE"}`,
-    ])
+    const typeCondition = Prisma.sql([type ? `"type" = '${type}'` : "TRUE"])
 
     const hiddenCondition = Prisma.sql([
       hidden !== undefined ? `"hidden" = ${hidden}` : "TRUE",
