@@ -1,11 +1,4 @@
 export default {
-  indicators: {
-    country: {
-      download: (indicatorId: string, countryId: string) =>
-        `/api/download/${indicatorId}/${countryId}`,
-    },
-    download: (indicatorId: string) => `/api/download/${indicatorId}`,
-  },
   admin: {
     indicators: {
       update: (id: string) => `/api/admin/indicators/${id}`,
@@ -18,6 +11,25 @@ export default {
       hide: "/api/admin/countries/hide",
       expose: "/api/admin/countries/expose",
       create: "/api/admin/countries",
+    },
+  },
+  public: {
+    download: {
+      indicator: (indicatorId: string) => `/api/public/download/${indicatorId}`,
+      country: (indicatorId: string, countryId: string) =>
+        `/api/public/download/${indicatorId}/${countryId}`,
+    },
+    bookmark: "/api/public/bookmark",
+    countries: {
+      autocomplete: {
+        select: "/api/public/countries/autocomplete/select",
+      },
+    },
+    indicators: {
+      autocomplete: {
+        select: "/api/public/indicators/autocomplete/select",
+        search: "/api/public/indicators/autocomplete/search",
+      },
     },
   },
 }

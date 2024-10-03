@@ -1,5 +1,5 @@
-import apiRoutes from "@/constants/apiRoutes"
 import { GetDatasetDownloadLinkParams } from "@/utils/get-dataset-donwload-link/getDatasetDonwloadLink.types"
+import apiRoutes from "@/constants/apiRoutes"
 
 const getDatasetDonwloadLink = ({
   indicatorId,
@@ -7,13 +7,13 @@ const getDatasetDonwloadLink = ({
   countryId,
 }: GetDatasetDownloadLinkParams) => {
   if (countryId) {
-    return `${apiRoutes.indicators.country.download(
+    return `${apiRoutes.public.download.country(
       indicatorId,
       countryId
     )}?format=${extension}`
   }
 
-  return `${apiRoutes.indicators.download(indicatorId)}?format=${extension}`
+  return `${apiRoutes.public.download.indicator(indicatorId)}?format=${extension}`
 }
 
 export default getDatasetDonwloadLink

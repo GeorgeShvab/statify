@@ -1,23 +1,20 @@
-import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus"
-import axios from "axios"
-import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"
+import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus"
+import { bookmarkDataset, getBookmarkedDataset } from "@/api/public"
 
-const useBookmark = (indicatorId: string, countryId?: string) => {
+const useBookmark = (indicator: string, country?: string) => {
   const [isBookmarked, setIsBookmarked] = useState<boolean>(false)
-
-  const { country, id } = useParams()
 
   const handleBookmark = async () => {
     setIsBookmarked((prev) => !prev)
 
-    await axios.post("/api/bookmark", { country, indicator: id })
+    await bookmarkDataset({ country, indicator })
   }
 
   useEffect(() => {
     const fetch = async () => {
       try {
-        await axios.get("/api/bookmark", { params: { countryId, indicatorId } })
+        await getBookmarkedDataset({ country, indicator })
 
         setIsBookmarked(true)
       } catch (e: unknown) {
@@ -28,7 +25,7 @@ const useBookmark = (indicatorId: string, countryId?: string) => {
     }
 
     fetch()
-  }, [indicatorId, countryId])
+  }, [indicator, country])
 
   return { handleBookmark, isBookmarked }
 }
