@@ -16,9 +16,12 @@ const ValuesDashboardHeader = () => {
         title="Values Dashboard"
         subtitle="Manage values: view and edit information, add new values."
       />
-      <Button color="dark" className="admin-dashboard-header__create-button">
-        <PlusIcon />
-        <span>Create</span>
+      <Button
+        color="dark"
+        className="admin-dashboard-header__create-button"
+        startIcon={<PlusIcon />}
+      >
+        Create
       </Button>
       <IconButton onClick={handleRefresh}>
         <RefreshIcon />
