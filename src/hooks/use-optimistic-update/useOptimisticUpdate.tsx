@@ -1,9 +1,10 @@
 import { useEffect, useRef, useState } from "react"
+import { AxiosResponse } from "axios"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { OptimisticUpdateConfig } from "@/hooks/use-optimistic-update/types"
 
 const useOptimisticUpdate = <TArguments, TResult, TValue>(
-  fn: (args: TArguments) => Promise<TResult>,
+  fn: (args: TArguments) => Promise<AxiosResponse<TResult>>,
   config: OptimisticUpdateConfig<TValue>
 ) => {
   const prevValue = useRef<TValue>()

@@ -1,6 +1,6 @@
 import {
-  valueCountryOptions,
-  valueIndicatorOptions,
+  initialValueCountryOptions,
+  initialValueIndicatorOptions,
   valueSortOptions,
 } from "@/app/(admin)/admin/dashboard/values/constants"
 import { ValuesDashboardToolsProps } from "@/containers/values-dashboard-tools/ValuesDashboardTools.types"
@@ -13,8 +13,8 @@ const isFiltersApplied = ({
 }: ValuesDashboardToolsProps) => {
   return (
     sort !== valueSortOptions[0].value ||
-    country !== valueCountryOptions[0].value ||
-    indicator !== valueIndicatorOptions[0].value ||
+    country !== initialValueCountryOptions.value ||
+    indicator !== initialValueIndicatorOptions.value ||
     sortDirection !== "asc"
   )
 }

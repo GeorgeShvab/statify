@@ -1,6 +1,3 @@
-import countries from "@/constants/options/countries.json"
-import indicators from "@/constants/options/indicators.json"
-
 export const valueSortOptions = [
   {
     value: "id",
@@ -32,29 +29,15 @@ export const possibleValueSortQueryParam = valueSortOptions.map(
   (item) => item.value
 )
 
-export const valueIndicatorOptions = [
-  {
-    value: "all",
-    label: "All indicators",
-  },
-  ...indicators,
-] as const
+export const initialValueIndicatorOptions = {
+  value: "all",
+  label: "All indicators",
+}
 
-export const possibleValueIndicatorQueryParam = valueIndicatorOptions.map(
-  (item) => item.value
-)
-
-export const valueCountryOptions = [
-  {
-    value: "all",
-    label: "All countries",
-  },
-  ...countries,
-] as const
-
-export const possibleValueCountryQueryParam = valueCountryOptions.map(
-  (item) => item.value
-)
+export const initialValueCountryOptions = {
+  value: "all",
+  label: "All countries",
+}
 
 export const valueSearchQueryKey = "search"
 export const valueSortQueryKey = "sort"

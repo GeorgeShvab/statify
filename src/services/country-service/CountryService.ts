@@ -3,6 +3,7 @@ import {
   CreateCountryParams,
   GetAdminCountriesParams,
 } from "@/services/country-service/types"
+import { Option } from "@/ui/select/Select.types"
 import {
   CountryRowValue,
   CountryWithDatapoints,
@@ -11,6 +12,10 @@ import {
 import prisma from "@/prisma"
 
 const CountryService = {
+  async getCountriesSelectAutocomplete(): Promise<Option[]> {
+    return prisma.$queryRaw`SELECT "id" as value, "name" as label FROM "Country" WHERE "hidden" = FALSE ORDER BY "name" ASC`
+  },
+
   async getAll(select?: Partial<Record<keyof Country, boolean | undefined>>) {
     return prisma.country.findMany({
       where: { hidden: false },
