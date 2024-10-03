@@ -6,6 +6,8 @@ import {
   possibleValueSortQueryParam,
 } from "@/app/(admin)/admin/dashboard/values/constants"
 import { DashboardValueQueryParams } from "@/app/(admin)/admin/dashboard/values/types"
+import CountryService from "@/services/country-service/CountryService"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
 import ValueService from "@/services/value-service/ValueService"
 import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import ValuesDashboard from "@/containers/values-dashboard/ValuesDashboard"
@@ -19,12 +21,31 @@ const ValuesDashboardPage: FC<
 > = async ({ searchParams }) => {
   const sort = validateQueryParam(
     searchParams.sort,
-    possibleValueSortQueryParam
+    searchParams.indicator === "all" || !searchParams.indicator
+      ? possibleValueSortQueryParam.filter(
+          (item) => item !== "value" && item !== "year"
+        )
+      : possibleValueSortQueryParam
   )
 
-  const indicator = searchParams.indicator || initialValueIndicatorOptions.value
+  const indicatorSelectOptions =
+    IndicatorService.getIndicatorsSelectAutocomplete()
+  const countrySelectOptions = CountryService.getCountriesSelectAutocomplete()
 
-  const country = searchParams.country || initialValueCountryOptions.value
+  const [allIndicators, allCountries] = await Promise.all([
+    indicatorSelectOptions,
+    countrySelectOptions,
+  ])
+
+  const indicator = validateQueryParam(searchParams.indicator, [
+    initialValueIndicatorOptions.value,
+    ...allIndicators.map(({ value }) => value),
+  ])
+
+  const country = validateQueryParam(searchParams.country, [
+    initialValueCountryOptions.value,
+    ...allCountries.map(({ value }) => value),
+  ])
 
   const sortDirection = validateQueryParam(
     searchParams.sortDirection,

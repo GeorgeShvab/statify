@@ -25,6 +25,14 @@ export const valueSortOptions = [
   },
 ] as const
 
+export const getValueSortOptions = (includeSpecialOptions: boolean) => {
+  if (includeSpecialOptions) return valueSortOptions
+
+  return valueSortOptions.filter(
+    (item) => item.value !== "value" && item.value !== "year"
+  )
+}
+
 export const possibleValueSortQueryParam = valueSortOptions.map(
   (item) => item.value
 )

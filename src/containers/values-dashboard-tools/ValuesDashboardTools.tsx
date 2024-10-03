@@ -3,9 +3,9 @@
 import { FC } from "react"
 import { countrySortDirectionQueryKey } from "@/app/(admin)/admin/dashboard/countries/constants"
 import {
+  getValueSortOptions,
   valueCountryQueryKey,
   valueIndicatorQueryKey,
-  valueSortOptions,
   valueSortQueryKey,
 } from "@/app/(admin)/admin/dashboard/values/constants"
 import { DashboardValueQueryParams } from "@/app/(admin)/admin/dashboard/values/types"
@@ -34,7 +34,22 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
     useQueryParams<DashboardValueQueryParams>()
 
   const handleSelectChange = (key: string) => (option: Option) => {
-    setSearchParams(key, option.value)
+    // Since user can choose sort by year and value only with selected indicator
+    // we need to make sure that if user already has selected value
+    if (
+      key === "indicator" &&
+      option.value === "all" &&
+      (sort === "year" || sort === "value")
+    ) {
+      setSearchParams(
+        valueSortQueryKey,
+        valueSortOptions[0].value,
+        key,
+        option.value
+      )
+    } else {
+      setSearchParams(key, option.value)
+    }
   }
 
   const renderSortLabel = ({ label }: Option) =>
@@ -56,6 +71,10 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
     country,
     sort,
   })
+
+  const valueSortOptions = getValueSortOptions(
+    Boolean(indicator !== "all" && indicator)
+  )
 
   return (
     <div className="admin-dashboard-tools">

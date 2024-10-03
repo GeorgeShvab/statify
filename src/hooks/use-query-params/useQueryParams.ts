@@ -6,16 +6,28 @@ const useQueryParams = <TParams extends QueryParams = QueryParams>() => {
   const searchParams = useSearchParams()
   const router = useRouter()
 
-  const setParam = (key: string, value: string) => {
+  const setParam = (...args: string[]) => {
     const params = new URLSearchParams(searchParams.toString())
 
-    if (value?.trim()) {
-      params.set(key, value)
-    } else {
-      params.delete(key)
+    for (let i = 0; i < args.length; i = i + 2) {
+      if (args[i].trim()) {
+        params.set(args[i], args[i + 1])
+      } else {
+        params.delete(args[i + 1])
+      }
     }
 
     router.push(`${pathname}?${params.toString()}`)
+
+    // const params = new URLSearchParams(searchParams.toString())
+
+    // if (value?.trim()) {
+    //   params.set(key, value)
+    // } else {
+    //   params.delete(key)
+    // }
+
+    // router.push(`${pathname}?${params.toString()}`)
   }
 
   const clearAllParams = () => router.push(pathname)
