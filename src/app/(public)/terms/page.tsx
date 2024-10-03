@@ -1,5 +1,6 @@
-import { Metadata } from "next"
 import { FC } from "react"
+
+export { default as metadata } from "@/app/(public)/terms/metadata"
 
 const Page: FC = () => {
   return (
@@ -68,32 +69,6 @@ const Page: FC = () => {
       </div>
     </div>
   )
-}
-
-export const metadata: Metadata = {
-  title: "Terms of Use",
-  description:
-    "Terms of Use of Statify. By using our website, you agree to comply with and be bound by the following terms of use. Please read these terms carefully before using Statify.",
-  themeColor: "#ffffff",
-  openGraph: {
-    images: ["/og.png"],
-    title: "Terms of Use",
-    description:
-      "Terms of Use of Statify. By using our website, you agree to comply with and be bound by the following terms of use. Please read these terms carefully before using Statify.",
-    type: "website",
-    url: "/terms",
-  },
-  twitter: {
-    images: ["/og.png"],
-    title: "Terms of Use",
-    description:
-      "Terms of Use of Statify. By using our website, you agree to comply with and be bound by the following terms of use. Please read these terms carefully before using Statify.",
-    card: "summary_large_image",
-    site: "@Zhorrrro",
-  },
-  alternates: {
-    canonical: `${process.env.SERVER_ADDRESS}/terms`,
-  },
 }
 
 export default Page

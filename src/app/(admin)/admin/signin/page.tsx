@@ -1,5 +1,6 @@
 import SigninForm from "@/containers/forms/signin-form/SigninForm"
 import "@/app/(admin)/admin/signin/styles.scss"
+
 export { default as metadata } from "@/app/(admin)/admin/signin/metadata"
 
 const SigninPage = () => {

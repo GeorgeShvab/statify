@@ -1,6 +1,8 @@
 import { Metadata } from "next"
+import { SERVER_ADDRESS } from "@/constants/general"
 
 const metadata: Metadata = {
+  metadataBase: new URL(SERVER_ADDRESS),
   title: "Indicators Dashboard",
   description: "Edit indicators here: add, update or delete.",
   themeColor: "#ffffff",
@@ -19,7 +21,7 @@ const metadata: Metadata = {
     site: "@Zhorrrro",
   },
   alternates: {
-    canonical: process.env.SERVER_ADDRESS,
+    canonical: SERVER_ADDRESS,
   },
 }
 

@@ -1,20 +1,13 @@
+import { FC } from "react"
+import { SearchPageProps } from "@/app/(public)/search/types"
+import IndicatorService from "@/services/indicator-service/IndicatorService"
+import SearchIcon from "@/ui/icons/SearchIcon"
 import IndicatorCard from "@/components/indicator-card/IndicatorCard"
 import Pagination from "@/components/pagination/Pagination"
-import IndicatorService from "@/services/indicator-service/IndicatorService"
-import { PageProps } from "@/types/types"
-import SearchIcon from "@/ui/icons/SearchIcon"
-import { Metadata } from "next"
-import { FC } from "react"
 
-interface SearchParams {
-  query: string
-  topic?: string
-  page?: string
-}
+export { default as generateMetadata } from "@/app/(public)/search/metadata"
 
-const SearchPage: FC<PageProps<object, SearchParams>> = async ({
-  searchParams,
-}) => {
+const SearchPage: FC<SearchPageProps> = async ({ searchParams }) => {
   const result = searchParams.query
     ? await IndicatorService.search({
         query: searchParams.query,
@@ -63,34 +56,6 @@ const SearchPage: FC<PageProps<object, SearchParams>> = async ({
       )}
     </div>
   )
-}
-
-export const generateMetadata = async ({
-  searchParams,
-}: PageProps<object, SearchParams>): Promise<Metadata> => {
-  return {
-    title: `Results for ${searchParams.query}`,
-    description: `Indicator results for ${searchParams.query}`,
-    themeColor: "#ffffff",
-    openGraph: {
-      images: ["/og.png"],
-      title: `Results for ${searchParams.query}`,
-      description: `Indicator results for ${searchParams.query}`,
-      type: "website",
-      url: `/search?query=${searchParams.query}&page=${searchParams.page}&topic=${searchParams.topic}`,
-    },
-    twitter: {
-      images: ["/og.png"],
-      title: "Statify",
-      description:
-        "Explore our database featuring 100+ indicators for hundreds of regions worldwide.",
-      card: "summary_large_image",
-      site: "@Zhorrrro",
-    },
-    alternates: {
-      canonical: `${process.env.SERVER_ADDRESS}/search`,
-    },
-  }
 }
 
 export default SearchPage

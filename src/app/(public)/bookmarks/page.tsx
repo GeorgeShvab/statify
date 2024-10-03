@@ -1,20 +1,15 @@
+import { FC } from "react"
+import { cookies } from "next/headers"
+import { BookmarksPageProps } from "@/app/(public)/bookmarks/types"
+import BookmarkService from "@/services/BookmarkService"
+import BookmarkIcon from "@/ui/icons/BookmarkIcon"
 import IndicatorCard from "@/components/indicator-card/IndicatorCard"
 import Pagination from "@/components/pagination/Pagination"
 import AdvancedSearchBar from "@/components/search-bar/AdvancedSearchBar"
-import BookmarkService from "@/services/BookmarkService"
-import { PageProps } from "@/types/types"
-import BookmarkIcon from "@/ui/icons/BookmarkIcon"
-import { Metadata } from "next"
-import { cookies } from "next/headers"
-import { FC } from "react"
 
-interface SearchParams {
-  page: number
-}
+export { default as metadata } from "@/app/(public)/bookmarks/metadata"
 
-const Bookmarks: FC<PageProps<object, SearchParams>> = async ({
-  searchParams,
-}) => {
+const Bookmarks: FC<BookmarksPageProps> = async ({ searchParams }) => {
   const client = cookies().get("client_id")?.value
 
   const page = searchParams.page || 1
@@ -66,32 +61,6 @@ const Bookmarks: FC<PageProps<object, SearchParams>> = async ({
       </div>
     </main>
   )
-}
-
-export const metadata: Metadata = {
-  title: "Bookmarks",
-  description:
-    "Explore our database featuring 100+ indicators for hundreds of regions worldwide.",
-  themeColor: "#ffffff",
-  openGraph: {
-    images: ["/og.png"],
-    title: "Statify",
-    description:
-      "Explore our database featuring 100+ indicators for hundreds of regions worldwide.",
-    type: "website",
-    url: "/",
-  },
-  twitter: {
-    images: ["/og.png"],
-    title: "Statify",
-    description:
-      "Explore our database featuring 100+ indicators for hundreds of regions worldwide.",
-    card: "summary_large_image",
-    site: "@Zhorrrro",
-  },
-  alternates: {
-    canonical: `${process.env.SERVER_ADDRESS}/bookmarks`,
-  },
 }
 
 export default Bookmarks
