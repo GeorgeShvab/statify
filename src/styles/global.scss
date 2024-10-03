@@ -1,9 +1,13 @@
 @import "reset.scss";
 @import "foundation/all";
 
+.view-height {
+  @include view-height;
+}
+
 :root {
   --header-height: 64.8px;
-  --footer-height: 88.8px;
+  --footer-height: 96.7px;
   --search-bar-height: 65.6px;
   --screen-height: 100svh;
 
@@ -14,7 +18,7 @@
 
   @include breakpoint("md") {
     --footer-height: 52.8px;
-    --header-height: 76.8px;
+    --header-height: 76.7px;
     --search-bar-height: 81.6px;
   }
 }
