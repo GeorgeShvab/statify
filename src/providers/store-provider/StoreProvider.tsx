@@ -1,18 +1,24 @@
-import { useRef, useContext, FC, createContext } from "react"
+import { useRef, useContext, createContext, useEffect } from "react"
 import { StoreApi, useStore } from "zustand"
 import { StoreProviderProps, Stores } from "@/providers/store-provider/types"
 
 const StoreContext = createContext<StoreApi<Stores>>({} as StoreApi<Stores>)
 
-export const StoreProvider: FC<StoreProviderProps> = ({
+export const StoreProvider = <TStore extends Stores>({
   children,
   createStore,
-}) => {
-  const storeRef = useRef<StoreApi<Stores>>()
+  onUpdate,
+  onUpdateDeps = [],
+}: StoreProviderProps<TStore>) => {
+  const storeRef = useRef<StoreApi<TStore>>()
 
   if (!storeRef.current) {
     storeRef.current = createStore()
   }
+
+  useEffect(() => {
+    if (onUpdate) onUpdate(storeRef.current!)
+  }, onUpdateDeps)
 
   return (
     <StoreContext.Provider value={storeRef.current}>

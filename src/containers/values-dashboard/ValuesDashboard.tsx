@@ -10,16 +10,13 @@ import { StoreProvider } from "@/providers/store-provider/StoreProvider"
 import valuesStore from "@/store/values-store/values-store"
 
 const ValuesDashboard: FC<ValuesDashboardProps> = ({ values, ...props }) => {
-  const key =
-    JSON.stringify(values) +
-    props.sort +
-    props.indicator +
-    props.country +
-    props.sortDirection // I use it to reinitialize indicators store.
-
   return (
     <SelectableProvider>
-      <StoreProvider key={key} createStore={valuesStore(values)}>
+      <StoreProvider
+        createStore={valuesStore(values)}
+        onUpdate={(store) => store.setState({ values })}
+        onUpdateDeps={[JSON.stringify(values)]}
+      >
         <ValuesDashboardHeader />
         <ValuesDashboardTools {...props} />
         <ValuesDashboardTable />

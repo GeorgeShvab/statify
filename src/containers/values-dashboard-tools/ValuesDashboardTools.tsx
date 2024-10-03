@@ -3,9 +3,7 @@
 import { FC } from "react"
 import { countrySortDirectionQueryKey } from "@/app/(admin)/admin/dashboard/countries/constants"
 import {
-  valueCountryOptions,
   valueCountryQueryKey,
-  valueIndicatorOptions,
   valueIndicatorQueryKey,
   valueSortOptions,
   valueSortQueryKey,
@@ -15,12 +13,16 @@ import IconButton from "@/ui/icon-button/IconButton"
 import CloseIcon from "@/ui/icons/CloseIcon"
 import SortAscendingIcon from "@/ui/icons/SortAscendingIcon"
 import SortDescendingIcon from "@/ui/icons/SortDescendingIcon"
-import SelectWithSearch from "@/ui/select-with-search/SelectWithSearch"
+import LoadableSelectWithSearch from "@/ui/select-with-search/components/loadable-select-with-search/LoadableSelectWithSearch"
 import Select from "@/ui/select/Select"
 import { Option } from "@/ui/select/Select.types"
 import { ValuesDashboardToolsProps } from "@/containers/values-dashboard-tools/ValuesDashboardTools.types"
 import isFiltersApplied from "@/containers/values-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
+import {
+  getCountrySelectAutocomplete,
+  getIndicatorSelectAutocomplete,
+} from "@/api/public"
 
 const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   sort,
@@ -57,18 +59,18 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
 
   return (
     <div className="admin-dashboard-tools">
-      <SelectWithSearch
-        options={valueIndicatorOptions}
+      <LoadableSelectWithSearch
+        apiService={getIndicatorSelectAutocomplete}
         value={indicator}
         onChange={handleSelectChange(valueIndicatorQueryKey)}
         className="flex-grow"
         size="small"
       />
-      <SelectWithSearch
-        options={valueCountryOptions}
+      <LoadableSelectWithSearch
+        apiService={getCountrySelectAutocomplete}
         value={country}
         onChange={handleSelectChange(valueCountryQueryKey)}
-        className="flex-grow"
+        className="flex-30"
         size="small"
       />
       <Select
@@ -79,12 +81,17 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
         className="flex-22-5"
         size="small"
       />
-      <IconButton color="light" onClick={handleSortDirectionChange}>
+      <IconButton
+        className="flex-static"
+        color="light"
+        onClick={handleSortDirectionChange}
+      >
         {sortIcon}
       </IconButton>
       <IconButton
         onClick={clearAllParams}
         disabled={showClearFiltersButton}
+        className="flex-static"
         color="light"
         aria-label="Clear filters"
         title="Clear filters"

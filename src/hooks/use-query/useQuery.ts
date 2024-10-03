@@ -1,23 +1,23 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { AxiosResponse } from "axios"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
-import { MutationConfiguration } from "@/hooks/use-mutation/types"
+import { QueryConfiguration } from "@/hooks/use-query/types"
 
-const useMutation = <TArguments, TResult>(
-  fn: (args: TArguments) => Promise<AxiosResponse<TResult>>,
-  config?: MutationConfiguration
+const useQuery = <TResponse>(
+  fn: () => Promise<AxiosResponse<TResponse>>,
+  config?: QueryConfiguration
 ) => {
   const [isLoading, setIsLoading] = useState(true)
-  const [data, setData] = useState<TResult>()
+  const [data, setData] = useState<TResponse>()
   const [error, setError] = useState<unknown>()
 
   const { openAlert } = useAlert()
 
-  const makeRequest = async (args: TArguments) => {
+  const fetch = async () => {
     try {
       setIsLoading(true)
 
-      const res = await fn(args)
+      const res = await fn()
 
       setData(res.data)
       setError(null)
@@ -44,6 +44,10 @@ const useMutation = <TArguments, TResult>(
     }
   }
 
+  useEffect(() => {
+    fetch()
+  }, config?.deps || [])
+
   const isError = Boolean(error)
   const isSuccess = Boolean(data) && !isError
 
@@ -53,9 +57,10 @@ const useMutation = <TArguments, TResult>(
     isLoading,
     data,
     error,
-  }
+    refetch: fetch,
+  } as const
 
-  return [reqData, makeRequest] as const
+  return reqData
 }
 
-export default useMutation
+export default useQuery

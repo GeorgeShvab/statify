@@ -1,7 +1,7 @@
 import { FC } from "react"
 import {
-  possibleValueCountryQueryParam,
-  possibleValueIndicatorQueryParam,
+  initialValueCountryOptions,
+  initialValueIndicatorOptions,
   possibleValueSortDirectionQueryParam,
   possibleValueSortQueryParam,
 } from "@/app/(admin)/admin/dashboard/values/constants"
@@ -22,15 +22,9 @@ const ValuesDashboardPage: FC<
     possibleValueSortQueryParam
   )
 
-  const indicator = validateQueryParam(
-    searchParams.indicator,
-    possibleValueIndicatorQueryParam
-  )
+  const indicator = searchParams.indicator || initialValueIndicatorOptions.value
 
-  const country = validateQueryParam(
-    searchParams.country,
-    possibleValueCountryQueryParam
-  )
+  const country = searchParams.country || initialValueCountryOptions.value
 
   const sortDirection = validateQueryParam(
     searchParams.sortDirection,
