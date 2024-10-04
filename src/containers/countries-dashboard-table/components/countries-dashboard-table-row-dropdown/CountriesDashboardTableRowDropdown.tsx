@@ -3,6 +3,7 @@ import { StoreApi } from "zustand"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import { CountriesDashboardTableRowDropdownProps } from "@/containers/countries-dashboard-table/components/countries-dashboard-table-row-dropdown/types"
+import CountryModal from "@/containers/modals/country-modal/CountryModal"
 import EditCountryModal from "@/containers/modals/edit-country-modal/EditCountryModal"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
 import { useSelectable } from "@/providers/selectable-provider/SelectableProvider"
@@ -39,9 +40,9 @@ const CountriesDashboardTableRowDropdown: FC<
   }
 
   const handleMoreIndicatorInformation = () => {
-    // openModal(<IndicatorModal indicator={indicator} />, {
-    //   scrollable: true,
-    // })
+    openModal(<CountryModal country={country} />, {
+      scrollable: true,
+    })
   }
 
   const handleHideSelected = async () => {
