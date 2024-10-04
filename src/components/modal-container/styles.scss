@@ -1,14 +1,42 @@
 @import "@design-system";
 
-.modal-container {
-  padding: sp(10);
+.modal {
+  padding: sp(5) sp(7) sp(7);
   border-radius: $rounded-xl;
   background-color: $white;
   position: relative;
+  box-shadow: 0 0 15px 0 rgba($color: #000000, $alpha: 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: sp(8);
+
+  &.small {
+    width: 380px;
+  }
+
+  &.medium {
+    width: 460px;
+  }
+
+  &.large {
+    width: 680px;
+  }
 }
 
-.modal-container__close-button {
-  position: absolute;
-  right: sp(4);
-  top: sp(4);
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal__header-title {
+  @include heading($fs-lg);
+
+  text-align: left;
+}
+
+.modal {
+  .modal__header-close-button {
+    width: fit-content;
+  }
 }

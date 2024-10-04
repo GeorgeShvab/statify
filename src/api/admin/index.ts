@@ -8,6 +8,8 @@ import {
   CreateIndicatorParams,
   ExposeIndicatorsParams,
   HideIndicatorsParams,
+  CreateValueParams,
+  UpdateValueParams,
 } from "@/api/admin/types"
 import apiRoutes from "@/constants/apiRoutes"
 
@@ -34,3 +36,9 @@ export const exposeCountries = (arg: ExposeCountriesParams) =>
 
 export const updateCountry = ({ id, ...arg }: UpdateCountryParams) =>
   axios.patch(apiRoutes.admin.countries.update(id), arg)
+
+export const createValue = (args: CreateValueParams) =>
+  axios.post(apiRoutes.admin.values.create, args)
+
+export const updateValue = ({ id, ...args }: UpdateValueParams) =>
+  axios.patch(apiRoutes.admin.values.update(id), args)

@@ -1,49 +1,5 @@
 @import "@design-system";
 
-.country-form {
-  width: 440px;
-
-  .input-label__title {
-    padding-left: sp(1);
-  }
-}
-
-.country-form__title {
-  @include heading($fs-lg);
-
-  text-align: center;
-  margin-bottom: sp(3);
-}
-
-.create-indicator-form__title {
-  margin-bottom: sp(7);
-}
-
-.country-form__subtitle {
-  font-size: $fs-xs;
-  text-align: center;
-  color: $gray-light;
-  margin-bottom: sp(6);
-}
-
-.country-form__input {
-  width: 100%;
-}
-
-.country-form__label-container {
-  margin-bottom: sp(4);
-}
-
-.country-form__input-group {
-  display: flex;
-  gap: sp(3);
-}
-
-.country-form__input-label {
-  width: 100%;
-}
-
-.country-form__save-button {
-  width: 100%;
-  margin-top: sp(10);
+.country-form__data-list {
+  margin-bottom: sp(10);
 }

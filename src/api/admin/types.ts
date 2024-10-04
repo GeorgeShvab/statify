@@ -1,4 +1,4 @@
-import { AreaType, Country, Indicator } from "@prisma/client"
+import { AreaType, Country, Indicator, Value } from "@prisma/client"
 
 export interface HideCountriesParams {
   ids: string[]
@@ -39,4 +39,13 @@ export interface HideIndicatorsParams {
 
 export interface ExposeIndicatorsParams {
   ids: string[]
+}
+
+export type CreateValueParams = Pick<
+  Value,
+  "value" | "year" | "countryId" | "indicatorId"
+>
+
+export interface UpdateValueParams extends Partial<Value> {
+  id: number
 }

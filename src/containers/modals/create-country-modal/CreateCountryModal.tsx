@@ -7,7 +7,7 @@ const CreateCountryModal: FC = () => {
   const { closeModal } = useModal()
 
   return (
-    <ModalContainer>
+    <ModalContainer title="New Country">
       <CreateCountryForm onSuccess={closeModal} />
     </ModalContainer>
   )

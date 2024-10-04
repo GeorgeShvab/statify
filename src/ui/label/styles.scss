@@ -1,8 +1,9 @@
 @import "@design-system";
 
 .input-label__title {
+  @include heading($fs-sm);
+
   font-size: $fs-sm;
   color: $gray-dark;
-  margin-bottom: sp(3);
-  color: $gray;
+  margin-bottom: sp(2);
 }
