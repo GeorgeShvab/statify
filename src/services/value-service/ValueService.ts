@@ -1,5 +1,8 @@
 import { Prisma, Value } from "@prisma/client"
-import { GetAdminValuesParams } from "@/services/value-service/types"
+import {
+  CreateValueParams,
+  GetAdminValuesParams,
+} from "@/services/value-service/types"
 import prisma from "@/prisma"
 
 interface GetParams {
@@ -9,6 +12,14 @@ interface GetParams {
 }
 
 const ValueService = {
+  async create(data: CreateValueParams) {
+    return prisma.value.create({ data })
+  },
+
+  async updateOne({ id, ...data }: Partial<Value> & Pick<Value, "id">) {
+    await prisma.value.update({ where: { id }, data })
+  },
+
   async getAdminValues({
     sort,
     sortDirection,

@@ -1,15 +1,18 @@
 import { FC } from "react"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
+import EditValueModal from "@/containers/modals/edit-value-modal/EditValueModal"
+import ValueModal from "@/containers/modals/value-modal/ValueModal"
 import { ValuesDashboardTableRowDropdownProps } from "@/containers/values-dashboard-table/components/values-dashboard-table-row-dropdown/types"
+import { useModal } from "@/providers/modal-provider/ModalProvider"
 
 const ValuesDashboardTableRowDropdown: FC<
   ValuesDashboardTableRowDropdownProps
-> = ({ ...props }) => {
+> = ({ value, ...props }) => {
   // const { hideValues: hideStoreValues, exposeValues: exposeStoreValues } =
   //   useContextStore<StoreApi<ValuesStore>>()
 
-  //const { openModal } = useModal()
+  const { openModal } = useModal()
 
   // const [, hideManyIndicators] = useMutation(hideIndicators, {
   //   onError: () => exposeStoreIndicators(selectedItems),
@@ -21,16 +24,14 @@ const ValuesDashboardTableRowDropdown: FC<
   //   errorMessage: "Unexpected error occured",
   // })
 
-  const handleEditIndicator = () => {
-    // openModal(<EditIndicatorModal indicator={indicator} />, {
-    //   scrollable: true,
-    // })
+  const handleEditValue = () => {
+    openModal(<EditValueModal value={value} />, {
+      scrollable: true,
+    })
   }
 
-  const handleMoreIndicatorInformation = () => {
-    // openModal(<IndicatorModal indicator={indicator} />, {
-    //   scrollable: true,
-    // })
+  const handleMoreValueInformation = () => {
+    openModal(<ValueModal value={value} />)
   }
 
   return (
@@ -38,14 +39,14 @@ const ValuesDashboardTableRowDropdown: FC<
       <DropdownItem
         className="indicator-options-dropdown__item"
         size="small"
-        onClick={handleMoreIndicatorInformation}
+        onClick={handleMoreValueInformation}
       >
         More Information
       </DropdownItem>
       <DropdownItem
         className="indicator-options-dropdown__item"
         size="small"
-        onClick={handleEditIndicator}
+        onClick={handleEditValue}
       >
         Edit Value
       </DropdownItem>

@@ -1,3 +1,4 @@
+import { Value } from "@prisma/client"
 import { possibleValueSortQueryParam } from "@/app/(admin)/admin/dashboard/values/constants"
 
 export interface GetAdminValuesParams {
@@ -6,3 +7,8 @@ export interface GetAdminValuesParams {
   indicator?: string
   sortDirection?: "asc" | "desc"
 }
+
+export type CreateValueParams = Pick<
+  Value,
+  "value" | "year" | "countryId" | "indicatorId"
+>

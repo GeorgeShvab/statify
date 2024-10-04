@@ -12,6 +12,10 @@ export default {
       expose: "/api/admin/countries/expose",
       create: "/api/admin/countries",
     },
+    values: {
+      update: (id: number) => `/api/admin/values/${id}`,
+      create: "/api/admin/values",
+    },
   },
   public: {
     download: {

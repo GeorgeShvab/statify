@@ -1,97 +1,63 @@
 import { FC } from "react"
+import Button from "@/ui/button/Button"
 import Label from "@/ui/label/Label"
-import Tag from "@/ui/tag/Tag"
+import Tags from "@/ui/tag/components/tags/Tags"
+import EditIndicatorModal from "@/containers/modals/edit-indicator-modal/EditIndicatorModal"
 import { IndicatorModalProps } from "@/containers/modals/indicator-modal/types"
+import DataList from "@/components/data-list/DataList"
+import DataListDivider from "@/components/data-list/components/data-list-divider/DataListDivider"
+import DataListItem from "@/components/data-list/components/data-list-item/DataListItem"
 import ModalContainer from "@/components/modal-container/ModalContainer"
+import { useModal } from "@/providers/modal-provider/ModalProvider"
 import "@/containers/modals/indicator-modal/styles.scss"
 
 const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
+  const { openModal } = useModal()
+
+  const handleEditIndicator = () => {
+    openModal(<EditIndicatorModal indicator={indicator} />)
+  }
+
   const searchTags = indicator.searchTags.length ? (
-    indicator.tags.map((item, index) => <Tag key={item + index}>{item}</Tag>)
+    <Tags className="indicator-modal__tags" data={indicator.searchTags} />
   ) : (
-    <p className="indicator-modal__text">Unset</p>
+    "null"
   )
 
   const createdAtDate = new Date(indicator.createdAt).toLocaleDateString()
   const updatedAtDate = new Date(indicator.updatedAt).toLocaleDateString()
 
   return (
-    <ModalContainer>
-      <div className="indicator-modal">
-        <h3 className="indicator-modal__title">Indicator</h3>
-        <p className="indicator-modal__subtitle">{indicator.id ?? "Unset"}</p>
-        <div>
-          <Label
-            className="indicator-modal__label-container"
-            label="Indicator name"
-          >
-            <p className="indicator-modal__text">
-              {indicator.label ?? "Unset"}
-            </p>
-          </Label>
-          <Label
-            className="indicator-modal__label-container"
-            label="Indicator description"
-          >
-            <p className="indicator-modal__text">
-              {indicator.description ?? "Unset"}
-            </p>
-          </Label>
-          <Label
-            className="indicator-modal__label-container"
-            label="Search tags"
-          >
-            <div style={{ display: "flex", gap: "10px" }}>{searchTags}</div>
-          </Label>
-          <div className="indicator-modal__label-group indicator-modal__label-container">
-            <Label label="Source" className="indicator-form__label">
-              <p className="indicator-modal__text">
-                {indicator.source ?? "Unset"}
-              </p>
-            </Label>
-            <Label label="Dataset" className="indicator-form__label">
-              <p className="indicator-modal__text">
-                {indicator.dataset ?? "Unset"}
-              </p>
-            </Label>
-          </div>
-          <div className="indicator-modal__label-group indicator-modal__label-container">
-            <Label label="Unit" className="indicator-form__label">
-              <p className="indicator-modal__text">
-                {indicator.unit ?? "Unset"}
-              </p>
-            </Label>
-            <Label label="Unit symbol" className="indicator-form__label">
-              <p className="indicator-modal__text">
-                {indicator.unitSymbol ?? "Unset"}
-              </p>
-            </Label>
-          </div>
-          <div className="indicator-modal__label-group indicator-modal__label-container">
-            <Label label="Precision" className="indicator-form__label">
-              <p className="indicator-modal__text">
-                {indicator.precision ?? "Unset"}
-              </p>
-            </Label>
-            <Label label="Rank" className="indicator-form__label">
-              <p className="indicator-modal__text">
-                {indicator.ranking ?? "Unset"}
-              </p>
-            </Label>
-          </div>
-          <div className="indicator-modal__label-group indicator-modal__label-container">
-            <Label label="Date of creation" className="indicator-form__label">
-              <p className="indicator-modal__text">{createdAtDate}</p>
-            </Label>
-            <Label
-              label="Date of last updation"
-              className="indicator-form__label"
-            >
-              <p className="indicator-modal__text">{updatedAtDate}</p>
-            </Label>
-          </div>
-        </div>
-      </div>
+    <ModalContainer title="Indicator Information" size="medium">
+      <DataList>
+        <Label label="Indicator name">
+          <p className="indicator-modal__text">{indicator.label}</p>
+        </Label>
+        <Label label="Indicator description">
+          <p className="indicator-modal__text">{indicator.description}</p>
+        </Label>
+        <DataListDivider />
+        <DataListItem label="Indicator ID" data={indicator.id} />
+        <DataListItem label="Indicator source" data={indicator.source} />
+        <DataListItem label="Indicator dataset" data={indicator.dataset} />
+        <DataListItem label="Indicator unit" data={indicator.unit} />
+        <DataListItem
+          label="Indicator unit symbol"
+          data={indicator.unitSymbol}
+        />
+        <DataListItem label="Indicator precision" data={indicator.precision} />
+        <DataListItem label="Indicator rank" data={indicator.ranking} />
+        <DataListItem label="Date of updation" data={updatedAtDate} />
+        <DataListItem label="Date of creation" data={createdAtDate} />
+        <DataListItem
+          label="Search tags"
+          className="indicator-modal__tags-section"
+          data={searchTags}
+        />
+      </DataList>
+      <Button className="full-width" onClick={handleEditIndicator}>
+        Edit
+      </Button>
     </ModalContainer>
   )
 }

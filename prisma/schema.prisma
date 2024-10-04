@@ -36,14 +36,14 @@ model Indicator {
 }
 
 model Value {
-  id          Int        @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   value       Float
-  country     Country    @relation(fields: [countryId], references: [id])
+  country     Country   @relation(fields: [countryId], references: [id])
   year        Int
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-  indicator   Indicator? @relation(fields: [indicatorId], references: [id])
-  indicatorId String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  indicator   Indicator @relation(fields: [indicatorId], references: [id])
+  indicatorId String
   countryId   String
 
   @@index([year(sort: Desc)])

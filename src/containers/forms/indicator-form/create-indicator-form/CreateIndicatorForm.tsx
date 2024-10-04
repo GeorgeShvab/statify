@@ -13,6 +13,9 @@ import {
 } from "@/containers/forms/indicator-form/create-indicator-form/types"
 import prepareValues from "@/containers/forms/indicator-form/create-indicator-form/utils/prepareValues"
 import validationSchema from "@/containers/forms/indicator-form/create-indicator-form/validationSchema"
+import DataList from "@/components/data-list/DataList"
+import DataListDivider from "@/components/data-list/components/data-list-divider/DataListDivider"
+import InputGroup from "@/components/input-group/InputGroup"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { createIndicator } from "@/api/admin"
@@ -49,104 +52,90 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
 
   return (
     <form className="indicator-form" onSubmit={handleSubmit(onSubmit)}>
-      <h3 className="indicator-form__title create-indicator-form__title">
-        New Indicator
-      </h3>
-      <div>
-        <Label className="indicator-form__label-container" label="Indicator ID">
+      <DataList className="indicator-form__data-list">
+        <Label label="Indicator name">
           <Input
-            className="indicator-form__input"
-            isError={Boolean(errors.id)}
-            {...register("id")}
-          />
-        </Label>
-        <Label
-          className="indicator-form__label-container"
-          label="Indicator name"
-        >
-          <Input
-            className="indicator-form__input"
+            className="full-width"
             isError={Boolean(errors.label)}
             {...register("label")}
           />
         </Label>
-        <Label
-          className="indicator-form__label-container"
-          label="Indicator description"
-        >
+        <Label label="Indicator description">
           <Textarea
             {...register("description")}
             isError={Boolean(errors.description)}
           />
         </Label>
-        <Label className="indicator-form__label-container" label="Search tags">
-          <TagInput tags={[]} onChange={handleTagsChange} />
-        </Label>
-        <div className="indicator-form__input-group indicator-form__label-container">
-          <Label label="Source" className="indicator-form__input-label">
+        <DataListDivider />
+        <InputGroup>
+          <Label label="Source">
             <Input
-              className="indicator-form__input"
+              className="full-width"
               isError={Boolean(errors.source)}
               {...register("source")}
             />
           </Label>
-          <Label label="Dataset" className="indicator-form__input-label">
+          <Label label="Dataset">
             <Input
-              className="indicator-form__input"
+              className="full-width"
               isError={Boolean(errors.dataset)}
               {...register("dataset")}
             />
           </Label>
-        </div>
-        <div className="indicator-form__input-group indicator-form__label-container">
-          <Label label="Unit" className="indicator-form__input-label">
+        </InputGroup>
+        <InputGroup>
+          <Label label="Unit">
             <Input
-              className="indicator-form__input"
+              className="full-width"
               isError={Boolean(errors.unit)}
               {...register("unit")}
             />
           </Label>
-          <Label label="Unit symbol" className="indicator-form__input-label">
+          <Label label="Unit symbol">
             <Input
-              className="indicator-form__input"
+              className="full-width"
               isError={Boolean(errors.unitSymbol)}
               {...register("unitSymbol")}
             />
           </Label>
-        </div>
-        <div className="indicator-form__input-group indicator-form__label-container">
-          <Label label="Precision" className="indicator-form__input-label">
+        </InputGroup>
+        <InputGroup>
+          <Label label="Precision">
             <Input
-              className="indicator-form__input"
+              className="full-width"
               isError={Boolean(errors.precision)}
               type="number"
               min={0}
               {...register("precision", { valueAsNumber: true })}
             />
           </Label>
-          <Label label="Rank" className="indicator-form__input-label">
+          <Label label="Rank">
             <Input
-              className="indicator-form__input"
+              className="full-width"
               isError={Boolean(errors.ranking)}
               type="number"
               min={0}
               {...register("ranking", { valueAsNumber: true })}
             />
           </Label>
-        </div>
-        <div className="indicator-form__input-group indicator-form__switchers">
+        </InputGroup>
+        <DataListDivider />
+        <Label label="Search tags">
+          <TagInput tags={[]} onChange={handleTagsChange} />
+        </Label>
+        <div className="indicator-form__switchers">
           <Switch {...register("hidden")}>Hidden</Switch>
           <Switch {...register("showChart")}>Show chart</Switch>
           <Switch {...register("absolute")}>Absolute</Switch>
         </div>
-        <Button
-          disabled={!isDirty}
-          type="submit"
-          className="indicator-form__save-button"
-        >
-          Save
-        </Button>
-      </div>
+      </DataList>
+      <Button
+        disabled={!isDirty}
+        type="submit"
+        className="indicator-form__save-button"
+      >
+        Save
+      </Button>
     </form>
   )
 }

@@ -2,6 +2,7 @@
 
 .tag {
   @include ui-border;
+  border-radius: $rounded-md;
 
   line-height: 1.2;
   font-size: $fs-xs;
