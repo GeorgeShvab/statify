@@ -8,7 +8,7 @@ const EditCountryModal: FC<EditCountryModalProps> = ({ country }) => {
   const { closeModal } = useModal()
 
   return (
-    <ModalContainer>
+    <ModalContainer title="Edit Country" size="medium">
       <EditCountryForm country={country} onSuccess={closeModal} />
     </ModalContainer>
   )

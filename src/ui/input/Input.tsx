@@ -8,7 +8,7 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   return (
     <input
       ref={ref}
-      className={`h-10 flex-1 outline-none text-sm text-neutral-800 bg-white px-3.5 border rounded-lg ${className} ${
+      className={`h-10 flex-1 outline-none text-sm text-neutral-600 bg-white px-3.5 border rounded-lg ${className} ${
         isError && "error"
       }`}
       {...props}

@@ -8,7 +8,7 @@ const EditIndicatorModal: FC<EditIndicatorModalProps> = ({ indicator }) => {
   const { closeModal } = useModal()
 
   return (
-    <ModalContainer>
+    <ModalContainer title="Edit Indicator">
       <EditIndicatorForm indicator={indicator} onSuccess={closeModal} />
     </ModalContainer>
   )

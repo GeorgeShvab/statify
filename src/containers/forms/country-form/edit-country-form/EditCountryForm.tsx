@@ -16,6 +16,9 @@ import {
 import getInitialValues from "@/containers/forms/country-form/edit-country-form/utils/getInitialValues"
 import prepareData from "@/containers/forms/country-form/edit-country-form/utils/prepareData"
 import editCountryValidationSchema from "@/containers/forms/country-form/edit-country-form/validationSchema"
+import DataList from "@/components/data-list/DataList"
+import DataListDivider from "@/components/data-list/components/data-list-divider/DataListDivider"
+import InputGroup from "@/components/input-group/InputGroup"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import filterDirtyValues from "@/utils/filter-dirty-values/filterDirtyValues"
@@ -59,36 +62,35 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
 
   return (
     <form className="country-form" onSubmit={handleSubmit(onSubmit)}>
-      <h3 className="country-form__title">Edit Country</h3>
-      <p className="country-form__subtitle">{country.id}</p>
-      <div>
-        <Label className="country-form__label-container" label="Country name">
+      <DataList className="country-form__data-list">
+        <Label label="Country ID">
+          <Input className="full-width" value={country.id} readOnly />
+        </Label>
+        <Label label="Country name">
           <Input
-            className="country-form__input"
+            className="full-width"
             isError={Boolean(errors.name)}
             {...register("name")}
           />
         </Label>
-        <div className="country-form__input-group country-form__label-container">
-          <Label label="Iso2Code" className="country-form__input-label">
+        <DataListDivider />
+        <InputGroup>
+          <Label label="Iso2Code">
             <Input
-              className="country-form__input"
+              className="full-width"
               isError={Boolean(errors.iso2Code)}
               {...register("iso2Code")}
             />
           </Label>
-          <Label label="GeoCode" className="country-form__input-label">
+          <Label label="GeoCode">
             <Input
-              className="country-form__input"
+              className="full-width"
               isError={Boolean(errors.geoCode)}
               {...register("geoCode")}
             />
           </Label>
-        </div>
-        <Label className="country-form__label-container" label="Search tags">
-          <TagInput tags={country.searchTags} onChange={handleTagsChange} />
-        </Label>
-        <Label className="country-form__label-container" label="Type">
+        </InputGroup>
+        <Label label="Type">
           <SelectController<EditCountryFormValues>
             name="type"
             options={countryTypeOptions}
@@ -96,7 +98,7 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
             control={control}
           />
         </Label>
-        <Label className="country-form__label-container" label="Status">
+        <Label label="Status">
           <SelectController<EditCountryFormValues>
             name="status"
             options={countryStatusOptions}
@@ -104,14 +106,13 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
             control={control}
           />
         </Label>
-        <Button
-          disabled={!isDirty}
-          type="submit"
-          className="country-form__save-button"
-        >
-          Save
-        </Button>
-      </div>
+        <Label label="Search tags">
+          <TagInput tags={country.searchTags} onChange={handleTagsChange} />
+        </Label>
+      </DataList>
+      <Button disabled={!isDirty} type="submit" className="full-width">
+        Save
+      </Button>
     </form>
   )
 }

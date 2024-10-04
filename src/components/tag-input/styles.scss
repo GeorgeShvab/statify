@@ -13,6 +13,8 @@
   font-size: $fs-xs;
 }
 
-.tag-input__remove-button {
-  //cursor: pointer;
+.tag-input__container {
+  padding: sp(3);
+  border: 1px solid $ui-elements-light-border;
+  border-radius: $rounded-lg;
 }

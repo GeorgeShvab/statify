@@ -31,20 +31,22 @@ export const TagInput: FC<TagInputProps> = ({ tags, onChange }) => {
   }
 
   return (
-    <div className="tag-input">
-      {tagsArray.map((item, index) => (
-        <TagWithInput
-          key={index}
-          value={item}
-          onRemove={() => handleRemoveTag(index)}
-          onChange={(e) => handleChange(e.target.value, index)}
-        />
-      ))}
-      <button onClick={handleAddTag} type="button">
-        <Tag>
-          <span>Add tags &nbsp; +</span>
-        </Tag>
-      </button>
+    <div className="tag-input__container">
+      <div className="tag-input">
+        {tagsArray.map((item, index) => (
+          <TagWithInput
+            key={index}
+            value={item}
+            onRemove={() => handleRemoveTag(index)}
+            onChange={(e) => handleChange(e.target.value, index)}
+          />
+        ))}
+        <button onClick={handleAddTag} type="button">
+          <Tag>
+            <span>Add tags &nbsp; +</span>
+          </Tag>
+        </button>
+      </div>
     </div>
   )
 }
