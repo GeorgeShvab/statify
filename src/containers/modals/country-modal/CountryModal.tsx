@@ -23,7 +23,7 @@ const CountryModal: FC<CountryModalProps> = ({ country }) => {
       data={<Tags className="country-modal__tags" data={country.searchTags} />}
     />
   ) : (
-    <p className="indicator-modal__text">Unset</p>
+    "null"
   )
 
   const createdAtDate = new Date(country.createdAt).toLocaleDateString()

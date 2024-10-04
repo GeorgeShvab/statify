@@ -1,0 +1,9 @@
+@import "@design-system";
+
+.data-list__divider {
+  padding: sp(3) 0;
+
+  hr {
+    border-color: $white-dark;
+  }
+}
