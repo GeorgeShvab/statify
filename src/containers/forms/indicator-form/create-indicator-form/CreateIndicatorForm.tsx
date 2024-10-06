@@ -53,6 +53,13 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
   return (
     <form className="indicator-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="indicator-form__data-list">
+        <Label label="Indicator ID">
+          <Input
+            className="full-width"
+            isError={Boolean(errors.id)}
+            {...register("id")}
+          />
+        </Label>
         <Label label="Indicator name">
           <Input
             className="full-width"
@@ -129,11 +136,7 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
           <Switch {...register("absolute")}>Absolute</Switch>
         </div>
       </DataList>
-      <Button
-        disabled={!isDirty}
-        type="submit"
-        className="indicator-form__save-button"
-      >
+      <Button disabled={!isDirty} type="submit" className="full-width">
         Save
       </Button>
     </form>

@@ -42,3 +42,18 @@ export const createValue = (args: CreateValueParams) =>
 
 export const updateValue = ({ id, ...args }: UpdateValueParams) =>
   axios.patch(apiRoutes.admin.values.update(id), args)
+
+export const deleteIndicators = (ids: string[]) =>
+  axios.delete(apiRoutes.admin.indicators.delete, {
+    params: { ids: ids.join(",") },
+  })
+
+export const deleteCountries = (ids: string[]) =>
+  axios.delete(apiRoutes.admin.countries.delete, {
+    params: { ids: ids.join(",") },
+  })
+
+export const deleteValues = (ids: number[]) =>
+  axios.delete(apiRoutes.admin.values.delete, {
+    params: { ids: ids.join(",") },
+  })

@@ -12,6 +12,10 @@ import {
 import prisma from "@/prisma"
 
 const CountryService = {
+  async deleteMany(ids: string[]) {
+    await prisma.country.deleteMany({ where: { id: { in: ids } } })
+  },
+
   async getCountriesSelectAutocomplete(): Promise<Option[]> {
     return prisma.$queryRaw`SELECT "id" as value, "name" as label FROM "Country" WHERE "hidden" = FALSE ORDER BY "name" ASC`
   },

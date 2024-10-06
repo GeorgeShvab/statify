@@ -5,16 +5,19 @@ export default {
       hide: "/api/admin/indicators/hide",
       expose: "/api/admin/indicators/expose",
       create: "/api/admin/indicators",
+      delete: "/api/admin/indicators",
     },
     countries: {
       update: (id: string) => `/api/admin/countries/${id}`,
       hide: "/api/admin/countries/hide",
       expose: "/api/admin/countries/expose",
       create: "/api/admin/countries",
+      delete: "/api/admin/countries",
     },
     values: {
       update: (id: number) => `/api/admin/values/${id}`,
       create: "/api/admin/values",
+      delete: "/api/admin/values",
     },
   },
   public: {
