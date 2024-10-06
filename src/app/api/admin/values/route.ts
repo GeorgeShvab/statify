@@ -8,3 +8,16 @@ export const POST = async (req: NextRequest) => {
 
   return NextResponse.json({})
 }
+
+export const DELETE = async (req: NextRequest) => {
+  const ids = new URLSearchParams(req.nextUrl.searchParams)
+    .get("ids")
+    ?.split(",")
+    .map((item) => Number(item))
+
+  if (!ids) return new NextResponse(null, { status: 400 })
+
+  await ValueService.deleteMany(ids)
+
+  return new NextResponse(null, { status: 200 })
+}

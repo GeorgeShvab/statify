@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, FC, useMemo, useState } from "react"
+import { createContext, FC, useContext, useMemo, useState } from "react"
 import Confirm from "@/components/confirm/Confirm"
 import Modal from "@/components/modal/Modal"
 import {
@@ -22,6 +22,7 @@ const ConfirmProvider: FC<ConfirmProviderProps> = ({ children }) => {
   })
 
   const openConfirm = (config: ConfirmConfiguration) => {
+    setIsOpen(true)
     setConfiguration(config)
   }
 
@@ -51,14 +52,26 @@ const ConfirmProvider: FC<ConfirmProviderProps> = ({ children }) => {
     <confirmContext.Provider value={value}>
       <Modal opened={isOpen} onClose={closeConfirm}>
         <Confirm
+          {...configuration}
           onCancel={handleCancel}
           onConfirm={handleConfirm}
-          {...configuration}
         />
       </Modal>
       {children}
     </confirmContext.Provider>
   )
+}
+
+ConfirmProvider.displayName = "ConfirmProvider"
+
+export const useConfirm = () => {
+  const confirmData = useContext(confirmContext)
+
+  if (!confirmData) {
+    throw new Error("useConfirm must be used within ConfirmProvider")
+  }
+
+  return confirmData
 }
 
 export default ConfirmProvider

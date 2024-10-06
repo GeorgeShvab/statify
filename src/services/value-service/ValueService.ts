@@ -12,6 +12,20 @@ interface GetParams {
 }
 
 const ValueService = {
+  async deleteByCountry(countryIds: string[]) {
+    await prisma.value.deleteMany({ where: { countryId: { in: countryIds } } })
+  },
+
+  async deleteByIndicator(indicatorIds: string[]) {
+    await prisma.value.deleteMany({
+      where: { indicator: { id: { in: indicatorIds } } },
+    })
+  },
+
+  async deleteMany(ids: number[]) {
+    await prisma.value.deleteMany({ where: { id: { in: ids } } })
+  },
+
   async create(data: CreateValueParams) {
     return prisma.value.create({ data })
   },
