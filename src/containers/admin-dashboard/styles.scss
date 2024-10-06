@@ -19,6 +19,14 @@
     .table__body-cell {
       background-color: $white-darker;
     }
+
+    .admin-dashboard-table__check-cell button {
+      color: $gray-dark !important;
+
+      path {
+        fill: $gray-dark;
+      }
+    }
   }
 }
 
@@ -53,14 +61,6 @@
       path {
         fill: transparent;
         transition: 0.3s fill;
-      }
-    }
-
-    .selected {
-      color: $gray-dark !important;
-
-      path {
-        fill: $gray-dark;
       }
     }
   }

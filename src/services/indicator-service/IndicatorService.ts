@@ -18,6 +18,10 @@ interface SearchParams {
 }
 
 const IndicatorService = {
+  async deleteMany(ids: string[]) {
+    await prisma.indicator.deleteMany({ where: { id: { in: ids } } })
+  },
+
   async getIndicatorsSelectAutocomplete(): Promise<Option[]> {
     return prisma.$queryRaw`SELECT "label", "id" as value FROM "Indicator" WHERE "hidden" = FALSE ORDER BY "label" ASC`
   },
