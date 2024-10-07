@@ -3,7 +3,7 @@ import { ValueFormValues } from "@/containers/forms/value-form/types"
 
 export interface EditValueFormProps {
   value: Value
-  onSuccess: () => void
+  onSuccess?: (indicator: Partial<Value> & Pick<Value, "id">) => void
 }
 
 export type EditValueFormValues = ValueFormValues

@@ -5,7 +5,7 @@ import { MutationConfiguration } from "@/hooks/use-mutation/types"
 
 const useMutation = <TArguments, TResult>(
   fn: (args: TArguments) => Promise<AxiosResponse<TResult>>,
-  config?: MutationConfiguration
+  config?: MutationConfiguration<TArguments>
 ) => {
   const [isLoading, setIsLoading] = useState(true)
   const [data, setData] = useState<TResult>()
@@ -28,7 +28,7 @@ const useMutation = <TArguments, TResult>(
       }
 
       if (config?.onSuccess) {
-        config.onSuccess()
+        config.onSuccess(args)
       }
     } catch (e) {
       setError(e)
@@ -39,7 +39,7 @@ const useMutation = <TArguments, TResult>(
       }
 
       if (config?.onError) {
-        config.onError()
+        config.onError(args)
       }
     }
   }
