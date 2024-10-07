@@ -1,6 +1,6 @@
-export interface MutationConfiguration {
+export interface MutationConfiguration<TArguments> {
   successMessage?: string
   errorMessage?: string
-  onSuccess?: () => void
-  onError?: () => void
+  onSuccess?: (args: TArguments) => void
+  onError?: (args: TArguments) => void
 }

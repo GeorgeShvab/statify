@@ -135,11 +135,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
           <Switch {...register("absolute")}>Absolute</Switch>
         </div>
       </DataList>
-      <Button
-        disabled={!isDirty}
-        type="submit"
-        className="indicator-form__save-button"
-      >
+      <Button disabled={!isDirty} type="submit" className="full-width">
         Save
       </Button>
     </form>

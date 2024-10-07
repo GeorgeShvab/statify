@@ -20,30 +20,38 @@ const IndicatorsDashboardTableRowDropdown: FC<
   const {
     hideIndicators: hideStoreIndicators,
     exposeIndicators: exposeStoreIndicators,
+    deleteIndicators: deleteStoreIndicators,
+    backup,
+    revert,
+    updateIndicator,
   } = useContextStore<StoreApi<IndicatorsStore>>()
 
   const { openModal } = useModal()
   const { openConfirm } = useConfirm()
 
   const [, hideManyIndicators] = useMutation(hideIndicators, {
-    onError: () => exposeStoreIndicators(selectedItems),
+    onError: revert,
     errorMessage: "Unexpected error occured",
   })
 
   const [, exposeManyIndicators] = useMutation(exposeIndicators, {
-    onError: () => hideStoreIndicators(selectedItems),
+    onError: revert,
     errorMessage: "Unexpected error occured",
   })
 
   const [, deleteManyIndicators] = useMutation(deleteIndicators, {
+    onError: revert,
     errorMessage: "Unexpected error occured",
     successMessage: "Indicators deleted",
   })
 
   const handleEditIndicator = () => {
-    openModal(<EditIndicatorModal indicator={indicator} />, {
-      scrollable: true,
-    })
+    openModal(
+      <EditIndicatorModal onSuccess={updateIndicator} indicator={indicator} />,
+      {
+        scrollable: true,
+      }
+    )
   }
 
   const handleMoreIndicatorInformation = () => {
@@ -53,11 +61,13 @@ const IndicatorsDashboardTableRowDropdown: FC<
   }
 
   const handleHideSelected = async () => {
+    backup()
     hideStoreIndicators(selectedItems)
     await hideManyIndicators({ ids: selectedItems })
   }
 
   const handleExposeSelected = async () => {
+    backup()
     exposeStoreIndicators(selectedItems)
     await exposeManyIndicators({ ids: selectedItems })
   }
@@ -68,7 +78,11 @@ const IndicatorsDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with indicator values will be deleted too.",
       severity: "danger",
-      onConfirm: () => deleteManyIndicators([indicator.id]),
+      onConfirm: () => {
+        backup()
+        deleteStoreIndicators([indicator.id])
+        deleteManyIndicators([indicator.id])
+      },
     })
   }
 
@@ -78,7 +92,11 @@ const IndicatorsDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with indicators values will be deleted too.",
       severity: "danger",
-      onConfirm: () => deleteManyIndicators(selectedItems),
+      onConfirm: () => {
+        backup()
+        deleteStoreIndicators(selectedItems)
+        deleteManyIndicators(selectedItems)
+      },
     })
   }
 

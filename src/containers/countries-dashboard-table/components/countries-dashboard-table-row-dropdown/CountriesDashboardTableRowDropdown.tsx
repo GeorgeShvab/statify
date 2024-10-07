@@ -20,6 +20,10 @@ const CountriesDashboardTableRowDropdown: FC<
   const {
     hideCountries: hideStoreCountries,
     exposeCountries: exposeStoreCountries,
+    deleteCountries: deleteStoreCountries,
+    updateCountry,
+    revert,
+    backup,
   } = useContextStore<StoreApi<CountriesStore>>()
 
   const { openModal } = useModal()
@@ -27,24 +31,28 @@ const CountriesDashboardTableRowDropdown: FC<
   const { openConfirm } = useConfirm()
 
   const [, hideManyCountries] = useMutation(hideCountries, {
-    onError: () => exposeStoreCountries(selectedItems),
+    onError: revert,
     errorMessage: "Unexpected error occured",
   })
 
   const [, exposeManyCountries] = useMutation(exposeCountries, {
-    onError: () => hideStoreCountries(selectedItems),
+    onError: revert,
     errorMessage: "Unexpected error occured",
   })
 
   const [, deleteManyCountries] = useMutation(deleteCountries, {
+    onError: revert,
     errorMessage: "Unexpected error occured",
     successMessage: "Countries deleted",
   })
 
   const handleEditCountry = () => {
-    openModal(<EditCountryModal country={country} />, {
-      scrollable: true,
-    })
+    openModal(
+      <EditCountryModal onSuccess={updateCountry} country={country} />,
+      {
+        scrollable: true,
+      }
+    )
   }
 
   const handleMoreCountryInformation = () => {
@@ -54,11 +62,13 @@ const CountriesDashboardTableRowDropdown: FC<
   }
 
   const handleHideSelected = async () => {
+    backup()
     hideStoreCountries(selectedItems)
     await hideManyCountries({ ids: selectedItems })
   }
 
   const handleExposeSelected = async () => {
+    backup()
     exposeStoreCountries(selectedItems)
     await exposeManyCountries({ ids: selectedItems })
   }
@@ -69,7 +79,11 @@ const CountriesDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with country values will be deleted too.",
       severity: "danger",
-      onConfirm: () => deleteManyCountries([country.id]),
+      onConfirm: () => {
+        backup()
+        deleteStoreCountries([country.id])
+        deleteManyCountries([country.id])
+      },
     })
   }
 
@@ -79,7 +93,11 @@ const CountriesDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with country values will be deleted too.",
       severity: "danger",
-      onConfirm: () => deleteManyCountries(selectedItems),
+      onConfirm: () => {
+        backup()
+        deleteStoreCountries(selectedItems)
+        deleteManyCountries(selectedItems)
+      },
     })
   }
 
