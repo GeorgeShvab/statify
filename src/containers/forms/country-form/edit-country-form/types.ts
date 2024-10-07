@@ -3,7 +3,7 @@ import { CountryFormValues } from "@/containers/forms/country-form/types"
 
 export interface EditCountryFormProps {
   country: Country
-  onSuccess: () => void
+  onSuccess?: (indicator: Partial<Country> & Pick<Country, "id">) => void
 }
 
 export type EditCountryFormValues = CountryFormValues

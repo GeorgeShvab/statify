@@ -1,4 +1,5 @@
 import { FC } from "react"
+import { StoreApi } from "zustand"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import EditValueModal from "@/containers/modals/edit-value-modal/EditValueModal"
@@ -7,7 +8,9 @@ import { ValuesDashboardTableRowDropdownProps } from "@/containers/values-dashbo
 import { useConfirm } from "@/providers/confirm-provider/ConfirmProvider"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
 import { useSelectable } from "@/providers/selectable-provider/SelectableProvider"
+import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
+import { ValuesStore } from "@/store/values-store/types"
 import { deleteValues } from "@/api/admin"
 
 const ValuesDashboardTableRowDropdown: FC<
@@ -16,6 +19,13 @@ const ValuesDashboardTableRowDropdown: FC<
   const { selectedItems, selectedCount, clearSelection } =
     useSelectable<number>()
 
+  const {
+    updateValue,
+    revert,
+    backup,
+    deleteValues: deleteStoreValues,
+  } = useContextStore<StoreApi<ValuesStore>>()
+
   const { openModal } = useModal()
 
   const { openConfirm } = useConfirm()
@@ -23,10 +33,11 @@ const ValuesDashboardTableRowDropdown: FC<
   const [, deleteManyValues] = useMutation(deleteValues, {
     errorMessage: "Unexpected error occured",
     successMessage: "Values deleted",
+    onError: revert,
   })
 
   const handleEditValue = () => {
-    openModal(<EditValueModal value={value} />, {
+    openModal(<EditValueModal onSuccess={updateValue} value={value} />, {
       scrollable: true,
     })
   }
@@ -40,7 +51,11 @@ const ValuesDashboardTableRowDropdown: FC<
       title: `Are you sure you want to delete value (${value.id})?`,
       subtitle: "This action can not be reverted.",
       severity: "danger",
-      onConfirm: () => deleteManyValues([value.id]),
+      onConfirm: () => {
+        backup()
+        deleteStoreValues([value.id])
+        deleteManyValues([value.id])
+      },
     })
   }
 
@@ -49,7 +64,11 @@ const ValuesDashboardTableRowDropdown: FC<
       title: `Are you sure you want to delete selected values (${selectedCount})?`,
       subtitle: "This action can not be reverted.",
       severity: "danger",
-      onConfirm: () => deleteManyValues(selectedItems),
+      onConfirm: () => {
+        backup()
+        deleteStoreValues(selectedItems)
+        deleteManyValues(selectedItems)
+      },
     })
   }
 
