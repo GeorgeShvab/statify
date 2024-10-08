@@ -49,7 +49,7 @@ const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
       </TableCell>
       <TableCell
         semantic={false}
-        className="table-cell-center flex-7-5"
+        className="table-cell-center flex-15 one-line"
         size="small"
       >
         {prettifyValue(value.value)}

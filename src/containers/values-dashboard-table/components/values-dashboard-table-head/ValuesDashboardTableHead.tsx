@@ -32,7 +32,7 @@ const ValuesDashboardTableHead = () => (
     </TableHeadCell>
     <TableHeadCell
       semantic={false}
-      className="flex-7-5 table-cell-center"
+      className="flex-15 table-cell-center"
       size="small"
     >
       Value
