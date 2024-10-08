@@ -8,6 +8,7 @@ import { CountriesDashboardProps } from "@/containers/countries-dashboard/types"
 import { SelectableProvider } from "@/providers/selectable-provider/SelectableProvider"
 import { StoreProvider } from "@/providers/store-provider/StoreProvider"
 import countriesStore from "@/store/countries-store/countries-store"
+import AdminDashboardNotFoundView from "../admin-dashboard/components/admin-dashboard-not-found-view/AdminDashboardNotFoundView"
 
 const CountriesDashboard: FC<CountriesDashboardProps> = (props) => {
   const key =
@@ -18,12 +19,18 @@ const CountriesDashboard: FC<CountriesDashboardProps> = (props) => {
     props.status +
     props.sortDirection // I use it to reinitialize indicators store.
 
+  const content = props.countries.length ? (
+    <CountriesDashboardTable />
+  ) : (
+    <AdminDashboardNotFoundView />
+  )
+
   return (
     <SelectableProvider>
       <StoreProvider key={key} createStore={countriesStore(props.countries)}>
         <CountriesDashboardHeader />
         <CountriesDashboardTools {...props} />
-        <CountriesDashboardTable />
+        {content}
       </StoreProvider>
     </SelectableProvider>
   )

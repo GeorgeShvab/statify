@@ -1,6 +1,7 @@
 "use client"
 
 import { FC } from "react"
+import AdminDashboardNotFoundView from "@/containers/admin-dashboard/components/admin-dashboard-not-found-view/AdminDashboardNotFoundView"
 import IndicatorsDashboardHeader from "@/containers/indicators-dashboard-header/IndicatorsDashboardHeader"
 import IndicatorsDashboardTable from "@/containers/indicators-dashboard-table/IndicatorsDashboardTable"
 import IndicatorsDashboardTools from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools"
@@ -16,12 +17,18 @@ const IndicatorsDashboard: FC<IndicatorsDashboardProps> = (props) => {
     props.search +
     props.sortDirection // I use it to reinitialize indicators store.
 
+  const content = props.indicators.length ? (
+    <IndicatorsDashboardTable />
+  ) : (
+    <AdminDashboardNotFoundView />
+  )
+
   return (
     <SelectableProvider>
       <StoreProvider key={key} createStore={indicatorsStore(props.indicators)}>
         <IndicatorsDashboardHeader />
         <IndicatorsDashboardTools {...props} />
-        <IndicatorsDashboardTable />
+        {content}
       </StoreProvider>
     </SelectableProvider>
   )
