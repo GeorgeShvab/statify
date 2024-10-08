@@ -15,7 +15,7 @@ const Home: FC = () => {
                 Discover the World through Data
               </h1>
               <div className="flex justify-center">
-                <div className="mb-8 md:mb-8 max-w-[700px] w-full [&>div>form>div>div>div>div]:bg-neutral-50 [&>div>form>div>div>div>div>input]:bg-neutral-50">
+                <div className="mb-8 md:mb-8 max-w-[700px] w-full [&>div>form>div>div>div>div]:bg-neutral-50 [&>div>form>div>div>div>div>input]:bg-neutral-50 [&>div>div>div>div>div]:bg-neutral-50 [&>div>div>div>div>div>input]:bg-neutral-50">
                   <Suspense
                     fallback={
                       <SearchBarLoader placeholder="Example: Birth rate" />

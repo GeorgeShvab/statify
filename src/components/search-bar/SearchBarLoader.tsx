@@ -1,7 +1,7 @@
+import { FC } from "react"
 import Button from "@/ui/button/Button"
 import IconButton from "@/ui/icon-button/IconButton"
 import SearchIcon from "@/ui/icons/SearchIcon"
-import { FC } from "react"
 
 interface Props {
   placeholder?: string
@@ -9,7 +9,7 @@ interface Props {
 
 const SearchBarLoader: FC<Props> = ({ placeholder }) => {
   return (
-    <form>
+    <div>
       <div className="flex gap-1.5 md:gap-2.5 items-center">
         <div className="relative flex-1 z-20">
           <div className="border rounded-lg">
@@ -30,14 +30,14 @@ const SearchBarLoader: FC<Props> = ({ placeholder }) => {
             </div>
           </div>
         </div>
-        <Button type="submit" className="hidden md:flex">
+        <Button type="submit" className="!hidden md:!flex">
           Search
         </Button>
-        <IconButton type="submit" className="md:hidden" aria-label="Search">
+        <IconButton type="submit" className="md:!hidden" aria-label="Search">
           <SearchIcon className="w-5 h-5" />
         </IconButton>
       </div>
-    </form>
+    </div>
   )
 }
 
