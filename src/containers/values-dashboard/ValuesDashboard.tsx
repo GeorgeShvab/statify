@@ -8,8 +8,15 @@ import { ValuesDashboardProps } from "@/containers/values-dashboard/types"
 import { SelectableProvider } from "@/providers/selectable-provider/SelectableProvider"
 import { StoreProvider } from "@/providers/store-provider/StoreProvider"
 import valuesStore from "@/store/values-store/values-store"
+import AdminDashboardNotFoundView from "../admin-dashboard/components/admin-dashboard-not-found-view/AdminDashboardNotFoundView"
 
 const ValuesDashboard: FC<ValuesDashboardProps> = ({ values, ...props }) => {
+  const content = values.length ? (
+    <ValuesDashboardTable />
+  ) : (
+    <AdminDashboardNotFoundView />
+  )
+
   return (
     <SelectableProvider>
       <StoreProvider
@@ -19,7 +26,7 @@ const ValuesDashboard: FC<ValuesDashboardProps> = ({ values, ...props }) => {
       >
         <ValuesDashboardHeader />
         <ValuesDashboardTools {...props} />
-        <ValuesDashboardTable />
+        {content}
       </StoreProvider>
     </SelectableProvider>
   )

@@ -5,10 +5,10 @@
   flex-direction: column;
   gap: sp(4);
   padding-top: sp(8);
-  margin-bottom: sp(2);
+  padding-bottom: sp(2);
 
   @include breakpoint("md") {
-    margin-bottom: sp(4);
+    padding-bottom: sp(4);
   }
 
   .table__body-cell {

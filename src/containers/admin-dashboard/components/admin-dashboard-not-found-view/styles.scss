@@ -1,0 +1,19 @@
+@import "@design-system";
+
+.admin-dashboard__not-found {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: sp(4);
+  flex: 3 0 auto;
+}
+
+.admin-dashboard__not-found-title {
+  color: $gray-light;
+  text-align: center;
+}
+
+.admin-dashboard__not-found-icon {
+  color: $gray-light;
+}
