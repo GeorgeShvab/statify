@@ -7,6 +7,7 @@ import DataList from "@/components/data-list/DataList"
 import DataListItem from "@/components/data-list/components/data-list-item/DataListItem"
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import cn from "@/utils/cn/cn"
 import "@/containers/modals/country-modal/styles.scss"
 
 const CountryModal: FC<CountryModalProps> = ({ country }) => {
@@ -16,12 +17,8 @@ const CountryModal: FC<CountryModalProps> = ({ country }) => {
     openModal(<EditCountryModal country={country} />)
   }
 
-  const searchTagsEl = country.searchTags.length ? (
-    <DataListItem
-      label="Search tags"
-      className="country-modal__tags-section"
-      data={<Tags className="country-modal__tags" data={country.searchTags} />}
-    />
+  const searchTags = country.searchTags.length ? (
+    <Tags className="country-modal__tags" data={country.searchTags} />
   ) : (
     "null"
   )
@@ -39,7 +36,13 @@ const CountryModal: FC<CountryModalProps> = ({ country }) => {
         <DataListItem label="Country type" data={country.type} />
         <DataListItem label="Date of updation" data={updatedAtDate} />
         <DataListItem label="Date of creation" data={createdAtDate} />
-        {searchTagsEl}
+        <DataListItem
+          label="Search tags"
+          className={cn(
+            country.searchTags.length && "country-modal__tags-section"
+          )}
+          data={searchTags}
+        />
       </DataList>
       <Button color="dark" className="full-width" onClick={handleEditCountry}>
         Edit

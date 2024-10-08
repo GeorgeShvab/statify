@@ -24,7 +24,7 @@ const IndicatorsDashboardHeader = () => {
     <div className="admin-dashboard-header">
       <DashboardHeading
         title="Indicators Dashboard"
-        subtitle="Manage indicators here: view and edit information, add new datapoints."
+        subtitle="Manage indicators: define descriptions, unit, and other essential details."
       />
       <Button
         color="dark"

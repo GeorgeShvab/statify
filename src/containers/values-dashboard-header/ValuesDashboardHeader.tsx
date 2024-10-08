@@ -21,8 +21,8 @@ const ValuesDashboardHeader = () => {
   return (
     <div className="admin-dashboard-header">
       <DashboardHeading
-        title="Values Dashboard"
-        subtitle="Manage values: view and edit information, add new values."
+        title="Data Entries Dashboard"
+        subtitle="Manage data entries: review, update, and add values for indicators across countries and years."
       />
       <Button
         color="dark"
