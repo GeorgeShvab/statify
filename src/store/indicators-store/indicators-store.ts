@@ -1,4 +1,4 @@
-import { createStore, StateCreator } from "zustand"
+import { createStore } from "zustand"
 import { IndicatorsStore } from "@/store/indicators-store/types"
 import { IndicatorWithDatapoints } from "@/types/types"
 

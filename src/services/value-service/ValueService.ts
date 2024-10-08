@@ -51,7 +51,7 @@ const ValueService = {
     ])
 
     const data =
-      await prisma.$queryRaw`SELECT * FROM "Value" WHERE ${indicatorCondition} AND ${countryCondition} ${sortStatement} LIMIT 100`
+      await prisma.$queryRaw`SELECT * FROM "Value" WHERE ${indicatorCondition} AND ${countryCondition} ${sortStatement} LIMIT 2000`
 
     return data as Value[]
   },

@@ -1,11 +1,11 @@
 "use client"
 
 import { FC } from "react"
+import dynamic from "next/dynamic"
+import { AlertProps } from "@/ui/alert/Alert.types"
 import DelayWrapper from "@/ui/alert/DelayWrapper"
 import Transition from "@/ui/alert/Transition"
-import { AlertProps } from "@/ui/alert/Alert.types"
 import getAlertBackgorundColor from "@/ui/alert/utils/getAlertBackgroundColor"
-import dynamic from "next/dynamic"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 

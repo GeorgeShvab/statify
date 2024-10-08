@@ -5,16 +5,16 @@ import { OptimisticUpdateConfig } from "@/hooks/use-optimistic-update/types"
 
 const useOptimisticUpdate = <TArguments, TResult, TValue>(
   fn: (args: TArguments) => Promise<AxiosResponse<TResult>>,
-  config: OptimisticUpdateConfig<TValue>
+  config: OptimisticUpdateConfig<TValue, TArguments>
 ) => {
   const prevValue = useRef<TValue>()
 
   const [value, setValue] = useState(config.initialValue)
 
-  const handleError = () => {
+  const handleError = (args: TArguments) => {
     setValue(prevValue.current)
 
-    if (config.onError) config.onError()
+    if (config.onError) config.onError(args)
   }
 
   const [data, mutate] = useMutation(fn, { ...config, onError: handleError })
