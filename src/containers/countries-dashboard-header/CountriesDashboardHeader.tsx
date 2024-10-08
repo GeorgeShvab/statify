@@ -22,7 +22,7 @@ const CountriesDashboardHeader = () => {
     <div className="admin-dashboard-header">
       <DashboardHeading
         title="Countries Dashboard"
-        subtitle="Manage countries: view and edit information, add new countries."
+        subtitle="Manage country records: view, edit, and add details for individual countries."
       />
       <Button
         color="dark"

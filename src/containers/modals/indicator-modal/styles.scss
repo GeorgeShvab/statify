@@ -6,6 +6,10 @@
   text-align: justify;
 }
 
+.indicator-modal__tags-section {
+  transform: translateY((-6px));
+}
+
 .indicator-modal__tags {
   flex-wrap: wrap;
 }

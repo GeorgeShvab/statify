@@ -9,6 +9,7 @@ import DataListDivider from "@/components/data-list/components/data-list-divider
 import DataListItem from "@/components/data-list/components/data-list-item/DataListItem"
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import cn from "@/utils/cn/cn"
 import "@/containers/modals/indicator-modal/styles.scss"
 
 const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
@@ -51,7 +52,9 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
         <DataListItem label="Date of creation" data={createdAtDate} />
         <DataListItem
           label="Search tags"
-          className="indicator-modal__tags-section"
+          className={cn(
+            indicator.searchTags.length && "indicator-modal__tags-section"
+          )}
           data={searchTags}
         />
       </DataList>
