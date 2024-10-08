@@ -1,14 +1,17 @@
 import { renderHook, act, waitFor } from "@testing-library/react"
+import { AxiosResponse } from "axios"
 import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpdate"
 
-const queryFn = async () => ({})
+const queryFn = async () => ({}) as Promise<AxiosResponse<unknown>>
 
 const errorQueryFn = async () => {
   throw new Error()
 }
 
 const errorWithDelayQueryFn = () => {
-  return new Promise((resolve) => setTimeout(resolve, 500))
+  return new Promise((resolve) => setTimeout(resolve, 500)) as Promise<
+    AxiosResponse<unknown>
+  >
 }
 
 const mockOnError = jest.fn()

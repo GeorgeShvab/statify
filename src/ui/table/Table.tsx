@@ -6,14 +6,32 @@ const Table = <T,>({
   renderHeader,
   renderRow,
   data,
+  children,
+  semantic = true,
 }: TableProps<T>) => {
+  const rows = children ? children : data?.map(renderRow)
+
+  if (semantic) {
+    return (
+      <div className="table__container light">
+        <table className="table">
+          <thead>{renderHeader()}</thead>
+          <tbody>{rows}</tbody>
+          {renderFooter ? <tfoot>{renderFooter()}</tfoot> : null}
+        </table>
+      </div>
+    )
+  }
+
   return (
     <div className="table__container light">
-      <table className="table">
-        <thead>{renderHeader()}</thead>
-        <tbody>{data.map(renderRow)}</tbody>
-        {renderFooter ? <tfoot>{renderFooter()}</tfoot> : null}
-      </table>
+      <div className="table no-semantic">
+        <div className="table__head">{renderHeader()}</div>
+        <div className="table__body">{rows}</div>
+        {renderFooter ? (
+          <div className="table__footer">{renderFooter()}</div>
+        ) : null}
+      </div>
     </div>
   )
 }

@@ -12,6 +12,7 @@ import prettifyValue from "@/utils/prettify-value/prettifyValue"
 
 const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
   value,
+  ...props
 }) => {
   const { selectedItems, select } = useSelectable<number>()
 
@@ -24,25 +25,53 @@ const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
   const lastUpdateDate = new Date(value.updatedAt).toLocaleDateString()
 
   return (
-    <TableRow className={cn(selectedItems.includes(value.id) && "selected")}>
-      <TableCell className="admin-dashboard-table__check-cell">
+    <TableRow
+      semantic={false}
+      className={cn(selectedItems.includes(value.id) && "selected")}
+      {...props}
+    >
+      <TableCell
+        semantic={false}
+        className="admin-dashboard-table__check-cell flex-5"
+      >
         <IconButton variant="text" color="dark" onClick={handleSelect}>
           <SquareIcon />
         </IconButton>
       </TableCell>
-      <TableCell size="small">{prettifyValue(value.id)}</TableCell>
-      <TableCell size="small">{value.indicatorId}</TableCell>
-      <TableCell size="small">{value.countryId}</TableCell>
-      <TableCell className="table-cell-center" size="small">
+      <TableCell semantic={false} size="small" className="flex-20">
+        {prettifyValue(value.id)}
+      </TableCell>
+      <TableCell semantic={false} size="small" className="flex-22-5">
+        {value.indicatorId}
+      </TableCell>
+      <TableCell semantic={false} size="small" className="flex-22-5">
+        {value.countryId}
+      </TableCell>
+      <TableCell
+        semantic={false}
+        className="table-cell-center flex-7-5"
+        size="small"
+      >
         {prettifyValue(value.value)}
       </TableCell>
-      <TableCell className="table-cell-center" size="small">
+      <TableCell
+        semantic={false}
+        className="table-cell-center flex-7-5"
+        size="small"
+      >
         {prettifyValue(value.year)}
       </TableCell>
-      <TableCell className="table-cell-center" size="small">
+      <TableCell
+        semantic={false}
+        className="table-cell-center flex-10 one-line"
+        size="small"
+      >
         {lastUpdateDate}
       </TableCell>
-      <TableCell className="admin-dashboard-table__more-cell">
+      <TableCell
+        semantic={false}
+        className="admin-dashboard-table__more-cell flex-5"
+      >
         <IconButton
           variant="text"
           color="light"

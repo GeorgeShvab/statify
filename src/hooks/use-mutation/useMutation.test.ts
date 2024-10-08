@@ -1,4 +1,5 @@
 import { act, renderHook, waitFor } from "@testing-library/react"
+import { AxiosResponse } from "axios"
 import { MutationConfiguration } from "@/hooks/use-mutation//types"
 import useMutation from "@/hooks/use-mutation/useMutation"
 
@@ -19,7 +20,9 @@ const errorQueryFn = () => {
 }
 
 const loadingQueryFn = () => {
-  return new Promise((resolve) => setTimeout(resolve, 500))
+  return new Promise((resolve) =>
+    setTimeout(resolve, 500)
+  ) as unknown as Promise<AxiosResponse<unknown>>
 }
 
 const successAlertConfig = { text: "That is success", severity: "success" }
@@ -30,8 +33,8 @@ jest.mock("@/providers/alert-provider/AlertProvider", () => ({
 }))
 
 const renderHookWithParams = (
-  queryFn: (args: unknown) => Promise<unknown> = mockQueryFn,
-  config?: MutationConfiguration
+  queryFn: (args: unknown) => Promise<AxiosResponse<unknown>> = mockQueryFn,
+  config?: MutationConfiguration<unknown>
 ) => {
   return renderHook(() => useMutation(queryFn, config))
 }

@@ -1,7 +1,8 @@
 import { DependencyList } from "react"
 import { MutationConfiguration } from "@/hooks/use-mutation/types"
 
-export interface OptimisticUpdateConfig<T> extends MutationConfiguration {
+export interface OptimisticUpdateConfig<T, TArguments>
+  extends MutationConfiguration<TArguments> {
   initialValue?: T
   deps?: DependencyList
 }

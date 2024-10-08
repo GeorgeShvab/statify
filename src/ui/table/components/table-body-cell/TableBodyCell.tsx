@@ -6,13 +6,22 @@ import "@/ui/table/components/table-body-cell/styles.scss"
 const TableBodyCell: FC<TableBodyCellProps> = ({
   children,
   className,
+  semantic = true,
   size = "medium",
   ...props
 }) => {
+  if (semantic) {
+    return (
+      <td className={cn("table__body-cell light", size, className)} {...props}>
+        {children}
+      </td>
+    )
+  }
+
   return (
-    <td className={cn("table__body-cell light", size, className)} {...props}>
+    <div className={cn("table__body-cell light", size, className)} {...props}>
       {children}
-    </td>
+    </div>
   )
 }
 
