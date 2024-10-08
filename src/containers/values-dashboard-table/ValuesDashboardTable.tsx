@@ -5,7 +5,7 @@ import { Value } from "@prisma/client"
 import { StoreApi } from "zustand"
 import ValuesDashboardTableHead from "@/containers/values-dashboard-table/components/values-dashboard-table-head/ValuesDashboardTableHead"
 import ValuesDashboardTableRow from "@/containers/values-dashboard-table/components/values-dashboard-table-row/ValuesDashboardTableRow"
-import VirtualizedTableRows from "@/components/virtualized-table/VirtualizedTable"
+import VirtualizedTable from "@/components/virtualized-table/VirtualizedTable"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import { ValuesStore } from "@/store/values-store/types"
 
@@ -23,7 +23,7 @@ const ValuesDashboardTable: FC = () => {
   }) => <ValuesDashboardTableRow key={data.id} value={data} style={style} />
 
   return (
-    <VirtualizedTableRows
+    <VirtualizedTable
       rowHeight={46}
       rowCount={values.length}
       data={values}
