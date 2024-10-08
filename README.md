@@ -2,9 +2,9 @@
 
 Statify is a web application designed for viewing and analyzing statistics. Link for deployment: https://statify.world
 
-## What I am currently working on
+## Current stage
 
-I am working on admin dashboard. Almost all of the functionality I planned is done. Admin can add some content (indicators, values, countries) and edit it. Currently, I work on virtualization for values table. Maybe, I will add virtualization for other tables too.
+I'm developing an admin dashboard, with most of the planned functionality already implemented. The admin can now add and edit content, such as indicators, values, and countries. Currently, I'm focused on adding virtualization for the values table to improve performance. I may extend this feature to other tables as well.
 
 ## Project Overview
 
@@ -14,7 +14,7 @@ For authentication, I’ve set up **NextAuth**.
 
 I started with **TailwindCSS** for styling but am now switching to **SCSS** with a custom system. This transition is still in progress and will take more time.
 
-For forms, I use **react-hook-form** with **Yup** for validation. I handle requests using **Axios** and custom hooks.
+For forms, I use **react-hook-form** with **Yup** for validation. I handle requests using **Axios** and custom hooks. Also I use react-virtualized for virtualization.
 
 Testing is done with **Jest**, though there aren’t many tests yet.
 
