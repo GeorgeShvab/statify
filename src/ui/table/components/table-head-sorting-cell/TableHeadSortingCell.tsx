@@ -1,9 +1,9 @@
-import TableSortIcon from "@/components/table-sort-icon/TableSortIcon"
 import { FC } from "react"
 import TableHeadCell from "@/ui/table/components/table-head-cell/TableHeadCell"
 import { TableHeadSortingCellProps } from "@/ui/table/components/table-head-sorting-cell/TableHeadSortingCell.types"
-import "@/ui/table/components/table-head-sorting-cell/styles.scss"
+import TableSortIcon from "@/components/table-sort-icon/TableSortIcon"
 import cn from "@/utils/cn/cn"
+import "@/ui/table/components/table-head-sorting-cell/styles.scss"
 
 const TableHeadCellWithSorting: FC<TableHeadSortingCellProps> = ({
   children,
@@ -12,10 +12,11 @@ const TableHeadCellWithSorting: FC<TableHeadSortingCellProps> = ({
   isSelected,
   onSortChange,
   buttonProps,
+  semantic = true,
   ...props
 }) => {
   return (
-    <TableHeadCell className={className} {...props}>
+    <TableHeadCell semantic={semantic} className={className} {...props}>
       <button
         onClick={onSortChange}
         {...buttonProps}

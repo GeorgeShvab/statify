@@ -4,6 +4,7 @@ export interface TableHeadSortingCellProps extends ComponentProps<"th"> {
   children: ReactNode
   direction: "asc" | "desc"
   isSelected: boolean
-  buttonProps?: ComponentProps<"button">
   onSortChange: () => void
+  buttonProps?: ComponentProps<"button">
+  semantic?: boolean
 }

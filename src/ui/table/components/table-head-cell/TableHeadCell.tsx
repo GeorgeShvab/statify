@@ -6,13 +6,22 @@ import "@/ui/table/components/table-head-cell/styles.scss"
 const TableHeadCell: FC<TableHeadCellProps> = ({
   children,
   className,
+  semantic = true,
   size = "medium",
   ...props
 }) => {
+  if (semantic) {
+    return (
+      <th className={cn("table__head-cell light", size, className)} {...props}>
+        {children}
+      </th>
+    )
+  }
+
   return (
-    <th className={cn("table__head-cell light", size, className)} {...props}>
+    <div className={cn("table__head-cell light", size, className)} {...props}>
       {children}
-    </th>
+    </div>
   )
 }
 

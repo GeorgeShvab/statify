@@ -56,3 +56,20 @@ tr:last-child {
     border: none;
   }
 }
+
+.table.no-semantic {
+  .table__body-cell {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    border: none !important;
+
+    @include breakpoint("md") {
+      height: 46px;
+    }
+  }
+
+  .table__row:last-child {
+    border: 0 !important;
+  }
+}
