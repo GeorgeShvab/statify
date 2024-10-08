@@ -2,7 +2,6 @@ import { AutoSizer, List, WindowScroller } from "react-virtualized"
 import "react-virtualized/styles.css"
 import Table from "@/ui/table/Table"
 import { VirtualizedTableProps } from "@/components/virtualized-table/types"
-import "@/components/virtualized-table/styles.scss"
 import "@/ui/table/styles.scss"
 
 const VirtualizedTable = <TData,>({

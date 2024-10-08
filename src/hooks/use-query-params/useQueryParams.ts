@@ -18,16 +18,6 @@ const useQueryParams = <TParams extends QueryParams = QueryParams>() => {
     }
 
     router.push(`${pathname}?${params.toString()}`)
-
-    // const params = new URLSearchParams(searchParams.toString())
-
-    // if (value?.trim()) {
-    //   params.set(key, value)
-    // } else {
-    //   params.delete(key)
-    // }
-
-    // router.push(`${pathname}?${params.toString()}`)
   }
 
   const clearAllParams = () => router.push(pathname)
