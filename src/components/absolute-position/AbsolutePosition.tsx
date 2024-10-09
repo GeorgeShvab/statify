@@ -1,11 +1,9 @@
 import { FC, useLayoutEffect, useRef, useState } from "react"
-
 import {
   Position,
   AbsolutePositionProps,
 } from "@/components/absolute-position/AbsolutePosition.types"
-import calculatePosition from "@/components/absolute-position/calculatePosition"
-
+import calculatePosition from "@/utils/calculate-position/calculatePosition"
 import "@/components/absolute-position/styles.scss"
 
 const AbsolutePosition: FC<AbsolutePositionProps> = ({
