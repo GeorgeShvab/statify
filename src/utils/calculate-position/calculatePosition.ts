@@ -1,11 +1,15 @@
 import { SidePosition } from "@/components/absolute-position/AbsolutePosition.types"
+import { CalculatePositionReturnValue } from "@/utils/calculate-position/types"
+
+const extraSpace = 25 // Minimum space that should be between element and edge of a page
 
 const calculatePosition = (
   anchorPos: DOMRect,
   containerPos: DOMRect,
   position: SidePosition,
-  offset: number = 0
-) => {
+  offset: number = 0,
+  isRecursed: boolean = false
+): CalculatePositionReturnValue => {
   const anchorLeft = anchorPos.left
   const anchorRight = anchorPos.right
   const anchorTop = anchorPos.top
@@ -19,6 +23,9 @@ const calculatePosition = (
 
   let top = document.documentElement.scrollTop
   let left = document.documentElement.scrollLeft
+
+  const documentHeight = document.documentElement.scrollHeight
+  const documentWidth = document.documentElement.scrollWidth
 
   switch (position) {
     case "bottom":
@@ -71,6 +78,56 @@ const calculatePosition = (
       break
     default:
       return {} as never
+  }
+
+  // Сheck whether there is enough space to place the element
+  // If there is not enough space, position element from the oposite side
+  // IsRecursed is used to prevent inifnite recursion
+  if (!isRecursed) {
+    if (position.includes("top") && top - extraSpace < 0) {
+      return calculatePosition(
+        anchorPos,
+        containerPos,
+        position.replace("top", "bottom") as SidePosition,
+        offset,
+        true
+      )
+    }
+
+    if (
+      position.includes("bottom") &&
+      top + containerHeight + extraSpace > documentHeight
+    ) {
+      return calculatePosition(
+        anchorPos,
+        containerPos,
+        position.replace("bottom", "top") as SidePosition,
+        offset,
+        true
+      )
+    }
+
+    if (position.includes("left") && left - extraSpace < 0) {
+      return calculatePosition(
+        anchorPos,
+        containerPos,
+        position.replace("left", "right") as SidePosition,
+        offset,
+        true
+      )
+    }
+
+    if (
+      position.includes("right") &&
+      left + containerWidth + extraSpace > documentWidth
+    ) {
+      return calculatePosition(
+        anchorPos,
+        containerPos,
+        position.replace("right", "left") as SidePosition,
+        offset
+      )
+    }
   }
 
   return {
