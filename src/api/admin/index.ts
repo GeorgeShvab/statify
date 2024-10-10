@@ -1,3 +1,4 @@
+import { Value } from "@prisma/client"
 import axios from "axios"
 import {
   CreateCountryParams,
@@ -10,6 +11,7 @@ import {
   HideIndicatorsParams,
   CreateValueParams,
   UpdateValueParams,
+  ValuesQueryParams,
 } from "@/api/admin/types"
 import apiRoutes from "@/constants/apiRoutes"
 
@@ -57,3 +59,6 @@ export const deleteValues = (ids: number[]) =>
   axios.delete(apiRoutes.admin.values.delete, {
     params: { ids: ids.join(",") },
   })
+
+export const getValues = (params: ValuesQueryParams) =>
+  axios.get<Value[]>(apiRoutes.admin.values.get, { params })

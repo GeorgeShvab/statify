@@ -1,4 +1,4 @@
-import { AreaType, Country, Indicator, Value } from "@prisma/client"
+import { Country, Indicator, Value } from "@prisma/client"
 
 export interface HideCountriesParams {
   ids: string[]
@@ -15,7 +15,6 @@ export interface UpdateCountryParams extends Partial<Country> {
 export interface CreateCountryParams extends Partial<Country> {
   id: string
   name: string
-  type: AreaType
   hidden: boolean
 }
 
@@ -48,4 +47,13 @@ export type CreateValueParams = Pick<
 
 export interface UpdateValueParams extends Partial<Value> {
   id: number
+}
+
+export interface ValuesQueryParams {
+  sort?: string
+  offset?: number
+  search?: string
+  country?: string
+  indicator?: string
+  sortDirection?: string
 }
