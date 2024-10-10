@@ -6,6 +6,7 @@ export interface GetAdminValuesParams {
   country?: string
   indicator?: string
   sortDirection?: "asc" | "desc"
+  offset?: number
 }
 
 export type CreateValueParams = Pick<

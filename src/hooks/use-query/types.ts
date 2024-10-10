@@ -1,9 +1,10 @@
 import { DependencyList } from "react"
 
-export interface QueryConfiguration {
+export interface QueryConfiguration<TData> {
   successMessage?: string
   errorMessage?: string
-  onSuccess?: () => void
-  onError?: () => void
+  onSuccess?: (arg: TData) => void
+  onError?: (e: unknown) => void
   deps?: DependencyList
+  fetchOnMount?: boolean
 }

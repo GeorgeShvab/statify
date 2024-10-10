@@ -8,6 +8,8 @@ const valuesStore = (initial: Value[]) => () =>
     setValues: (values: Value[]) => {
       set({ values })
     },
+    merge: (values) =>
+      set((state) => ({ values: [...state.values, ...values] })),
     hideValues: (ids: number[]) =>
       set((state) => ({
         values: state.values.map((item) =>

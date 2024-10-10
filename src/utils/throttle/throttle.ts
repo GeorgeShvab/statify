@@ -1,9 +1,12 @@
-function throttle<T, TThis = unknown>(fn: (...args: T[]) => void, ms: number) {
+function throttle<T extends unknown[], TThis = unknown>(
+  fn: (...args: T) => void,
+  ms: number
+) {
   let throttled = false
   let savedThis: TThis | undefined
-  let savedArgs: T[] | undefined
+  let savedArgs: T | undefined
 
-  function wrapper(this: TThis, ...args: T[]) {
+  function wrapper(this: TThis, ...args: T) {
     if (throttled) {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       savedThis = this
@@ -18,7 +21,7 @@ function throttle<T, TThis = unknown>(fn: (...args: T[]) => void, ms: number) {
       throttled = false
 
       if (savedArgs || savedThis) {
-        wrapper.apply(savedThis as TThis, savedArgs as T[])
+        wrapper.apply(savedThis as TThis, savedArgs as T)
 
         savedArgs = savedThis = undefined
 

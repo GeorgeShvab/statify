@@ -39,6 +39,7 @@ const ValueService = {
     sortDirection,
     country,
     indicator,
+    offset = 0,
   }: GetAdminValuesParams) {
     const sortStatement = Prisma.sql([`ORDER BY "${sort}" ${sortDirection}`])
 
@@ -51,7 +52,7 @@ const ValueService = {
     ])
 
     const data =
-      await prisma.$queryRaw`SELECT * FROM "Value" WHERE ${indicatorCondition} AND ${countryCondition} ${sortStatement} LIMIT 2000`
+      await prisma.$queryRaw`SELECT * FROM "Value" WHERE ${indicatorCondition} AND ${countryCondition} ${sortStatement} LIMIT 1000 OFFSET ${offset}`
 
     return data as Value[]
   },

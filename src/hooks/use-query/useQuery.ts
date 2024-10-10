@@ -5,9 +5,11 @@ import { QueryConfiguration } from "@/hooks/use-query/types"
 
 const useQuery = <TResponse>(
   fn: () => Promise<AxiosResponse<TResponse>>,
-  config?: QueryConfiguration
+  config?: QueryConfiguration<TResponse>
 ) => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(
+    (config?.fetchOnMount ?? true) ? true : false
+  )
   const [data, setData] = useState<TResponse>()
   const [error, setError] = useState<unknown>()
 
@@ -28,7 +30,7 @@ const useQuery = <TResponse>(
       }
 
       if (config?.onSuccess) {
-        config.onSuccess()
+        config.onSuccess(res.data)
       }
     } catch (e) {
       setError(e)
@@ -39,13 +41,13 @@ const useQuery = <TResponse>(
       }
 
       if (config?.onError) {
-        config.onError()
+        config.onError(e)
       }
     }
   }
 
   useEffect(() => {
-    fetch()
+    if (config?.fetchOnMount ?? true) fetch()
   }, config?.deps || [])
 
   const isError = Boolean(error)
