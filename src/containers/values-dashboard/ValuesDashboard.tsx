@@ -1,6 +1,7 @@
 "use client"
 
 import { FC } from "react"
+import AdminDashboardNotFoundView from "@/containers/admin-dashboard/components/admin-dashboard-not-found-view/AdminDashboardNotFoundView"
 import ValuesDashboardHeader from "@/containers/values-dashboard-header/ValuesDashboardHeader"
 import ValuesDashboardTable from "@/containers/values-dashboard-table/ValuesDashboardTable"
 import ValuesDashboardTools from "@/containers/values-dashboard-tools/ValuesDashboardTools"
@@ -8,7 +9,6 @@ import { ValuesDashboardProps } from "@/containers/values-dashboard/types"
 import { SelectableProvider } from "@/providers/selectable-provider/SelectableProvider"
 import { StoreProvider } from "@/providers/store-provider/StoreProvider"
 import valuesStore from "@/store/values-store/values-store"
-import AdminDashboardNotFoundView from "../admin-dashboard/components/admin-dashboard-not-found-view/AdminDashboardNotFoundView"
 
 const ValuesDashboard: FC<ValuesDashboardProps> = ({ values, ...props }) => {
   const content = values.length ? (
