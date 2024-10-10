@@ -70,7 +70,7 @@ model Country {
   independentState          Boolean    @default(true)
   internationallyRecognized Boolean    @default(true)
   searchTags                String[]
-  type                      AreaType
+  type                      AreaType?
   values                    Value[]
   Bookmark                  Bookmark[]
 
