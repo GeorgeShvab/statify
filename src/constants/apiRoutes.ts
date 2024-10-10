@@ -18,6 +18,7 @@ export default {
       update: (id: number) => `/api/admin/values/${id}`,
       create: "/api/admin/values",
       delete: "/api/admin/values",
+      get: "/api/admin/values",
     },
   },
   public: {

@@ -7,6 +7,7 @@ const getInitialValues = (country: Country): EditCountryFormValues => {
     searchTags: [],
     geoCode: "",
     iso2Code: "",
+    type: "other",
     status: country.hidden ? "hidden" : "visible",
   }
 }
