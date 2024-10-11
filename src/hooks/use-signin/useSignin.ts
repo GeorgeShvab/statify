@@ -1,5 +1,7 @@
 import { signIn, SignInResponse } from "next-auth/react"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
+import routes from "@/constants/routes"
 import { Credentials } from "@/types/types"
 
 const useSignin = () => {
@@ -7,17 +9,24 @@ const useSignin = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [data, setData] = useState<SignInResponse | null>(null)
 
+  const router = useRouter()
+
   const signin = async (data: Credentials) => {
     setIsLoading(true)
 
     const res = await signIn("credentials", {
       callbackUrl: "/admin/dashboard/indicators",
+      redirect: false,
       ...data,
     })
 
     setData(res || null)
     setIsLoading(false)
     setStatus(res?.status || null)
+
+    if (res?.status === 200) {
+      router.push(routes.admin.indicators)
+    }
   }
 
   const isSuccess = status === 200
