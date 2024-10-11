@@ -5,10 +5,10 @@ import useMutation from "@/hooks/use-mutation/useMutation"
 
 const queryArgs = { data: "DATA" }
 
-const successfullData = "Successfull data"
+const successfullResponse = { data: "Successfull data" }
 const error = new Error("Error Data")
 
-const mockQueryFn = jest.fn().mockReturnValue(successfullData)
+const mockQueryFn = jest.fn().mockReturnValue(successfullResponse)
 const mockOpenAlert = jest.fn()
 const mockOnSuccess = jest.fn()
 const mockOnError = jest.fn()
@@ -97,7 +97,7 @@ describe("Test useMutation hook", () => {
 
     await act(() => result.current[1](queryArgs))
 
-    expect(result.current[0].data).toBe(successfullData)
+    expect(result.current[0].data).toBe(successfullResponse.data)
     expect(result.current[0].error).toBeNull()
     expect(result.current[0].isError).toBeFalsy()
     expect(result.current[0].isSuccess).toBeTruthy()

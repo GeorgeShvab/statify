@@ -1,8 +1,11 @@
 import { renderHook, act } from "@testing-library/react"
 import { signIn as importedSignin } from "next-auth/react"
 import useSignin from "@/hooks/use-signin/useSignin"
+import routes from "@/constants/routes"
 
 const signin = importedSignin as jest.Mock
+
+const mockRouterPush = jest.fn()
 
 const callbackUrl = "/admin/dashboard/indicators"
 
@@ -23,10 +26,15 @@ const errorData = {
 const credentials = {
   password: "password",
   email: "email",
+  redirect: false,
 }
 
 jest.mock("next-auth/react", () => ({
   signIn: jest.fn(),
+}))
+
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(() => ({ push: mockRouterPush })),
 }))
 
 const renderHookAndMock = (
@@ -80,5 +88,13 @@ describe("Test useSignin util", () => {
 
     expect(result.current[1].data).toBeNull()
     expect(result.current[1].status).toBeNull()
+  })
+
+  test("Should redirect when success", async () => {
+    const { result } = renderHookAndMock()
+
+    await act(() => result.current[0](credentials))
+
+    expect(mockRouterPush).toHaveBeenCalledWith(routes.admin.indicators)
   })
 })
