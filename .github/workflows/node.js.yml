@@ -10,6 +10,9 @@ on:
 
 jobs:
   build:
+    env:
+      AUTH_SECRET: "secret"
+
     runs-on: ubuntu-latest
 
     strategy:
