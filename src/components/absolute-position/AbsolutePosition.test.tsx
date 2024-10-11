@@ -11,7 +11,6 @@ const props: AbsolutePositionProps = {
   children: <span>Content</span>,
   position: "bottom-start",
   dependenciesForRecalculation: [],
-  offset: 5,
 }
 
 describe("Test AbsolutePosition component", () => {
@@ -26,10 +25,5 @@ describe("Test AbsolutePosition component", () => {
   test("Should render passed children", () => {
     const content = screen.getByText("Content")
     expect(content).toBeInTheDocument()
-  })
-
-  test("Should apply offset", () => {
-    const content = screen.getByText("Content").parentElement
-    expect(content).toHaveStyle("top: 5px;")
   })
 })

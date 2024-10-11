@@ -1,4 +1,5 @@
 import getDatasetDonwloadLink from "@/utils/get-dataset-donwload-link/getDatasetDownloadLink"
+import apiRoutes from "@/constants/apiRoutes"
 
 describe("Test getDatasetDownloadLink unit", () => {
   test("Should return correct download link for indicator dataset", () => {
@@ -7,7 +8,9 @@ describe("Test getDatasetDownloadLink unit", () => {
       extension: "xlsx",
     })
 
-    expect(result).toBe("/api/download/ID?format=xlsx")
+    expect(result).toBe(
+      `${apiRoutes.public.download.indicator("ID")}?format=xlsx`
+    )
   })
 
   test("Should return correct download link for indicator country dataset", () => {
@@ -17,6 +20,8 @@ describe("Test getDatasetDownloadLink unit", () => {
       countryId: "UA",
     })
 
-    expect(result).toBe("/api/download/ID/UA?format=xlsx")
+    expect(result).toBe(
+      `${apiRoutes.public.download.country("ID", "UA")}?format=xlsx`
+    )
   })
 })
