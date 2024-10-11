@@ -10,10 +10,10 @@ const useQueryParams = <TParams extends QueryParams = QueryParams>() => {
     const params = new URLSearchParams(searchParams.toString())
 
     for (let i = 0; i < args.length; i = i + 2) {
-      if (args[i].trim()) {
+      if (args[i + 1].trim()) {
         params.set(args[i], args[i + 1])
       } else {
-        params.delete(args[i + 1])
+        params.delete(args[i])
       }
     }
 
