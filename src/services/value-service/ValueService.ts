@@ -1,101 +1,67 @@
-import { Prisma, Value } from "@prisma/client"
-import {
-  CreateValueParams,
-  GetAdminValuesParams,
-} from "@/services/value-service/types"
+import { ValueServiceInterface } from "@/services/value-service/types"
 import prisma from "@/prisma"
 
-interface GetParams {
-  indicator: string
-  country?: string
-  years?: number[] | number[][]
-}
-
-const ValueService = {
-  async deleteByCountry(countryIds: string[]) {
-    await prisma.value.deleteMany({ where: { countryId: { in: countryIds } } })
-  },
-
-  async deleteByIndicator(indicatorIds: string[]) {
-    await prisma.value.deleteMany({
-      where: { indicator: { id: { in: indicatorIds } } },
-    })
-  },
-
-  async deleteMany(ids: number[]) {
-    await prisma.value.deleteMany({ where: { id: { in: ids } } })
-  },
-
-  async create(data: CreateValueParams) {
+const ValueService: ValueServiceInterface = {
+  async createOne(data) {
     return prisma.value.create({ data })
   },
 
-  async updateOne({ id, ...data }: Partial<Value> & Pick<Value, "id">) {
+  async updateOne({ id, ...data }) {
     await prisma.value.update({ where: { id }, data })
   },
 
-  async getAdminValues({
+  async deleteMany(ids) {
+    await prisma.value.deleteMany({ where: { id: { in: ids } } })
+  },
+
+  async deleteManyByCountry(ids) {
+    await prisma.value.deleteMany({ where: { countryId: { in: ids } } })
+  },
+
+  async deleteManyByIndicator(ids) {
+    await prisma.value.deleteMany({
+      where: { indicator: { id: { in: ids } } },
+    })
+  },
+
+  async getForAdmin({
     sort,
     sortDirection,
     country,
     indicator,
-    offset = 0,
-  }: GetAdminValuesParams) {
-    const sortStatement = Prisma.sql([`ORDER BY "${sort}" ${sortDirection}`])
+    take = 1000,
+    skip = 0,
+  }) {
+    const where = {
+      ...(country ? { countryId: country } : {}),
+      ...(indicator ? { indicatorId: indicator } : {}),
+    }
 
-    const countryCondition = Prisma.sql([
-      country ? `"countryId" = '${country}'` : "TRUE",
-    ])
+    const orderBy = {
+      [sort]: sortDirection,
+    }
 
-    const indicatorCondition = Prisma.sql([
-      indicator ? `"indicatorId" = '${indicator}'` : "TRUE",
-    ])
+    const countPromise = prisma.value.count({ where })
 
-    const data =
-      await prisma.$queryRaw`SELECT * FROM "Value" WHERE ${indicatorCondition} AND ${countryCondition} ${sortStatement} LIMIT 1000 OFFSET ${offset}`
+    const dataPromise = prisma.value.findMany({
+      where,
+      orderBy,
+      take,
+      skip,
+    })
 
-    return data as Value[]
+    const [data, count] = await Promise.all([dataPromise, countPromise])
+
+    console.log(where)
+
+    return { data, count }
   },
 
-  async get({ indicator, country, years }: GetParams) {
-    let data
-
-    if (years) {
-      if (Array.isArray(years[0])) {
-        data = await prisma.value.findMany({
-          where: {
-            indicatorId: indicator,
-            AND: years.map((item) => ({
-              year: {
-                lte: (item as [number, number])[1],
-                get: (item as [number, number])[0],
-              },
-            })),
-            ...(country ? { countryId: country } : {}),
-          },
-          orderBy: { year: "asc" },
-        })
-      } else {
-        data = await prisma.value.findMany({
-          where: {
-            indicatorId: indicator,
-
-            year: { in: years as number[] },
-            ...(country ? { countryId: country } : {}),
-          },
-          orderBy: { year: "asc" },
-        })
-      }
-    } else {
-      data = await prisma.value.findMany({
-        where: {
-          indicatorId: indicator,
-          ...(country ? { countryId: country } : {}),
-          year: { lte: new Date().getFullYear() },
-        },
-        orderBy: { year: "asc" },
-      })
-    }
+  async getByIndicatorAndCountry(where) {
+    const data = prisma.value.findMany({
+      where,
+      orderBy: { year: "asc" },
+    })
 
     return data
   },
