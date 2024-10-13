@@ -55,13 +55,11 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
 
   return (
     <section className="container mb-2 md:mb-3.5">
-      <div className="bg-white">
-        <TableComponent
-          data={data.data}
-          renderRow={renderRow}
-          renderHeader={renderHeader}
-        />
-      </div>
+      <TableComponent
+        data={data.data}
+        renderRow={renderRow}
+        renderHeader={renderHeader}
+      />
     </section>
   )
 }

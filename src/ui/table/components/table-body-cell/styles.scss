@@ -15,18 +15,6 @@
 
   padding: 0 sp(1);
 
-  &.small {
-    font-size: $fs-xs;
-  }
-
-  &.medium {
-    font-size: $fs-base;
-  }
-
-  &.large {
-    font-size: $fs-lg;
-  }
-
   &:last-child {
     padding: 0 sp(4) 0 sp(1);
   }
@@ -37,9 +25,32 @@
 
   letter-spacing: 0.0025em;
 
+  &.small {
+    font-size: $fs-xxs;
+  }
+
+  &.medium {
+    font-size: $fs-xs;
+  }
+
+  &.large {
+    font-size: $fs-sm;
+  }
+
   @include breakpoint("md") {
     padding: 0 sp(2);
-    font-size: $fs-base;
+
+    &.small {
+      font-size: $fs-xs;
+    }
+
+    &.medium {
+      font-size: $fs-sm;
+    }
+
+    &.large {
+      font-size: $fs-base;
+    }
 
     &:last-child {
       padding: 0 sp(6) 0 sp(2);
