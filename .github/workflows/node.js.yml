@@ -1,9 +1,6 @@
 name: CI / Testing
 
 on:
-  pull_request:
-    branches:
-      - "**"
   push:
     branches:
       - "**"
@@ -28,4 +25,5 @@ jobs:
           cache: "npm"
 
       - run: npm ci
+      - run: npm run lint
       - run: npm test
