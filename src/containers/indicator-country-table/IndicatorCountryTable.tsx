@@ -7,8 +7,8 @@ import TableHeadCellWithSorting from "@/ui/table/components/table-head-sorting-c
 import TableRow from "@/ui/table/components/table-row/TableRow"
 import { IndicatorCountryTableProps } from "@/containers/indicator-country-table/IndicatorCountryTable.types"
 import IndicatorCountryTableRow from "@/containers/indicator-country-table/components/indicator-country-table-row/IndicatorCountryTableRow"
-import "@/containers/indicator-country-table/styles.scss"
 import { RowValue } from "@/types/types"
+import "@/containers/indicator-country-table/styles.scss"
 
 const IndicatorCountryTable: FC<IndicatorCountryTableProps> = (props) => {
   const [data, handleSort] = useTableData(props.data)
@@ -52,13 +52,11 @@ const IndicatorCountryTable: FC<IndicatorCountryTableProps> = (props) => {
 
   return (
     <section className="container mb-2 md:mb-3.5">
-      <div className="bg-white">
-        <TableComponent
-          data={data.data}
-          renderRow={renderRow}
-          renderHeader={renderHeader}
-        />
-      </div>
+      <TableComponent
+        data={data.data}
+        renderRow={renderRow}
+        renderHeader={renderHeader}
+      />
     </section>
   )
 }
