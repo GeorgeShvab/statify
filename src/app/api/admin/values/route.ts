@@ -8,12 +8,13 @@ import {
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import ValueService from "@/services/value-service/ValueService"
+import validatePositiveNumber from "@/utils/validate-positive-number/validatePositiveNumber"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json()
 
-  await ValueService.create(body)
+  await ValueService.createOne(body)
 
   return NextResponse.json({})
 }
@@ -38,9 +39,11 @@ export const GET = async (req: NextRequest) => {
   const indicatorSearchParam = searchParams.get("indicator")
   const countrySearchParam = searchParams.get("country")
   const sortDirectionSearchParam = searchParams.get("sortDirection")
-  const offset = Number.isNaN(searchParams.get("offset"))
-    ? undefined
-    : Number(searchParams.get("offset"))
+
+  const take = validatePositiveNumber(searchParams.get("size"), 1000)
+  const page = validatePositiveNumber(searchParams.get("page"), 0)
+
+  const skip = page * take
 
   const sort = validateQueryParam(
     sortSearchParam,
@@ -75,13 +78,16 @@ export const GET = async (req: NextRequest) => {
     possibleValueSortDirectionQueryParam
   )
 
-  const data = await ValueService.getAdminValues({
+  const { data, count } = await ValueService.getForAdmin({
     sort,
-    offset,
+    take,
+    skip,
     sortDirection,
     country: country === "all" ? undefined : country,
     indicator: indicator === "all" ? undefined : indicator,
   })
 
-  return NextResponse.json(data)
+  const hasNextPage = skip + take < count
+
+  return NextResponse.json({ data, hasNextPage })
 }
