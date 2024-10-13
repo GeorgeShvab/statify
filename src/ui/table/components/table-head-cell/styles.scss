@@ -21,15 +21,15 @@ $table-cell-sizes: (5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25, 27.5, 30, 40, 50);
   padding: 0 sp(1);
 
   &.small {
-    font-size: $fs-xs;
+    font-size: $fs-xxs;
   }
 
   &.medium {
-    font-size: $fs-base;
+    font-size: $fs-xs;
   }
 
   &.large {
-    font-size: $fs-lg;
+    font-size: $fs-sm;
   }
 
   &:last-child {
@@ -42,7 +42,18 @@ $table-cell-sizes: (5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25, 27.5, 30, 40, 50);
 
   @include breakpoint("md") {
     padding: 0 sp(2);
-    font-size: $fs-base;
+
+    &.small {
+      font-size: $fs-xs;
+    }
+
+    &.medium {
+      font-size: $fs-sm;
+    }
+
+    &.large {
+      font-size: $fs-base;
+    }
 
     &:last-child {
       padding: 0 sp(6) 0 sp(2);
