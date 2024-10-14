@@ -1,42 +1,42 @@
 import { cookies } from "next/headers"
 import { NextRequest, NextResponse } from "next/server"
-import BookmarkService from "@/services/BookmarkService"
+import BookmarkService from "@/services/bookmark-service/BookmarkService"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import generateId from "@/utils/generate-id/generateId"
 
 export const POST = async (req: NextRequest) => {
-  const { country, indicator } = await req.json()
+  const { country: countryId, indicator: indicatorId } = await req.json()
 
   const client = cookies().get("client_id")?.value
 
-  if (!indicator || !client) return new NextResponse(null, { status: 400 })
+  if (!indicatorId || !client) return new NextResponse(null, { status: 400 })
 
-  if (country) {
-    const countryDoc = await CountryService.get({ id: country })
+  if (countryId) {
+    const countryDoc = await CountryService.get({ id: countryId })
 
     if (!countryDoc) return new NextResponse(null, { status: 400 })
   }
 
-  const indicatorDoc = await IndicatorService.get({ id: indicator })
+  const indicatorDoc = await IndicatorService.get({ id: indicatorId })
 
   if (!indicatorDoc) return new NextResponse(null, { status: 400 })
 
   const bookmarkDocument = await BookmarkService.getOne({
     client,
-    country,
-    indicator,
+    countryId,
+    indicatorId,
   })
 
   if (bookmarkDocument) {
-    await BookmarkService.delete(bookmarkDocument.id)
+    await BookmarkService.deleteOne(bookmarkDocument.id)
 
-    return NextResponse.json({})
+    return new NextResponse(null, { status: 200 })
   } else {
-    const bookmark = await BookmarkService.create({
+    const bookmark = await BookmarkService.createOne({
       client,
-      indicator,
-      country: country,
+      indicatorId,
+      countryId,
     })
 
     return NextResponse.json(bookmark)
@@ -66,8 +66,8 @@ export const GET = async (req: NextRequest) => {
 
   const bookmark = await BookmarkService.getOne({
     client,
-    country: countryId,
-    indicator: indicatorId,
+    countryId,
+    indicatorId,
   })
 
   if (!bookmark) return new NextResponse(null, { status: 404 })
