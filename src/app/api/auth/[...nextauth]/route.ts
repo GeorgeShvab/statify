@@ -1,8 +1,8 @@
-import userService from "@/services/UserService"
-import serialize from "@/utils/serialize/serialize"
 import { User } from "@prisma/client"
 import NextAuth, { User as NextAuthUser } from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import userService from "@/services/user-service/UserService"
+import serialize from "@/utils/serialize/serialize"
 
 const AUTH_SECRET = process.env.AUTH_SECRET
 if (!AUTH_SECRET) throw new Error("AUTH_SECRET is not found")

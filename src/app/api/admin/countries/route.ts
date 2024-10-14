@@ -17,7 +17,7 @@ export const DELETE = async (req: NextRequest) => {
 
   if (!ids) return new NextResponse(null, { status: 400 })
 
-  await ValueService.deleteByCountry(ids)
+  await ValueService.deleteManyByCountry(ids)
   await CountryService.deleteMany(ids)
 
   return new NextResponse(null, { status: 200 })
