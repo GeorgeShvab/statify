@@ -1,19 +1,25 @@
 import { FC } from "react"
 import { cookies } from "next/headers"
 import { BookmarksPageProps } from "@/app/(public)/bookmarks/types"
-import BookmarkService from "@/services/BookmarkService"
+import BookmarkService from "@/services/bookmark-service/BookmarkService"
 import BookmarkIcon from "@/ui/icons/BookmarkIcon"
 import IndicatorCard from "@/components/indicator-card/IndicatorCard"
 import Pagination from "@/components/pagination/Pagination"
 import AdvancedSearchBar from "@/components/search-bar/AdvancedSearchBar"
+import validatePositiveNumber from "@/utils/validate-positive-number/validatePositiveNumber"
 
 export { default as metadata } from "@/app/(public)/bookmarks/metadata"
 
 const Bookmarks: FC<BookmarksPageProps> = async ({ searchParams }) => {
   const client = cookies().get("client_id")?.value
 
-  const page = searchParams.page || 1
-  const data = client ? await BookmarkService.get({ client, page }) : null
+  const page = validatePositiveNumber(searchParams.page, 0)
+
+  const dbOptimizedPage = page > 0 ? page - 1 : 0
+
+  const data = client
+    ? await BookmarkService.getByUser({ client, page: dbOptimizedPage })
+    : null
 
   const emptyView = (
     <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
@@ -55,7 +61,7 @@ const Bookmarks: FC<BookmarksPageProps> = async ({ searchParams }) => {
         </div>
         {!!data?.data.length && (
           <div className="container">
-            <Pagination pages={data.pages} page={data.page} />
+            <Pagination pages={data.pages} page={page} />
           </div>
         )}
       </div>
