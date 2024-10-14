@@ -39,7 +39,7 @@ const CountriesDashboardPage: FC<
 
   const search = searchParams.search || ""
 
-  const countries = await CountryService.getAdminCountries({
+  const countries = await CountryService.getForAdmin({
     search,
     sort,
     sortDirection,

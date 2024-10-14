@@ -30,7 +30,7 @@ const ValuesDashboardPage: FC<
 
   const indicatorSelectOptions =
     IndicatorService.getIndicatorsSelectAutocomplete()
-  const countrySelectOptions = CountryService.getCountriesSelectAutocomplete()
+  const countrySelectOptions = CountryService.getSelectAutocomplete()
 
   const [allIndicators, allCountries] = await Promise.all([
     indicatorSelectOptions,

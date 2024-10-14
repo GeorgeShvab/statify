@@ -7,7 +7,7 @@ export const PATCH = async (
 ) => {
   const body = await req.json()
 
-  await CountryService.updateOne(params.country, body)
+  await CountryService.updateOne({ id: params.country, ...body })
 
   return NextResponse.json(body)
 }
