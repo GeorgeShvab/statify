@@ -3,7 +3,7 @@ import { initialValueCountryOptions } from "@/app/(admin)/admin/dashboard/values
 import CountryService from "@/services/country-service/CountryService"
 
 export const GET = async () => {
-  const countries = await CountryService.getCountriesSelectAutocomplete()
+  const countries = await CountryService.getSelectAutocomplete()
 
   return NextResponse.json([initialValueCountryOptions, ...countries])
 }

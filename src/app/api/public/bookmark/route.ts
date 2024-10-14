@@ -13,7 +13,7 @@ export const POST = async (req: NextRequest) => {
   if (!indicatorId || !client) return new NextResponse(null, { status: 400 })
 
   if (countryId) {
-    const countryDoc = await CountryService.get({ id: countryId })
+    const countryDoc = await CountryService.getById(countryId)
 
     if (!countryDoc) return new NextResponse(null, { status: 400 })
   }

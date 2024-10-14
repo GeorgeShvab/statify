@@ -16,10 +16,10 @@ export const GET = async (req: NextRequest, { params }: { params: Params }) => {
 
   const indicatorPromise = IndicatorService.get({ id: params.indicator })
 
-  const countryPromise = CountryService.getCountry({
-    indicator: params.indicator,
-    country: params.country,
-  })
+  const countryPromise = CountryService.getCountryTableValues(
+    params.indicator,
+    params.country
+  )
 
   const [indicator, country] = await Promise.all([
     indicatorPromise,
