@@ -52,7 +52,7 @@ const ValuesDashboardPage: FC<
     possibleValueSortDirectionQueryParam
   )
 
-  const data = await ValueService.getAdminValues({
+  const { data } = await ValueService.getForAdmin({
     sort,
     sortDirection,
     country: country === "all" ? undefined : country,
