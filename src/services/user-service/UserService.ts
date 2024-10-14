@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt"
+import { UserServiceInterface } from "@/services/user-service/types"
 import prisma from "@/prisma"
-import { UserServiceInterface } from "./types"
 
 const UserService: UserServiceInterface = {
   async getById(id) {

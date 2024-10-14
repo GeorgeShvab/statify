@@ -1,4 +1,4 @@
-import validateNumber from "./validatePositiveNumber"
+import validateNumber from "@/utils/validate-positive-number/validatePositiveNumber"
 
 describe("Test validateNumber util", () => {
   test("Should return null for string", () => {

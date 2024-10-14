@@ -1,6 +1,6 @@
+import { BookmarkServiceInterface } from "@/services/bookmark-service/types"
 import getEnv from "@/utils/get-env/getEnv"
 import prisma from "@/prisma"
-import { BookmarkServiceInterface } from "./types"
 
 const initialPageSize = Number(getEnv("RESULTS_PER_PAGE"))
 

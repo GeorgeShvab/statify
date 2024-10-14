@@ -52,8 +52,6 @@ const ValueService: ValueServiceInterface = {
 
     const [data, count] = await Promise.all([dataPromise, countPromise])
 
-    console.log(where)
-
     return { data, count }
   },
 
