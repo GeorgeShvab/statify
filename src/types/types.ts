@@ -81,3 +81,14 @@ export interface CountryWithDatapoints extends Country {
 }
 
 export type Status = "visible" | "hidden"
+
+export interface PageableResult<TData> {
+  page: number
+  pages: number
+  data: TData
+}
+
+export interface PageableParams {
+  page?: number
+  size?: number
+}
