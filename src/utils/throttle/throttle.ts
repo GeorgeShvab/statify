@@ -1,6 +1,7 @@
 function throttle<T extends unknown[], TThis = unknown>(
   fn: (...args: T) => void,
-  ms: number
+  ms: number,
+  callLastIgnored: boolean = true
 ) {
   let throttled = false
   let savedThis: TThis | undefined
@@ -20,7 +21,7 @@ function throttle<T extends unknown[], TThis = unknown>(
     setTimeout(() => {
       throttled = false
 
-      if (savedArgs || savedThis) {
+      if ((savedArgs || savedThis) && callLastIgnored) {
         wrapper.apply(savedThis as TThis, savedArgs as T)
 
         savedArgs = savedThis = undefined
