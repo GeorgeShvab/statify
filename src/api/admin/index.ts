@@ -14,6 +14,7 @@ import {
   ValuesQueryParams,
 } from "@/api/admin/types"
 import apiRoutes from "@/constants/apiRoutes"
+import { PageableResult } from "@/types/types"
 
 export const createIndicator = (args: CreateIndicatorParams) =>
   axios.post(apiRoutes.admin.indicators.create, args)
@@ -60,5 +61,11 @@ export const deleteValues = (ids: number[]) =>
     params: { ids: ids.join(",") },
   })
 
-export const getValues = (params: ValuesQueryParams) =>
-  axios.get<Value[]>(apiRoutes.admin.values.get, { params })
+export const getAdminValues = (
+  params: ValuesQueryParams,
+  signal?: AbortSignal
+) =>
+  axios.get<PageableResult<Value[]>>(apiRoutes.admin.values.get, {
+    params,
+    signal,
+  })

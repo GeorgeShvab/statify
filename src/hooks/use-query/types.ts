@@ -5,6 +5,9 @@ export interface QueryConfiguration<TData> {
   errorMessage?: string
   onSuccess?: (arg: TData) => void
   onError?: (e: unknown) => void
+  onFinal?: () => void
   deps?: DependencyList
   fetchOnMount?: boolean
+  skip?: boolean
+  ignoreIfLoading?: boolean
 }
