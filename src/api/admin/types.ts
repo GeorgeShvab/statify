@@ -51,7 +51,7 @@ export interface UpdateValueParams extends Partial<Value> {
 
 export interface ValuesQueryParams {
   sort?: string
-  offset?: number
+  page?: number
   search?: string
   country?: string
   indicator?: string

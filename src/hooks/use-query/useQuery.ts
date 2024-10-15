@@ -1,54 +1,86 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { AxiosResponse } from "axios"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
 import { QueryConfiguration } from "@/hooks/use-query/types"
 
 const useQuery = <TResponse>(
-  fn: () => Promise<AxiosResponse<TResponse>>,
-  config?: QueryConfiguration<TResponse>
+  fn: (signal: AbortSignal) => Promise<AxiosResponse<TResponse>>,
+  {
+    fetchOnMount = true,
+    ignoreIfLoading = false,
+    successMessage,
+    errorMessage,
+    onSuccess,
+    onError,
+    onFinal,
+    deps = [],
+  }: QueryConfiguration<TResponse> = {}
 ) => {
-  const [isLoading, setIsLoading] = useState(
-    (config?.fetchOnMount ?? true) ? true : false
-  )
+  const abortController = useRef<AbortController>()
+
+  const [isLoading, setIsLoading] = useState(fetchOnMount)
   const [data, setData] = useState<TResponse>()
   const [error, setError] = useState<unknown>()
 
   const { openAlert } = useAlert()
 
   const fetch = async () => {
+    if (isLoading && ignoreIfLoading) return
+
     try {
       setIsLoading(true)
 
-      const res = await fn()
+      abortController.current?.abort()
+
+      const controller = new AbortController()
+
+      abortController.current = controller
+
+      const res = await fn(controller.signal)
 
       setData(res.data)
       setError(null)
       setIsLoading(false)
 
-      if (config?.successMessage) {
-        openAlert({ text: config.successMessage, severity: "success" })
+      if (successMessage) {
+        openAlert({ text: successMessage, severity: "success" })
       }
 
-      if (config?.onSuccess) {
-        config.onSuccess(res.data)
+      if (onSuccess) {
+        onSuccess(res.data)
       }
+
+      if (onFinal) onFinal()
     } catch (e) {
+      if (
+        e &&
+        typeof e === "object" &&
+        "name" in e &&
+        e.name === "AbortError"
+      ) {
+        return // Means request 2 aborted request 1 (this request), request 2 will set right states
+      }
+
       setError(e)
       setIsLoading(false)
 
-      if (config?.errorMessage) {
-        openAlert({ text: config.errorMessage, severity: "danger" })
+      if (errorMessage) {
+        openAlert({ text: errorMessage, severity: "danger" })
       }
 
-      if (config?.onError) {
-        config.onError(e)
+      if (onError) {
+        onError(e)
       }
+
+      if (onFinal) onFinal()
     }
   }
 
   useEffect(() => {
-    if (config?.fetchOnMount ?? true) fetch()
-  }, config?.deps || [])
+    if (fetchOnMount) {
+      fetch()
+    }
+  }, deps)
 
   const isError = Boolean(error)
   const isSuccess = Boolean(data) && !isError

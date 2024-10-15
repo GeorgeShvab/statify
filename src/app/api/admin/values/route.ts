@@ -87,7 +87,7 @@ export const GET = async (req: NextRequest) => {
     indicator: indicator === "all" ? undefined : indicator,
   })
 
-  const hasNextPage = skip + take < count
+  const pages = Math.ceil(count / take)
 
-  return NextResponse.json({ data, hasNextPage })
+  return NextResponse.json({ data, pages, page })
 }

@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react"
 import throttle from "@/utils/throttle/throttle"
+import { ScrollTresholdConfig } from "./types"
 
 const useOnScrollTreshold = <TElement extends HTMLElement>(
-  func: (percents: number) => void,
-  treshold: number,
-  ms: number = 500
+  func: () => void,
+  { treshold, ms = 500, deps = [], callLastIgnored }: ScrollTresholdConfig
 ) => {
   const ref = useRef<TElement>(null)
 
@@ -13,28 +13,20 @@ const useOnScrollTreshold = <TElement extends HTMLElement>(
       if (ref.current) {
         const anchorPos = ref.current?.getBoundingClientRect()
 
-        const scrolledPercentage = (-anchorPos.top / anchorPos.height) * 100
+        const scrolled = -anchorPos.top + window.innerHeight
 
-        const nonNegativePercentage =
-          scrolledPercentage < 0 ? 0 : scrolledPercentage
-
-        const nonHigherThanHundredPercantage =
-          nonNegativePercentage > 100 ? 100 : nonNegativePercentage
-
-        if (nonHigherThanHundredPercantage >= treshold) {
-          func(nonHigherThanHundredPercantage)
-        }
+        if (anchorPos.height - scrolled < treshold) func()
       }
     }
 
-    const throttledScroll = throttle(handleOnScroll, ms)
+    const throttledScroll = throttle(handleOnScroll, ms, callLastIgnored)
 
     document.addEventListener("scroll", throttledScroll)
 
     return () => {
       document.removeEventListener("scroll", throttledScroll)
     }
-  }, [treshold, func])
+  }, deps)
 
   return ref
 }
