@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { AxiosResponse } from "axios"
+import { isAbortError } from "next/dist/server/pipe-readable"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
 import { QueryConfiguration } from "@/hooks/use-query/types"
 
@@ -52,12 +53,7 @@ const useQuery = <TResponse>(
 
       if (onFinal) onFinal()
     } catch (e) {
-      if (
-        e &&
-        typeof e === "object" &&
-        "name" in e &&
-        e.name === "AbortError"
-      ) {
+      if (isAbortError(e)) {
         return // Means request 2 aborted request 1 (this request), request 2 will set right states
       }
 
@@ -77,9 +73,7 @@ const useQuery = <TResponse>(
   }
 
   useEffect(() => {
-    if (fetchOnMount) {
-      fetch()
-    }
+    if (fetchOnMount) fetch()
   }, deps)
 
   const isError = Boolean(error)

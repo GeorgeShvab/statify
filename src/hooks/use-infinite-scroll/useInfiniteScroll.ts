@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { AxiosResponse } from "axios"
 import { useSearchParams } from "next/navigation"
+import { InfiniteScrollConfig } from "@/hooks/use-infinite-scroll/types"
+import useOnScrollTreshold from "@/hooks/use-on-scroll-treshold/useOnScrollTreshold"
+import useQuery from "@/hooks/use-query/useQuery"
 import { PageableResult } from "@/types/types"
-import useOnScrollTreshold from "../use-on-scroll-treshold/useOnScrollTreshold"
-import useQuery from "../use-query/useQuery"
-import { InfiniteScrollConfig } from "./types"
 
 const useInfiniteScroll = <T>(
   fn: (

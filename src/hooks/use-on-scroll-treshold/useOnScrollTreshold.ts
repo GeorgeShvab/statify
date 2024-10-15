@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react"
+import { ScrollTresholdConfig } from "@/hooks/use-on-scroll-treshold/types"
 import throttle from "@/utils/throttle/throttle"
-import { ScrollTresholdConfig } from "./types"
 
 const useOnScrollTreshold = <TElement extends HTMLElement>(
   func: () => void,
