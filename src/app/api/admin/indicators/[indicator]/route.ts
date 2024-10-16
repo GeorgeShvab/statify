@@ -7,7 +7,7 @@ export const PATCH = async (
 ) => {
   const body = await req.json()
 
-  await IndicatorService.updateOne(params.indicator, body)
+  await IndicatorService.updateOne({ id: params.indicator, ...body })
 
   return NextResponse.json(body)
 }

@@ -7,7 +7,7 @@ import { SERVER_ADDRESS } from "@/constants/general"
 export const generateMetadata = async ({
   params,
 }: IndicatorPageProps): Promise<Metadata> => {
-  const indicator = await IndicatorService.get({ id: params.id })
+  const indicator = await IndicatorService.getById(params.id)
   let ogImage = "/og.png"
 
   try {

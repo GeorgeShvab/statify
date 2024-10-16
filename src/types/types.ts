@@ -92,3 +92,8 @@ export interface PageableParams {
   page?: number
   size?: number
 }
+
+export interface CountryIndicator extends Indicator {
+  countryName?: string
+  countryId: string
+}

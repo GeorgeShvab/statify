@@ -8,7 +8,7 @@ import { SERVER_ADDRESS } from "@/constants/general"
 export const generateMetadata = async ({
   params,
 }: IndicatorCountryPageProps): Promise<Metadata> => {
-  const indicatorPromise = IndicatorService.get({ id: params.id })
+  const indicatorPromise = IndicatorService.getById(params.id)
   const countryPromise = CountryService.getById(params.country)
 
   const [indicator, country] = await Promise.all([

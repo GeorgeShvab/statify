@@ -1,70 +1,90 @@
-import { Indicator, Prisma } from "@prisma/client"
-import {
-  CreateIndicatorParams,
-  GetAdminIndicatorsParams,
-} from "@/services/indicator-service/types"
-import { Option } from "@/ui/select/Select.types"
-import { IndicatorWithDatapoints } from "@/types/types"
+import { Indicator } from "@prisma/client"
+import { IndicatorServiceInterface } from "@/services/indicator-service/types"
+import getEnv from "@/utils/get-env/getEnv"
+import sqlCondition from "@/utils/sql-condition/sqlCondition"
+import { CountryIndicator, IndicatorWithDatapoints } from "@/types/types"
 import prisma from "@/prisma"
 
-const perPage = Number(process.env.RESULTS_PER_PAGE)
+const perPage = Number(getEnv("RESULTS_PER_PAGE"))
 
-if (!perPage || Number.isNaN(perPage))
-  throw new Error("No RESULTS_PER_PAGE env")
-
-interface SearchParams {
-  query: string
-  page: number
-}
-
-const IndicatorService = {
-  async deleteMany(ids: string[]) {
-    await prisma.indicator.deleteMany({ where: { id: { in: ids } } })
-  },
-
-  async getIndicatorsSelectAutocomplete(): Promise<Option[]> {
-    return prisma.$queryRaw`SELECT "label", "id" as value FROM "Indicator" WHERE "hidden" = FALSE ORDER BY "label" ASC`
-  },
-
-  async create(data: CreateIndicatorParams) {
+const IndicatorService: IndicatorServiceInterface = {
+  async createOne(data) {
     return prisma.indicator.create({ data })
   },
 
-  async hideMany(ids: string[]) {
-    return prisma.indicator.updateMany({
+  async updateOne({ id, ...data }) {
+    await prisma.indicator.update({ where: { id }, data })
+  },
+
+  async hideMany(ids) {
+    await prisma.indicator.updateMany({
       where: { id: { in: ids } },
       data: { hidden: true },
     })
   },
 
-  async exposeMany(ids: string[]) {
-    return prisma.indicator.updateMany({
+  async exposeMany(ids) {
+    await prisma.indicator.updateMany({
       where: { id: { in: ids } },
       data: { hidden: false },
     })
   },
 
-  async updateOne(id: string, data: Partial<Indicator>) {
-    await prisma.indicator.update({ where: { id }, data })
+  async deleteMany(ids) {
+    await prisma.indicator.deleteMany({ where: { id: { in: ids } } })
   },
 
-  async get({ id }: { id: string }) {
-    const data = await prisma.indicator.findUnique({ where: { id } })
-
-    return data
+  async getById(id) {
+    return prisma.indicator.findUnique({ where: { id } })
   },
 
-  async getAll(select?: Partial<Record<keyof Indicator, boolean | undefined>>) {
+  async getManyByIds(ids) {
+    return prisma.indicator.findMany({ where: { id: { in: ids } } })
+  },
+
+  async getAll() {
     const data = prisma.indicator.findMany({
       where: { hidden: false },
       orderBy: { id: "asc" },
-      select,
     })
 
     return data
   },
 
-  async search({ query, page }: SearchParams) {
+  async getSelectAutocomplete() {
+    const data = prisma.indicator
+      .findMany({
+        where: {
+          hidden: false,
+        },
+        select: {
+          id: true,
+          label: true,
+        },
+        orderBy: {
+          label: "asc",
+        },
+      })
+      .then((countries) =>
+        countries.map((country) => ({
+          value: country.id,
+          label: country.label,
+        }))
+      )
+
+    return data
+  },
+
+  async getRelatedById(id) {
+    const data = await prisma.indicator.findUnique({
+      where: { id },
+      include: { relatedTo: true },
+    })
+
+    return data?.relatedTo || []
+  },
+
+  async search({ query, page }) {
     const indicatorQuery = query
       .split(" ")
       .map((item) => `%${item}%`.toLowerCase())
@@ -75,42 +95,125 @@ const IndicatorService = {
 
     const countrySearchTagsQuery = query.split(" ")
 
+    const numberOfWords = indicatorQuery.length
+
+    const offset = (page - 1) * perPage
+
     // To query Indicator and join Country. If any of words macthes any country name and has more than 4 characters (to exluce possibility of query only for indicator include country)
     // also search among searchTags
-    const dataPromise =
-      prisma.$queryRaw`SELECT i.*, c."name" as "countryName", c."id" as "countryId" FROM "Indicator" i 
-      LEFT JOIN "Country" c ON (CASE WHEN ${
-        indicatorQuery.length
-      } > 1 THEN (c."name" ILIKE ANY 
-      (SELECT query FROM UNNEST(ARRAY[${countryQuery}]) AS t(query) WHERE LENGTH(query) > 4) OR 
-      LOWER(c."searchTags"::text)::text[] && (ARRAY[${countrySearchTagsQuery}])) ELSE FALSE END)
-      WHERE (REGEXP_REPLACE(i.label, '\\([^)]*\\)', '', 'g') ILIKE ANY (ARRAY[${indicatorQuery}]) OR 
-      ARRAY_TO_STRING(i."searchTags", ' ') ILIKE ANY (ARRAY[${indicatorQuery}])) AND i."hidden" = FALSE AND (c."hidden" = FALSE OR c."id" IS NULL) 
-       ORDER BY LENGTH("label") ASC OFFSET ${
-         (page - 1) * perPage
-       } LIMIT ${perPage}` as Prisma.PrismaPromise<
-        (Indicator & { countryName?: string; countryId?: string })[]
-      >
+    const dataPromise = prisma.$queryRaw<CountryIndicator[]>`
+    SELECT 
+      i.*, 
+      c."name" AS "countryName", 
+      c."id" AS "countryId" 
+    FROM 
+      "Indicator" i 
+    LEFT JOIN 
+      "Country" c 
+    ON 
+      (
+        CASE 
+          WHEN ${numberOfWords} > 1 
+          THEN 
+            (
+              c."name" ILIKE ANY 
+              (
+                SELECT query 
+                FROM 
+                  UNNEST(ARRAY[${countryQuery}]) AS t(query) 
+                WHERE 
+                  LENGTH(query) > 4
+              ) 
+              OR 
+              LOWER(c."searchTags"::text)::text[] && 
+              (ARRAY[${countrySearchTagsQuery}])
+            ) 
+          ELSE 
+            FALSE 
+        END
+      )
+    WHERE 
+      (
+        REGEXP_REPLACE(i.label, '\\([^)]*\\)', '', 'g') ILIKE ANY 
+        (ARRAY[${indicatorQuery}]) 
+        OR 
+        ARRAY_TO_STRING(i."searchTags", ' ') ILIKE ANY 
+        (ARRAY[${indicatorQuery}])
+      ) 
+      AND i."hidden" = FALSE 
+      AND 
+      (
+        c."hidden" = FALSE 
+        OR 
+        c."id" IS NULL
+      ) 
+    ORDER BY 
+      LENGTH("label") ASC 
+    OFFSET 
+      ${offset} 
+    LIMIT 
+      ${perPage}
+  `
 
     // Almost the same as previous, just without limit and ordering
-    const countPromise =
-      prisma.$queryRaw`SELECT i.*, c."name" as "countryName", c."id" as "countryId" FROM "Indicator" i 
-      LEFT JOIN "Country" c ON (CASE WHEN ${indicatorQuery.length} > 1 THEN (c."name" ILIKE ANY 
-      (SELECT query FROM UNNEST(ARRAY[${countryQuery}]) AS t(query) WHERE LENGTH(query) > 4) OR 
-      LOWER(c."searchTags"::text)::text[] && (ARRAY[${countrySearchTagsQuery}])) ELSE FALSE END)
-      WHERE (REGEXP_REPLACE(i.label, '\\([^)]*\\)', '', 'g') ILIKE ANY (ARRAY[${indicatorQuery}]) OR 
-      ARRAY_TO_STRING(i."searchTags", ' ') ILIKE ANY (ARRAY[${indicatorQuery}])) AND i."hidden" = FALSE AND (c."hidden" = FALSE OR c."id" IS NULL)` as Prisma.PrismaPromise<
-        { id: string }[]
-      >
+    const countPromise = prisma.$queryRaw<Pick<Indicator, "id">[]>`
+    SELECT 
+      i.*, 
+      c."name" AS "countryName", 
+      c."id" AS "countryId" 
+    FROM 
+      "Indicator" i 
+    LEFT JOIN 
+      "Country" c 
+    ON 
+      (
+        CASE 
+          WHEN ${numberOfWords} > 1 
+          THEN 
+            (
+              c."name" ILIKE ANY 
+              (
+                SELECT query 
+                FROM 
+                  UNNEST(ARRAY[${countryQuery}]) AS t(query) 
+                WHERE 
+                  LENGTH(query) > 4
+              ) 
+              OR 
+              LOWER(c."searchTags"::text)::text[] && 
+              (ARRAY[${countrySearchTagsQuery}])
+            ) 
+          ELSE 
+            FALSE 
+        END
+      )
+    WHERE 
+      (
+        REGEXP_REPLACE(i.label, '\\([^)]*\\)', '', 'g') ILIKE ANY 
+        (ARRAY[${indicatorQuery}]) 
+        OR 
+        ARRAY_TO_STRING(i."searchTags", ' ') ILIKE ANY 
+        (ARRAY[${indicatorQuery}])
+      ) 
+      AND i."hidden" = FALSE 
+      AND 
+      (
+        c."hidden" = FALSE 
+        OR 
+        c."id" IS NULL
+      )
+      `
 
     const [data, count] = await Promise.all([dataPromise, countPromise])
 
-    return { data, page, pages: Math.ceil(count.length / perPage) }
+    const pages = Math.ceil(count.length / perPage)
+
+    return { data, page, pages }
   },
 
   // Check if hidden on indicator is false
 
-  async autocomplete({ query }: { query: string }) {
+  async getSearchAutocomplete(query) {
     const indicatorQuery = query
       .split(" ")
       .map((item) => `%${item}%`.toLowerCase())
@@ -121,65 +224,118 @@ const IndicatorService = {
 
     const countrySearchTagsQuery = query.split(" ")
 
-    const data =
-      await prisma.$queryRaw`SELECT i.*, c."name" as "countryName", c."id" as "countryId" FROM "Indicator" i 
-      LEFT JOIN "Country" c ON (CASE WHEN ${indicatorQuery.length} > 1 THEN (c."name" ILIKE ANY 
-      (SELECT query FROM UNNEST(ARRAY[${countryQuery}]) AS t(query) WHERE LENGTH(query) > 4) OR 
-      LOWER(c."searchTags"::text)::text[] && (ARRAY[${countrySearchTagsQuery}])) ELSE FALSE END)
-      WHERE (REGEXP_REPLACE(i.label, '\\([^)]*\\)', '', 'g') ILIKE ANY (ARRAY[${indicatorQuery}]) OR 
-      ARRAY_TO_STRING(i."searchTags", ' ') ILIKE ANY (ARRAY[${indicatorQuery}])) AND i."hidden" = FALSE AND (c."hidden" = FALSE OR c."id" IS NULL) 
-      ORDER BY LENGTH(i."label") ASC LIMIT 5`
+    const data = await prisma.$queryRaw<CountryIndicator[]>`
+    SELECT 
+      i.*, 
+      c."name" AS "countryName", 
+      c."id" AS "countryId" 
+    FROM 
+      "Indicator" i 
+    LEFT JOIN 
+      "Country" c 
+    ON 
+      (
+        CASE 
+          WHEN ${indicatorQuery.length} > 1 
+          THEN 
+            (
+              c."name" ILIKE ANY 
+              (
+                SELECT query 
+                FROM 
+                  UNNEST(ARRAY[${countryQuery}]) AS t(query) 
+                WHERE 
+                  LENGTH(query) > 4
+              ) 
+              OR 
+              LOWER(c."searchTags"::text)::text[] && 
+              (ARRAY[${countrySearchTagsQuery}])
+            ) 
+          ELSE 
+            FALSE 
+        END
+      )
+    WHERE 
+      (
+        REGEXP_REPLACE(i.label, '\\([^)]*\\)', '', 'g') ILIKE ANY 
+        (ARRAY[${indicatorQuery}]) 
+        OR 
+        ARRAY_TO_STRING(i."searchTags", ' ') ILIKE ANY 
+        (ARRAY[${indicatorQuery}])
+      ) 
+      AND i."hidden" = FALSE 
+      AND 
+      (
+        c."hidden" = FALSE 
+        OR 
+        c."id" IS NULL
+      )
+    ORDER BY 
+      LENGTH(i."label") ASC 
+    LIMIT 
+      5
+      `
 
-    return data as (Indicator & { countryName?: string; countryId?: string })[]
+    return data
   },
 
-  async getMany({ ids }: { ids: string[] }) {
-    return await prisma.indicator.findMany({ where: { id: { in: ids } } })
-  },
+  async getForAdmin({ sort, search, hidden, absolute, sortDirection }) {
+    const hiddenCondition = sqlCondition(
+      hidden !== undefined,
+      `"hidden" = ${hidden}`
+    )
 
-  async getRelatedIndicators({ id }: { id: string }) {
-    return (
-      await prisma.indicator.findUnique({
-        where: { id },
-        include: { relatedTo: true },
-      })
-    )?.relatedTo
-  },
+    const absoluteCondition = sqlCondition(
+      absolute !== undefined,
+      `"absolute" = ${absolute}`
+    )
 
-  async getAdminIndicators({
-    sort,
-    search,
-    hidden,
-    absolute,
-    sortDirection,
-  }: GetAdminIndicatorsParams) {
-    const hiddenCondition = Prisma.sql([
-      hidden !== undefined ? `"hidden" = ${hidden}` : "TRUE",
-    ])
-    const absoluteCondition = Prisma.sql([
-      absolute !== undefined ? `"absolute" = ${absolute}` : "TRUE",
-    ])
-    const searchCondition = Prisma.sql([
-      search
-        ? `(LOWER("label") LIKE LOWER('%${search}%') OR LOWER("description") LIKE LOWER('%${search}%') OR LOWER("id") LIKE LOWER('%${search}%'))`
-        : "TRUE",
-    ])
+    const searchCondition = sqlCondition(
+      search,
+      `(
+        LOWER("label") LIKE 
+        LOWER('%${search}%') 
+        OR 
+        LOWER("description") LIKE 
+        LOWER('%${search}%') 
+        OR 
+        LOWER("id") LIKE 
+        LOWER('%${search}%')
+      )`
+    )
 
-    const sortByDatapoints =
-      '(SELECT COUNT(id) FROM "Value" WHERE "indicatorId" = i.id)'
+    const sortByDatapoints = `
+      (
+        SELECT 
+        COUNT(id) 
+        FROM "Value" 
+        WHERE "indicatorId" = i.id
+      )`
 
-    const sortStatement = Prisma.sql([
-      `ORDER BY ${
-        sort === "datapoints" ? sortByDatapoints : `"${sort}"`
-      } ${sortDirection}`,
-    ])
+    const sortStatement = sort === "datapoints" ? sortByDatapoints : `"${sort}"`
 
-    const fieldsToSelect = Prisma.sql(["i.*"])
+    const indicators = await prisma.$queryRaw<IndicatorWithDatapoints[]>`
+    SELECT 
+      i.*, 
+      (
+        SELECT 
+          COUNT(id) 
+        FROM 
+          "Value" 
+        WHERE 
+          "indicatorId" = i.id
+      )::int AS datapoints 
+    FROM 
+      "Indicator" i 
+    WHERE 
+      ${searchCondition} 
+      AND ${absoluteCondition} 
+      AND ${hiddenCondition} 
+      ORDER BY 
+      ${sortStatement} 
+      ${sortDirection}`
 
-    const indicators =
-      await prisma.$queryRaw`SELECT ${fieldsToSelect}, (SELECT COUNT(id) FROM "Value" WHERE "indicatorId" = i.id)::int as datapoints FROM "Indicator" i WHERE ${searchCondition} AND ${absoluteCondition} AND ${hiddenCondition} ${sortStatement}`
-
-    return indicators as IndicatorWithDatapoints[]
+    return indicators
   },
 }
 

@@ -17,16 +17,14 @@ const ChartSection = dynamicImport(
 )
 
 async function IndicatorPage({ params }: IndicatorCountryPageProps) {
-  const indicatorPromise = IndicatorService.get({ id: params.id })
+  const indicatorPromise = IndicatorService.getById(params.id)
 
   const countryPromise = CountryService.getCountryTableValues(
     params.id,
     params.country
   )
 
-  const relatedIndicatorsPromise = IndicatorService.getRelatedIndicators({
-    id: params.id,
-  })
+  const relatedIndicatorsPromise = IndicatorService.getRelatedById(params.id)
 
   const [country, indicator, relatedIndicators] = await Promise.all([
     countryPromise,

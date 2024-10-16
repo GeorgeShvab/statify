@@ -1,4 +1,6 @@
 import { Indicator } from "@prisma/client"
+import { Option } from "@/ui/select/Select.types"
+import { IndicatorWithDatapoints, PageableResult } from "@/types/types"
 
 export type AdminIndicatorSort =
   | "id"
@@ -7,7 +9,7 @@ export type AdminIndicatorSort =
   | "createdAt"
   | "updatedAt"
 
-export interface GetAdminIndicatorsParams {
+export interface GetForAdminParams {
   hidden?: boolean
   absolute?: boolean
   search?: string
@@ -24,4 +26,25 @@ export interface CreateIndicatorParams extends Partial<Indicator> {
   absolute: boolean
   hidden: boolean
   showChart: boolean
+}
+
+export interface SearchParams {
+  query: string
+  page: number
+}
+
+export interface IndicatorServiceInterface {
+  deleteMany: (ids: string[]) => Promise<void>
+  getSelectAutocomplete: () => Promise<Option[]>
+  createOne: (data: CreateIndicatorParams) => Promise<Indicator>
+  hideMany: (ids: string[]) => Promise<void>
+  exposeMany: (ids: string[]) => Promise<void>
+  updateOne: (data: Partial<Indicator> & Pick<Indicator, "id">) => Promise<void>
+  getById: (id: string) => Promise<null | Indicator>
+  getAll: () => Promise<Indicator[]>
+  getManyByIds: (ids: string[]) => Promise<Indicator[]>
+  getRelatedById: (ids: string) => Promise<Indicator[]>
+  getForAdmin: (params: GetForAdminParams) => Promise<IndicatorWithDatapoints[]>
+  getSearchAutocomplete: (query: string) => Promise<Indicator[]>
+  search: (params: SearchParams) => Promise<PageableResult<Indicator[]>>
 }
