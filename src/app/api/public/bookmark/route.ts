@@ -18,7 +18,7 @@ export const POST = async (req: NextRequest) => {
     if (!countryDoc) return new NextResponse(null, { status: 400 })
   }
 
-  const indicatorDoc = await IndicatorService.get({ id: indicatorId })
+  const indicatorDoc = await IndicatorService.getById(indicatorId)
 
   if (!indicatorDoc) return new NextResponse(null, { status: 400 })
 

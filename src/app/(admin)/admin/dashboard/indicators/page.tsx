@@ -33,7 +33,7 @@ const IndicatorsDashboardPage: FC<
 
   const search = searchParams.search || ""
 
-  const indicators = await IndicatorService.getAdminIndicators({
+  const indicators = await IndicatorService.getForAdmin({
     sort,
     search,
     sortDirection,

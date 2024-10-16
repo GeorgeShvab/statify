@@ -17,13 +17,11 @@ const ChartSection = dynamic(
 )
 
 async function IndicatorPage({ params }: IndicatorPageProps) {
-  const indicatorPromise = IndicatorService.get({ id: params.id })
+  const indicatorPromise = IndicatorService.getById(params.id)
 
   const countriesPromise = CountryService.getIndicatorTableValues(params.id)
 
-  const relatedIndicatorsPromise = IndicatorService.getRelatedIndicators({
-    id: params.id,
-  })
+  const relatedIndicatorsPromise = IndicatorService.getRelatedById(params.id)
 
   const chartDataPromise = CountryService.getManyWithValuesByIndicator(
     params.id

@@ -28,8 +28,7 @@ const ValuesDashboardPage: FC<
       : possibleValueSortQueryParam
   )
 
-  const indicatorSelectOptions =
-    IndicatorService.getIndicatorsSelectAutocomplete()
+  const indicatorSelectOptions = IndicatorService.getSelectAutocomplete()
   const countrySelectOptions = CountryService.getSelectAutocomplete()
 
   const [allIndicators, allCountries] = await Promise.all([

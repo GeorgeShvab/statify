@@ -5,7 +5,7 @@ import ValueService from "@/services/value-service/ValueService"
 export const POST = async (req: NextRequest) => {
   const body = await req.json()
 
-  await IndicatorService.create(body)
+  await IndicatorService.createOne(body)
 
   return NextResponse.json({})
 }

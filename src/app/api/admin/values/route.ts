@@ -54,8 +54,7 @@ export const GET = async (req: NextRequest) => {
       : possibleValueSortQueryParam
   )
 
-  const indicatorSelectOptions =
-    IndicatorService.getIndicatorsSelectAutocomplete()
+  const indicatorSelectOptions = IndicatorService.getSelectAutocomplete()
   const countrySelectOptions = CountryService.getSelectAutocomplete()
 
   const [allIndicators, allCountries] = await Promise.all([
