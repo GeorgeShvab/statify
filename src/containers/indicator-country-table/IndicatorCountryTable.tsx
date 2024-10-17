@@ -7,7 +7,7 @@ import TableHeadCellWithSorting from "@/ui/table/components/table-head-sorting-c
 import TableRow from "@/ui/table/components/table-row/TableRow"
 import { IndicatorCountryTableProps } from "@/containers/indicator-country-table/IndicatorCountryTable.types"
 import IndicatorCountryTableRow from "@/containers/indicator-country-table/components/indicator-country-table-row/IndicatorCountryTableRow"
-import { RowValue } from "@/types/types"
+import { RowValue } from "@/types/value.types"
 import "@/containers/indicator-country-table/styles.scss"
 
 const IndicatorCountryTable: FC<IndicatorCountryTableProps> = (props) => {

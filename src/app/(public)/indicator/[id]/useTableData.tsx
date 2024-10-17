@@ -1,6 +1,7 @@
-import { CountryRowValue, SortOrder } from "@/types/types"
-import quickSort from "@/utils/quick-sort/quickSort"
 import { useState } from "react"
+import quickSort from "@/utils/quick-sort/quickSort"
+import { CountryRowValue } from "@/types/country.types"
+import { SortOrder } from "@/types/general.types"
 
 interface State {
   data: CountryRowValue[]

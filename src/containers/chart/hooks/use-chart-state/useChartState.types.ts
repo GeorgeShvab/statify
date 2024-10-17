@@ -1,4 +1,4 @@
-import { ChartItem } from "@/types/types"
+import { ChartItem } from "@/containers/chart/types"
 
 export interface ChartState {
   regions: ChartItem[]

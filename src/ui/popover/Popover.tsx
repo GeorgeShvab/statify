@@ -1,9 +1,9 @@
 import { FC, ReactNode, RefObject } from "react"
 import dynamic from "next/dynamic"
 import FixedPosition from "@/components/FixedPosition"
+import { SidePosition } from "@/components/absolute-position/AbsolutePosition.types"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import useOnScroll from "@/hooks/use-on-scroll/useOnScroll"
-import { Position, PositionOptions } from "@/types/types"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
@@ -12,7 +12,7 @@ interface Props {
   anchor: RefObject<HTMLElement>
   isOpen: boolean
   renderHidden?: boolean
-  position?: Position | PositionOptions
+  position?: SidePosition
   onClose: () => void
   closeOnScroll?: boolean
 }
@@ -23,7 +23,7 @@ const Popover: FC<Props> = ({
   isOpen,
   onClose,
   closeOnScroll,
-  position = "bottom-left",
+  position = "bottom-start",
 }) => {
   useOnScroll(() => closeOnScroll && onClose(), [closeOnScroll])
 

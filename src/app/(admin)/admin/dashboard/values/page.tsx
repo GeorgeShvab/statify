@@ -12,7 +12,7 @@ import ValueService from "@/services/value-service/ValueService"
 import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import ValuesDashboard from "@/containers/values-dashboard/ValuesDashboard"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import { PageProps } from "@/types/types"
+import { PageProps } from "@/types/general.types"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/values/metadata"
 

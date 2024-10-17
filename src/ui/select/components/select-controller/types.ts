@@ -1,6 +1,6 @@
 import { ControllerProps, FieldValues } from "react-hook-form"
 import { Option, SelectProps } from "@/ui/select/Select.types"
-import { Size } from "@/types/types"
+import { Size } from "@/types/general.types"
 
 export interface SelectControllerProps<T extends FieldValues>
   extends Omit<ControllerProps<T>, "render"> {

@@ -1,5 +1,5 @@
-import { IconProps } from "@/types/types"
 import { FC } from "react"
+import { IconProps } from "@/types/general.types"
 
 const XlsxFileIcon: FC<IconProps> = (props) => (
   <svg fill="currentColor" viewBox="0 0 16 16" className="w-6 h-6" {...props}>

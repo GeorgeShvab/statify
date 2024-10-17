@@ -1,4 +1,4 @@
-import { CountryWithDatapoints } from "@/types/types"
+import { CountryWithDatapoints } from "@/types/country.types"
 
 export interface CountriesStore {
   countries: CountryWithDatapoints[]

@@ -1,6 +1,6 @@
 import { createStore } from "zustand"
 import { IndicatorsStore } from "@/store/indicators-store/types"
-import { IndicatorWithDatapoints } from "@/types/types"
+import { IndicatorWithDatapoints } from "@/types/indicator.types"
 
 const indicatorsStore = (initial: IndicatorWithDatapoints[]) => () =>
   createStore<IndicatorsStore>()((set) => ({

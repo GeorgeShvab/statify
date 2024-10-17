@@ -1,10 +1,11 @@
 import { ComponentProps, ReactNode } from "react"
-import { ExtendedColor, Size, Url, Variant } from "@/types/types"
+import { UrlObject } from "url"
+import { ExtendedColor, Size, Variant } from "@/types/general.types"
 
 export interface ButtonDefaultProps {
   children: ReactNode
   className?: string
-  href?: Url
+  href?: string | UrlObject
   variant?: Variant
   color?: ExtendedColor
   size?: Size

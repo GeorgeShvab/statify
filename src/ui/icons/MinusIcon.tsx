@@ -1,5 +1,5 @@
-import { IconProps } from "@/types/types"
 import { FC } from "react"
+import { IconProps } from "@/types/general.types"
 
 const MinusIcon: FC<IconProps> = (props) => {
   return (

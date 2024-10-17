@@ -5,7 +5,7 @@ import CountriesDashboardTableHead from "@/containers/countries-dashboard-table/
 import CountriesDashboardTableRow from "@/containers/countries-dashboard-table/components/countries-dashboard-table-row/CountriesDashboardTableRow"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import { CountriesStore } from "@/store/countries-store/types"
-import { CountryWithDatapoints } from "@/types/types"
+import { CountryWithDatapoints } from "@/types/country.types"
 
 const renderHeader = () => <CountriesDashboardTableHead />
 

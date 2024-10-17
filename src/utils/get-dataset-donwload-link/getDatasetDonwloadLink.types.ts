@@ -1,4 +1,4 @@
-import { SupportedDatasetDownloadExtension } from "@/types/types"
+import { SupportedDatasetDownloadExtension } from "@/types/general.types"
 
 export interface GetDatasetDownloadLinkParams {
   indicatorId: string

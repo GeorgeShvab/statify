@@ -1,8 +1,8 @@
 import { signIn, SignInResponse } from "next-auth/react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { Credentials } from "@/hooks/use-signin/types"
 import routes from "@/constants/routes"
-import { Credentials } from "@/types/types"
 
 const useSignin = () => {
   const [status, setStatus] = useState<number | null>(null)

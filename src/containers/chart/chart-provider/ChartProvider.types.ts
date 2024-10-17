@@ -1,5 +1,6 @@
-import { ChartItem, CountryWithValues } from "@/types/types"
 import { ReactNode } from "react"
+import { ChartItem } from "@/containers/chart/types"
+import { CountryWithValues } from "@/types/country.types"
 
 export type ChartSelectedRange = [number, number]
 

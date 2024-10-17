@@ -1,7 +1,7 @@
 import { Indicator } from "@prisma/client"
-import { Value } from "@/types/types"
+import { RowValue } from "@/types/value.types"
 
 export interface IndicatorCountryTableProps {
-  data: Value[]
+  data: RowValue[]
   indicator: Indicator
 }
