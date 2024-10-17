@@ -1,6 +1,6 @@
-import { CountryWithValues } from "@/types/types"
-import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
 import { useMemo } from "react"
+import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
+import { CountryWithValues } from "@/types/country.types"
 
 const worldId = "WEOWORLD"
 const usaId = "USA"

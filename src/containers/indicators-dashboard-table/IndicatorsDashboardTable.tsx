@@ -7,7 +7,7 @@ import IndicatorsDashboardTableHead from "@/containers/indicators-dashboard-tabl
 import IndicatorsDashboardTableRow from "@/containers/indicators-dashboard-table/components/indicators-dashboard-table-row/IndicatorsDashboardTableRow"
 import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import { IndicatorsStore } from "@/store/indicators-store/types"
-import { IndicatorWithDatapoints } from "@/types/types"
+import { IndicatorWithDatapoints } from "@/types/indicator.types"
 
 const renderHeader = () => <IndicatorsDashboardTableHead />
 

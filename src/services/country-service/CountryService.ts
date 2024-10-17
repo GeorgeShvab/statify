@@ -6,7 +6,7 @@ import {
   CountryRowValue,
   CountryWithDatapoints,
   CountryWithValues,
-} from "@/types/types"
+} from "@/types/country.types"
 import prisma from "@/prisma"
 
 const year = new Date().getFullYear()

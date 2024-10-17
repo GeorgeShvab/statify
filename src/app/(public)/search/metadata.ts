@@ -15,7 +15,7 @@ const generateMetadata = async ({
       title: `Results for ${searchParams.query}`,
       description: `Indicator results for ${searchParams.query}`,
       type: "website",
-      url: `/search?query=${searchParams.query}&page=${searchParams.page}&topic=${searchParams.topic}`,
+      url: `/search?query=${searchParams.query}&page=${searchParams.page}`,
     },
     twitter: {
       images: ["/og.png"],

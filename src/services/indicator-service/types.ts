@@ -1,6 +1,7 @@
 import { Indicator } from "@prisma/client"
 import { Option } from "@/ui/select/Select.types"
-import { IndicatorWithDatapoints, PageableResult } from "@/types/types"
+import { PageableResult } from "@/types/general.types"
+import { IndicatorWithDatapoints } from "@/types/indicator.types"
 
 export type AdminIndicatorSort =
   | "id"

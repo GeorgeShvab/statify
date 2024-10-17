@@ -4,8 +4,8 @@ import {
   CountryRowValue,
   CountryWithDatapoints,
   CountryWithValues,
-  SortDirection,
-} from "@/types/types"
+} from "@/types/country.types"
+import { SortOrder } from "@/types/general.types"
 
 export type AdminCountrySort =
   | "id"
@@ -17,7 +17,7 @@ export type AdminCountrySort =
 
 export interface GetForAdminParams {
   search?: string
-  sortDirection: SortDirection
+  sortDirection: SortOrder
   sort: AdminCountrySort
   hidden?: boolean
   type?: AreaType

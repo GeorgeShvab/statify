@@ -1,8 +1,7 @@
-import { PageProps } from "@/types/types"
+import { PageProps } from "@/types/general.types"
 
 interface SearchPageSearchParams {
   query: string
-  topic?: string
   page?: string
 }
 

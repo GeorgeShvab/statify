@@ -1,6 +1,7 @@
 "use client"
 
 import { FC, useMemo } from "react"
+import { Line } from "react-chartjs-2"
 import {
   Chart as ChartJS,
   ArcElement,
@@ -13,10 +14,9 @@ import {
   ChartOptions,
   ChartData,
 } from "chart.js"
-import { Line } from "react-chartjs-2"
-import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
-import { ChartItem } from "@/types/types"
 import ChartErrorView from "@/containers/chart/chart-error-view/ChartErrorView"
+import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
+import { ChartItem } from "@/containers/chart/types"
 
 ChartJS.register(
   ArcElement,

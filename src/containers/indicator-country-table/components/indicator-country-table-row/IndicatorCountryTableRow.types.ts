@@ -1,7 +1,7 @@
-import { Value } from "@/types/types"
 import { ComponentProps } from "react"
+import { RowValue } from "@/types/value.types"
 
 export interface IndicatorCountryTableRowProps extends ComponentProps<"tr"> {
-  value: Value
+  value: RowValue
   precition: number
 }

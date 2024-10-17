@@ -1,4 +1,4 @@
-import { ChartItem } from "@/types/types"
+import { ChartItem } from "@/containers/chart/types"
 
 const getYearsRange = (data: ChartItem[]) => {
   let min = data[0].values[0].year,

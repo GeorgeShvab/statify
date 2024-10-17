@@ -1,5 +1,5 @@
-import { CountryWithValues } from "@/types/types"
 import { Indicator } from "@prisma/client"
+import { CountryWithValues } from "@/types/country.types"
 
 export interface ChartProps {
   indicator: Indicator

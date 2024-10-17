@@ -1,5 +1,5 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
-import { QueryParams } from "@/types/types"
+import { QueryParams } from "@/types/general.types"
 
 const useQueryParams = <TParams extends QueryParams = QueryParams>() => {
   const pathname = usePathname()

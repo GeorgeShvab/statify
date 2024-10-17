@@ -1,5 +1,5 @@
 import { ReactNode } from "react"
-import { Size } from "@/types/types"
+import { Size } from "@/types/general.types"
 
 export interface ModalContainerProps {
   children: ReactNode
