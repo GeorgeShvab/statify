@@ -1,6 +1,6 @@
 import { createStore } from "zustand"
 import { CountriesStore } from "@/store/countries-store/types"
-import { CountryWithDatapoints } from "@/types/types"
+import { CountryWithDatapoints } from "@/types/country.types"
 
 const countriesStore = (initial: CountryWithDatapoints[]) => () =>
   createStore<CountriesStore>()((set) => ({

@@ -1,4 +1,4 @@
-import { IndicatorWithDatapoints } from "@/types/types"
+import { IndicatorWithDatapoints } from "@/types/indicator.types"
 
 export interface IndicatorsStore {
   indicators: IndicatorWithDatapoints[]

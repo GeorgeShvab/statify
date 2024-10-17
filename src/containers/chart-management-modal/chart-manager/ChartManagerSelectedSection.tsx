@@ -1,6 +1,6 @@
-import { ChartItem } from "@/types/types"
 import { FC, useMemo } from "react"
 import ChartManagerRegionsList from "@/containers/chart-management-modal/chart-manager/ChartManagerRegionsList"
+import { ChartItem } from "@/containers/chart/types"
 
 interface Props {
   regions: Pick<ChartItem, "id" | "name" | "isSelected" | "color">[]

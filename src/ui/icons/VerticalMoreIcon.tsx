@@ -1,5 +1,5 @@
-import { IconProps } from "@/types/types"
 import { FC } from "react"
+import { IconProps } from "@/types/general.types"
 
 const VerticalMoreIcon: FC<IconProps> = (props) => (
   <svg

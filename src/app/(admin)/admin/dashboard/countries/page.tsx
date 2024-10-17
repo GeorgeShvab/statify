@@ -10,7 +10,7 @@ import CountryService from "@/services/country-service/CountryService"
 import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import CountriesDashboard from "@/containers/countries-dashboard/CountriesDashboard"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import { PageProps } from "@/types/types"
+import { PageProps } from "@/types/general.types"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/countries/metadata"
 

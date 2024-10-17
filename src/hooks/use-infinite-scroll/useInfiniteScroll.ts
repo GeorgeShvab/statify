@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation"
 import { InfiniteScrollConfig } from "@/hooks/use-infinite-scroll/types"
 import useOnScrollTreshold from "@/hooks/use-on-scroll-treshold/useOnScrollTreshold"
 import useQuery from "@/hooks/use-query/useQuery"
-import { PageableResult } from "@/types/types"
+import { PageableResult } from "@/types/general.types"
 
 const useInfiniteScroll = <T>(
   fn: (

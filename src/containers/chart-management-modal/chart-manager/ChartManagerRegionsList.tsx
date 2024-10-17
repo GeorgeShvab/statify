@@ -1,8 +1,8 @@
 import { FC } from "react"
 import ChartManagerListItem from "@/containers/chart-management-modal/chart-manager/ChartManagerListItem"
-import useScroll from "@/hooks/use-scroll/useScroll"
-import { ChartItem } from "@/types/types"
 import { useChart } from "@/containers/chart/chart-provider/ChartProvider"
+import { ChartItem } from "@/containers/chart/types"
+import useScroll from "@/hooks/use-scroll/useScroll"
 
 interface Props {
   regions: Pick<ChartItem, "id" | "name" | "isSelected" | "color">[]

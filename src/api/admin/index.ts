@@ -14,7 +14,7 @@ import {
   ValuesQueryParams,
 } from "@/api/admin/types"
 import apiRoutes from "@/constants/apiRoutes"
-import { PageableResult } from "@/types/types"
+import { PageableResult } from "@/types/general.types"
 
 export const createIndicator = (args: CreateIndicatorParams) =>
   axios.post(apiRoutes.admin.indicators.create, args)

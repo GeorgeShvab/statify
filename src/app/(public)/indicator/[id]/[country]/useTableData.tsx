@@ -1,14 +1,15 @@
-import { SortOrder, Value } from "@/types/types"
-import quickSort from "@/utils/quick-sort/quickSort"
 import { useState } from "react"
+import quickSort from "@/utils/quick-sort/quickSort"
+import { SortOrder } from "@/types/general.types"
+import { RowValue } from "@/types/value.types"
 
 interface State {
-  data: Value[]
+  data: RowValue[]
   order: SortOrder
   by?: "year" | "value"
 }
 
-const useTableData = (data: Value[]) => {
+const useTableData = (data: RowValue[]) => {
   const [state, setState] = useState<State>({
     data: data,
     order: "asc",

@@ -9,7 +9,7 @@ import IndicatorService from "@/services/indicator-service/IndicatorService"
 import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import IndicatorsDashboard from "@/containers/indicators-dashboard/IndicatorsDashboard"
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import { PageProps } from "@/types/types"
+import { PageProps } from "@/types/general.types"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/indicators/metadata"
 

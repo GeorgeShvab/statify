@@ -1,10 +1,10 @@
-import { Position, PositionOptions } from "@/types/types"
-import calculatePosition from "@/utils/calculate-absolute-position/calculateAbsolutePosition"
 import { FC, ReactNode, RefObject, useEffect, useRef, useState } from "react"
+import { SidePosition } from "@/components/absolute-position/AbsolutePosition.types"
+import calculatePosition from "@/utils/calculate-position/calculatePosition"
 
 interface Props {
   anchor: RefObject<HTMLElement>
-  position: Position | PositionOptions
+  position: SidePosition
   children: ReactNode
 }
 
@@ -22,7 +22,7 @@ const FixedPosition: FC<Props> = ({ anchor, children, position }) => {
       const anchorDomRect = anchor.current.getBoundingClientRect()
       const elementDomRect = containerRef.current.getBoundingClientRect()
 
-      const { x, y } = calculatePosition(
+      const { left: x, top: y } = calculatePosition(
         anchorDomRect,
         elementDomRect,
         position

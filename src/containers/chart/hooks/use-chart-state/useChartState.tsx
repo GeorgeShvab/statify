@@ -1,12 +1,13 @@
-import { ChartItem, CountryWithValues } from "@/types/types"
 import { useState } from "react"
-import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
-import getShortening from "@/containers/chart/hooks/use-chart-state/utils/getShortening"
-import { useAlert } from "@/providers/alert-provider/AlertProvider"
-import getYearsRange from "@/containers/chart/hooks/use-chart-state/utils/getYearsRange"
 import { ChartSelectedRange } from "@/containers/chart/chart-provider/ChartProvider.types"
 import useInitialState from "@/containers/chart/hooks/use-chart-state/useInitialState"
 import useRegionSearchParams from "@/containers/chart/hooks/use-chart-state/useRegionSearchParams"
+import getShortening from "@/containers/chart/hooks/use-chart-state/utils/getShortening"
+import getYearsRange from "@/containers/chart/hooks/use-chart-state/utils/getYearsRange"
+import { ChartItem } from "@/containers/chart/types"
+import { useAlert } from "@/providers/alert-provider/AlertProvider"
+import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
+import { CountryWithValues } from "@/types/country.types"
 
 const MAX_SELECTED_COUNT = 15
 

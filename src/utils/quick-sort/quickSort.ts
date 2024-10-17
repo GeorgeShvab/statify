@@ -1,4 +1,4 @@
-import { SortOrder } from "@/types/types"
+import { SortOrder } from "@/types/general.types"
 
 function quickSort<T extends string | number | object>(
   array: T[],

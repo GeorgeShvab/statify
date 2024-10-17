@@ -1,4 +1,4 @@
-import { PageProps } from "@/types/types"
+import { PageProps } from "@/types/general.types"
 
 interface Params {
   id: string
