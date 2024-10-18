@@ -1,6 +1,6 @@
 # Statify
 
-Statify is a web application designed for viewing and analyzing statistics. Link for deployment: https://statify.world
+Statify is a web application designed for viewing and analyzing statistics. Link for deployment: https://statify-iota.vercel.app
 
 ## Current stage
 
