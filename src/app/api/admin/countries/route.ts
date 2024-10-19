@@ -1,24 +1,19 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import CountryService from "@/services/country-service/CountryService"
 import ValueService from "@/services/value-service/ValueService"
+import { CommonValidations } from "@/utils/validation-schemas/common"
+import { CountryValidationSchema } from "@/utils/validation-schemas/country"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-export const POST = async (req: NextRequest) => {
-  const body = await req.json()
-
+export const POST = validationMiddleware(async ({ body }) => {
   await CountryService.createOne(body)
 
   return NextResponse.json({})
-}
+}, CountryValidationSchema.post)
 
-export const DELETE = async (req: NextRequest) => {
-  const ids = new URLSearchParams(req.nextUrl.searchParams)
-    .get("ids")
-    ?.split(",")
-
-  if (!ids) return new NextResponse(null, { status: 400 })
-
-  await ValueService.deleteManyByCountry(ids)
-  await CountryService.deleteMany(ids)
+export const DELETE = validationMiddleware(async ({ searchParams }) => {
+  await ValueService.deleteManyByCountry(searchParams.ids)
+  await CountryService.deleteMany(searchParams.ids)
 
   return new NextResponse(null, { status: 200 })
-}
+}, CommonValidations.searchParamsStringIdentificators)

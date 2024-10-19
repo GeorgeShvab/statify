@@ -1,14 +1,10 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
+import { CommonValidations } from "@/utils/validation-schemas/common"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-export const GET = async (req: NextRequest) => {
-  const query = req.nextUrl.searchParams.get("query")
-
-  if (!query) {
-    return new NextResponse(null, { status: 400 })
-  }
-
-  const data = await IndicatorService.getSearchAutocomplete(query)
+export const GET = validationMiddleware(async ({ searchParams }) => {
+  const data = await IndicatorService.getSearchAutocomplete(searchParams.query)
 
   return NextResponse.json(data)
-}
+}, CommonValidations.searchSchema)

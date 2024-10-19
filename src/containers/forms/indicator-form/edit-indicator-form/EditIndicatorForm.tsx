@@ -127,7 +127,10 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
         </InputGroup>
         <DataListDivider />
         <Label label="Search tags">
-          <TagInput tags={indicator.searchTags} onChange={handleTagsChange} />
+          <TagInput
+            tags={indicator.searchTags || []}
+            onChange={handleTagsChange}
+          />
         </Label>
         <div className="indicator-form__switchers">
           <Switch {...register("hidden")}>Hidden</Switch>
