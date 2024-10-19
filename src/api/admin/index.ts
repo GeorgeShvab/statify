@@ -1,5 +1,6 @@
 import { Value } from "@prisma/client"
 import axios from "axios"
+import { Option } from "@/ui/select/Select.types"
 import {
   CreateCountryParams,
   HideCountriesParams,
@@ -77,3 +78,9 @@ export const getAdminValues = (
     params,
     signal,
   })
+
+export const getIndicatorSelectAutocomplete = () =>
+  axios.get<Option[]>(apiRoutes.admin.indicators.autocomplete.select)
+
+export const getCountrySelectAutocomplete = () =>
+  axios.get<Option[]>(apiRoutes.admin.countries.autocomplete.select)

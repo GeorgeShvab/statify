@@ -6,6 +6,9 @@ export default {
       expose: "/api/admin/indicators/expose",
       create: "/api/admin/indicators",
       delete: "/api/admin/indicators",
+      autocomplete: {
+        select: "/api/admin/indicators/autocomplete/select",
+      },
     },
     countries: {
       update: (id: string) => `/api/admin/countries/${id}`,
@@ -13,6 +16,9 @@ export default {
       expose: "/api/admin/countries/expose",
       create: "/api/admin/countries",
       delete: "/api/admin/countries",
+      autocomplete: {
+        select: "/api/admin/countries/autocomplete/select",
+      },
     },
     values: {
       update: (id: number) => `/api/admin/values/${id}`,
@@ -28,14 +34,8 @@ export default {
         `/api/public/download/${indicatorId}/${countryId}`,
     },
     bookmark: "/api/public/bookmark",
-    countries: {
-      autocomplete: {
-        select: "/api/public/countries/autocomplete/select",
-      },
-    },
     indicators: {
       autocomplete: {
-        select: "/api/public/indicators/autocomplete/select",
         search: "/api/public/indicators/autocomplete/search",
       },
     },
