@@ -1,92 +1,39 @@
-import { NextRequest, NextResponse } from "next/server"
-import {
-  initialValueCountryOptions,
-  initialValueIndicatorOptions,
-  possibleValueSortDirectionQueryParam,
-  possibleValueSortQueryParam,
-} from "@/app/(admin)/admin/dashboard/values/constants"
-import CountryService from "@/services/country-service/CountryService"
-import IndicatorService from "@/services/indicator-service/IndicatorService"
+import { NextResponse } from "next/server"
 import ValueService from "@/services/value-service/ValueService"
-import validatePositiveNumber from "@/utils/validate-positive-number/validatePositiveNumber"
-import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
+import { CommonValidations } from "@/utils/validation-schemas/common"
+import { ValueValidationSchema } from "@/utils/validation-schemas/value"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-export const POST = async (req: NextRequest) => {
-  const body = await req.json()
-
+export const POST = validationMiddleware(async ({ body }) => {
   await ValueService.createOne(body)
 
-  return NextResponse.json({})
-}
+  return new NextResponse(null, { status: 201 })
+}, ValueValidationSchema.post)
 
-export const DELETE = async (req: NextRequest) => {
-  const ids = new URLSearchParams(req.nextUrl.searchParams)
-    .get("ids")
-    ?.split(",")
-    .map((item) => Number(item))
-
-  if (!ids) return new NextResponse(null, { status: 400 })
-
-  await ValueService.deleteMany(ids)
+export const DELETE = validationMiddleware(async ({ searchParams }) => {
+  await ValueService.deleteMany(searchParams.ids)
 
   return new NextResponse(null, { status: 200 })
-}
+}, CommonValidations.seachParamsNumberIdentificators)
 
-export const GET = async (req: NextRequest) => {
-  const searchParams = new URLSearchParams(req.nextUrl.searchParams)
+export const GET = validationMiddleware(
+  async ({
+    searchParams: { sort, sortDirection, indicator, country, page, size },
+  }) => {
+    const skip = page * size
 
-  const sortSearchParam = searchParams.get("sort")
-  const indicatorSearchParam = searchParams.get("indicator")
-  const countrySearchParam = searchParams.get("country")
-  const sortDirectionSearchParam = searchParams.get("sortDirection")
+    const { data, count } = await ValueService.getForAdmin({
+      sort,
+      take: size,
+      skip,
+      sortDirection,
+      country: country === "all" ? undefined : country,
+      indicator: indicator === "all" ? undefined : indicator,
+    })
 
-  const take = validatePositiveNumber(searchParams.get("size"), 1000)
-  const page = validatePositiveNumber(searchParams.get("page"), 0)
+    const pages = Math.ceil(count / size)
 
-  const skip = page * take
-
-  const sort = validateQueryParam(
-    sortSearchParam,
-    indicatorSearchParam === "all" || !indicatorSearchParam
-      ? possibleValueSortQueryParam.filter(
-          (item) => item !== "value" && item !== "year"
-        )
-      : possibleValueSortQueryParam
-  )
-
-  const indicatorSelectOptions = IndicatorService.getSelectAutocomplete()
-  const countrySelectOptions = CountryService.getSelectAutocomplete()
-
-  const [allIndicators, allCountries] = await Promise.all([
-    indicatorSelectOptions,
-    countrySelectOptions,
-  ])
-
-  const indicator = validateQueryParam(indicatorSearchParam, [
-    initialValueIndicatorOptions.value,
-    ...allIndicators.map(({ value }) => value),
-  ])
-
-  const country = validateQueryParam(countrySearchParam, [
-    initialValueCountryOptions.value,
-    ...allCountries.map(({ value }) => value),
-  ])
-
-  const sortDirection = validateQueryParam(
-    sortDirectionSearchParam,
-    possibleValueSortDirectionQueryParam
-  )
-
-  const { data, count } = await ValueService.getForAdmin({
-    sort,
-    take,
-    skip,
-    sortDirection,
-    country: country === "all" ? undefined : country,
-    indicator: indicator === "all" ? undefined : indicator,
-  })
-
-  const pages = Math.ceil(count / take)
-
-  return NextResponse.json({ data, pages, page })
-}
+    return NextResponse.json({ data, pages, page })
+  },
+  ValueValidationSchema.get
+)

@@ -33,6 +33,10 @@ export const getValueSortOptions = (includeSpecialOptions: boolean) => {
   )
 }
 
+export const valueSpecialSortParams = valueSortOptions
+  .filter((item) => item.value !== "value" && item.value !== "year")
+  .map((item) => item.value)
+
 export const possibleValueSortQueryParam = valueSortOptions.map(
   (item) => item.value
 )

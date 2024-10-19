@@ -1,13 +1,10 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import ValueService from "@/services/value-service/ValueService"
+import { ValueValidationSchema } from "@/utils/validation-schemas/value"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-export const PATCH = async (
-  req: NextRequest,
-  { params }: { params: { value: string } }
-) => {
-  const body = await req.json()
+export const PATCH = validationMiddleware(async ({ params, body }) => {
+  await ValueService.updateOne({ id: params.value, ...body })
 
-  await ValueService.updateOne({ id: Number(params.value), ...body })
-
-  return NextResponse.json(body)
-}
+  return new NextResponse(null, { status: 200 })
+}, ValueValidationSchema.patch)

@@ -23,19 +23,27 @@ export const updateIndicator = ({ id, ...args }: UpdateIndicatorParams) =>
   axios.patch(apiRoutes.admin.indicators.update(id), args)
 
 export const hideIndicators = (arg: HideIndicatorsParams) =>
-  axios.patch(apiRoutes.admin.indicators.hide, arg)
+  axios.patch(apiRoutes.admin.indicators.hide, null, {
+    params: { ids: arg.ids.toString() },
+  })
 
 export const exposeIndicators = (arg: ExposeIndicatorsParams) =>
-  axios.patch(apiRoutes.admin.indicators.expose, arg)
+  axios.patch(apiRoutes.admin.indicators.expose, null, {
+    params: { ids: arg.ids.toString() },
+  })
 
 export const createCountry = (args: CreateCountryParams) =>
   axios.post(apiRoutes.admin.countries.create, args)
 
 export const hideCountries = (arg: HideCountriesParams) =>
-  axios.patch(apiRoutes.admin.countries.hide, arg)
+  axios.patch(apiRoutes.admin.countries.hide, null, {
+    params: { ids: arg.ids.toString() },
+  })
 
 export const exposeCountries = (arg: ExposeCountriesParams) =>
-  axios.patch(apiRoutes.admin.countries.expose, arg)
+  axios.patch(apiRoutes.admin.countries.expose, null, {
+    params: { ids: arg.ids.toString() },
+  })
 
 export const updateCountry = ({ id, ...arg }: UpdateCountryParams) =>
   axios.patch(apiRoutes.admin.countries.update(id), arg)

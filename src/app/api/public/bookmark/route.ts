@@ -1,31 +1,33 @@
 import { cookies } from "next/headers"
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import BookmarkService from "@/services/bookmark-service/BookmarkService"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import generateId from "@/utils/generate-id/generateId"
+import { BookmarkValidationSchema } from "@/utils/validation-schemas/bookmark"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-export const POST = async (req: NextRequest) => {
-  const { country: countryId, indicator: indicatorId } = await req.json()
+export const POST = validationMiddleware(async ({ body }) => {
+  const { indicator, country } = body
 
   const client = cookies().get("client_id")?.value
 
-  if (!indicatorId || !client) return new NextResponse(null, { status: 400 })
+  if (!indicator || !client) return new NextResponse(null, { status: 400 })
 
-  if (countryId) {
-    const countryDoc = await CountryService.getById(countryId)
+  if (country) {
+    const countryDoc = await CountryService.getById(country)
 
     if (!countryDoc) return new NextResponse(null, { status: 400 })
   }
 
-  const indicatorDoc = await IndicatorService.getById(indicatorId)
+  const indicatorDoc = await IndicatorService.getById(indicator)
 
   if (!indicatorDoc) return new NextResponse(null, { status: 400 })
 
   const bookmarkDocument = await BookmarkService.getOne({
     client,
-    countryId,
-    indicatorId,
+    countryId: country,
+    indicatorId: indicator,
   })
 
   if (bookmarkDocument) {
@@ -35,15 +37,17 @@ export const POST = async (req: NextRequest) => {
   } else {
     const bookmark = await BookmarkService.createOne({
       client,
-      indicatorId,
-      countryId,
+      countryId: country,
+      indicatorId: indicator,
     })
 
     return NextResponse.json(bookmark)
   }
-}
+}, BookmarkValidationSchema.post)
 
-export const GET = async (req: NextRequest) => {
+export const GET = validationMiddleware(async ({ searchParams }) => {
+  const { indicator, country } = searchParams
+
   let client = cookies().get("client_id")?.value
 
   if (!client) {
@@ -57,20 +61,15 @@ export const GET = async (req: NextRequest) => {
     })
   }
 
-  const searchParams = req.nextUrl.searchParams
-
-  const countryId = searchParams.get("country") || null
-  const indicatorId = searchParams.get("indicator")
-
-  if (!client || !indicatorId) return new NextResponse(null, { status: 400 })
+  if (!client) return new NextResponse(null, { status: 400 })
 
   const bookmark = await BookmarkService.getOne({
     client,
-    countryId,
-    indicatorId,
+    countryId: country,
+    indicatorId: indicator,
   })
 
   if (!bookmark) return new NextResponse(null, { status: 404 })
 
   return new NextResponse(null, { status: 200 })
-}
+}, BookmarkValidationSchema.get)

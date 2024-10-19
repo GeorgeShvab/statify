@@ -1,19 +1,11 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import XLSX from "xlsx"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
+import { CountryValidationSchema } from "@/utils/validation-schemas/country"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-interface Params {
-  indicator: string
-  country: string
-}
-
-export const GET = async (req: NextRequest, { params }: { params: Params }) => {
-  const searchParams = req.nextUrl.searchParams
-  const format = validateFormat(searchParams.get("format"))
-
-  if (!format) return new NextResponse(null, { status: 400 })
-
+export const GET = validationMiddleware(async ({ params, searchParams }) => {
   const indicatorPromise = IndicatorService.getById(params.indicator)
 
   const countryPromise = CountryService.getCountryTableValues(
@@ -31,7 +23,7 @@ export const GET = async (req: NextRequest, { params }: { params: Params }) => {
 
   const fileName = `${indicator.label}. ${country.name}`
 
-  if (format === "xlsx") {
+  if (searchParams.format === "xlsx") {
     const header = ["Year", "Value"]
     const data = country.values.map((item) => [item.year, item.value])
 
@@ -73,10 +65,4 @@ export const GET = async (req: NextRequest, { params }: { params: Params }) => {
 
     return new NextResponse(file, { status: 200, statusText: "OK", headers })
   }
-}
-
-function validateFormat(format: string | null) {
-  if ((format !== "csv" && format !== "xlsx") || !format) return format || "csv"
-
-  return format
-}
+}, CountryValidationSchema.download)
