@@ -1,8 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios"
 import {
   BookmarkParams,
-  CountrySelectAutocompleteResponse,
-  IndicatorSelectAutocompleteResponse,
   IndicatorsSearchAutocompleteResponse,
 } from "@/api/public/types"
 import apiRoutes from "@/constants/apiRoutes"
@@ -23,14 +21,4 @@ export const getSearchAutocomplete = (
       params: { query },
       ...config,
     }
-  )
-
-export const getIndicatorSelectAutocomplete = () =>
-  axios.get<IndicatorSelectAutocompleteResponse>(
-    apiRoutes.public.indicators.autocomplete.select
-  )
-
-export const getCountrySelectAutocomplete = () =>
-  axios.get<CountrySelectAutocompleteResponse>(
-    apiRoutes.public.countries.autocomplete.select
   )

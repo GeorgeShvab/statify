@@ -5,14 +5,4 @@ export interface BookmarkParams {
   country?: string
 }
 
-export type IndicatorSelectAutocompleteResponse = {
-  label: string
-  value: string
-}[]
-
-export type CountrySelectAutocompleteResponse = {
-  label: string
-  value: string
-}[]
-
 export type IndicatorsSearchAutocompleteResponse = Indicator[]

@@ -58,9 +58,6 @@ const IndicatorService: IndicatorServiceInterface = {
   async getSelectAutocomplete() {
     const data = prisma.indicator
       .findMany({
-        where: {
-          hidden: false,
-        },
         select: {
           id: true,
           label: true,
