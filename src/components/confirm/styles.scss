@@ -16,12 +16,14 @@
 .confirm__title {
   @include heading($fs-base);
   margin-bottom: sp(4);
+  line-height: 1.4;
 }
 
 .confirm__subtitle {
   color: $gray;
   font-size: $fs-sm;
   margin-bottom: sp(8);
+  line-height: 1.4;
 }
 
 .confirm__actions {
