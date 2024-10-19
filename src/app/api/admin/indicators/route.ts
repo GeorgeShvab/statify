@@ -1,24 +1,19 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import ValueService from "@/services/value-service/ValueService"
+import { CommonValidations } from "@/utils/validation-schemas/common"
+import { IndicatorValidationSchema } from "@/utils/validation-schemas/indicator"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-export const POST = async (req: NextRequest) => {
-  const body = await req.json()
-
+export const POST = validationMiddleware(async ({ body }) => {
   await IndicatorService.createOne(body)
 
   return NextResponse.json({})
-}
+}, IndicatorValidationSchema.post)
 
-export const DELETE = async (req: NextRequest) => {
-  const ids = new URLSearchParams(req.nextUrl.searchParams)
-    .get("ids")
-    ?.split(",")
-
-  if (!ids) return new NextResponse(null, { status: 400 })
-
-  await ValueService.deleteManyByIndicator(ids)
-  await IndicatorService.deleteMany(ids)
+export const DELETE = validationMiddleware(async ({ searchParams }) => {
+  await ValueService.deleteManyByIndicator(searchParams.ids)
+  await IndicatorService.deleteMany(searchParams.ids)
 
   return new NextResponse(null, { status: 200 })
-}
+}, CommonValidations.searchParamsStringIdentificators)

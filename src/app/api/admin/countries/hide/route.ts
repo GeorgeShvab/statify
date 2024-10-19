@@ -1,10 +1,10 @@
-import { NextRequest, NextResponse } from "next/server"
+import { NextResponse } from "next/server"
 import CountryService from "@/services/country-service/CountryService"
+import { CommonValidations } from "@/utils/validation-schemas/common"
+import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
-export const PATCH = async (req: NextRequest) => {
-  const body = await req.json()
+export const PATCH = validationMiddleware(async ({ searchParams }) => {
+  await CountryService.hideMany(searchParams.ids)
 
-  await CountryService.hideMany(body.ids)
-
-  return NextResponse.json({})
-}
+  return new NextResponse(null, { status: 200 })
+}, CommonValidations.searchParamsStringIdentificators)

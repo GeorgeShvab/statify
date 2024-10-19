@@ -2,6 +2,7 @@ import { Indicator } from "@prisma/client"
 import { IndicatorServiceInterface } from "@/services/indicator-service/types"
 import getEnv from "@/utils/get-env/getEnv"
 import sqlCondition from "@/utils/sql-condition/sqlCondition"
+import sql from "@/utils/sql/sql"
 import {
   CountryIndicator,
   IndicatorWithDatapoints,
@@ -315,7 +316,11 @@ const IndicatorService: IndicatorServiceInterface = {
         WHERE "indicatorId" = i.id
       )`
 
-    const sortStatement = sort === "datapoints" ? sortByDatapoints : `"${sort}"`
+    const sortStatement = sql(
+      sort === "datapoints" ? sortByDatapoints : `"${sort}"`
+    )
+
+    const sortOrder = sql(sortDirection)
 
     const indicators = await prisma.$queryRaw<IndicatorWithDatapoints[]>`
     SELECT 
@@ -336,7 +341,7 @@ const IndicatorService: IndicatorServiceInterface = {
       AND ${hiddenCondition} 
       ORDER BY 
       ${sortStatement} 
-      ${sortDirection}`
+      ${sortOrder}`
 
     return indicators
   },
