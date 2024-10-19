@@ -45,9 +45,6 @@ const CountryService: CountryServiceInterface = {
   async getSelectAutocomplete(): Promise<Option[]> {
     const data = prisma.country
       .findMany({
-        where: {
-          hidden: false,
-        },
         select: {
           id: true,
           name: true,

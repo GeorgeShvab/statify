@@ -22,7 +22,7 @@ import useQueryParams from "@/hooks/use-query-params/useQueryParams"
 import {
   getCountrySelectAutocomplete,
   getIndicatorSelectAutocomplete,
-} from "@/api/public"
+} from "@/api/admin"
 
 const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   sort,
