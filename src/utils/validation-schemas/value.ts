@@ -4,6 +4,7 @@ import {
   initialValueCountryOptions,
   initialValueIndicatorOptions,
   possibleValueSortQueryParam,
+  valueSortOptions,
   valueSpecialSortParams,
 } from "@/app/(admin)/admin/dashboard/values/constants"
 import { ValueSort } from "@/app/(admin)/admin/dashboard/values/types"
@@ -37,10 +38,10 @@ const getSchema = {
   searchParams: schema({
     sort: yup
       .string()
-      .default(defaultSelectValue)
+      .default(valueSortOptions[0].value)
       .test(function (value) {
         const possibleValues: string[] =
-          this.parent.indicator === defaultSelectValue
+          this.parent.indicator === "all"
             ? valueSpecialSortParams
             : possibleValueSortQueryParam
 
@@ -71,7 +72,10 @@ const getSchema = {
 
         return possibleValues.includes(value)
       }),
-    sortDirection: yup.string().oneOf(possibleSortOrders).required(),
+    sortDirection: yup
+      .string()
+      .default(possibleSortOrders[0])
+      .oneOf(possibleSortOrders),
     size: yup.number().default(1000),
     page: yup.number().default(0),
   }),
