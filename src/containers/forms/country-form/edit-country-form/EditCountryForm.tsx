@@ -107,10 +107,7 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
           />
         </Label>
         <Label label="Search tags">
-          <TagInput
-            tags={country.searchTags || []}
-            onChange={handleTagsChange}
-          />
+          <TagInput tags={country.searchTags} onChange={handleTagsChange} />
         </Label>
       </DataList>
       <Button disabled={!isDirty} type="submit" className="full-width">
