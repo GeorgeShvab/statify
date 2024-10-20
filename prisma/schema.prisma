@@ -5,7 +5,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://postgres:Welcome_Home@localhost:5432/statify-test"
 }
 
 model Indicator {
@@ -20,8 +20,8 @@ model Indicator {
   showChart   Boolean     @default(true)
   precision   Int         @default(0)
   hidden      Boolean     @default(false)
-  tags        String[]
-  searchTags  String[]
+  tags        String[]    @default([])
+  searchTags  String[]    @default([])
   ranking     Int         @default(0)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
@@ -69,7 +69,7 @@ model Country {
   updatedAt                 DateTime   @updatedAt
   independentState          Boolean    @default(true)
   internationallyRecognized Boolean    @default(true)
-  searchTags                String[]
+  searchTags                String[]   @default([])
   type                      AreaType?
   values                    Value[]
   Bookmark                  Bookmark[]
