@@ -4,7 +4,6 @@ import { NextFetchEvent, NextResponse } from "next/server"
 import routes from "@/constants/routes"
 
 const AUTH_SECRET = process.env.AUTH_SECRET
-if (!AUTH_SECRET) throw new Error("AUTH_SECRET is not found")
 
 export const config = { matcher: ["/admin/:path*", "/api/admin/:path*"] }
 

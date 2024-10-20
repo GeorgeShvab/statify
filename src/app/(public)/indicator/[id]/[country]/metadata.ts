@@ -5,6 +5,8 @@ import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { SERVER_ADDRESS } from "@/constants/general"
 
+const IMAGES_HOSTING_ADDRESS = process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS
+
 export const generateMetadata = async ({
   params,
 }: IndicatorCountryPageProps): Promise<Metadata> => {
@@ -21,10 +23,10 @@ export const generateMetadata = async ({
   try {
     if (indicator && country) {
       await axios.head(
-        `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`
+        `${IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`
       )
 
-      ogImage = `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`
+      ogImage = `${IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/${country.id}.png`
     }
   } catch {
     // Do nothing if such error occurs. It indicates that there is no image for this indicator. There is no sense of image for some indicators.

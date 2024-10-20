@@ -1,6 +1,5 @@
 import { Indicator } from "@prisma/client"
 import { IndicatorServiceInterface } from "@/services/indicator-service/types"
-import getEnv from "@/utils/get-env/getEnv"
 import sqlCondition from "@/utils/sql-condition/sqlCondition"
 import sql from "@/utils/sql/sql"
 import {
@@ -9,7 +8,7 @@ import {
 } from "@/types/indicator.types"
 import prisma from "@/prisma"
 
-const perPage = Number(getEnv("RESULTS_PER_PAGE"))
+const perPage = Number(process.env.RESULTS_PER_PAGE)
 
 const IndicatorService: IndicatorServiceInterface = {
   async createOne(data) {

@@ -4,6 +4,8 @@ import { IndicatorPageProps } from "@/app/(public)/indicator/[id]/types"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { SERVER_ADDRESS } from "@/constants/general"
 
+const IMAGES_HOSTING_ADDRESS = process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS
+
 export const generateMetadata = async ({
   params,
 }: IndicatorPageProps): Promise<Metadata> => {
@@ -13,10 +15,10 @@ export const generateMetadata = async ({
   try {
     if (indicator) {
       await axios.head(
-        `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/WEOWORLD.png`
+        `${IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/WEOWORLD.png`
       )
 
-      ogImage = `${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/WEOWORLD.png`
+      ogImage = `${IMAGES_HOSTING_ADDRESS}/og-charts/${indicator.id}/WEOWORLD.png`
     }
   } catch {
     // Do nothing if such error occurs. It indicates that there is no image for this indicator. There is no sense of image for some indicators.
