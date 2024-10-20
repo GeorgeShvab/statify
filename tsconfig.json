@@ -24,12 +24,6 @@
       "@design-system": ["./src/styles/foundation/_all.scss"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    ".next/types/**/*.ts",
-    "src/containers/indicators-dashboard-table/components/indicators-dashboard-table-row"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

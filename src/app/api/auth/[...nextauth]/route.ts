@@ -5,7 +5,6 @@ import userService from "@/services/user-service/UserService"
 import serialize from "@/utils/serialize/serialize"
 
 const AUTH_SECRET = process.env.AUTH_SECRET
-if (!AUTH_SECRET) throw new Error("AUTH_SECRET is not found")
 
 const handler = NextAuth({
   providers: [

@@ -1,8 +1,7 @@
 import { BookmarkServiceInterface } from "@/services/bookmark-service/types"
-import getEnv from "@/utils/get-env/getEnv"
 import prisma from "@/prisma"
 
-const initialPageSize = Number(getEnv("RESULTS_PER_PAGE"))
+const initialPageSize = Number(process.env.RESULTS_PER_PAGE)
 
 const BookmarkService: BookmarkServiceInterface = {
   async createOne(data) {

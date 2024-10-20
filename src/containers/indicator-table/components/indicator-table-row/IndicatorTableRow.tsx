@@ -1,9 +1,11 @@
+import { FC, memo } from "react"
+import Link from "next/link"
 import TableCell from "@/ui/table/components/table-body-cell/TableBodyCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"
-import prettifyValue from "@/utils/prettify-value/prettifyValue"
-import Link from "next/link"
-import { FC, memo } from "react"
 import { IndicatorTableRowProps } from "@/containers/indicator-table/components/indicator-table-row/IndicatorTableRow.types"
+import prettifyValue from "@/utils/prettify-value/prettifyValue"
+
+const IMAGES_HOSTING_ADDRESS = process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS
 
 const Row: FC<IndicatorTableRowProps> = ({ indicator, country, ...props }) => {
   return (
@@ -23,7 +25,7 @@ const Row: FC<IndicatorTableRowProps> = ({ indicator, country, ...props }) => {
         <div className="w-full flex justify-center">
           <img
             alt="Trend"
-            src={`${process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS}/row-charts/${indicator.id}/${country.id}.png`}
+            src={`${IMAGES_HOSTING_ADDRESS}/row-charts/${indicator.id}/${country.id}.png`}
             className="indicator-table__trend-img"
           />
         </div>
