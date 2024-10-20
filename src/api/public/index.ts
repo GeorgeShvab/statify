@@ -1,21 +1,22 @@
-import axios, { AxiosRequestConfig } from "axios"
+import { AxiosRequestConfig } from "axios"
 import {
   BookmarkParams,
   IndicatorsSearchAutocompleteResponse,
 } from "@/api/public/types"
 import apiRoutes from "@/constants/apiRoutes"
+import axiosInstance from "@/modules/axios"
 
 export const bookmarkDataset = (args: BookmarkParams) =>
-  axios.post(apiRoutes.public.bookmark, args)
+  axiosInstance.post(apiRoutes.public.bookmark, args)
 
 export const getBookmarkedDataset = (args: BookmarkParams) =>
-  axios.get(apiRoutes.public.bookmark, { params: args })
+  axiosInstance.get(apiRoutes.public.bookmark, { params: args })
 
 export const getSearchAutocomplete = (
   query: string,
   config: AxiosRequestConfig
 ) =>
-  axios.get<IndicatorsSearchAutocompleteResponse>(
+  axiosInstance.get<IndicatorsSearchAutocompleteResponse>(
     apiRoutes.public.indicators.autocomplete.search,
     {
       params: { query },

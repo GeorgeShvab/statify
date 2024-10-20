@@ -1,4 +1,4 @@
-const address = process.env.SERVER_ADDRESS
+const address = process.env.NEXT_PUBLIC_SERVER_ADDRESS
 
 if (!address) throw new Error("No SERVER_ADDRESS env")
 
