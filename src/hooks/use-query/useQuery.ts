@@ -19,6 +19,8 @@ const useQuery = <TResponse>(
 ) => {
   const abortController = useRef<AbortController>()
 
+  const isFirstRender = useRef(true)
+
   const [isLoading, setIsLoading] = useState(fetchOnMount)
   const [data, setData] = useState<TResponse>()
   const [error, setError] = useState<unknown>()
@@ -73,7 +75,8 @@ const useQuery = <TResponse>(
   }
 
   useEffect(() => {
-    if (fetchOnMount) fetch()
+    if (fetchOnMount || !isFirstRender.current) fetch()
+    if (isFirstRender.current) isFirstRender.current = false
   }, deps)
 
   const isError = Boolean(error)
@@ -86,6 +89,7 @@ const useQuery = <TResponse>(
     data,
     error,
     refetch: fetch,
+    setData,
   } as const
 
   return reqData

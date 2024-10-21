@@ -30,10 +30,18 @@ const validationMiddleware = <
 
     const searchParams = Object.fromEntries(searchParamsObject.entries())
 
-    const parsedSearchParams = Object.keys(searchParams).reduce(
-      (acc, curr) => ({ ...acc, [curr]: searchParams[curr].split(/,(?!\s)/) }),
-      {}
-    )
+    const parsedSearchParams = Object.keys(searchParams).reduce((acc, curr) => {
+      const currValue = searchParams[curr]
+
+      const queryValue = /,(?!\s)/.test(currValue)
+        ? currValue.split(/,(?!\s)/)
+        : currValue
+
+      return {
+        ...acc,
+        [curr]: queryValue,
+      }
+    }, {})
 
     try {
       const validatedBody = await schemas.body?.validate(body)

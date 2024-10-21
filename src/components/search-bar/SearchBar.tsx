@@ -8,7 +8,9 @@ import IconButton from "@/ui/icon-button/IconButton"
 import ResetIcon from "@/ui/icons/ResetIcon"
 import SearchIcon from "@/ui/icons/SearchIcon"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
-import useAutocomplete from "@/components/search-bar/useAutocomplete"
+import useDebounce from "@/hooks/use-debounce/useDebounce"
+import useQuery from "@/hooks/use-query/useQuery"
+import { getSearchAutocomplete } from "@/api/public"
 
 interface Props {
   placeholder?: string
@@ -17,20 +19,37 @@ interface Props {
 const SearchBar: FC<Props> = ({ placeholder }) => {
   const containerEl = useRef<HTMLDivElement>(null)
 
+  const [isAutoCompleteOpen, setIsAutocompleteOpen] = useState(false)
+
   const router = useRouter()
 
   const searchParams = useSearchParams()
 
-  const [value, setValue] = useState<string>(searchParams.get("query") || "")
+  const initialValue = searchParams.get("query") || ""
 
-  const { autocomplete, setAutocomplete, abortController, fetch } =
-    useAutocomplete()
+  const [value, setValue] = useState(initialValue)
+
+  const [debouncedValue, setDebouncedValue] = useState("")
+
+  const { data, setData } = useQuery(
+    (signal) => getSearchAutocomplete(debouncedValue, signal),
+    {
+      fetchOnMount: false,
+      deps: [debouncedValue],
+      onSuccess: () => setIsAutocompleteOpen(true),
+    }
+  )
 
   const navigate = (v: string = value) => {
     router.push(`/search?query=${v}`)
 
-    setAutocomplete((prev) => ({ ...prev, isOpened: false }))
+    setIsAutocompleteOpen(false)
   }
+
+  const debouncedRefetch = useDebounce(
+    (value: string) => setDebouncedValue(value),
+    350
+  )
 
   const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value)
@@ -38,36 +57,29 @@ const SearchBar: FC<Props> = ({ placeholder }) => {
     const query = e.target.value.trim()
 
     if (!query) {
-      abortController.current?.abort()
-      setAutocomplete({ isOpened: false, data: undefined })
+      setIsAutocompleteOpen(false)
+      setData([])
     } else {
-      abortController.current?.abort()
-      abortController.current = new AbortController()
-
-      fetch(query)
+      debouncedRefetch(query)
     }
   }
 
   const clearValue = () => {
     setValue("")
-    setAutocomplete({ isOpened: false, data: undefined })
+    setIsAutocompleteOpen(false)
   }
 
-  const handleInputClick = () => {
-    setAutocomplete((prev) => ({ ...prev, isOpened: true }))
-  }
+  const handleInputClick = () => setIsAutocompleteOpen(true)
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
 
-    abortController.current?.abort()
-
     navigate()
   }
 
-  const handleOutsideClick = () => {
-    setAutocomplete((prev) => ({ ...prev, isOpened: false }))
-  }
+  const handleOutsideClick = () => setIsAutocompleteOpen(false)
+
+  const showAutocomplete = isAutoCompleteOpen && Boolean(data?.length) && value
 
   return (
     <DetectOutsideClick onOutsideClick={handleOutsideClick} isAbsolute={false}>
@@ -76,16 +88,12 @@ const SearchBar: FC<Props> = ({ placeholder }) => {
           <div className="relative flex-1 z-20">
             <div
               className={`border ${
-                autocomplete.isOpened && autocomplete.data?.length
-                  ? "rounded-t-lg"
-                  : "rounded-lg"
+                showAutocomplete ? "rounded-t-lg" : "rounded-lg"
               }`}
             >
               <div
                 className={`flex bg-white overflow-hidden  ${
-                  autocomplete.isOpened && autocomplete.data?.length
-                    ? "rounded-t-lg"
-                    : "rounded-lg"
+                  showAutocomplete ? "rounded-t-lg" : "rounded-lg"
                 }`}
               >
                 <span
@@ -115,15 +123,13 @@ const SearchBar: FC<Props> = ({ placeholder }) => {
                 )}
               </div>
             </div>
-            {autocomplete.isOpened && !!autocomplete.data?.length && (
+            {showAutocomplete && (
               <div
                 className="absolute w-full left-0 top-[calc(100%-1px)] rounded-b-lg bg-white border"
-                onClick={() =>
-                  setAutocomplete((prev) => ({ ...prev, isOpened: false }))
-                }
+                onClick={() => setIsAutocompleteOpen(false)}
               >
                 <ul>
-                  {autocomplete.data?.map((item) => (
+                  {data?.map((item) => (
                     <li
                       className="border-b last:border-none hover:bg-neutral-100 transition-colors"
                       key={item.id}
