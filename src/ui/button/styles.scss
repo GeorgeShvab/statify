@@ -1,54 +1,136 @@
 @import "@design-system";
 
 .button {
-  @include ui-scale;
-  @include ui-text-color;
-  @include ui-text-color-hover;
+  /// COLOR ///
+
+  &.text {
+    --background-color: #{$transparent};
+    --background-hover-color: #{$transparent};
+    --border-color: #{$transparent};
+    --border-hover-color: #{$transparent};
+  }
+
+  &.light {
+    --text-color: #{$gray-dark};
+    --text-hover-color: #{$gray};
+
+    &.contained {
+      --text-color: #{$gray-dark};
+      --text-hover-color: #{$gray};
+      --background-color: #{$white};
+      --background-hover-color: #{$white-darker};
+      --border-color: #{$ui-elements-light-border};
+      --border-hover-color: #{$ui-elements-light-border-hover};
+    }
+
+    &.text {
+      --text-color: #{$white};
+      --text-hover-color: #{$white-darker};
+    }
+  }
+
+  &.dark {
+    &.contained {
+      --text-color: #{$white};
+      --text-hover-color: #{$white-darker};
+      --background-color: #{$black};
+      --background-hover-color: #{$black-light};
+      --border-color: #{$ui-elements-dark-border};
+      --border-hover-color: #{$ui-elements-dark-border-hover};
+    }
+
+    &.text {
+      --text-color: #{$gray-dark};
+      --text-hover-color: #{$gray};
+    }
+  }
+
+  &.danger {
+    &.contained {
+      --text-color: #{$white};
+      --text-hover-color: #{$white};
+      --background-color: #{$danger};
+      --background-hover-color: #{$danger-dark};
+      --border-color: #{$danger};
+      --border-hover-color: #{$ui-elements-danger-border-hover};
+    }
+
+    &.text {
+      --text-color: #{$danger};
+      --text-hover-color: #{$danger-dark};
+    }
+  }
+
+  /// SIZE ///
+
+  &.large {
+    --height: #{$ui-elements-lg-height};
+    --font-size: #{$fs-lg};
+    --padding: #{sp(2)} #{sp(6)};
+  }
+
+  &.medium {
+    --height: #{$ui-elements-md-height};
+    --font-size: #{$fs-base};
+    --padding: #{sp(2)} #{sp(6)};
+  }
+
+  &.small {
+    --height: #{$ui-elements-sm-height};
+    --font-size: #{$fs-sm};
+    --padding: #{sp(2)} #{sp(4)};
+  }
+
+  /// SETTING OF VARIABLES ///
+
+  color: var(--text-color);
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  height: var(--height);
+  font-size: var(--font-size);
+  padding: var(--padding);
+
+  &:hover {
+    color: var(--text-hover-color);
+    background-color: var(--background-hover-color);
+    border: 1px solid var(--border-hover-color);
+  }
+
+  /// GENERAL ///
+
+  gap: sp(3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  border-radius: $rounded-lg;
+  transition:
+    0.3s border,
+    0.3s background-color,
+    0.3s color;
+
+  /// PSEUDO-SELECTORS ///
 
   &:disabled {
     opacity: 0.35;
     pointer-events: none;
   }
 
-  &.contained {
-    @include ui-border;
-    @include ui-border-hover;
-    @include ui-bg-color;
-    @include ui-bg-color-hover;
-  }
-
-  &.text {
-    &.danger {
-      color: $danger;
-
-      &:hover {
-        color: $danger-dark;
-      }
-    }
-  }
-
-  padding: sp(2) sp(6);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  white-space: nowrap;
+  /// ICON ///
 
   &.start-icon {
     padding-left: sp(4);
-    gap: sp(3);
   }
 
   &.end-icon {
     padding-right: sp(4);
-    gap: sp(3);
   }
 
-  &.small {
-    padding: sp(2) sp(4);
-  }
-
-  svg {
-    width: 20px;
-    height: 20px;
+  &.end-icon,
+  &.start-icon {
+    svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 }

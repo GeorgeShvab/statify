@@ -4,7 +4,7 @@ import "@/ui/tag/styles.scss"
 
 const Tag: FC<TagProps> = ({ children }) => {
   return (
-    <div className="tag light">
+    <div className="tag">
       <span>{children}</span>
     </div>
   )

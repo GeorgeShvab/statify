@@ -1,11 +1,11 @@
 "use client"
 
-import Link from "next/link"
 import { FC } from "react"
-import "@/layout/admin-header/styles.scss"
-import Button from "@/ui/button/Button"
+import Link from "next/link"
 import { usePathname } from "next/navigation"
+import Button from "@/ui/button/Button"
 import routes from "@/constants/routes"
+import "@/layout/admin-header/styles.scss"
 
 const AdminHeader: FC = () => {
   const path = usePathname()
@@ -30,7 +30,7 @@ const AdminHeader: FC = () => {
                 size="small"
                 className="admin-header__nav-item"
                 variant={isIndicators ? "contained" : "text"}
-                color="light"
+                color={isIndicators ? "light" : "dark"}
                 href={routes.admin.indicators}
               >
                 Indicators
@@ -41,7 +41,7 @@ const AdminHeader: FC = () => {
                 size="small"
                 className="admin-header__nav-item"
                 variant={isCountries ? "contained" : "text"}
-                color="light"
+                color={isCountries ? "light" : "dark"}
                 href={routes.admin.countries}
               >
                 Countries
@@ -52,7 +52,7 @@ const AdminHeader: FC = () => {
                 size="small"
                 className="admin-header__nav-item"
                 variant={isValues ? "contained" : "text"}
-                color="light"
+                color={isValues ? "light" : "dark"}
                 href={routes.admin.values}
               >
                 Values

@@ -12,14 +12,14 @@ const TableHeadCell: FC<TableHeadCellProps> = ({
 }) => {
   if (semantic) {
     return (
-      <th className={cn("table__head-cell light", size, className)} {...props}>
+      <th className={cn("table__head-cell", size, className)} {...props}>
         {children}
       </th>
     )
   }
 
   return (
-    <div className={cn("table__head-cell light", size, className)} {...props}>
+    <div className={cn("table__head-cell", size, className)} {...props}>
       {children}
     </div>
   )

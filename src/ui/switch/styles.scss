@@ -13,8 +13,7 @@
 }
 
 .switch__container {
-  @include ui-border;
-
+  border: 1px solid $ui-elements-light-border;
   height: 20px;
   border-radius: $rounded-full;
   width: 34px;
@@ -42,5 +41,7 @@
   top: 50%;
   transform: translateY(-50%);
   left: 3px;
-  transition: 0.3s background-color, 0.3s left;
+  transition:
+    0.3s background-color,
+    0.3s left;
 }

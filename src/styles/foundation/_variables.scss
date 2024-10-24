@@ -2,6 +2,8 @@
 =                   COLORS                    =
 =============================================*/
 
+$transparent: transparent;
+
 $black-light: #262626;
 $black: #0c0c0b;
 $black-dark: #060606;
@@ -34,6 +36,8 @@ $ui-elements-dark-border-hover: $black-dark;
 
 $ui-elements-danger-border: $danger;
 $ui-elements-danger-border-hover: $danger-dark;
+
+$success: #a6d96a;
 
 /*=============================================
 =                BREAKPOINTS                  =

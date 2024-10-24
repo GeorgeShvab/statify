@@ -1,9 +1,8 @@
 @import "@design-system";
 
 .tag {
-  @include ui-border;
   border-radius: $rounded-md;
-
+  border: 1px solid $ui-elements-light-border;
   line-height: 1.2;
   font-size: $fs-xs;
   padding: sp(1) sp(2);

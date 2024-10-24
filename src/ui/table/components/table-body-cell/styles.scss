@@ -1,19 +1,14 @@
 @import "@design-system";
 
 .table__body-cell {
-  @include ui-border;
-
   font-size: $fs-xxs;
   color: $gray;
-
-  border-top: none !important;
-  border-right: none !important;
-  border-left: none !important;
+  border: none;
+  border-bottom: 1px solid $ui-elements-light-border;
   border-radius: 0 !important;
-
   line-height: 1.3;
-
   padding: 0 sp(1);
+  letter-spacing: 0.0025em;
 
   &:last-child {
     padding: 0 sp(4) 0 sp(1);
@@ -22,8 +17,6 @@
   &:first-child {
     padding: 0 sp(1) 0 sp(4);
   }
-
-  letter-spacing: 0.0025em;
 
   &.small {
     font-size: $fs-xxs;
