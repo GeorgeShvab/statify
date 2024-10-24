@@ -1,15 +1,19 @@
 @import "@design-system";
 
 .dropdown__item {
-  @include ui-text-color;
-  @include ui-text-color-hover;
-  @include ui-bg-color;
-  @include ui-bg-color-hover;
-  @include ui-text-scale;
-
+  color: $gray-dark;
+  transition:
+    0.3s background-color,
+    0.3s color;
+  background-color: $white;
   padding: sp(2) sp(4);
   cursor: pointer;
   white-space: nowrap;
+
+  &:hover {
+    color: $gray;
+    background-color: $white-darker;
+  }
 
   &.start-icon,
   &.end-icon {
@@ -21,5 +25,17 @@
       width: 18px;
       height: 18px;
     }
+  }
+
+  &.large {
+    font-size: $fs-lg;
+  }
+
+  &.medium {
+    font-size: $fs-base;
+  }
+
+  &.small {
+    font-size: $fs-sm;
   }
 }

@@ -1,0 +1,32 @@
+@import "@design-system";
+
+.alert {
+  z-index: 50;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: $rounded-lg;
+  padding: sp(2) sp(4);
+
+  &.info {
+    background-color: $blue;
+  }
+
+  &.danger {
+    background-color: $danger;
+  }
+
+  &.success {
+    background-color: $success;
+  }
+
+  &__text {
+    font-size: $fs-sm;
+    color: $white;
+    text-align: center;
+
+    @include breakpoint("md") {
+      font-size: $fs-base;
+    }
+  }
+}

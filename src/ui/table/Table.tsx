@@ -13,7 +13,7 @@ const Table = <T,>({
 
   if (semantic) {
     return (
-      <div className="table__container light">
+      <div className="table__container">
         <table className="table">
           <thead>{renderHeader()}</thead>
           <tbody>{rows}</tbody>
@@ -24,7 +24,7 @@ const Table = <T,>({
   }
 
   return (
-    <div className="table__container light">
+    <div className="table__container">
       <div className="table no-semantic">
         <div className="table__head">{renderHeader()}</div>
         <div className="table__body">{rows}</div>

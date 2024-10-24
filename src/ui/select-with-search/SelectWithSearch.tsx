@@ -87,7 +87,7 @@ const SelectWithSearch: FC<SelectWithSearchProps> = ({
   return (
     <>
       <div
-        className={cn("select", "light", size, className)}
+        className={cn("select", size, className)}
         ref={selectEl}
         onClick={toggle}
         {...props}
@@ -113,7 +113,6 @@ const SelectWithSearch: FC<SelectWithSearchProps> = ({
                 {...containerProps}
                 className={cn(
                   "select__container select-with-search",
-                  "light",
                   containerProps?.className
                 )}
               >

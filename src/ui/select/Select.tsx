@@ -65,7 +65,7 @@ const Select: FC<SelectProps> = ({
   return (
     <>
       <div
-        className={cn("select", "light", size, className)}
+        className={cn("select", size, className)}
         ref={selectEl}
         onClick={toggle}
         {...props}
@@ -92,7 +92,6 @@ const Select: FC<SelectProps> = ({
                 className={cn(
                   "select__container",
                   "select__options",
-                  "light",
                   containerProps?.className
                 )}
               >

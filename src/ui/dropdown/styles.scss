@@ -1,9 +1,9 @@
 @import "@design-system";
 
 .dropdown {
-  @include ui-border;
-  @include ui-bg-color;
-
+  border-radius: $rounded-lg;
+  border: 1px solid $ui-elements-light-border;
+  background-color: $white;
   overflow: hidden;
   padding: sp(2) 0;
   box-shadow: 0 0 3px 0 rgba($color: $black, $alpha: 0.1);

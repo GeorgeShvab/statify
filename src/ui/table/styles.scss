@@ -41,9 +41,8 @@ $table-cell-sizes: (5, 7.5, 10, 12.5, 15, 17.5, 20, 22.5, 25, 27.5, 30, 40, 50);
 }
 
 .table__container {
-  @include ui-border;
-
   border-radius: $rounded-lg;
+  border: 1px solid $ui-elements-light-border;
   overflow: hidden;
   background-color: $white;
 }

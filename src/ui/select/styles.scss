@@ -1,15 +1,15 @@
 @import "@design-system";
 
 .select {
-  @include ui-text-color;
-  @include ui-text-color-hover;
-  @include ui-border;
-  @include ui-border-hover;
-  @include ui-bg-color;
-  @include ui-bg-color-hover;
-  @include ui-text-scale;
-
-  padding: sp(2) sp(4) sp(2) sp(4);
+  background-color: $white;
+  color: $gray-dark;
+  transition:
+    0.3s color,
+    0.3s border,
+    0.3s background-color;
+  border-radius: $rounded-lg;
+  border: 1px solid $ui-elements-light-border;
+  padding: sp(2) sp(4);
   display: flex;
   align-items: center;
   white-space: nowrap;
@@ -18,8 +18,22 @@
   cursor: pointer;
   height: 40px;
 
+  &.large {
+    font-size: $fs-lg;
+  }
+
+  &.medium {
+    font-size: $fs-base;
+  }
+
   &.small {
-    padding: sp(2) sp(4);
+    font-size: $fs-sm;
+  }
+
+  &:hover {
+    color: $gray;
+    border-color: $ui-elements-light-border-hover;
+    background-color: $white-darker;
   }
 }
 
@@ -38,9 +52,9 @@
 }
 
 .select__container {
-  @include ui-border;
-  @include ui-bg-color;
-
+  background-color: $white;
+  border-radius: $rounded-lg;
+  border: 1px solid $ui-elements-light-border;
   padding-top: sp(2);
   box-shadow: 0 0 3px 0 rgba($color: $black, $alpha: 0.1);
   overflow: hidden;
@@ -51,7 +65,6 @@
 
   max-height: $screen-height / 3;
   overflow: auto;
-
   padding: 0 0 sp(2) 0;
 
   &:first-child {

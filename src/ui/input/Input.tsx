@@ -1,19 +1,15 @@
 import { forwardRef, ForwardRefRenderFunction } from "react"
 import { InputProps } from "@/ui/input/Input.types"
+import cn from "@/utils/cn/cn"
+import "@/ui/input/styles.scss"
 
 const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
-  { isError, className = "", ...props },
+  { isError, className, ...props },
   ref
 ) => {
-  return (
-    <input
-      ref={ref}
-      className={`h-10 flex-1 outline-none text-sm text-neutral-600 bg-white px-3.5 border rounded-lg ${className} ${
-        isError && "error"
-      }`}
-      {...props}
-    />
-  )
+  const inputClassName = cn("input", className, isError && "error")
+
+  return <input ref={ref} className={inputClassName} {...props} />
 }
 
 export default forwardRef(Input)

@@ -1,3 +1,5 @@
+"use client"
+
 import { ChangeEvent, forwardRef, ForwardRefRenderFunction } from "react"
 import { TextareaProps } from "@/ui/textarea/types"
 import cn from "@/utils/cn/cn"
@@ -15,12 +17,7 @@ const Textarea: ForwardRefRenderFunction<HTMLTextAreaElement, TextareaProps> = (
   }
 
   return (
-    <div
-      className={cn(
-        "textarea py-2.5 flex-1 outline-none text-sm text-neutral-800 bg-white px-3.5 border rounded-lg",
-        isError && "error"
-      )}
-    >
+    <div className={cn("textarea", isError && "error")}>
       <textarea
         ref={ref}
         className={cn("textarea__input", className)}
