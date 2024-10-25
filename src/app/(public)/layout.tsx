@@ -1,12 +1,12 @@
-import Header from "@/layout/header/Header"
-import Footer from "@/layout/footer/Footer"
 import { PropsWithChildren } from "react"
+import Footer from "@/layout/footer/Footer"
+import Header from "@/layout/header/Header"
 
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      {children}
+      <div className="view-height">{children}</div>
       <Footer />
     </>
   )

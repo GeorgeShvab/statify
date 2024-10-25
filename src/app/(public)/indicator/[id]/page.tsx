@@ -40,18 +40,16 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
   }
 
   return (
-    <div>
-      <div className="min-h-main-dynamic md:min-h-main">
-        <IndicatorDetailsSection indicator={indicator} />
-        {indicator.showChart && (
-          <ChartSection indicator={indicator} data={chartData} />
-        )}
-        <IndicatorTable data={countries} indicator={indicator} />
-        {!!relatedIndicators?.length && (
-          <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
-        )}
-      </div>
-    </div>
+    <>
+      <IndicatorDetailsSection indicator={indicator} />
+      {indicator.showChart && (
+        <ChartSection indicator={indicator} data={chartData} />
+      )}
+      <IndicatorTable data={countries} indicator={indicator} />
+      {!!relatedIndicators?.length && (
+        <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
+      )}
+    </>
   )
 }
 

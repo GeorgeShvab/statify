@@ -37,20 +37,18 @@ async function IndicatorPage({ params }: IndicatorCountryPageProps) {
   }
 
   return (
-    <div>
-      <div className="min-h-main-dynamic md:min-h-main">
-        <IndicatorDetailsSection indicator={indicator} country={country} />
-        {indicator.showChart && (
-          <Suspense fallback={<ChartLoader />}>
-            <ChartSection indicator={indicator} data={[country]} />
-          </Suspense>
-        )}
-        <IndicatorCountryTable data={country.values} indicator={indicator} />
-        {!!relatedIndicators?.length && (
-          <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
-        )}
-      </div>
-    </div>
+    <>
+      <IndicatorDetailsSection indicator={indicator} country={country} />
+      {indicator.showChart && (
+        <Suspense fallback={<ChartLoader />}>
+          <ChartSection indicator={indicator} data={[country]} />
+        </Suspense>
+      )}
+      <IndicatorCountryTable data={country.values} indicator={indicator} />
+      {!!relatedIndicators?.length && (
+        <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
+      )}
+    </>
   )
 }
 

@@ -1,0 +1,22 @@
+@import "@design-system";
+
+.indicator-data-section {
+  margin-bottom: sp(2);
+
+  @include breakpoint("md") {
+    margin-bottom: sp(4);
+  }
+}
+
+.indicator-data-section__container {
+  padding: sp(4);
+  padding-top: sp(5);
+  border-radius: $rounded-lg;
+  background-color: $white;
+  border: 1px solid $ui-elements-light-border;
+  position: relative;
+
+  @include breakpoint("md") {
+    padding: sp(6) sp(7);
+  }
+}

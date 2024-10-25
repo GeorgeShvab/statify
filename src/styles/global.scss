@@ -61,3 +61,19 @@
 .one-line {
   white-space: nowrap;
 }
+
+.public-view-height {
+  min-height: calc(
+    100vh - var(--header-height) - var(--footer-height) - var(
+        --search-bar-height
+      )
+  );
+
+  @include breakpoint("md") {
+    min-height: calc(
+      100vh - var(--header-height) - var(--footer-height) - var(
+          --search-bar-height
+        )
+    );
+  }
+}

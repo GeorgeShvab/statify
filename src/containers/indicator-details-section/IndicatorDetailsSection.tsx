@@ -1,11 +1,8 @@
-import IndicatorOptionsButton from "@/components/indicator-options-button/IndicatorOptionsButton"
-import { Country, Indicator } from "@prisma/client"
 import Link from "next/link"
-
-interface IndicatorDetailsSectionProps {
-  indicator: Indicator
-  country?: Country
-}
+import IndicatorDataSection from "@/containers/indicator-data/components/indicator-data-section/IndicatorDataSection"
+import IndicatorOptionsButton from "@/components/indicator-options-button/IndicatorOptionsButton"
+import "@/containers/indicator-details-section/styles.scss"
+import { IndicatorDetailsSectionProps } from "./types"
 
 const IndicatorDetailsSection = ({
   indicator,
@@ -17,31 +14,29 @@ const IndicatorDetailsSection = ({
 
   const descriptionElement = indicator.description && (
     <p
-      className="text-neutral-600 mt-2 leading-6"
+      className="indicator-page__description"
       dangerouslySetInnerHTML={{ __html: indicator.description }}
     />
   )
 
   const backButton = country && (
-    <p className="mt-4 text-blue text-sm">
+    <p className="indicator-page__back">
       <Link href={`/indicator/${indicator.id}`}>Back to all countries</Link>
     </p>
   )
 
   return (
-    <section className="container mb-2 md:mb-3.5">
-      <div className="px-4 py-4 pt-4.5 md:px-7 md:py-6 rounded-lg bg-white border relative">
-        <IndicatorOptionsButton
-          indicatorId={indicator.id}
-          countryId={country?.id}
-        />
-        <h1 className="text-2xl font-bold mb-4 md:mb-5 pr-10">{title}</h1>
-        <p className="text-neutral-400 text-sm">Source: {indicator.source}</p>
-        <p className="text-neutral-400 text-sm mb-2">Unit: {indicator.unit}</p>
-        {descriptionElement}
-        {backButton}
-      </div>
-    </section>
+    <IndicatorDataSection>
+      <IndicatorOptionsButton
+        indicatorId={indicator.id}
+        countryId={country?.id}
+      />
+      <h1 className="indicator-page__title">{title}</h1>
+      <p className="indicator-page__source">Source: {indicator.source}</p>
+      <p className="indicator-page__unit">Unit: {indicator.unit}</p>
+      {descriptionElement}
+      {backButton}
+    </IndicatorDataSection>
   )
 }
 

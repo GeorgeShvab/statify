@@ -2,18 +2,15 @@ import { ReactNode, Suspense } from "react"
 import Loading from "@/app/(public)/indicator/[id]/Loading"
 import Toolbar from "@/components/toolbar/Toolbar"
 import ToolbarLoader from "@/components/toolbar/ToolbarLoader"
+import "./styles.scss"
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  const fallback = (
-    <div className="mb-3 md:mb-5">
-      <Loading />
-    </div>
-  )
+  const fallback = <Loading />
 
   return (
-    <main className="mb-5 md:mb-7">
+    <main className="indicator-data">
       <div className="container">
-        <div className="py-3 md:py-5">
+        <div className="indicator-data__container">
           <Suspense fallback={<ToolbarLoader />}>
             <Toolbar />
           </Suspense>

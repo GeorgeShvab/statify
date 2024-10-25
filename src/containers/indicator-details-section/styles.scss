@@ -1,0 +1,38 @@
+@import "@design-system";
+
+.indicator-page__description {
+  color: $gray;
+  margin-top: sp(2);
+  line-height: 1.5;
+}
+
+.indicator-page__title {
+  font-weight: 600;
+  margin-bottom: sp(4);
+  padding-right: sp(10);
+  font-size: 24px;
+  line-height: 1;
+
+  @include breakpoint("md") {
+    margin-bottom: sp(5);
+  }
+}
+
+.indicator-page__back {
+  margin-top: sp(4);
+  color: $blue;
+  font-size: $fs-sm;
+}
+
+.indicator-page__source {
+  color: $gray-light;
+  font-size: $fs-sm;
+  line-height: 1.5;
+}
+
+.indicator-page__unit {
+  color: $gray-light;
+  font-size: $fs-sm;
+  margin-bottom: sp(2);
+  line-height: 1.5;
+}
