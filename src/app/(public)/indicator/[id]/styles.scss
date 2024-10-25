@@ -1,0 +1,29 @@
+@import "@design-system";
+
+.indicator-data {
+  margin-bottom: sp(5);
+
+  @include breakpoint("md") {
+    margin-bottom: sp(7);
+  }
+}
+
+.indicator-data__container {
+  padding: sp(3) 0;
+
+  @include breakpoint("md") {
+    padding: sp(5) 0;
+  }
+}
+
+.indicator-data__loader {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: sp(2);
+  margin-bottom: sp(3);
+
+  @include breakpoint("md") {
+    gap: sp(4);
+    margin-bottom: sp(5);
+  }
+}
