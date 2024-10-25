@@ -1,0 +1,85 @@
+@import "@design-system";
+
+.searchbar__button {
+  &.mobile {
+    @include breakpoint("md") {
+      display: none;
+    }
+  }
+
+  &.desktop {
+    display: none;
+
+    @include breakpoint("md") {
+      display: flex;
+    }
+  }
+}
+
+.searchbar__input {
+  height: $ui-elements-md-height;
+  outline: none;
+  background-color: transparent;
+  font-size: $fs-sm;
+  color: $gray-dark;
+  flex-grow: 3;
+}
+
+.searchbar__search-icon {
+  color: $gray-lighter;
+  height: $ui-elements-md-height;
+  width: $ui-elements-md-height;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  svg {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.searchbar {
+  display: flex;
+  gap: sp(2);
+  align-items: center;
+}
+
+.searchbar__container {
+  position: relative;
+  flex-grow: 1;
+  z-index: 20;
+}
+
+.searchbar__clear-button {
+  color: $gray-lighter;
+
+  &:hover {
+    color: $gray;
+  }
+}
+
+.searchbar__input-container {
+  border: 1px solid $ui-elements-light-border;
+  border-radius: $rounded-lg;
+  display: flex;
+  background-color: $white;
+  overflow: hidden;
+}
+
+.show-autocomplete {
+  .searchbar__input-container {
+    border-radius: $rounded-lg $rounded-lg 0 0;
+  }
+}
+
+.searchbar__autocomplete {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  top: calc(100% - 1px);
+  border-radius: 0 0 $rounded-lg $rounded-lg;
+  background-color: $white;
+  border: 1px solid $ui-elements-light-border;
+  overflow: hidden;
+}

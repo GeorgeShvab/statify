@@ -1,0 +1,22 @@
+@import "@design-system";
+
+.searchbar__autocomplete-item {
+  background-color: $white;
+  border-bottom: 1px solid $ui-elements-light-border;
+  transition: 0.3s background-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: $white-dark;
+  }
+}
+
+.searchbar__autocomplete-link {
+  display: block;
+  padding: sp(2) sp(4);
+  width: 100%;
+  font-size: $fs-sm;
+}

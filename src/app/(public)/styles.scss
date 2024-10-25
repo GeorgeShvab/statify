@@ -1,0 +1,63 @@
+@import "@design-system";
+
+.landing {
+  background-color: $white;
+
+  .searchbar__input-container {
+    background-color: $white-darker;
+  }
+}
+
+.landing__container {
+  @include view-height;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 sp(2);
+
+  @include breakpoint("md") {
+    padding: 0;
+  }
+}
+
+.landing__title {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 600;
+  margin-bottom: sp(20);
+  line-height: 1.4;
+
+  @include breakpoint("md") {
+    font-size: 60px;
+    margin-bottom: sp(13);
+    line-height: 1.5;
+  }
+}
+
+.landing__subtitle {
+  text-align: center;
+  color: $gray-lighter;
+  max-width: 600px;
+  font-size: 13px;
+  line-height: 1.7;
+
+  @include breakpoint("md") {
+    font-size: $fs-base;
+    line-height: 1.5;
+  }
+}
+
+.landing__subtitle-container {
+  @include breakpoint("md") {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.landing__searchbar-container {
+  margin-bottom: sp(8);
+  max-width: 700px;
+  width: 100%;
+}

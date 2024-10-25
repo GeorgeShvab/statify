@@ -5,7 +5,7 @@ import BookmarkService from "@/services/bookmark-service/BookmarkService"
 import BookmarkIcon from "@/ui/icons/BookmarkIcon"
 import IndicatorCard from "@/components/indicator-card/IndicatorCard"
 import Pagination from "@/components/pagination/Pagination"
-import AdvancedSearchBar from "@/components/search-bar/AdvancedSearchBar"
+import AdvancedSearchBar from "@/components/toolbar/Toolbar"
 import validatePositiveNumber from "@/utils/validate-positive-number/validatePositiveNumber"
 
 export { default as metadata } from "@/app/(public)/bookmarks/metadata"
