@@ -1,14 +1,14 @@
 import { ReactNode, Suspense } from "react"
 import Loading from "@/app/(public)/search/Loading"
-import AdvancedSearchBar from "@/components/search-bar/AdvancedSearchBar"
-import AdvancedSearchBarLoader from "@/components/search-bar/AdvancedSearchBarLoader"
+import AdvancedSearchBar from "@/components/toolbar/Toolbar"
+import Toolbar from "@/components/toolbar/ToolbarLoader"
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <main>
       <div className="container">
         <div className="py-3 md:py-5">
-          <Suspense fallback={<AdvancedSearchBarLoader />}>
+          <Suspense fallback={<Toolbar />}>
             <AdvancedSearchBar />
           </Suspense>
         </div>

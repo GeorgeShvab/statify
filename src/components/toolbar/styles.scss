@@ -1,0 +1,30 @@
+@import "@design-system";
+
+.toolbar {
+  display: flex;
+  gap: sp(2);
+  align-items: center;
+  width: 100%;
+
+  & > *:nth-child(1) {
+    flex-grow: 3;
+  }
+}
+
+.toolbar__bookmarks-button {
+  flex: 0 0 auto;
+
+  &.desktop {
+    display: none;
+
+    @include breakpoint("md") {
+      display: flex;
+    }
+  }
+
+  &.mobile {
+    @include breakpoint("md") {
+      display: none;
+    }
+  }
+}
