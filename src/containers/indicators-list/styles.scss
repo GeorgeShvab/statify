@@ -1,0 +1,15 @@
+@import "@design-system";
+
+.indicators-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: sp(2);
+
+  @include breakpoint("sm") {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include breakpoint("md") {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}

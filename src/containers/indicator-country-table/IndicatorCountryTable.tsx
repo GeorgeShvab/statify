@@ -1,7 +1,7 @@
 "use client"
 
 import { FC } from "react"
-import useTableData from "@/app/(public)/indicator/[id]/[country]/useTableData"
+import useTableData from "@/app/(public)/(with-toolbar)/indicator/[id]/[country]/useTableData"
 import TableComponent from "@/ui/table/Table"
 import TableHeadCellWithSorting from "@/ui/table/components/table-head-sorting-cell/TableHeadSortingCell"
 import TableRow from "@/ui/table/components/table-row/TableRow"

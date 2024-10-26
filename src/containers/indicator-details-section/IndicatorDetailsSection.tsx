@@ -1,8 +1,8 @@
 import Link from "next/link"
 import IndicatorDataSection from "@/containers/indicator-data/components/indicator-data-section/IndicatorDataSection"
+import { IndicatorDetailsSectionProps } from "@/containers/indicator-details-section/types"
 import IndicatorOptionsButton from "@/components/indicator-options-button/IndicatorOptionsButton"
 import "@/containers/indicator-details-section/styles.scss"
-import { IndicatorDetailsSectionProps } from "./types"
 
 const IndicatorDetailsSection = ({
   indicator,

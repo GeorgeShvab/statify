@@ -1,15 +1,10 @@
-import truncateString from "@/utils/truncate/truncate"
-import { Indicator } from "@prisma/client"
-import Link from "next/link"
 import { FC } from "react"
+import Link from "next/link"
+import { IndicatorCardProps } from "@/components/indicator-card/types"
+import truncateString from "@/utils/truncate/truncate"
+import "@/components/indicator-card/styles.scss"
 
-interface Props
-  extends Pick<Indicator, "label" | "id" | "description" | "source"> {
-  countryId?: string
-  countryName?: string
-}
-
-const IndicatorCard: FC<Props> = ({
+const IndicatorCard: FC<IndicatorCardProps> = ({
   label,
   id,
   description,
@@ -17,22 +12,17 @@ const IndicatorCard: FC<Props> = ({
   countryId,
   countryName,
 }) => {
+  const link = `/indicator/${id}${countryId ? "/" + countryId : ""}`
+  const title = (countryId && countryName ? countryName + " - " : "") + label
+
   return (
-    <Link
-      href={`/indicator/${id}${countryId ? "/" + countryId : ""}`}
-      className="px-5 py-4 rounded-lg border bg-white flex flex-col justify-between gap-5 hover:shadow transition-all"
-    >
+    <Link href={link} className="indicator-card">
       <div>
-        <h2 className="font-bold text-lg">
-          {countryId && countryName ? countryName + " - " : ""}
-          {label}
-        </h2>
-        {source && (
-          <p className="mt-1 text-sm text-neutral-400">Source: {source}</p>
-        )}
+        <h2 className="indicator-card__title">{title}</h2>
+        {source && <p className="indicator-card__source">Source: {source}</p>}
       </div>
       {description && description.trim() && (
-        <p className="text-neutral-500 text-sm">
+        <p className="indicator-card__description">
           {truncateString(description, 30)}
         </p>
       )}

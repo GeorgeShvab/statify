@@ -1,0 +1,49 @@
+@import "@design-system";
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: sp(3) 0;
+
+  @include breakpoint("md") {
+    padding: sp(5) 0;
+  }
+}
+
+.pagination__container {
+  display: flex;
+  gap: sp(2);
+}
+
+.pagination__item {
+  transition: 0.3s box-shadow;
+  color: $gray;
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  &.active {
+    pointer-events: none;
+    color: $black;
+    font-weight: 600;
+  }
+
+  &:hover {
+    background-color: $white;
+    box-shadow: 0 0 4px rgba($color: #000000, $alpha: 0.1);
+  }
+
+  &-edge {
+    display: none;
+
+    @include breakpoint("md") {
+      display: flex;
+    }
+  }
+
+  &-rest {
+    pointer-events: none;
+  }
+}

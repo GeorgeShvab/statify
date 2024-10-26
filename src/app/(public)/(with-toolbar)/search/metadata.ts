@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import { SearchPageProps } from "@/app/(public)/search/types"
+import { SearchPageProps } from "@/app/(public)/(with-toolbar)/search/types"
 import { SERVER_ADDRESS } from "@/constants/general"
 
 const generateMetadata = async ({

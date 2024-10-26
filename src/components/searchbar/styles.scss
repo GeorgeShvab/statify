@@ -51,11 +51,13 @@
   z-index: 20;
 }
 
-.searchbar__clear-button {
-  color: $gray-lighter;
+.searchbar {
+  .searchbar__clear-button {
+    color: $gray-lighter;
 
-  &:hover {
-    color: $gray;
+    &:hover {
+      color: $gray;
+    }
   }
 }
 

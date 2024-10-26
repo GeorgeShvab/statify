@@ -1,92 +1,94 @@
 "use client"
 
+import { FC } from "react"
+import { useSearchParams } from "next/navigation"
+import IconButton from "@/ui/icon-button/IconButton"
 import LeftChevronIcon from "@/ui/icons/LeftChevronIcon"
 import RightChevronIcon from "@/ui/icons/RightChevronIcon"
-import Link from "next/link"
-import { useSearchParams } from "next/navigation"
-import { FC } from "react"
+import { PaginationProps } from "@/components/pagination/types"
+import getPagesArray from "@/components/pagination/utils/get-pages-array/getPagesArray"
+import cn from "@/utils/cn/cn"
+import "@/components/pagination/styles.scss"
 
-interface Props {
-  page: number
-  pages: number
-}
-
-const Pagination: FC<Props> = ({ page, pages }) => {
+const Pagination: FC<PaginationProps> = ({ page, pages }) => {
   const searchParams = useSearchParams()
 
   const displayedPages = getPagesArray(page, pages)
 
+  const showStartNavigation = displayedPages[0] != 1
+  const showEndNavigation = displayedPages[displayedPages.length - 1] != pages
+
+  const startNavigation = showStartNavigation && (
+    <>
+      <IconButton
+        className="pagination__item pagination__item-edge"
+        color="light"
+        href={makeUrl(searchParams.toString(), 1)}
+      >
+        1
+      </IconButton>
+      <IconButton
+        className="pagination__item pagination__item-rest"
+        color="light"
+      >
+        ...
+      </IconButton>
+    </>
+  )
+
+  const endNavigation = showEndNavigation && (
+    <>
+      <IconButton
+        className="pagination__item pagination__item-rest"
+        color="light"
+      >
+        ...
+      </IconButton>
+      <IconButton
+        className="pagination__item pagination__item-edge"
+        color="light"
+        href={makeUrl(searchParams.toString(), pages)}
+      >
+        {pages}
+      </IconButton>
+    </>
+  )
+
   return (
-    <div className="flex justify-center py-3 md:py-5">
-      <div className="flex gap-1.5">
-        <Link
+    <div className="pagination">
+      <div className="pagination__container">
+        <IconButton
+          className={cn("pagination__item", page === 1 && "disabled")}
+          color="light"
           href={makeUrl(searchParams.toString(), page - 1)}
-          className={`h-10 w-10 rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500 ${
-            page === 1 ? "pointer-events-none opacity-50" : ""
-          }`}
         >
-          <LeftChevronIcon className="w-5 h-5" />
-        </Link>
-        {page - 2 > 1 && (
-          <>
-            <Link
-              href={makeUrl(searchParams.toString(), 1)}
-              className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500"
-            >
-              1
-            </Link>
-            {page - 3 > 1 && (
-              <span className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500">
-                ...
-              </span>
-            )}
-          </>
-        )}
+          <LeftChevronIcon />
+        </IconButton>
+
+        {startNavigation}
+
         {displayedPages.map((item) => (
-          <Link
+          <IconButton
             key={item}
             href={makeUrl(searchParams.toString(), item)}
-            className={`h-10 w-10 rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all ${
-              item === page
-                ? "font-bold text-black pointer-events-none"
-                : "text-neutral-500"
-            }`}
+            className={cn("pagination__item", item === page && "active")}
+            color="light"
           >
             {item}
-          </Link>
+          </IconButton>
         ))}
-        {pages - 2 > page && (
-          <>
-            {pages - 3 > page && (
-              <span className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500">
-                ...
-              </span>
-            )}
-            <Link
-              href={makeUrl(searchParams.toString(), pages)}
-              className="h-10 w-10 hidden md:flex rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500"
-            >
-              {pages}
-            </Link>
-          </>
-        )}
-        <Link
+
+        {endNavigation}
+
+        <IconButton
+          className={cn("pagination__item", page === pages && "disabled")}
+          color="light"
           href={makeUrl(searchParams.toString(), page + 1)}
-          className={`h-10 w-10 rounded-lg bg-white border flex items-center justify-center hover:shadow transition-all text-neutral-500 ${
-            page === pages ? "pointer-events-none opacity-50" : ""
-          }`}
         >
-          <RightChevronIcon className="w-5 h-5" />
-        </Link>
+          <RightChevronIcon />
+        </IconButton>
       </div>
     </div>
-  )
-}
-
-function getPagesArray(page: number, pages: number) {
-  return Array.from({ length: pages }, (_, index) => index + 1).slice(
-    Math.max(0, page - (3 + Math.max(0, 2 - (pages - page)))),
-    Math.min(pages, page + (2 + Math.max(0, 3 - page)))
   )
 }
 

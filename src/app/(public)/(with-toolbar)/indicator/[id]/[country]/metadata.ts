@@ -1,6 +1,6 @@
 import axios from "axios"
 import { Metadata } from "next/types"
-import { IndicatorCountryPageProps } from "@/app/(public)/indicator/[id]/[country]/types"
+import { IndicatorCountryPageProps } from "@/app/(public)/(with-toolbar)/indicator/[id]/[country]/types"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import { SERVER_ADDRESS } from "@/constants/general"

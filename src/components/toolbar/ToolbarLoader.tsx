@@ -4,7 +4,7 @@ import BookmarkIcon from "@/ui/icons/BookmarkIcon"
 import SearchBarLoader from "@/components/searchbar/SearchBarLoader"
 import "@/components/toolbar/styles.scss"
 
-const Toolbar = () => {
+const ToolbarLoader = () => {
   return (
     <div className="toolbar">
       <SearchBarLoader />
@@ -22,4 +22,4 @@ const Toolbar = () => {
   )
 }
 
-export default Toolbar
+export default ToolbarLoader
