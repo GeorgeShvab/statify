@@ -1,0 +1,26 @@
+@import "@design-system";
+
+.indicators-list-view {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: calc(
+    100svh - var(--header-height) - var(--footer-height) - var(
+        --search-bar-height
+      )
+  );
+}
+
+.indicators-list-view__content {
+  flex: 3 0 auto;
+}
+
+.indicators-list-view__title {
+  font-weight: 600;
+  padding: 0 sp(2);
+  margin-bottom: sp(2);
+
+  @include breakpoint("md") {
+    margin-bottom: sp(3);
+  }
+}

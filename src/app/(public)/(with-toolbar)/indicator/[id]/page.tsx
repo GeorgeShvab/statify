@@ -1,6 +1,6 @@
 import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
-import { IndicatorPageProps } from "@/app/(public)/indicator/[id]/types"
+import { IndicatorPageProps } from "@/app/(public)/(with-toolbar)/indicator/[id]/types"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
@@ -8,8 +8,8 @@ import IndicatorDetailsSection from "@/containers/indicator-details-section/Indi
 import IndicatorTable from "@/containers/indicator-table/IndicatorTable"
 import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
 
-export { default as generateMetadata } from "@/app/(public)/indicator/[id]/metadata"
-export { default as generateStaticParams } from "@/app/(public)/indicator/[id]/generate-static-params"
+export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/indicator/[id]/metadata"
+export { default as generateStaticParams } from "@/app/(public)/(with-toolbar)/indicator/[id]/generate-static-params"
 
 const ChartSection = dynamic(
   () => import("@/containers/chart-section/ChartSection"),

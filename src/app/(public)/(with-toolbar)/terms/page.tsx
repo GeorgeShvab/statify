@@ -1,6 +1,6 @@
 import { FC } from "react"
 
-export { default as metadata } from "@/app/(public)/terms/metadata"
+export { default as metadata } from "@/app/(public)/(with-toolbar)/terms/metadata"
 
 const Page: FC = () => {
   return (

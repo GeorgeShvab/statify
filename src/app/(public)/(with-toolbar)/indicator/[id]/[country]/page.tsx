@@ -1,7 +1,7 @@
 import { Suspense } from "react"
 import dynamicImport from "next/dynamic"
 import { notFound } from "next/navigation"
-import { IndicatorCountryPageProps } from "@/app/(public)/indicator/[id]/[country]/types"
+import { IndicatorCountryPageProps } from "@/app/(public)/(with-toolbar)/indicator/[id]/[country]/types"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
@@ -9,7 +9,7 @@ import IndicatorCountryTable from "@/containers/indicator-country-table/Indicato
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
 
-export { default as generateMetadata } from "@/app/(public)/indicator/[id]/[country]/metadata"
+export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/indicator/[id]/[country]/metadata"
 
 const ChartSection = dynamicImport(
   () => import("@/containers/chart-section/ChartSection"),

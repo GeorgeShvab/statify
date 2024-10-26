@@ -6,7 +6,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Header />
-      <div className="view-height">{children}</div>
+      <main className="view-height">{children}</main>
       <Footer />
     </>
   )
