@@ -20,10 +20,10 @@ const SearchPage: FC<SearchPageProps> = async ({ searchParams }) => {
 
   return (
     <IndicatorsListView
-      data={result!.data}
+      data={result?.data}
       text={result ? `Search results for "${query}"` : <>&nbsp;</>}
-      pages={result!.pages}
-      page={result!.page}
+      pages={result?.pages}
+      page={result?.page}
       fallback={
         <InfoView
           icon={<SearchIcon />}

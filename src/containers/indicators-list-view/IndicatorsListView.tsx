@@ -11,7 +11,7 @@ const IndicatorsListView: FC<IndicatorsListViewProps> = ({
   pages,
   fallback,
 }) => {
-  const content = data.length ? <IndicatorsList data={data} /> : fallback
+  const content = data?.length ? <IndicatorsList data={data} /> : fallback
 
   return (
     <div className="indicators-list-view">
@@ -21,7 +21,7 @@ const IndicatorsListView: FC<IndicatorsListViewProps> = ({
           {content}
         </div>
       </div>
-      {Boolean(data.length) && (
+      {Boolean(data?.length) && page && pages && (
         <div className="container">
           <Pagination pages={pages} page={page} />
         </div>
