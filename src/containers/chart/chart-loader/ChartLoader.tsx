@@ -1,8 +1,8 @@
-import ContentLoader from "react-content-loader";
+import ContentLoader from "react-content-loader"
 
 const ChartLoader = () => {
   return (
-    <div className="container mb-2 md:mb-3.5">
+    <div className="container">
       <ContentLoader
         speed={5}
         width="100%"
@@ -15,7 +15,7 @@ const ChartLoader = () => {
         <rect x="0" y="0" rx="8" ry="8" width="100%" height="613" />
       </ContentLoader>
     </div>
-  );
-};
+  )
+}
 
-export default ChartLoader;
+export default ChartLoader

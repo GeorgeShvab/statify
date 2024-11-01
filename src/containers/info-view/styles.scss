@@ -4,7 +4,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .info-view__icon-container {
@@ -13,7 +13,7 @@
   margin-bottom: sp(8);
   color: $gray-light;
 
-  & > {
+  & svg {
     height: 80px;
     width: 80px;
   }

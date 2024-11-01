@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { IndicatorCountryPageProps } from "@/app/(public)/(with-toolbar)/indicator/[id]/[country]/types"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
+import PageContentWrapper from "@/layout/page-content-wrapper/PageContentWrapper"
 import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
 import IndicatorCountryTable from "@/containers/indicator-country-table/IndicatorCountryTable"
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
@@ -37,7 +38,7 @@ async function IndicatorPage({ params }: IndicatorCountryPageProps) {
   }
 
   return (
-    <>
+    <PageContentWrapper>
       <IndicatorDetailsSection indicator={indicator} country={country} />
       {indicator.showChart && (
         <Suspense fallback={<ChartLoader />}>
@@ -48,7 +49,7 @@ async function IndicatorPage({ params }: IndicatorCountryPageProps) {
       {!!relatedIndicators?.length && (
         <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
       )}
-    </>
+    </PageContentWrapper>
   )
 }
 

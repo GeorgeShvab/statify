@@ -3,6 +3,7 @@ import { notFound } from "next/navigation"
 import { IndicatorPageProps } from "@/app/(public)/(with-toolbar)/indicator/[id]/types"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
+import PageContentWrapper from "@/layout/page-content-wrapper/PageContentWrapper"
 import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import IndicatorTable from "@/containers/indicator-table/IndicatorTable"
@@ -40,7 +41,7 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
   }
 
   return (
-    <>
+    <PageContentWrapper>
       <IndicatorDetailsSection indicator={indicator} />
       {indicator.showChart && (
         <ChartSection indicator={indicator} data={chartData} />
@@ -49,7 +50,7 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
       {!!relatedIndicators?.length && (
         <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
       )}
-    </>
+    </PageContentWrapper>
   )
 }
 

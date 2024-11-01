@@ -1,6 +1,6 @@
-import IndicatorCard from "@/components/indicator-card/IndicatorCard"
-import { Indicator } from "@prisma/client"
 import { FC } from "react"
+import { Indicator } from "@prisma/client"
+import IndicatorCard from "@/components/indicator-card/IndicatorCard"
 
 interface RelatedIndicatorsSectionProps {
   relatedIndicators: Indicator[]
@@ -10,7 +10,7 @@ const RelatedIndicatorsSection: FC<RelatedIndicatorsSectionProps> = ({
   relatedIndicators,
 }) => {
   return (
-    <section className="container mt-4 md:mt-5">
+    <section className="container">
       <div>
         <h2 className="mb-2 md:mb-3 px-2 font-semibold">Related indicators</h2>
       </div>

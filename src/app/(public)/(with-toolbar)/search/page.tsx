@@ -8,17 +8,20 @@ import InfoView from "@/containers/info-view/InfoView"
 export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/search/metadata"
 
 const SearchPage: FC<SearchPageProps> = async ({ searchParams }) => {
-  const result = searchParams.query
+  const page = searchParams.page
+  const query = searchParams.query
+
+  const result = query
     ? await IndicatorService.search({
-        query: searchParams.query,
-        page: searchParams.page ? Number(searchParams.page) : 1,
+        query: query,
+        page: page ? Number(page) : 1,
       })
     : null
 
   return (
     <IndicatorsListView
       data={result!.data}
-      text={result ? `Search results for "${searchParams.query}"` : <>&nbsp;</>}
+      text={result ? `Search results for "${query}"` : <>&nbsp;</>}
       pages={result!.pages}
       page={result!.page}
       fallback={

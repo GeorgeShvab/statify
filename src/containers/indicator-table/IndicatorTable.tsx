@@ -54,7 +54,7 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
   )
 
   return (
-    <section className="container mb-2 md:mb-3.5">
+    <section className="container">
       <TableComponent
         data={data.data}
         renderRow={renderRow}
