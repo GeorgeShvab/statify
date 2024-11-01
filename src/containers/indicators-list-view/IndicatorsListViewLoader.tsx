@@ -11,9 +11,11 @@ const IndicatorsListViewLoader: FC<IndicatorsListViewLoaderProps> = ({
       <div className="indicators-list-view__content">
         <div className="container">
           <h2 className="indicators-list-view__title">{text}</h2>
-          {new Array(9).fill(null).map((item, index) => (
-            <IndicatorCardLoader key={index} />
-          ))}
+          <div className="indicators-list">
+            {new Array(9).fill(null).map((item, index) => (
+              <IndicatorCardLoader key={index} />
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -1,0 +1,8 @@
+@import "@design-system";
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: sp(5);
+  padding: sp(5) 0;
+}

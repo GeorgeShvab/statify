@@ -1,13 +1,5 @@
 @import "@design-system";
 
-.indicator-data-section {
-  margin-bottom: sp(2);
-
-  @include breakpoint("md") {
-    margin-bottom: sp(4);
-  }
-}
-
 .indicator-data-section__container {
   padding: sp(4);
   padding-top: sp(5);

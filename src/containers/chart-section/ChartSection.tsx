@@ -12,7 +12,7 @@ interface ChartSectionProps {
 
 const ChartSection: FC<ChartSectionProps> = ({ data, indicator }) => {
   return (
-    <section>
+    <section className="page-content-wrapper">
       <Chart indicator={indicator} data={data} />
     </section>
   )

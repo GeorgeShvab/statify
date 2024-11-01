@@ -1,0 +1,7 @@
+@import "@design-system";
+
+.page-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: sp(4);
+}
