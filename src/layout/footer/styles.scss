@@ -1,0 +1,48 @@
+@import "@design-system";
+
+.footer {
+  background-color: $white;
+  padding: sp(4);
+  border-top: 1px solid $ui-elements-light-border;
+}
+
+.footer__container {
+  @include breakpoint("md") {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row-reverse;
+    gap: sp(4);
+  }
+}
+
+.footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: sp(4);
+  column-gap: sp(10);
+  justify-content: center;
+  margin-bottom: sp(6);
+
+  @include breakpoint("md") {
+    margin-bottom: 0;
+  }
+}
+
+.footer__copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $fs-sm;
+  color: $gray;
+}
+
+.footer__link {
+  font-size: $fs-sm;
+  color: $gray;
+  transition: 0.3s color;
+
+  &:hover {
+    color: $black-light;
+  }
+}
