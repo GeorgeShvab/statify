@@ -1,0 +1,31 @@
+@import "@design-system";
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: $white;
+  border-bottom: 1px solid $ui-elements-light-border;
+  padding: sp(3) sp(20);
+  position: relative;
+  height: var(--header-height);
+
+  @include breakpoint("md") {
+    padding: sp(5) sp(20);
+  }
+}
+
+.header__logo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 700;
+  font-size: 30px;
+  font-family:
+    ui-serif,
+    Georgia,
+    Cambria,
+    Times New Roman,
+    Times,
+    serif;
+  line-height: 1.2;
+}
