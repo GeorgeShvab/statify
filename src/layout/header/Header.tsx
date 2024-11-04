@@ -1,14 +1,13 @@
-import Link from 'next/link'
-import { FC } from 'react'
+import { FC } from "react"
+import Link from "next/link"
+import "@/layout/header/styles.scss"
 
 const Header: FC = () => {
   return (
-    <header>
-      <div className='flex justify-center bg-white border-b p-3.5 md:p-5 relative'>
-        <Link href='/' className='font-bold text-3xl font-serif'>
-          Statify
-        </Link>
-      </div>
+    <header className="header">
+      <Link href="/" className="header__logo">
+        Statify
+      </Link>
     </header>
   )
 }
