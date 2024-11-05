@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { StatusPageProps } from "@/containers/status-page/types"
-import "./styles.scss"
+import "@/containers/status-page/styles.scss"
 
 const StatusPage: FC<StatusPageProps> = ({
   linkText,

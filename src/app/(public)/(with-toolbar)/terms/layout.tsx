@@ -1,11 +1,8 @@
 import { ReactNode, Suspense } from "react"
+import Loading from "@/app/(public)/(with-toolbar)/terms/Loading"
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
-  return (
-    <Suspense fallback={<div className="mb-3 md:mb-5"></div>}>
-      {children}
-    </Suspense>
-  )
+  return <Suspense fallback={<Loading />}>{children}</Suspense>
 }
 
 export const dynamicParams = true

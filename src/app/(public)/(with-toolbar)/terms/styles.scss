@@ -1,0 +1,45 @@
+@import "@design-system";
+
+.terms-page {
+  border-radius: $rounded-lg;
+  background-color: $white;
+  border: 1px solid $ui-elements-light-border;
+  padding: sp(4) sp(3);
+
+  @include breakpoint("md") {
+    padding: sp(7);
+  }
+}
+
+.terms-page__title {
+  font-size: $fs-2xl;
+  font-weight: 700;
+  margin-bottom: sp(4);
+  padding-right: sp(10);
+
+  @include breakpoint("md") {
+    margin-bottom: sp(5);
+  }
+}
+
+.terms-page__section-title {
+  font-size: $fs-lg;
+  font-weight: 700;
+  margin-top: sp(6);
+  margin-bottom: sp(3);
+
+  @include breakpoint("md") {
+    margin-top: sp(8);
+    margin-bottom: sp(4);
+  }
+}
+
+.terms-page__paragraph {
+  color: $gray;
+  margin-bottom: sp(4);
+  line-height: 1.4;
+
+  @include breakpoint("md") {
+    margin-bottom: sp(5);
+  }
+}
