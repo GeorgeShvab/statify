@@ -6,7 +6,7 @@ import { SERVER_ADDRESS } from "@/constants/general"
 
 const IMAGES_HOSTING_ADDRESS = process.env.NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS
 
-export const generateMetadata = async ({
+const generateMetadata = async ({
   params,
 }: IndicatorPageProps): Promise<Metadata> => {
   const indicator = await IndicatorService.getById(params.id)
