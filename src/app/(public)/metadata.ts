@@ -1,7 +1,7 @@
 import { Metadata } from "next/types"
 import { SERVER_ADDRESS } from "@/constants/general"
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   metadataBase: new URL(SERVER_ADDRESS),
   title: "Statify",
   description:
