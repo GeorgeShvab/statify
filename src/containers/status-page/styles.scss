@@ -1,0 +1,53 @@
+@import "@design-system";
+
+.status-page {
+  background-color: $white;
+}
+
+.status-page__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @include view-height;
+}
+
+.status-page__wrapper {
+  padding: 0 sp(2);
+
+  @include breakpoint("md") {
+    padding: 0;
+  }
+}
+
+.status-page__icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: sp(16);
+  color: $black;
+}
+
+.status-page__title {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: sp(4);
+  font-weight: 700;
+  color: $black;
+  //letter-spacing: 0.05em;
+
+  @include breakpoint("md") {
+    font-size: 36px;
+    margin-bottom: sp(6);
+  }
+}
+
+.status-page__link {
+  color: $gray-lighter;
+  text-align: center;
+  transition: 0.3s color;
+
+  &:hover {
+    color: $gray-dark;
+  }
+}
