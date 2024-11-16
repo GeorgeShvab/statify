@@ -1,8 +1,8 @@
 "use client"
 
-import CopyIcon from "@/ui/icons/CopyIcon"
-import html2canvas from "html2canvas"
 import { FC } from "react"
+import html2canvas from "html2canvas"
+import CopyIcon from "@/ui/icons/CopyIcon"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
 
 const CopyChartButton: FC = () => {

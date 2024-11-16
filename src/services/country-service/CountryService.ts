@@ -76,16 +76,15 @@ const CountryService: CountryServiceInterface = {
     AS values,
       (SELECT JSON_BUILD_OBJECT('value', v.value, 'year', v.year)  
       FROM "Value" v 
-      WHERE "indicatorId" = ${id} 
-      AND "countryId" = c."id" 
-      AND "year" <= ${year} 
-      AND v.value = 
-        (SELECT ABS(MAX(ABS(value))) 
+      WHERE v.id = 
+        (SELECT id 
         FROM "Value" 
         WHERE "indicatorId" = ${id} 
         AND "countryId" = c."id" 
-        AND "year" <= ${year}) 
-      ORDER BY "value" DESC LIMIT 1) 
+        AND "year" <= ${year}
+        ORDER BY ABS(value) DESC
+        LIMIT 1) 
+      ) 
     AS "maxValue"
     FROM "Country" c 
     WHERE c."hidden" IS FALSE 

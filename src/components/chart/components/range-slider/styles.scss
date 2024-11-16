@@ -1,0 +1,10 @@
+@import "@design-system";
+
+.range-slider {
+  height: 32px;
+  padding: 0 sp(2);
+
+  @include breakpoint("md") {
+    height: 30px;
+  }
+}

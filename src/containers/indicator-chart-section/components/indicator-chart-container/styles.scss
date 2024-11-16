@@ -1,0 +1,46 @@
+@import "@design-system";
+
+.indicator-chart-container__manager-button {
+  position: absolute;
+  left: sp(4);
+  top: sp(4);
+  border: none !important;
+
+  @include breakpoint("md") {
+    left: unset;
+    right: sp(19);
+    top: sp(8);
+  }
+}
+
+.indicator-chart-container__copy-button {
+  position: absolute;
+  right: sp(4);
+  top: sp(4);
+  border: none !important;
+
+  @include breakpoint("md") {
+    right: sp(8);
+    top: sp(8);
+  }
+}
+
+.indicator-chart-container__range-slider {
+  padding-bottom: sp(3);
+
+  @include breakpoint("sm") {
+    padding-bottom: sp(4);
+  }
+
+  @include breakpoint("md") {
+    padding-bottom: sp(5);
+  }
+}
+
+.range-slider-fallback {
+  height: 32px;
+
+  @include breakpoint("md") {
+    height: 30px;
+  }
+}

@@ -1,0 +1,43 @@
+@import "@design-system";
+
+.chart-legend {
+  display: flex;
+  gap: sp(3);
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @include breakpoint("md") {
+    gap: sp(6);
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: sp(2);
+
+    @include breakpoint("md") {
+      gap: sp(3);
+    }
+
+    &-color {
+      height: 2px;
+      width: 12px;
+      display: block;
+
+      @include breakpoint("md") {
+        width: 16px;
+      }
+    }
+
+    &-text {
+      border-radius: $rounded-lg;
+      font-size: $fs-xs;
+
+      @include breakpoint("md") {
+        font-size: $fs-sm;
+        color: $gray;
+        white-space: nowrap;
+      }
+    }
+  }
+}

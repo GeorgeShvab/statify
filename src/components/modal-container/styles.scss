@@ -11,15 +11,27 @@
   gap: sp(8);
 
   &.small {
-    width: 380px;
+    width: 90vw;
+
+    @include breakpoint("md") {
+      width: 380px;
+    }
   }
 
   &.medium {
-    width: 460px;
+    width: 90vw;
+
+    @include breakpoint("md") {
+      width: 460px;
+    }
   }
 
   &.large {
-    width: 680px;
+    width: 90vw;
+
+    @include breakpoint("md") {
+      width: 680px;
+    }
   }
 }
 

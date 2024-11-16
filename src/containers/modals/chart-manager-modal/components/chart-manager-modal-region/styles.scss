@@ -1,0 +1,31 @@
+@import "@design-system";
+
+.chart-manager-modal__region {
+  height: 40px;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: $rounded-lg;
+  padding: 0 sp(4);
+  border: 1px solid $ui-elements-light-border;
+  background-color: $transparent;
+
+  &--selected {
+    background-color: $white-darker;
+  }
+
+  &-name {
+    color: $gray;
+    font-size: $fs-sm;
+  }
+
+  &-icon {
+    color: $gray;
+
+    & svg {
+      height: 18px;
+      width: 18px;
+    }
+  }
+}

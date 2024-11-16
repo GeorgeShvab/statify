@@ -1,0 +1,32 @@
+@import "@design-system";
+
+.chart-manager-modal {
+  height: 80vh;
+
+  &__container {
+    gap: sp(5);
+    display: flex;
+    flex-direction: column;
+    height: calc(80vh - 120px);
+  }
+
+  &__lists {
+    @include pretty-scrollbar;
+
+    display: flex;
+    flex-direction: column;
+    gap: sp(5);
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: sp(2);
+    flex: 0 0 auto;
+  }
+}
