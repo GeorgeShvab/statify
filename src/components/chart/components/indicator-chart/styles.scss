@@ -1,0 +1,11 @@
+@import "@design-system";
+
+.indicator-chart {
+  height: 300px;
+  margin-bottom: sp(3);
+
+  @include breakpoint("md") {
+    height: 400px;
+    margin-bottom: sp(4);
+  }
+}

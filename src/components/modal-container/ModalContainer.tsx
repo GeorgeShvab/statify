@@ -10,18 +10,24 @@ const ModalContainer: FC<ModalContainerProps> = ({
   children,
   title,
   size = "medium",
+  className,
+  onClose,
 }) => {
   const { closeModal } = useModal()
 
+  const handleClose = () => {
+    if (onClose) onClose()
+    closeModal()
+  }
+
   return (
-    <div className={cn("modal", size)}>
+    <div className={cn("modal", className, size)}>
       <div className="modal__header">
         <h4 className="modal__header-title">{title}</h4>
         <IconButton
           className="modal__header-close-button"
           variant="text"
-          color="light"
-          onClick={closeModal}
+          onClick={handleClose}
         >
           <CloseIcon />
         </IconButton>

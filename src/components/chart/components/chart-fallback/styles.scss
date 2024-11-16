@@ -1,0 +1,23 @@
+@import "@design-system";
+
+.chart-fallback {
+  margin-bottom: sp(3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px;
+
+  @include breakpoint("md") {
+    margin-bottom: sp(5);
+    height: 480px;
+  }
+
+  &__text {
+    font-size: $fs-sm;
+    color: $gray;
+
+    @include breakpoint("md") {
+      font-size: $fs-base;
+    }
+  }
+}

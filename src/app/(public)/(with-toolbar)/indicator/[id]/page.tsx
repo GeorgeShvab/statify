@@ -1,21 +1,28 @@
-import dynamic from "next/dynamic"
 import { notFound } from "next/navigation"
 import { IndicatorPageProps } from "@/app/(public)/(with-toolbar)/indicator/[id]/types"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import PageContentWrapper from "@/layout/page-content-wrapper/PageContentWrapper"
-import ChartLoader from "@/containers/chart/chart-loader/ChartLoader"
+import IndicatorChartSection from "@/containers/indicator-chart-section/IndicatorChartSection"
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import IndicatorTable from "@/containers/indicator-table/IndicatorTable"
 import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
+import { CountryWithValues } from "@/types/country.types"
 
 export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/indicator/[id]/metadata"
 export { default as generateStaticParams } from "@/app/(public)/(with-toolbar)/indicator/[id]/generate-static-params"
 
-const ChartSection = dynamic(
-  () => import("@/containers/chart-section/ChartSection"),
-  { ssr: false, loading: () => <ChartLoader /> }
-)
+const initialDataId = "WEOWORLD"
+
+const getInitialChartItem = (chartData: CountryWithValues[]) => {
+  const worldData = chartData.find((item) => item.id === initialDataId)
+  if (worldData) return worldData
+
+  const usaData = chartData.find((item) => item.id === initialDataId)
+  if (usaData) return usaData
+
+  return chartData[0]
+}
 
 async function IndicatorPage({ params }: IndicatorPageProps) {
   const indicatorPromise = IndicatorService.getById(params.id)
@@ -40,11 +47,17 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
     notFound()
   }
 
+  const initialChartData = getInitialChartItem(chartData)
+
   return (
     <PageContentWrapper>
       <IndicatorDetailsSection indicator={indicator} />
       {indicator.showChart && (
-        <ChartSection indicator={indicator} data={chartData} />
+        <IndicatorChartSection
+          allData={chartData}
+          indicator={indicator}
+          data={[initialChartData]}
+        />
       )}
       <IndicatorTable data={countries} indicator={indicator} />
       {!!relatedIndicators?.length && (

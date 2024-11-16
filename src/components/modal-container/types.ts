@@ -5,4 +5,6 @@ export interface ModalContainerProps {
   children: ReactNode
   title: string
   size?: Size
+  className?: string
+  onClose?: () => void
 }
