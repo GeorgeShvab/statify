@@ -1,0 +1,14 @@
+{
+  "include": ["cypress/tests/**/*.ts", "cypress/support/**/*.ts"],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "types": ["cypress", "node"],
+    "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "target": "ES5",
+    "paths": {
+      "@cypress/*": ["./cypress/*"]
+    }
+  }
+}

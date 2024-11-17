@@ -1,0 +1,27 @@
+{
+  "name": "statify-e2e",
+  "version": "1.0.0",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --browser chrome"
+  },
+  "author": "Heorhii Shvab",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@badeball/cypress-cucumber-preprocessor": "^21.0.3",
+    "@cypress/webpack-preprocessor": "^6.0.2",
+    "cypress": "^13.15.2",
+    "cypress-commands": "^3.0.0",
+    "cypress-cucumber-preprocessor": "^4.3.1",
+    "cypress-wait-until": "^3.0.2",
+    "ts-loader": "^9.5.1"
+  },
+  "devDependencies": {
+    "@types/cypress-cucumber-preprocessor": "^4.0.5"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": false,
+    "stepDefinitions": "./cypress/tests/**/*.steps.ts"
+  }
+}

@@ -107,7 +107,7 @@ const SearchBar: FC<SearchBarProps> = ({ placeholder }) => {
 
   return (
     <DetectOutsideClick onOutsideClick={handleOutsideClick} isAbsolute={false}>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} data-testid="searchbar">
         <div
           className={cn("searchbar", showAutocomplete && "show-autocomplete")}
           ref={containerEl}
