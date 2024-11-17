@@ -11,7 +11,9 @@ const Home: FC = () => {
       <div className="container">
         <div className="landing__container">
           <div>
-            <h1 className="landing__title">Discover the World through Data</h1>
+            <h1 className="landing__title" data-testid="landing-page-heading">
+              Discover the World through Data
+            </h1>
             <div className="flex justify-center">
               <div className="landing__searchbar-container">
                 <Suspense
@@ -24,7 +26,10 @@ const Home: FC = () => {
               </div>
             </div>
             <div className="landing__subtitle-container">
-              <p className="landing__subtitle">
+              <p
+                className="landing__subtitle"
+                data-testid="landing-page-description"
+              >
                 Explore our database featuring 100+ indicators for hundreds of
                 regions worldwide. Create customizable charts, view trends, and
                 access hundreds of thousands of data points.

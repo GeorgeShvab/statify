@@ -13,7 +13,7 @@ jobs:
       RESULTS_PER_PAGE: "45"
       NEXT_PUBLIC_SERVER_ADDRESS: "http://localhost:3000"
       NEXT_PUBLIC_IMAGES_HOSTING_ADDRESS: "https://statify-images.netlify.app"
-   
+
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,12 +22,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+          cache-dependency-path: core/package-lock.json
           cache: "npm"
 
-      - run: npm ci
-      - run: npm run lint
-      - run: npm test
+      - name: Install dependencies
+        working-directory: core
+        run: npm ci
+
+      - name: Run ESLint
+        working-directory: core
+        run: npm run lint
+
+      - name: Rub tests
+        working-directory: core
+        run: npm test -- --coverage
