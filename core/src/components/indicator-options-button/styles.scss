@@ -1,7 +1,20 @@
-.indicator-options-dropdown__item {
+@import "@design-system";
+
+.indicator-options__dropdown-item {
   padding: 0;
 }
 
-.indicator-options-dropdown__item-link {
+.indicator-options__dropdown-item-link {
   padding: sp(2) sp(4);
+}
+
+.indicator-options__button {
+  position: absolute;
+  right: sp(3);
+  top: sp(3);
+
+  @include breakpoint("md") {
+    right: sp(5);
+    top: sp(5);
+  }
 }

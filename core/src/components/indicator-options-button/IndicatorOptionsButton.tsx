@@ -1,24 +1,23 @@
 "use client"
 
-import IconButton from "@/ui/icon-button/IconButton"
 import { FC, useRef, useState } from "react"
-import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
-import CsvFileIcon from "@/ui/icons/CsvFileIcon"
-import XlsxFileIcon from "@/ui/icons/XlsxFileIcon"
 import Dropdown from "@/ui/dropdown/Dropdown"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
-import "@/components/indicator-options-button/styles.scss"
-import BookmarkedIcon from "@/ui/icons/BookmarkedIcon"
+import IconButton from "@/ui/icon-button/IconButton"
 import BookmarkIcon from "@/ui/icons/BookmarkIcon"
+import BookmarkedIcon from "@/ui/icons/BookmarkedIcon"
+import CsvFileIcon from "@/ui/icons/CsvFileIcon"
+import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
+import XlsxFileIcon from "@/ui/icons/XlsxFileIcon"
 import useBookmark from "@/hooks/use-get-bookmark/useBookmark"
 import getDatasetDonwloadLink from "@/utils/get-dataset-donwload-link/getDatasetDownloadLink"
+import "@/components/indicator-options-button/styles.scss"
+import { IndicatorOptionsProps } from "./types"
 
-interface Props {
-  countryId?: string
-  indicatorId: string
-}
-
-const IndicatorOptionsButton: FC<Props> = ({ indicatorId, countryId }) => {
+const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
+  indicatorId,
+  countryId,
+}) => {
   const anchor = useRef<HTMLButtonElement>(null)
 
   const { handleBookmark, isBookmarked } = useBookmark(indicatorId, countryId)
@@ -29,16 +28,12 @@ const IndicatorOptionsButton: FC<Props> = ({ indicatorId, countryId }) => {
 
   const handleToggleOptions = () => setIsDropdownOpen((prev) => !prev)
 
-  const bookmarkIcon = isBookmarked ? (
-    <BookmarkedIcon className="w-5 h-5 transition-all" />
-  ) : (
-    <BookmarkIcon className="w-5 h-5 transition-all" />
-  )
+  const bookmarkIcon = isBookmarked ? <BookmarkedIcon /> : <BookmarkIcon />
 
   return (
     <>
       <IconButton
-        className="absolute right-2 top-2.5 md:right-5 md:top-4 !bg-transparent !text-black transition-all"
+        className="indicator-options__button"
         onClick={handleToggleOptions}
         color="light"
         ref={anchor}
@@ -59,9 +54,9 @@ const IndicatorOptionsButton: FC<Props> = ({ indicatorId, countryId }) => {
         >
           {isBookmarked ? "Unbookmark" : "Bookmark"}
         </DropdownItem>
-        <DropdownItem className="indicator-options-dropdown__item" size="small">
+        <DropdownItem className="indicator-options__dropdown-item" size="small">
           <a
-            className="indicator-options-dropdown__item-link dropdown__item start-icon"
+            className="indicator-options__dropdown-item-link dropdown__item start-icon"
             href={getDatasetDonwloadLink({
               indicatorId,
               countryId,
@@ -73,9 +68,9 @@ const IndicatorOptionsButton: FC<Props> = ({ indicatorId, countryId }) => {
             <span>Download as CSV</span>
           </a>
         </DropdownItem>
-        <DropdownItem className="indicator-options-dropdown__item" size="small">
+        <DropdownItem className="indicator-options__dropdown-item" size="small">
           <a
-            className="indicator-options-dropdown__item-link dropdown__item start-icon"
+            className="indicator-options__dropdown-item-link dropdown__item start-icon"
             href={getDatasetDonwloadLink({
               indicatorId,
               countryId,
