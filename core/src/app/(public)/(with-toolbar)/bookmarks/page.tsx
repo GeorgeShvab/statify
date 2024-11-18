@@ -9,6 +9,8 @@ import validatePositiveNumber from "@/utils/validate-positive-number/validatePos
 
 export { default as metadata } from "@/app/(public)/(with-toolbar)/bookmarks/metadata"
 
+const defaultData = {}
+
 const Bookmarks: FC<BookmarksPageProps> = async ({ searchParams }) => {
   const client = cookies().get("client_id")?.value
 
@@ -22,9 +24,9 @@ const Bookmarks: FC<BookmarksPageProps> = async ({ searchParams }) => {
 
   return (
     <IndicatorsListView
-      data={data!.data}
+      data={data?.data}
       text="Your Bookmarks"
-      pages={data!.pages}
+      pages={data?.pages}
       page={page + 1}
       fallback={
         <InfoView icon={<BookmarkIcon />} text={"You have no bookmarks yet"} />
