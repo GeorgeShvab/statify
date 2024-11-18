@@ -34,3 +34,9 @@
   font-size: $fs-sm;
   line-height: 1.4;
 }
+
+.indicator-card-loader {
+  border-radius: $rounded-lg;
+  overflow: hidden;
+  height: 200px;
+}

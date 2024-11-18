@@ -29,4 +29,8 @@
     gap: sp(2);
     flex: 0 0 auto;
   }
+
+  & .search-input {
+    flex-shrink: 0;
+  }
 }

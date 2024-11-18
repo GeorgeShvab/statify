@@ -7,18 +7,20 @@ import "@/components/toolbar/styles.scss"
 
 const Toolbar: FC = () => {
   return (
-    <div className="toolbar">
-      <SearchBar />
-      <Button href="/bookmarks" className="toolbar__bookmarks-button desktop">
-        Bookmarks
-      </Button>
-      <IconButton
-        href="/bookmarks"
-        className="toolbar__bookmarks-button mobile"
-        aria-label="Search"
-      >
-        <BookmarkSmallerIcon />
-      </IconButton>
+    <div className="full-width">
+      <div className="toolbar">
+        <SearchBar />
+        <Button href="/bookmarks" className="toolbar__bookmarks-button desktop">
+          Bookmarks
+        </Button>
+        <IconButton
+          href="/bookmarks"
+          className="toolbar__bookmarks-button mobile"
+          aria-label="Search"
+        >
+          <BookmarkSmallerIcon />
+        </IconButton>
+      </div>
     </div>
   )
 }

@@ -1,5 +1,7 @@
 import { Analytics } from "@vercel/analytics/react"
 import { PropsWithChildren } from "react"
+import "@unocss/reset/tailwind-compat.css"
+import "@unocss/reset/tailwind.css"
 import { Roboto } from "next/font/google"
 import AlertProvider from "@/providers/alert-provider/AlertProvider"
 import ConfirmProvider from "@/providers/confirm-provider/ConfirmProvider"
@@ -15,7 +17,7 @@ const roboto = Roboto({
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="en">
-      <body className={`${roboto.className} bg-neutral-50`}>
+      <body className={roboto.className}>
         <ConfirmProvider>
           <AlertProvider>
             <ModalProvider>

@@ -46,4 +46,8 @@
   &:hover {
     color: $black-light;
   }
+
+  & > a {
+    line-height: 20px;
+  }
 }
