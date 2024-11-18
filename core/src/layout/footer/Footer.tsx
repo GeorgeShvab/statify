@@ -4,7 +4,7 @@ import "@/layout/footer/styles.scss"
 
 const Footer: FC = () => {
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid="footer">
       <div className="container">
         <div className="footer__container">
           <ul className="footer__list">
@@ -21,7 +21,7 @@ const Footer: FC = () => {
               <Link href="/terms">Terms of Use</Link>
             </li>
           </ul>
-          <p className="footer__copyright">
+          <p className="footer__copyright" data-testid="footer-copyrights">
             &copy; 2023-2024 Heorhii Shvab. All rights reserved.
           </p>
         </div>

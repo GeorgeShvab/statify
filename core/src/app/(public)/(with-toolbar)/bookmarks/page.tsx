@@ -9,8 +9,6 @@ import validatePositiveNumber from "@/utils/validate-positive-number/validatePos
 
 export { default as metadata } from "@/app/(public)/(with-toolbar)/bookmarks/metadata"
 
-const defaultData = {}
-
 const Bookmarks: FC<BookmarksPageProps> = async ({ searchParams }) => {
   const client = cookies().get("client_id")?.value
 
