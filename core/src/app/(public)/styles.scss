@@ -57,6 +57,11 @@
 }
 
 .landing__searchbar-container {
+  display: flex;
+  justify-content: center;
+}
+
+.landing__searchbar-wrapper {
   margin-bottom: sp(8);
   max-width: 700px;
   width: 100%;

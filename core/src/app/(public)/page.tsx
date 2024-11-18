@@ -14,8 +14,8 @@ const Home: FC = () => {
             <h1 className="landing__title" data-testid="landing-page-heading">
               Discover the World through Data
             </h1>
-            <div className="flex justify-center">
-              <div className="landing__searchbar-container">
+            <div className="landing__searchbar-container">
+              <div className="landing__searchbar-wrapper">
                 <Suspense
                   fallback={
                     <SearchBarLoader placeholder="Example: Birth rate" />

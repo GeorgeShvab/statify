@@ -1,5 +1,6 @@
 import { FC, MouseEvent, useRef } from "react"
 import { ModalScrollContainerProps } from "@/components/modal/components/modal-scroll-container/types"
+import "@/components/modal/components/modal-scroll-container/styles.scss"
 
 const ModalScrollContainer: FC<ModalScrollContainerProps> = ({
   children,
@@ -15,10 +16,7 @@ const ModalScrollContainer: FC<ModalScrollContainerProps> = ({
 
   return (
     <div ref={containerEl}>
-      <div
-        className="fixed top-0 left-0 bottom-0 right-0 z-20 overflow-auto bg-black/25 py-20 flex flex-col items-center"
-        onClick={onClose}
-      >
+      <div className="modal-scroll-container" onClick={onClose}>
         <div onClick={handleWrapperClick}>{children}</div>
       </div>
     </div>

@@ -9,7 +9,6 @@ const SortDescIcon: FC<IconProps> = (props) => {
       viewBox="0 0 24 24"
       strokeWidth={3}
       stroke="currentColor"
-      className="w-2.5 h-2.5"
       {...props}
     >
       <path

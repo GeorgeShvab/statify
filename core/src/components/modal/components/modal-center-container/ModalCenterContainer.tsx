@@ -1,5 +1,6 @@
 import { FC } from "react"
 import { ModalCenterContainerProps } from "@/components/modal/components/modal-center-container/types"
+import "@/components/modal/components/modal-center-container/styles.scss"
 
 const ModalCenterContainer: FC<ModalCenterContainerProps> = ({
   children,
@@ -7,13 +8,8 @@ const ModalCenterContainer: FC<ModalCenterContainerProps> = ({
 }) => {
   return (
     <div>
-      <div
-        className="fixed top-0 left-0 bottom-0 right-0 bg-black/25 z-20"
-        onClick={onClose}
-      />
-      <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] z-30">
-        {children}
-      </div>
+      <div className="modal-center-container__backdrope" onClick={onClose} />
+      <div className="modal-center-container__content">{children}</div>
     </div>
   )
 }

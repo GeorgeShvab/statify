@@ -16,7 +16,7 @@ const ToolbarLoader = () => {
         className="toolbar__bookmarks-button mobile"
         aria-label="Search"
       >
-        <BookmarkIcon className="w-5 h-5" />
+        <BookmarkIcon />
       </IconButton>
     </div>
   )

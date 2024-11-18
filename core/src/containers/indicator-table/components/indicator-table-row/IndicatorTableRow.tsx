@@ -22,7 +22,7 @@ const Row: FC<IndicatorTableRowProps> = ({ indicator, country, ...props }) => {
         {prettifyValue(country.value, indicator.precision)}
       </TableCell>
       <TableCell className="indicator-table__trend-cell">
-        <div className="w-full flex justify-center">
+        <div className="indicator-table__trend-cell-container">
           <img
             alt="Trend"
             src={`${IMAGES_HOSTING_ADDRESS}/row-charts/${indicator.id}/${country.id}.png`}

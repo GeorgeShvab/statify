@@ -9,10 +9,10 @@ import BookmarkedIcon from "@/ui/icons/BookmarkedIcon"
 import CsvFileIcon from "@/ui/icons/CsvFileIcon"
 import VerticalMoreIcon from "@/ui/icons/VerticalMoreIcon"
 import XlsxFileIcon from "@/ui/icons/XlsxFileIcon"
+import { IndicatorOptionsProps } from "@/components/indicator-options-button/types"
 import useBookmark from "@/hooks/use-get-bookmark/useBookmark"
 import getDatasetDonwloadLink from "@/utils/get-dataset-donwload-link/getDatasetDownloadLink"
 import "@/components/indicator-options-button/styles.scss"
-import { IndicatorOptionsProps } from "./types"
 
 const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
   indicatorId,

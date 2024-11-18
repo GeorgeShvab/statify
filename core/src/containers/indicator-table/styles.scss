@@ -50,4 +50,10 @@
   @include breakpoint("md") {
     width: auto;
   }
+
+  .indicator-table__trend-cell-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 }

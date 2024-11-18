@@ -5,11 +5,14 @@
   flex-direction: column;
   position: relative;
   gap: sp(4);
-  min-height: calc(
-    100svh - var(--header-height) - var(--footer-height) - var(
-        --search-bar-height
-      ) - sp(5)
-  );
+
+  &--entire-height {
+    min-height: calc(
+      100svh - var(--header-height) - var(--footer-height) - var(
+          --search-bar-height
+        ) - sp(5)
+    );
+  }
 }
 
 .indicators-list-view__content {

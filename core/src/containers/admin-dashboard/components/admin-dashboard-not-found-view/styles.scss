@@ -16,4 +16,9 @@
 
 .admin-dashboard__not-found-icon {
   color: $gray-light;
+
+  & > svg {
+    height: 80px;
+    width: 80px;
+  }
 }

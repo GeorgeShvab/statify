@@ -6,7 +6,7 @@ import PageContentWrapper from "@/layout/page-content-wrapper/PageContentWrapper
 import IndicatorChartSection from "@/containers/indicator-chart-section/IndicatorChartSection"
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import IndicatorTable from "@/containers/indicator-table/IndicatorTable"
-import RelatedIndicatorsSection from "@/containers/related-indicators-section/RelatedIndicatorsSection"
+import IndicatorsListView from "@/containers/indicators-list-view/IndicatorsListView"
 import { CountryWithValues } from "@/types/country.types"
 
 export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/indicator/[id]/metadata"
@@ -61,7 +61,11 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
       )}
       <IndicatorTable data={countries} indicator={indicator} />
       {!!relatedIndicators?.length && (
-        <RelatedIndicatorsSection relatedIndicators={relatedIndicators} />
+        <IndicatorsListView
+          entirePageHeight={false}
+          text="Related indicators"
+          data={relatedIndicators}
+        />
       )}
     </PageContentWrapper>
   )

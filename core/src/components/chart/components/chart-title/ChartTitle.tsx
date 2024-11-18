@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { ChartTitleProps } from "@/components/chart/components/chart-title/types"
 import cn from "@/utils/cn/cn"
-import "./styles.scss"
+import "@/components/chart/components/chart-title/styles.scss"
 
 const ChartTitle: FC<ChartTitleProps> = ({
   title,
