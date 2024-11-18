@@ -1,0 +1,26 @@
+@import "@design-system";
+
+.chart-header {
+  padding: 0 sp(8);
+
+  &__title {
+    text-align: center;
+    font-weight: 600;
+    font-size: $fs-sm;
+    margin-bottom: sp(2);
+
+    @include breakpoint("md") {
+      font-size: $fs-lg;
+    }
+  }
+
+  &__subtitle {
+    text-align: center;
+    font-size: 10px;
+    color: $gray-lighter;
+
+    @include breakpoint("md") {
+      font-size: $fs-xs;
+    }
+  }
+}

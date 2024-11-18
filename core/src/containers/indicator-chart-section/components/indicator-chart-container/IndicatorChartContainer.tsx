@@ -96,7 +96,11 @@ const IndicatorChartContainer = ({
       </Modal>
       <IndicatorDataSection>
         <div id="indicator-chart">
-          <ChartTitle title={label} subtitle={subTitle} />
+          <ChartTitle
+            className="indicator-chart-container__header"
+            title={label}
+            subtitle={subTitle}
+          />
           <ChartElement store={store} />
           <ChartLegend items={store.data} />
           {showChartManagerButton && (
