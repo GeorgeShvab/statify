@@ -83,6 +83,7 @@ const SearchBar: FC<SearchBarProps> = ({ placeholder }) => {
   const autocomplete = showAutocomplete && (
     <div
       className="searchbar__autocomplete"
+      data-testid="searchbar-autocomplete"
       onClick={() => setIsAutocompleteOpen(false)}
     >
       <ul>
@@ -97,6 +98,7 @@ const SearchBar: FC<SearchBarProps> = ({ placeholder }) => {
     <IconButton
       variant="text"
       className="searchbar__clear-button"
+      data-testid="searchbar-clear-button"
       aria-label="Clear Form"
       type="button"
       onClick={clearValue}
@@ -123,6 +125,7 @@ const SearchBar: FC<SearchBarProps> = ({ placeholder }) => {
                 placeholder={placeholder || "Search..."}
                 autoComplete="off"
                 className="searchbar__input"
+                data-testid="searchbar-input"
                 onChange={handleInput}
                 onClick={handleInputClick}
               />
