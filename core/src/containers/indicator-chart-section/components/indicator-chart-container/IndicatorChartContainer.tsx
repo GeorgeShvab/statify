@@ -100,9 +100,13 @@ const IndicatorChartContainer = ({
             className="indicator-chart-container__header"
             title={label}
             subtitle={subTitle}
+            data-testid="indicator-chart-header"
           />
           <ChartElement store={store} />
-          <ChartLegend items={store.data} />
+          <ChartLegend
+            items={store.data}
+            data-testid="indicator-chart-legend"
+          />
           {showChartManagerButton && (
             <IconButton
               color="light"
@@ -110,6 +114,7 @@ const IndicatorChartContainer = ({
               aria-label="Edit chart"
               title="Edit chart"
               size="small"
+              data-testid="indicator-chart-manager-button"
               onClick={handleOpenModal}
             >
               <AddItemIcon />
@@ -120,6 +125,7 @@ const IndicatorChartContainer = ({
             className="indicator-chart-container__copy-button html2canvas-hidden"
             aria-label="Copy the chart as an image"
             title="Copy the chart as an image"
+            data-testid="indicator-chart-copy-button"
             size="small"
             onClick={handleSaveChartToClipboard}
           >

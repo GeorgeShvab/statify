@@ -10,9 +10,15 @@ const ChartLegend: FC<ChartLegendProps> = ({ items, className, ...props }) => {
         <div className="chart-legend__label" key={item.id}>
           <span
             className="chart-legend__label-color"
+            data-testid="chart-legend-color-label"
             style={{ backgroundColor: item.color }}
           />
-          <span className="chart-legend__label-text">{item.name}</span>
+          <span
+            className="chart-legend__label-text"
+            data-testid="chart-legend-name-label"
+          >
+            {item.name}
+          </span>
         </div>
       ))}
     </div>

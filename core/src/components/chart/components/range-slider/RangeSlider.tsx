@@ -37,7 +37,10 @@ const RangeSlider: FC<RangeSliderProps> = ({
   )
 
   return (
-    <div className={cn(className, "range-slider")}>
+    <div
+      className={cn(className, "range-slider")}
+      data-testid="indicator-chart-range-slider"
+    >
       <Slider
         min={0}
         max={shortenedRange.length - 1}
