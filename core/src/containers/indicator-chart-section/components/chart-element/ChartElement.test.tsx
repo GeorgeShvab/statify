@@ -1,12 +1,7 @@
 import { render, screen } from "@testing-library/react"
-import { mock } from "node:test"
+import ChartElement from "@/containers/indicator-chart-section/components/chart-element/ChartElement"
 import { IndicatorChartProps } from "@/components/chart/components/indicator-chart/types"
-import {
-  ChartStore,
-  EmptyChartStore,
-  NotEMptyChartStore,
-} from "@/store/chart-store/types"
-import ChartElement from "./ChartElement"
+import { EmptyChartStore, NotEMptyChartStore } from "@/store/chart-store/types"
 
 const store = {
   selectedRange: [2000, 2001],

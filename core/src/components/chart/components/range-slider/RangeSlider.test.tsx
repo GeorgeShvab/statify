@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react"
 import { SliderProps } from "rc-slider"
-import RangeSlider from "./RangeSlider"
-import { Range } from "./types"
+import RangeSlider from "@/components/chart/components/range-slider/RangeSlider"
+import { Range } from "@/components/chart/components/range-slider/types"
 
 const mockSlider = jest.fn()
 

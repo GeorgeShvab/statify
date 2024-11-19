@@ -1,8 +1,8 @@
 import { render } from "@testing-library/react"
 import { ChartProps } from "react-chartjs-2"
 import { fireEvent, screen, waitFor } from "@testing-library/dom"
-import IndicatorChartContainer from "./IndicatorChartContainer"
-import { IndicatorChartContainerProps } from "./types"
+import IndicatorChartContainer from "@/containers/indicator-chart-section/components/indicator-chart-container/IndicatorChartContainer"
+import { IndicatorChartContainerProps } from "@/containers/indicator-chart-section/components/indicator-chart-container/types"
 
 const mockIndicator = {
   unit: "mlns",
