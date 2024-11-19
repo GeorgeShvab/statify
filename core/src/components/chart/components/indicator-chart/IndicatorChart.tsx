@@ -9,12 +9,10 @@ import {
   CategoryScale,
   PointElement,
   LineElement,
-  ChartData,
 } from "chart.js"
 import { getInitialOptions } from "@/components/chart/components/indicator-chart/constants"
 import { IndicatorChartProps } from "@/components/chart/components/indicator-chart/types"
-import filterValues from "@/components/chart/components/indicator-chart/utils"
-import { ChartItem } from "@/store/chart-store/types"
+import getChartData from "@/components/chart/components/indicator-chart/utils/get-chart-data/getChartData"
 import cn from "@/utils/cn/cn"
 import "@/components/chart/components/indicator-chart/styles.scss"
 
@@ -36,32 +34,7 @@ const IndicatorChart: FC<IndicatorChartProps> = ({
   className,
   ...props
 }) => {
-  const finalRange = range.filter(
-    (item) => item >= selectedRange[0] && item <= selectedRange[1]
-  )
-
-  const chartData: ChartData<"line", (number | null)[]> = {
-    labels: finalRange,
-    datasets: data.map((item: ChartItem) => {
-      const values = filterValues(
-        item,
-        finalRange,
-        range.indexOf(selectedRange[0])
-      )
-
-      const pointRadius = window.screen.width > 768 ? 2 : 0
-
-      return {
-        data: values,
-        borderColor: item.color,
-        fill: false,
-        borderWidth: 1,
-        pointRadius: pointRadius,
-        pointHover: pointRadius,
-        pointBackgroundColor: item.color,
-      }
-    }),
-  }
+  const chartData = getChartData(range, selectedRange, data)
 
   const options = getInitialOptions((value: number) => {
     const label = shortening ? value / shortening : value
@@ -74,6 +47,7 @@ const IndicatorChart: FC<IndicatorChartProps> = ({
       data={chartData}
       options={options}
       className={cn("indicator-chart", className)}
+      data-testid="indicator-line-chart"
       {...props}
     />
   )

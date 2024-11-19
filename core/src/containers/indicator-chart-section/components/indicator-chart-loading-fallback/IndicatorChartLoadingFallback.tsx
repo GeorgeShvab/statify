@@ -2,7 +2,7 @@ import ContentLoader from "react-content-loader"
 
 const IndicatorChartLoadingFallback = () => {
   return (
-    <div className="container">
+    <div className="container" data-testid="indicator-chart-loader">
       <ContentLoader
         speed={5}
         width="100%"
