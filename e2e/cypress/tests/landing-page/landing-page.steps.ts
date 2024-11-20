@@ -23,25 +23,9 @@ Then("I should see a searchbar", () => {
   cy.getById("searchbar").should("be.visible");
 });
 
-When("I type {string} in the searchbar", (value: string) => {
-  cy.intercept(
-    httpMethod.get,
-    new RegExp(
-      `api/public/indicators/autocomplete/search\\?query=${value}`,
-      "i"
-    ),
-    { fixture: "search-suggestions-data" }
-  ).as("search-suggestions-request");
-  cy.getById("searchbar-input").type(value);
-});
-
 Then("I should see a list of suggested indicators", () => {
   cy.wait("@search-suggestions-request");
   cy.getById("searchbar-autocomplete").should("be.visible");
-});
-
-When("clear value", () => {
-  cy.getById("searchbar-clear-button").click();
 });
 
 Then("I should see empty search input", () => {

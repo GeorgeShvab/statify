@@ -16,7 +16,7 @@ const IndicatorCard: FC<IndicatorCardProps> = ({
   const title = (countryId && countryName ? countryName + " - " : "") + label
 
   return (
-    <Link href={link} className="indicator-card">
+    <Link href={link} className="indicator-card" data-testid="indicator-card">
       <div>
         <h2 className="indicator-card__title">{title}</h2>
         {source && <p className="indicator-card__source">Source: {source}</p>}

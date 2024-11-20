@@ -1,13 +1,7 @@
-Feature: Landing page
+Feature: Toolbar functionality
 
-  Background: Landing page Background
-    Given I am on the landing page
-
-  Scenario: Verify lading page content
-    When the landing page has finished loading
-    And I should see a heading
-    And I should see a description
-    And I should see a searchbar
+  Background: Toolbar background
+    Given I am on the search page
 
   Scenario: Suggest indicators as I type in the search bar
     When I type "GDP" in the searchbar
@@ -22,3 +16,8 @@ Feature: Landing page
     When I type "GDP" in the searchbar
     And submit form
     Then I should be navigated to "search" page
+
+  Scenario: User navigates to bookmarks page
+    And I see footer
+    When I click "Bookmarks"
+    Then I should be navigated to "bookmarks" page
