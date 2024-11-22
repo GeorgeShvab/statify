@@ -15,6 +15,7 @@
     "cypress-commands": "^3.0.0",
     "cypress-cucumber-preprocessor": "^4.3.1",
     "cypress-wait-until": "^3.0.2",
+    "dotenv": "^16.4.5",
     "ts-loader": "^9.5.1"
   },
   "devDependencies": {

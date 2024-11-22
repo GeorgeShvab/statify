@@ -73,4 +73,6 @@ const ValuesDashboardPage: FC<
   )
 }
 
+export const dynamic = "force-dynamic"
+
 export default ValuesDashboardPage
