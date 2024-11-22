@@ -2,24 +2,31 @@ import { getToken } from "next-auth/jwt"
 import withAuth, { NextRequestWithAuth } from "next-auth/middleware"
 import { NextFetchEvent, NextResponse } from "next/server"
 import routes from "@/constants/routes"
+import rateLimiter from "@/rate-limiter"
 
 const AUTH_SECRET = process.env.AUTH_SECRET
 
-export const config = { matcher: ["/admin/:path*", "/api/admin/:path*"] }
+const ADMIN_PATH = "/admin/"
 
 export default async function middleware(
   req: NextRequestWithAuth,
   event: NextFetchEvent
 ) {
-  const token = await getToken({ req, secret: AUTH_SECRET })
-  const isAuthenticated = !!token
+  const shouldBeBlocked = rateLimiter(req.ip!)
 
-  if (req.nextUrl.pathname.includes(routes.admin.signin)) {
-    if (isAuthenticated) {
-      return NextResponse.redirect(new URL(routes.admin.indicators, req.url))
+  if (shouldBeBlocked) return new NextResponse(null, { status: 429 })
+
+  if (req.nextUrl.pathname.includes(ADMIN_PATH)) {
+    const token = await getToken({ req, secret: AUTH_SECRET })
+    const isAuthenticated = !!token
+
+    if (req.nextUrl.pathname.includes(routes.admin.signin)) {
+      if (isAuthenticated) {
+        return NextResponse.redirect(new URL(routes.admin.indicators, req.url))
+      }
+
+      return
     }
-
-    return
   }
 
   const authMiddleware = withAuth({
