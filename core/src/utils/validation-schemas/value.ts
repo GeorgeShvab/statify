@@ -1,4 +1,3 @@
-import * as yup from "yup"
 import { AnyObject, StringSchema } from "yup"
 import {
   initialValueCountryOptions,
@@ -12,13 +11,14 @@ import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import schema from "@/utils/validation-schemas/schema"
 import { defaultSelectValue, possibleSortOrders } from "@/constants/general"
+import yup from "@/plugins/yup"
 
 const patchSchema = {
   body: schema({
     value: yup.number(),
-    countryId: yup.string(),
+    countryId: yup.string().sanitize(),
     year: yup.number(),
-    indicatorId: yup.string(),
+    indicatorId: yup.string().sanitize(),
   }),
   params: schema({
     value: yup.number().required(),
@@ -28,9 +28,9 @@ const patchSchema = {
 const postSchema = {
   body: schema({
     value: yup.number().required(),
-    countryId: yup.string().required(),
+    countryId: yup.string().required().sanitize(),
     year: yup.number().required(),
-    indicatorId: yup.string().required(),
+    indicatorId: yup.string().required().sanitize(),
   }),
 }
 

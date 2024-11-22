@@ -1,9 +1,9 @@
-import * as yup from "yup"
 import schema from "@/utils/validation-schemas/schema"
+import yup from "@/plugins/yup"
 
 const searchSchema = {
   searchParams: schema({
-    query: yup.string().required(),
+    query: yup.string().required().sanitize().replaceSpecialCharacters(),
   }),
 }
 

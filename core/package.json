@@ -36,6 +36,7 @@
     "react-virtualized": "^9.22.5",
     "typescript": "5.2.2",
     "xlsx": "^0.18.5",
+    "xss": "^1.0.15",
     "yup": "^1.4.0",
     "zustand": "^5.0.0-rc.2"
   },

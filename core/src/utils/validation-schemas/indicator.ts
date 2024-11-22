@@ -1,39 +1,39 @@
-import * as yup from "yup"
 import schema from "@/utils/validation-schemas/schema"
 import { downloadFormats } from "@/constants/general"
+import yup from "@/plugins/yup"
 
 const postSchema = {
   body: schema({
-    id: yup.string().required(),
-    label: yup.string().required(),
-    description: yup.string(),
-    source: yup.string().required(),
-    dataset: yup.string(),
-    unit: yup.string(),
-    unitSymbol: yup.string(),
+    id: yup.string().required().sanitize(),
+    label: yup.string().required().sanitize(),
+    description: yup.string().sanitize(),
+    source: yup.string().required().sanitize(),
+    dataset: yup.string().sanitize(),
+    unit: yup.string().sanitize(),
+    unitSymbol: yup.string().sanitize(),
     precision: yup.number().default(0),
     ranking: yup.number().default(0),
     hidden: yup.boolean().default(true),
     showChart: yup.boolean().default(false),
     absolute: yup.boolean().required(),
-    searchTags: yup.array(yup.string().required()),
+    searchTags: yup.array(yup.string().required().sanitize()),
   }),
 }
 
 const patchSchema = {
   body: schema({
-    label: yup.string(),
-    description: yup.string(),
-    source: yup.string(),
-    dataset: yup.string(),
-    unit: yup.string(),
-    unitSymbol: yup.string(),
+    label: yup.string().sanitize(),
+    description: yup.string().sanitize(),
+    source: yup.string().sanitize(),
+    dataset: yup.string().sanitize(),
+    unit: yup.string().sanitize(),
+    unitSymbol: yup.string().sanitize(),
     precision: yup.number(),
     ranking: yup.number(),
     hidden: yup.boolean(),
     showChart: yup.boolean(),
     absolute: yup.boolean(),
-    searchTags: yup.array(yup.string().required()),
+    searchTags: yup.array(yup.string().required().sanitize()),
   }),
   params: schema({
     indicator: yup.string().required(),
