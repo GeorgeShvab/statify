@@ -1,28 +1,28 @@
 import { AreaType } from "@prisma/client"
-import * as yup from "yup"
 import schema from "@/utils/validation-schemas/schema"
 import { areaTypes, downloadFormats } from "@/constants/general"
+import yup from "@/plugins/yup"
 
 const postSchema = {
   body: schema({
-    id: yup.string().required(),
-    name: yup.string().required(),
-    geoCode: yup.string(),
-    iso2Code: yup.string(),
+    id: yup.string().required().sanitize(),
+    name: yup.string().required().sanitize(),
+    geoCode: yup.string().sanitize(),
+    iso2Code: yup.string().sanitize(),
     hidden: yup.boolean().required(),
     type: yup.string<AreaType>().oneOf(areaTypes).required(),
-    searchTags: yup.array(yup.string().required()),
+    searchTags: yup.array(yup.string().required().sanitize()),
   }),
 }
 
 const patchSchema = {
   body: schema({
-    name: yup.string(),
-    geoCode: yup.string(),
-    iso2Code: yup.string(),
+    name: yup.string().sanitize(),
+    geoCode: yup.string().sanitize(),
+    iso2Code: yup.string().sanitize(),
     hidden: yup.boolean(),
     type: yup.string<AreaType>().oneOf(areaTypes),
-    searchTags: yup.array(yup.string().required()),
+    searchTags: yup.array(yup.string().required().sanitize()),
   }),
   params: schema({
     country: yup.string().required(),
