@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "cross-env ENV_FILE=.env.dev next dev",
     "build": "npx prisma generate && next build",
+    "start:test": "cross-env ENV_FILE=.env.test next start",
     "build:test": "cross-env ENV_FILE=.env.test npx prisma generate && cross-env ENV_FILE=.env.test next build",
     "e2e:dev": "cross-env ENV_FILE=.env.test next dev",
     "e2e": "npx prisma generate && cross-env ENV_FILE=.env.test SSG=false next build && cross-env ENV_FILE=.env.test next start",
