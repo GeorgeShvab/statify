@@ -8,3 +8,13 @@ declare global {
     }
   }
 }
+
+before(() => {
+  cy.task("clearTestDatabase").then(() => {
+    cy.task("populateTestDatabase");
+  });
+});
+
+after(() => {
+  cy.task("clearTestDatabase");
+});

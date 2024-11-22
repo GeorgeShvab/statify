@@ -63,4 +63,6 @@ const CountriesDashboardPage: FC<
   )
 }
 
+export const dynamic = "force-dynamic"
+
 export default CountriesDashboardPage
