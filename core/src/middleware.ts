@@ -6,32 +6,40 @@ import rateLimiter from "@/rate-limiter"
 
 const AUTH_SECRET = process.env.AUTH_SECRET
 
-const ADMIN_PATH = "/admin/"
+const ADMIN_PATH = "admin"
 
 export default async function middleware(
   req: NextRequestWithAuth,
   event: NextFetchEvent
 ) {
-  const shouldBeBlocked = rateLimiter(req.ip!)
+  const isStaticPath =
+    req.url.includes("_next/static") || req.url.includes("manifest.webmanifest")
 
-  if (shouldBeBlocked) return new NextResponse(null, { status: 429 })
+  if (!isStaticPath) {
+    const shouldBeBlocked = rateLimiter(req.ip!)
 
-  if (req.nextUrl.pathname.includes(ADMIN_PATH)) {
-    const token = await getToken({ req, secret: AUTH_SECRET })
-    const isAuthenticated = !!token
-
-    if (req.nextUrl.pathname.includes(routes.admin.signin)) {
-      if (isAuthenticated) {
-        return NextResponse.redirect(new URL(routes.admin.indicators, req.url))
-      }
-
-      return
-    }
+    if (shouldBeBlocked) return new NextResponse(null, { status: 429 })
   }
 
-  const authMiddleware = withAuth({
-    secret: AUTH_SECRET,
-  })
+  const token = await getToken({ req, secret: AUTH_SECRET })
+  const isAuthenticated = !!token
 
-  return authMiddleware(req, event)
+  if (
+    req.nextUrl.pathname.includes(ADMIN_PATH) &&
+    !req.nextUrl.pathname.includes(routes.admin.signin)
+  ) {
+    const authMiddleware = withAuth({
+      secret: AUTH_SECRET,
+    })
+
+    return authMiddleware(req, event)
+  }
+
+  if (isAuthenticated && req.nextUrl.pathname.includes(routes.admin.signin)) {
+    return NextResponse.redirect(
+      new URL(routes.admin.indicators, req.nextUrl.origin)
+    )
+  }
+
+  return
 }
