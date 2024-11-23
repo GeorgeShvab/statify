@@ -10,7 +10,7 @@
     "e2e:dev": "cross-env ENV_FILE=.env.test next dev",
     "e2e": "npx prisma generate && cross-env ENV_FILE=.env.test SSG=false next build && cross-env ENV_FILE=.env.test next start",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "cross-env ENV_FILE=.env.test next lint",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
