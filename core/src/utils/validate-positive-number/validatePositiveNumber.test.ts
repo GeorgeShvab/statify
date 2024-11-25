@@ -1,5 +1,9 @@
 import validateNumber from "@/utils/validate-positive-number/validatePositiveNumber"
 
+/**
+ * @group utils
+ */
+
 describe("Test validateNumber util", () => {
   test("Should return null for string", () => {
     const res = validateNumber("notanumber")

@@ -3,6 +3,10 @@ import { AxiosResponse } from "axios"
 import { MutationConfiguration } from "@/hooks/use-mutation//types"
 import useMutation from "@/hooks/use-mutation/useMutation"
 
+/**
+ * @group hooks
+ */
+
 const queryArgs = { data: "DATA" }
 
 const successfullResponse = { data: "Successfull data" }

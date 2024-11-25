@@ -2,6 +2,10 @@ import { renderHook, act, waitFor } from "@testing-library/react"
 import { AxiosResponse } from "axios"
 import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpdate"
 
+/**
+ * @group hooks
+ */
+
 const queryFn = async () => ({}) as Promise<AxiosResponse<unknown>>
 
 const errorQueryFn = async () => {

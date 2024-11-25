@@ -1,5 +1,9 @@
 import capitalize from "@/utils/capitalize/capitalize"
 
+/**
+ * @group utils
+ */
+
 const testValue = "test"
 const expectedResult = "Test"
 

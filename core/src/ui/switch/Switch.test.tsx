@@ -3,6 +3,10 @@ import { screen } from "@testing-library/dom"
 import Switch from "@/ui/switch/Switch"
 import { SwitchProps } from "@/ui/switch/Switch.types"
 
+/**
+ * @group ui-components
+ */
+
 const labelClassName = "label-class"
 
 const testLabelText = "Switch Me"

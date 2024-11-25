@@ -1,5 +1,9 @@
 import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus"
 
+/**
+ * @group utils
+ */
+
 describe("Test isErrorWithStatus util", () => {
   test("Should return false if passed value is not an object", () => {
     const result = isErrorWithStatus("error")

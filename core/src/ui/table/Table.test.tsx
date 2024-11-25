@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react"
 import Table from "@/ui/table/Table"
 import { TableProps } from "@/ui/table/Table.types"
 
+/**
+ * @group ui-components
+ */
+
 interface TableData {
   text: string
 }

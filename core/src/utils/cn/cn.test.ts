@@ -1,5 +1,9 @@
 import cn from "@/utils/cn/cn"
 
+/**
+ * @group utils
+ */
+
 describe("Test cn function", () => {
   test("should return empty string if no arguments are provided", () => {
     expect(cn()).toBe("")

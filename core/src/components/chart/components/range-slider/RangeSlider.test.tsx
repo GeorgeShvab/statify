@@ -3,6 +3,10 @@ import { SliderProps } from "rc-slider"
 import RangeSlider from "@/components/chart/components/range-slider/RangeSlider"
 import { Range } from "@/components/chart/components/range-slider/types"
 
+/**
+ * @group chart
+ */
+
 const mockSlider = jest.fn()
 
 const testNewRange = [1, 3]

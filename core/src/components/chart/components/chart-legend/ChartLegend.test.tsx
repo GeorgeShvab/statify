@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react"
 import ChartLegend from "@/components/chart/components/chart-legend/ChartLegend"
 
+/**
+ * @group chart
+ */
+
 const mockChartItems = [
   {
     color: "#FF5733",

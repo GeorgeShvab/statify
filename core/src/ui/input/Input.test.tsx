@@ -3,6 +3,10 @@ import Input from "@/ui/input/Input"
 import { InputProps } from "@/ui/input/Input.types"
 import fireChange from "@/test-utils/fire-change"
 
+/**
+ * @group ui-components
+ */
+
 const mockOnChange = jest.fn()
 const initialValue = "Some text"
 

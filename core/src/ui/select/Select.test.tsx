@@ -2,6 +2,10 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react"
 import Select from "@/ui/select/Select"
 import { Option, SelectProps } from "@/ui/select/Select.types"
 
+/**
+ * @group ui-components
+ */
+
 const containerClassName = "container-class"
 
 const mockOnChange = jest.fn()

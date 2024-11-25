@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 import { DropdownItemProps } from "@/ui/dropdown/components/dropdown-item/DropdownItem.types"
 
+/**
+ * @group ui-components
+ */
+
 const renderWithProps = (props?: Partial<DropdownItemProps>) => {
   return render(<DropdownItem {...props}>Dropdown Item</DropdownItem>)
 }

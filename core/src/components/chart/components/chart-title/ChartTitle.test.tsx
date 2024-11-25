@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react"
 import ChartTitle from "@/components/chart/components/chart-title/ChartTitle"
 
+/**
+ * @group chart
+ */
+
 const testData = {
   title: "Chart title",
   subtitle: "Chart subtitle",

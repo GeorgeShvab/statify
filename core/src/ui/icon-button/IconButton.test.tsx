@@ -3,6 +3,10 @@ import { ButtonProps } from "@/ui/button/Button.types"
 import IconButton from "@/ui/icon-button/IconButton"
 import AddItemIcon from "@/ui/icons/AddItemIcon"
 
+/**
+ * @group ui-components
+ */
+
 // TODO: Add cases to test whether appropriate styles are applied with dark, light and other design-system classes
 
 const testHref = "statify.com"

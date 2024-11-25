@@ -1,5 +1,9 @@
 import filterValues from "@/components/chart/components/indicator-chart/utils/filter-values/filterValues"
 
+/**
+ * @group chart
+ */
+
 const mockChartItem = {
   id: "AFG",
   name: "Afghanistan",

@@ -1,5 +1,9 @@
 import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
 
+/**
+ * @group utils
+ */
+
 const possibleValues = ["a", "b"]
 
 describe("Test validateQueryParam util", () => {

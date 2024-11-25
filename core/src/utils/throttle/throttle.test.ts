@@ -1,5 +1,9 @@
 import throttle from "@/utils/throttle/throttle"
 
+/**
+ * @group utils
+ */
+
 const mockCallback = jest.fn()
 
 jest.useFakeTimers()
