@@ -1,8 +1,10 @@
+@layout
 Feature: Footer
 
   Background: Footer Background
     Given I am on the landing page
 
+  @smoke @navigation
   Scenario Outline: User navigates throught footer links
     And I see footer
     When I click "<label>"

@@ -37,9 +37,10 @@ async function setupNodeEvents(
       return 0;
     },
     clearTestDatabase: async () => {
+      await prisma.value.deleteMany();
+
       await Promise.all([
         prisma.user.deleteMany(),
-        prisma.value.deleteMany(),
         prisma.country.deleteMany(),
         prisma.indicator.deleteMany(),
       ]);
@@ -88,7 +89,11 @@ async function setupNodeEvents(
 }
 
 export default defineConfig({
-  env: { ...envs },
+  env: {
+    ...envs,
+    omitFiltered: true,
+    filterSpecs: true,
+  },
   e2e: {
     baseUrl: "http://localhost:3000",
     specPattern: "**/*.feature",
