@@ -1,5 +1,5 @@
 import schema from "@/utils/validation-schemas/schema"
-import yup from "@/plugins/yup"
+import yup from "@/modules/yup"
 
 const searchSchema = {
   searchParams: schema({

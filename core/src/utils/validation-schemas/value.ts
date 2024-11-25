@@ -11,7 +11,7 @@ import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import schema from "@/utils/validation-schemas/schema"
 import { defaultSelectValue, possibleSortOrders } from "@/constants/general"
-import yup from "@/plugins/yup"
+import yup from "@/modules/yup"
 
 const patchSchema = {
   body: schema({

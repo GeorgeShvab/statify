@@ -1,6 +1,6 @@
 import schema from "@/utils/validation-schemas/schema"
 import { downloadFormats } from "@/constants/general"
-import yup from "@/plugins/yup"
+import yup from "@/modules/yup"
 
 const postSchema = {
   body: schema({
