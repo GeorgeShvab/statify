@@ -3,6 +3,10 @@ import Textarea from "@/ui/textarea/Textarea"
 import { TextareaProps } from "@/ui/textarea/types"
 import fireChange from "@/test-utils/fire-change"
 
+/**
+ * @group ui-components
+ */
+
 // TODO: Add a test case to check whether auto resize works properly
 
 const mockOnChange = jest.fn()

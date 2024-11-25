@@ -1,6 +1,10 @@
 import { act, renderHook } from "@testing-library/react"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
 
+/**
+ * @group hooks
+ */
+
 const mockPush = jest.fn()
 
 const initialQuery = "?sort=id"

@@ -3,6 +3,10 @@ import { signIn as importedSignin } from "next-auth/react"
 import useSignin from "@/hooks/use-signin/useSignin"
 import routes from "@/constants/routes"
 
+/**
+ * @group hooks
+ */
+
 const signin = importedSignin as jest.Mock
 
 const mockRouterPush = jest.fn()

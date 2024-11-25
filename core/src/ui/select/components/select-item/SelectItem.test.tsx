@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react"
 import SelectItem from "@/ui/select/components/select-item/SelectItem"
 
+/**
+ * @group ui-components
+ */
+
 describe("Test SelectItem", () => {
   test("Should render SelectItem", () => {
     render(<SelectItem isSelected={false}>Select Item</SelectItem>)

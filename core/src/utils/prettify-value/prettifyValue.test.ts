@@ -1,5 +1,9 @@
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
 
+/**
+ * @group utils
+ */
+
 const testValue = 1_000_000.0008
 
 describe("Test prettifyValue util", () => {

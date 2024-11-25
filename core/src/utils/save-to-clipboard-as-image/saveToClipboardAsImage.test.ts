@@ -1,6 +1,10 @@
 import { waitFor } from "@testing-library/dom"
 import saveToClipboardAsImage from "@/utils/save-to-clipboard-as-image/saveToClipboardAsImage"
 
+/**
+ * @group utils
+ */
+
 const mockClipboardWrite = jest.fn(() => ({ catch: jest.fn() }))
 const mockClipboardItem = jest.fn()
 const mockHtmlCanvas = jest

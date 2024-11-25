@@ -1,5 +1,9 @@
 import truncate from "@/utils/truncate/truncate"
 
+/**
+ * @group utils
+ */
+
 const testString =
   "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 

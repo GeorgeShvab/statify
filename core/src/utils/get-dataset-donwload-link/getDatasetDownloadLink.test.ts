@@ -1,6 +1,10 @@
 import getDatasetDonwloadLink from "@/utils/get-dataset-donwload-link/getDatasetDownloadLink"
 import apiRoutes from "@/constants/apiRoutes"
 
+/**
+ * @group utils
+ */
+
 describe("Test getDatasetDownloadLink unit", () => {
   test("Should return correct download link for indicator dataset", () => {
     const result = getDatasetDonwloadLink({

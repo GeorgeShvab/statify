@@ -1,5 +1,9 @@
 import debounce from "@/utils/debounce/debounce"
 
+/**
+ * @group utils
+ */
+
 const mockCallback = jest.fn()
 
 jest.useFakeTimers()

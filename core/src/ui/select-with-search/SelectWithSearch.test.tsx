@@ -4,6 +4,10 @@ import { SelectWithSearchProps } from "@/ui/select-with-search/SelectWithSearch.
 import { Option } from "@/ui/select/Select.types"
 import fireChange from "@/test-utils/fire-change"
 
+/**
+ * @group ui-components
+ */
+
 const containerClassName = "container-class"
 
 const mockOnChange = jest.fn()

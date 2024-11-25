@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react"
 import Tag from "@/ui/tag/Tag"
 
+/**
+ * @group ui-components
+ */
+
 const content = "Test Tag"
 
 describe("Test Tag component", () => {

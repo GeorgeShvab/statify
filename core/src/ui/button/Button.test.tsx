@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react"
 import Button from "@/ui/button/Button"
 import { ButtonProps } from "@/ui/button/Button.types"
 
+/**
+ * @group ui-components
+ */
+
 // TODO: Add cases to test whether appropriate styles are applied with dark, light and other design-system classes
 
 const buttonContent = "Some Content"

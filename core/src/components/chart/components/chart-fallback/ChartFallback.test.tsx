@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react"
 import ChartFallback from "@/components/chart/components/chart-fallback/ChartFallback"
 
+/**
+ * @group chart
+ */
+
 const testFallbackMsg = "Fallback message"
 
 describe("Test ChartFallback component", () => {

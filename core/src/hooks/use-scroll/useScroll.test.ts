@@ -2,6 +2,10 @@ import { act, renderHook, waitFor } from "@testing-library/react"
 import { UIEvent } from "react"
 import useScroll from "@/hooks/use-scroll/useScroll"
 
+/**
+ * @group hooks
+ */
+
 describe("Test useScroll hook", () => {
   let result: ReturnType<typeof useScroll>
 

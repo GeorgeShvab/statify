@@ -1,5 +1,9 @@
 import serialize from "@/utils/serialize/serialize"
 
+/**
+ * @group utils
+ */
+
 const testObject = { text: "Some text", func: () => {} }
 
 describe("Test serialize util", () => {

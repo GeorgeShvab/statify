@@ -2,6 +2,10 @@ import { render, screen } from "@testing-library/react"
 import { ChartProps } from "react-chartjs-2"
 import IndicatorChart from "@/components/chart/components/indicator-chart/IndicatorChart"
 
+/**
+ * @group chart
+ */
+
 const mockChartData = [
   {
     color: "#FF5733",

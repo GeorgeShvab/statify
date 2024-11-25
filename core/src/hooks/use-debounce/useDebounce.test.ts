@@ -2,6 +2,10 @@ import { renderHook } from "@testing-library/react"
 import { DependencyList } from "react"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 
+/**
+ * @group hooks
+ */
+
 const callback = jest.fn()
 
 jest.useFakeTimers()

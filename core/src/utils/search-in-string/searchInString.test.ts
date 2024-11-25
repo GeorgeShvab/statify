@@ -1,5 +1,9 @@
 import searchInString from "@/utils/search-in-string/searchInString"
 
+/**
+ * @group utils
+ */
+
 const searchedString = "London is the capital of Great Britain"
 const lowerCaseValue = "great britain"
 const value = "Great Britain"

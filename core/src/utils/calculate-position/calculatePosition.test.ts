@@ -1,5 +1,9 @@
 import calculatePosition from "@/utils/calculate-position/calculatePosition"
 
+/**
+ * @group utils
+ */
+
 const initialAnchorPos = {
   top: 200,
   left: 200,

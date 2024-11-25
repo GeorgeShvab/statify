@@ -2,6 +2,10 @@ import { fireEvent, render, screen } from "@testing-library/react"
 import TableHeadCellWithSorting from "@/ui/table/components/table-head-sorting-cell/TableHeadSortingCell"
 import { TableHeadSortingCellProps } from "@/ui/table/components/table-head-sorting-cell/TableHeadSortingCell.types"
 
+/**
+ * @group ui-components
+ */
+
 const cellContent = "This is head sorting cell"
 
 const mockOnSortChange = jest.fn()

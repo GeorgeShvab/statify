@@ -1,6 +1,10 @@
 import { render, screen } from "@testing-library/react"
 import AdminHeader from "@/layout/admin-header/AdminHeader"
 
+/**
+ * @group layout
+ */
+
 const mockUsePathname = jest.fn().mockReturnValue("")
 
 jest.mock("next/navigation", () => ({

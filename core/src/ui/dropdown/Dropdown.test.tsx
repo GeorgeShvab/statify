@@ -3,6 +3,10 @@ import Dropdown from "@/ui/dropdown/Dropdown"
 import { DropdownProps } from "@/ui/dropdown/Dropdown.types"
 import DropdownItem from "@/ui/dropdown/components/dropdown-item/DropdownItem"
 
+/**
+ * @group ui-components
+ */
+
 const mockOnClose = jest.fn()
 const mockOnClick = jest.fn()
 

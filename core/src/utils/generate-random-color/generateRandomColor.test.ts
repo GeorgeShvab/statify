@@ -1,5 +1,9 @@
 import generateRandomColor from "@/utils/generate-random-color/generateRandomColor"
 
+/**
+ * @group utils
+ */
+
 describe("Test generateRandomColor util", () => {
   test("Should return random color hex", () => {
     const result = generateRandomColor()

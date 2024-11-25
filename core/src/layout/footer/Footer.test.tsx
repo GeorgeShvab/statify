@@ -2,6 +2,10 @@ import { render } from "@testing-library/react"
 import { screen } from "@testing-library/dom"
 import Footer from "@/layout/footer/Footer"
 
+/**
+ * @group layout
+ */
+
 describe("Test Footer component", () => {
   beforeEach(() => {
     render(<Footer />)

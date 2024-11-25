@@ -1,5 +1,9 @@
 import generateId from "@/utils/generate-id/generateId"
 
+/**
+ * @group utils
+ */
+
 describe("Test generateId util", () => {
   test("Should return string id", () => {
     const result = generateId()
