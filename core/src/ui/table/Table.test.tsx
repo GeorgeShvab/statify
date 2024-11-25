@@ -33,7 +33,9 @@ const data = Array.from({ length: 50 }, (_, index) => ({
   text: "Row " + index,
 }))
 
-const renderWithProps = (props?: Partial<TableProps<TableData>>) => {
+const renderWithProps = (
+  props?: Omit<Partial<TableProps<TableData>>, "children">
+) => {
   return render(
     <Table
       data={data}

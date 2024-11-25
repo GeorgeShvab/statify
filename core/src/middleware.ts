@@ -12,13 +12,21 @@ export default async function middleware(
   req: NextRequestWithAuth,
   event: NextFetchEvent
 ) {
-  const isStaticPath =
-    req.url.includes("_next/static") || req.url.includes("manifest.webmanifest")
+  const limitRequests =
+    process.env.NODE_ENV === "production" &&
+    process.env.MODE !== "testing" &&
+    process.env.MODE !== "development"
 
-  if (!isStaticPath) {
-    const shouldBeBlocked = rateLimiter(req.ip!)
+  if (limitRequests) {
+    const isStaticPath =
+      req.url.includes("_next/static") ||
+      req.url.includes("manifest.webmanifest")
 
-    if (shouldBeBlocked) return new NextResponse(null, { status: 429 })
+    if (!isStaticPath) {
+      const shouldBeBlocked = rateLimiter(req.ip!)
+
+      if (shouldBeBlocked) return new NextResponse(null, { status: 429 })
+    }
   }
 
   const token = await getToken({ req, secret: AUTH_SECRET })

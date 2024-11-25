@@ -10,5 +10,5 @@ export type TableProps<T> = {
       renderRow: (data: T, index: number) => ReactNode
       children?: never
     }
-  | { renderRow?: never; data?: never; children: ReactNode }
+  | { renderRow?: never; data?: never; children?: ReactNode }
 )
