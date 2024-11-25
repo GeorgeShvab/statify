@@ -3,7 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run --browser chrome"
+    "cypress:open:smoke": "cypress open --browser chrome -e TAGS=\"@smoke\"",
+    "cypress:open:feature": "cypress open --browser chrome -e TAGS=\"@feature\"",
+    "cypress:open:regression": "cypress open --browser chrome -e TAGS=\"@regression\"",
+    "cypress:run": "cypress run --browser chrome",
+    "cypress:run:smoke": "cypress run --browser chrome -e TAGS=\"@smoke\"",
+    "cypress:run:feature": "cypress run --browser chrome -e TAGS=\"@feature\"",
+    "cypress:run:regression": "cypress run --browser chrome -e TAGS=\"@regression\""
   },
   "author": "Heorhii Shvab",
   "license": "ISC",
