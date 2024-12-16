@@ -1,10 +1,6 @@
 @import "@design-system";
 
 .alert {
-  z-index: 50;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
   border-radius: $rounded-lg;
   padding: sp(2) sp(4);
 
@@ -28,5 +24,19 @@
     @include breakpoint("md") {
       font-size: $fs-base;
     }
+  }
+}
+
+.alert-transition {
+  position: absolute;
+  transform: translate(-50%, -100px);
+  z-index: 50;
+  top: 0;
+  left: 50%;
+  opacity: 0;
+
+  &.show {
+    transform: translate(-50%, 20px);
+    opacity: 1;
   }
 }
