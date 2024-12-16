@@ -7,10 +7,10 @@ import yup from "@/modules/yup"
 type PossibleValueSortOptions = (typeof possibleValueSortOptions)[number]
 
 const getPossibleValueCountryOptions = () =>
-  valueSelectOptions.country().then((res) => getOptionsValues(res))
+  valueSelectOptions.country().then((res) => getOptionsValues(res.data))
 
 const getPossibleValueIndicatorOptions = () =>
-  valueSelectOptions.indicator().then((res) => getOptionsValues(res))
+  valueSelectOptions.indicator().then((res) => getOptionsValues(res.data))
 
 const possibleValueSortOptions = getOptionsValues(valueSelectOptions.sort(true))
 
