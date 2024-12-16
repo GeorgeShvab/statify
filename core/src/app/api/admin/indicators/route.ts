@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import ValueService from "@/services/value-service/ValueService"
+import { IndicatorValidationSchema } from "@/utils/validation-schemas/api/indicator"
 import { CommonValidations } from "@/utils/validation-schemas/common"
-import { IndicatorValidationSchema } from "@/utils/validation-schemas/indicator"
 import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
 export const POST = validationMiddleware(async ({ body }) => {

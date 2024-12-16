@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
-import { IndicatorValidationSchema } from "@/utils/validation-schemas/indicator"
+import { IndicatorValidationSchema } from "@/utils/validation-schemas/api/indicator"
 import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
 export const PATCH = validationMiddleware(async ({ body, params }) => {

@@ -1,11 +1,8 @@
-import {
-  countryStatusOptions as allStatusOptions,
-  countryTypeOptions as allTypeOptions,
-} from "@/app/(admin)/admin/dashboard/countries/constants"
+import countrySelectOptions from "@/constants/select-options/countrySelectOptions"
 
-export const countryStatusOptions = allStatusOptions.slice(1)
+export const countryStatusOptions = countrySelectOptions.status.slice(1)
 
-export const countryTypeOptions = allTypeOptions.slice(1)
+export const countryTypeOptions = countrySelectOptions.type.slice(1)
 
 export const initialValues = {
   id: "",

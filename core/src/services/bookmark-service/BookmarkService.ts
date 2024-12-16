@@ -1,7 +1,7 @@
 import { BookmarkServiceInterface } from "@/services/bookmark-service/types"
 import prisma from "@/prisma"
 
-const initialPageSize = Number(process.env.RESULTS_PER_PAGE)
+const perPage = Number(process.env.RESULTS_PER_PAGE)
 
 const BookmarkService: BookmarkServiceInterface = {
   async createOne(data) {
@@ -20,8 +20,8 @@ const BookmarkService: BookmarkServiceInterface = {
     })
   },
 
-  async getByUser({ client, page = 0, size = initialPageSize }) {
-    const skip = size * page
+  async getByUser({ client, page = 1, size = perPage }) {
+    const offset = (page - 1) * perPage
 
     const dataPromise = prisma.bookmark
       .findMany({
@@ -41,7 +41,7 @@ const BookmarkService: BookmarkServiceInterface = {
           createdAt: "desc",
         },
         take: size,
-        skip,
+        skip: offset,
       })
       .then((res) =>
         res.map(({ indicator, country }) => ({

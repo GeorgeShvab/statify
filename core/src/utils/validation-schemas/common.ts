@@ -1,5 +1,7 @@
-import schema from "@/utils/validation-schemas/schema"
+import schema from "@/utils/validation-schemas/api/schema"
 import yup from "@/modules/yup"
+
+const pageSchema = yup.number().positive().default(1)
 
 const searchSchema = {
   searchParams: schema({
@@ -19,8 +21,23 @@ const seachParamsNumberIdentificatorsSchema = {
   }),
 }
 
+const pageableSearchSchema = {
+  searchParams: schema({
+    query: yup.string().sanitize().replaceSpecialCharacters(),
+    page: pageSchema,
+  }),
+}
+
+const pageableSchema = {
+  searchParams: schema({
+    page: pageSchema,
+  }),
+}
+
 export const CommonValidations = {
   searchParamsStringIdentificators: searchParamsStringIdentificatorsSchema,
   seachParamsNumberIdentificators: seachParamsNumberIdentificatorsSchema,
+  pageableSearchSchema,
+  pageableSchema,
   searchSchema,
 }

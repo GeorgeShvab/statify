@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server"
-import { initialValueCountryOptions } from "@/app/(admin)/admin/dashboard/values/constants"
 import CountryService from "@/services/country-service/CountryService"
 
 export const GET = async () => {
   const countries = await CountryService.getSelectAutocomplete()
 
-  return NextResponse.json([initialValueCountryOptions, ...countries])
+  return NextResponse.json([
+    {
+      value: "all",
+      label: "All countries",
+    },
+    ...countries,
+  ])
 }

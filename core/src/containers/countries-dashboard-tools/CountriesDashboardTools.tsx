@@ -1,16 +1,6 @@
 "use client"
 
 import { ChangeEvent, FC, useState } from "react"
-import {
-  countrySearchQueryKey,
-  countrySortDirectionQueryKey,
-  countrySortOptions,
-  countrySortQueryKey,
-  countryStatusOptions,
-  countryStatusQueryKey,
-  countryTypeOptions,
-  countryTypeQueryKey,
-} from "@/app/(admin)/admin/dashboard/countries/constants"
 import IconButton from "@/ui/icon-button/IconButton"
 import CloseIcon from "@/ui/icons/CloseIcon"
 import SortAscendingIcon from "@/ui/icons/SortAscendingIcon"
@@ -25,6 +15,8 @@ import {
 import isFiltersApplied from "@/containers/countries-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
+import searchParamsKeys from "@/constants/searchParamsKeys"
+import countrySelectOptions from "@/constants/select-options/countrySelectOptions"
 
 const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   search,
@@ -39,7 +31,7 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   const [searchValue, setSearchValue] = useState(search)
 
   const debouncedSetSearch = useDebounce(
-    (value: string) => setSearchParams(countrySearchQueryKey, value),
+    (value: string) => setSearchParams(searchParamsKeys.search, value),
     300,
     [type, sort, sortDirection, status]
   )
@@ -59,7 +51,7 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
 
   const handleSortDirectionChange = () => {
     setSearchParams(
-      countrySortDirectionQueryKey,
+      searchParamsKeys.sortDirection,
       sortDirection === "asc" ? "desc" : "asc"
     )
   }
@@ -84,23 +76,23 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
         onChange={handleSearchInput}
       />
       <Select
-        options={countryStatusOptions}
+        options={countrySelectOptions.status}
         value={status}
-        onChange={handleSelectChange(countryStatusQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.status)}
         className="flex-15"
         size="small"
       />
       <Select
-        options={countryTypeOptions}
+        options={countrySelectOptions.type}
         value={type}
-        onChange={handleSelectChange(countryTypeQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.type)}
         className="flex-15"
         size="small"
       />
       <Select
-        options={countrySortOptions}
+        options={countrySelectOptions.sort}
         value={sort}
-        onChange={handleSelectChange(countrySortQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.sort)}
         renderSelectedLabel={renderSortLabel}
         className="flex-22-5"
         size="small"

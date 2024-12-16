@@ -1,5 +1,5 @@
 import { AreaType } from "@prisma/client"
-import schema from "@/utils/validation-schemas/schema"
+import schema from "@/utils/validation-schemas/api/schema"
 import { areaTypes, downloadFormats } from "@/constants/general"
 import yup from "@/modules/yup"
 

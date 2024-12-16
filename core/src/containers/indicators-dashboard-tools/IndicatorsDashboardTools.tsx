@@ -1,14 +1,6 @@
 "use client"
 
 import { ChangeEvent, FC, useState } from "react"
-import {
-  indicatorSearchQueryKey,
-  indicatorSortQueryKey,
-  indicatorStatusQueryKey,
-  indicatorSortOptions,
-  indicatorStatusOptions,
-  indicatorSortDirectionQueryKey,
-} from "@/app/(admin)/admin/dashboard/indicators/constants"
 import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
 import IconButton from "@/ui/icon-button/IconButton"
 import CloseIcon from "@/ui/icons/CloseIcon"
@@ -21,6 +13,8 @@ import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard
 import isFiltersApplied from "@/containers/indicators-dashboard-tools/utils/is-filters-applied/isFiltersApplied"
 import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
+import searchParamsKeys from "@/constants/searchParamsKeys"
+import indicatorSelectOptions from "@/constants/select-options/indicatorSelectOptions"
 
 const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   sort,
@@ -34,7 +28,7 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   const [searchValue, setSearchValue] = useState(search)
 
   const debouncedSetSearch = useDebounce(
-    (value: string) => setSearchParams(indicatorSearchQueryKey, value),
+    (value: string) => setSearchParams(searchParamsKeys.search, value),
     750,
     [sort, status]
   )
@@ -51,7 +45,7 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
 
   const handleSortDirectionChange = () => {
     setSearchParams(
-      indicatorSortDirectionQueryKey,
+      searchParamsKeys.sortDirection,
       sortDirection === "asc" ? "desc" : "asc"
     )
   }
@@ -78,16 +72,16 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         onChange={handleSearchInput}
       />
       <Select
-        options={indicatorStatusOptions}
+        options={indicatorSelectOptions.status}
         value={status}
-        onChange={handleSelectChange(indicatorStatusQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.status)}
         className="flex-22-5"
         size="small"
       />
       <Select
-        options={indicatorSortOptions}
+        options={indicatorSelectOptions.sort}
         value={sort}
-        onChange={handleSelectChange(indicatorSortQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.sort)}
         renderSelectedLabel={renderSortLabel}
         className="flex-22-5"
         size="small"

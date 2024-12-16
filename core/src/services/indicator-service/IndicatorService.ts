@@ -66,10 +66,15 @@ const IndicatorService: IndicatorServiceInterface = {
         },
       })
       .then((countries) =>
-        countries.map((country) => ({
-          value: country.id,
-          label: country.label,
-        }))
+        countries
+          .map((country) => ({
+            value: country.id,
+            label: country.label,
+          }))
+          .concat({
+            value: "all",
+            label: "All indicators",
+          })
       )
 
     return data

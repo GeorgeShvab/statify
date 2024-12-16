@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import XLSX from "xlsx"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
-import { IndicatorValidationSchema } from "@/utils/validation-schemas/indicator"
+import { IndicatorValidationSchema } from "@/utils/validation-schemas/api/indicator"
 import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
 export const GET = validationMiddleware(async ({ params, searchParams }) => {
