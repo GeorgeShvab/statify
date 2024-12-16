@@ -1,4 +1,11 @@
-import { FC, ReactElement, cloneElement, useEffect, useLayoutEffect, useState } from 'react'
+import {
+  FC,
+  ReactElement,
+  cloneElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react"
 
 interface Props {
   children: ReactElement
@@ -7,16 +14,31 @@ interface Props {
   duration?: number
 }
 
-const DelayWrapper: FC<Props> = ({ children, show, wrapper, duration = 400 }) => {
+const DelayWrapper: FC<Props> = ({
+  children,
+  show,
+  wrapper,
+  duration = 400,
+}) => {
   const [isMounted, setIsMounted] = useState<boolean>(false)
-  const [shown, setIsShown] = useState<boolean>(false)
+  const [isVisible, setIsVisible] = useState<boolean>(false)
 
-  useLayoutEffect(() => {
+  const closeTimer = useRef<NodeJS.Timeout>()
+
+  useEffect(() => {
+    clearTimeout(closeTimer.current)
+
     if (show) {
       setIsMounted(true)
+
+      // In case while closing opening occurs, than we immediatly set visible
+      if (isMounted && !isVisible) {
+        setIsVisible(true)
+      }
     } else {
-      setIsShown(false)
-      setTimeout(() => {
+      setIsVisible(false)
+
+      closeTimer.current = setTimeout(() => {
         setIsMounted(false)
       }, duration)
     }
@@ -24,13 +46,15 @@ const DelayWrapper: FC<Props> = ({ children, show, wrapper, duration = 400 }) =>
 
   useEffect(() => {
     if (isMounted) {
-      setIsShown(true)
+      setIsVisible(true)
     }
   }, [isMounted])
 
   if (!isMounted) return null
 
-  return wrapper ? cloneElement(wrapper, { show: shown, duration }, children) : children
+  return wrapper
+    ? cloneElement(wrapper, { show: isVisible, duration }, children)
+    : children
 }
 
 export default DelayWrapper

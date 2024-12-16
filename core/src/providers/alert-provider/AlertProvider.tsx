@@ -9,13 +9,13 @@ import {
   useRef,
   useState,
 } from "react"
+import dynamic from "next/dynamic"
+import { AlertSeverity } from "@/ui/alert/Alert.types"
 import {
   AlertConfig,
   AlertContext,
   AlertProviderProps,
 } from "@/providers/alert-provider/AlertProvider.types"
-import { AlertSeverity } from "@/ui/alert/Alert.types"
-import dynamic from "next/dynamic"
 
 const ALERT_DEFAULT_DURATION = 5000
 
