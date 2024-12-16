@@ -5,7 +5,7 @@ When("I click {string}", (label: string) => {
   cy.contains(label).click();
 });
 
-When("submit form", () => {
+When("I submit form", () => {
   cy.get('button[type="submit"]:visible').click();
 });
 

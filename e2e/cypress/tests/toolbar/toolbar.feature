@@ -18,7 +18,7 @@ Feature: Toolbar functionality
   @navigation @regression
   Scenario: Navigates to search page
     When I type "GDP" in the searchbar
-    And submit form
+    And I submit form
     Then I should be navigated to "search" page
 
   @navigation
