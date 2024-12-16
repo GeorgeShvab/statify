@@ -1,22 +1,20 @@
-import { FC } from "react"
-import { SearchPageProps } from "@/app/(public)/(with-toolbar)/search/types"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import SearchIcon from "@/ui/icons/SearchIcon"
 import IndicatorsListView from "@/containers/indicators-list-view/IndicatorsListView"
 import InfoView from "@/containers/info-view/InfoView"
-import replaceSpecialCharacters from "@/utils/replace-special-characters/replaceSpecialCharacters"
-import validatePositiveNumber from "@/utils/validate-positive-number/validatePositiveNumber"
+import { CommonValidations } from "@/utils/validation-schemas/common"
+import pageValidationMiddleware from "@/middlewares/page-validation-middleware/pageValidationMiddleware"
 
 export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/search/metadata"
 
-const SearchPage: FC<SearchPageProps> = async ({ searchParams }) => {
+const SearchPage = pageValidationMiddleware(async ({ searchParams }) => {
   const page = searchParams.page
   const query = searchParams.query
 
   const result = query
     ? await IndicatorService.search({
-        query: replaceSpecialCharacters(query),
-        page: validatePositiveNumber(page, 1),
+        query: query,
+        page: page,
       })
     : null
 
@@ -36,6 +34,6 @@ const SearchPage: FC<SearchPageProps> = async ({ searchParams }) => {
       }
     />
   )
-}
+}, CommonValidations.pageableSearchSchema)
 
 export default SearchPage

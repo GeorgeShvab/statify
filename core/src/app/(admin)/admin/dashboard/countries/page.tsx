@@ -1,67 +1,34 @@
-import { FC } from "react"
-import {
-  possibleCountrySortDirectionQueryParams,
-  possibleCountrySortQueryParams,
-  possibleCountryStatusQueryParams,
-  possibleCountryTypeQueryParams,
-} from "@/app/(admin)/admin/dashboard/countries/constants"
-import { DashboardCountryQueryParams } from "@/app/(admin)/admin/dashboard/countries/types"
 import CountryService from "@/services/country-service/CountryService"
 import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import CountriesDashboard from "@/containers/countries-dashboard/CountriesDashboard"
-import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import { PageProps } from "@/types/general.types"
+import adminDashboardCountriesPageSchema from "@/utils/validation-schemas/pages/admin-dashboard-countries-page"
+import pageValidationMiddleware from "@/middlewares/page-validation-middleware/pageValidationMiddleware"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/countries/metadata"
 
-const CountriesDashboardPage: FC<
-  PageProps<object, DashboardCountryQueryParams>
-> = async ({ searchParams }) => {
-  const sort = validateQueryParam(
-    searchParams.sort,
-    possibleCountrySortQueryParams
-  )
+const CountriesDashboardPage = pageValidationMiddleware(
+  async ({ searchParams }) => {
+    const { status, type } = searchParams
 
-  const type = validateQueryParam(
-    searchParams.type,
-    possibleCountryTypeQueryParams
-  )
+    const normalizedStatus = status === "all" ? undefined : status === "hidden"
+    const normalizedType = type === "all" ? undefined : type
 
-  const status = validateQueryParam(
-    searchParams.status,
-    possibleCountryStatusQueryParams
-  )
+    const countries = await CountryService.getForAdmin({
+      ...searchParams,
+      hidden: normalizedStatus,
+      type: normalizedType,
+    })
 
-  const sortDirection = validateQueryParam(
-    searchParams.sortDirection,
-    possibleCountrySortDirectionQueryParams
-  )
-
-  const search = searchParams.search || ""
-
-  const countries = await CountryService.getForAdmin({
-    search,
-    sort,
-    sortDirection,
-    hidden: status === "all" ? undefined : status === "hidden",
-    type: type === "all" ? undefined : type,
-  })
-
-  return (
-    <main className="container">
-      <AdminDashboard>
-        <CountriesDashboard
-          countries={countries}
-          search={search}
-          sort={sort}
-          type={type}
-          sortDirection={sortDirection}
-          status={status}
-        />
-      </AdminDashboard>
-    </main>
-  )
-}
+    return (
+      <main className="container">
+        <AdminDashboard>
+          <CountriesDashboard {...searchParams} countries={countries} />
+        </AdminDashboard>
+      </main>
+    )
+  },
+  adminDashboardCountriesPageSchema
+)
 
 export const dynamic = "force-dynamic"
 

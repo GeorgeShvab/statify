@@ -1,13 +1,6 @@
 "use client"
 
 import { FC } from "react"
-import { countrySortDirectionQueryKey } from "@/app/(admin)/admin/dashboard/countries/constants"
-import {
-  getValueSortOptions,
-  valueCountryQueryKey,
-  valueIndicatorQueryKey,
-  valueSortQueryKey,
-} from "@/app/(admin)/admin/dashboard/values/constants"
 import { DashboardValueQueryParams } from "@/app/(admin)/admin/dashboard/values/types"
 import IconButton from "@/ui/icon-button/IconButton"
 import CloseIcon from "@/ui/icons/CloseIcon"
@@ -23,6 +16,8 @@ import {
   getCountrySelectAutocomplete,
   getIndicatorSelectAutocomplete,
 } from "@/api/admin"
+import searchParamsKeys from "@/constants/searchParamsKeys"
+import valueSelectOptions from "@/constants/select-options/valueSelectOptions"
 
 const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   sort,
@@ -42,7 +37,7 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
       (sort === "year" || sort === "value")
     ) {
       setSearchParams(
-        valueSortQueryKey,
+        searchParamsKeys.sort,
         valueSortOptions[0].value,
         key,
         option.value
@@ -57,7 +52,7 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
 
   const handleSortDirectionChange = () => {
     setSearchParams(
-      countrySortDirectionQueryKey,
+      searchParamsKeys.sortDirection,
       sortDirection === "asc" ? "desc" : "asc"
     )
   }
@@ -72,7 +67,7 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
     sort,
   })
 
-  const valueSortOptions = getValueSortOptions(
+  const valueSortOptions = valueSelectOptions.sort(
     Boolean(indicator !== "all" && indicator)
   )
 
@@ -81,21 +76,21 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
       <LoadableSelectWithSearch
         apiService={getIndicatorSelectAutocomplete}
         value={indicator}
-        onChange={handleSelectChange(valueIndicatorQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.indicator)}
         className="flex-grow"
         size="small"
       />
       <LoadableSelectWithSearch
         apiService={getCountrySelectAutocomplete}
         value={country}
-        onChange={handleSelectChange(valueCountryQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.country)}
         className="flex-30"
         size="small"
       />
       <Select
         options={valueSortOptions}
         value={sort}
-        onChange={handleSelectChange(valueSortQueryKey)}
+        onChange={handleSelectChange(searchParamsKeys.sort)}
         renderSelectedLabel={renderSortLabel}
         className="flex-22-5"
         size="small"

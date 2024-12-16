@@ -1,9 +1,5 @@
-import {
-  countrySortOptions,
-  countryStatusOptions,
-  countryTypeOptions,
-} from "@/app/(admin)/admin/dashboard/countries/constants"
 import { CountriesDashboardToolsProps } from "@/containers/countries-dashboard-tools/CountriesDashboardTools.types"
+import countrySelectOptions from "@/constants/select-options/countrySelectOptions"
 
 const isFiltersApplied = ({
   sort,
@@ -14,9 +10,9 @@ const isFiltersApplied = ({
 }: CountriesDashboardToolsProps) => {
   return (
     search ||
-    sort !== countrySortOptions[0].value ||
-    status !== countryStatusOptions[0].value ||
-    type !== countryTypeOptions[0].value ||
+    sort !== countrySelectOptions.sort[0].value ||
+    status !== countrySelectOptions.status[0].value ||
+    type !== countrySelectOptions.type[0].value ||
     sortDirection !== "asc"
   )
 }

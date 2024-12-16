@@ -29,3 +29,5 @@ export const chartColors = [
   "#335BFF",
   "#FF33A8",
 ]
+
+export const possibleSortDirections = ["asc", "desc"] as const

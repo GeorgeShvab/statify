@@ -24,8 +24,8 @@ export type Variant = "contained" | "text"
 export type SupportedDatasetDownloadExtension = "xlsx" | "csv"
 
 export interface PageProps<
-  TParams extends object = object,
-  TSearchParams extends object = object,
+  TParams extends object = Record<string, string>,
+  TSearchParams extends object = Record<string, string>,
 > {
   params: TParams
   searchParams: TSearchParams

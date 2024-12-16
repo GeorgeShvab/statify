@@ -1,8 +1,5 @@
-import {
-  indicatorSortOptions,
-  indicatorStatusOptions,
-} from "@/app/(admin)/admin/dashboard/indicators/constants"
 import { IndicatorsDashboardToolsProps } from "@/containers/indicators-dashboard-tools/IndicatorsDashboardTools.types"
+import indicatorSelectOptions from "@/constants/select-options/indicatorSelectOptions"
 
 const isFiltersApplied = ({
   sort,
@@ -12,8 +9,8 @@ const isFiltersApplied = ({
 }: IndicatorsDashboardToolsProps) => {
   return (
     search ||
-    sort !== indicatorSortOptions[0].value ||
-    status !== indicatorStatusOptions[0].value ||
+    sort !== indicatorSelectOptions.sort[0].value ||
+    status !== indicatorSelectOptions.status[0].value ||
     sortDirection !== "asc"
   )
 }

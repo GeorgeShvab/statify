@@ -1,8 +1,8 @@
 import { Value } from "@prisma/client"
-import { possibleValueSortQueryParam } from "@/app/(admin)/admin/dashboard/values/constants"
+import valueSelectOptions from "@/constants/select-options/valueSelectOptions"
 
 export interface GetForAdminParams {
-  sort: (typeof possibleValueSortQueryParam)[number]
+  sort: ReturnType<typeof valueSelectOptions.sort>[number]["value"]
   country?: string
   indicator?: string
   sortDirection?: "asc" | "desc"

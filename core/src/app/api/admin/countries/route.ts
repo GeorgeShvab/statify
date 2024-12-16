@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server"
 import CountryService from "@/services/country-service/CountryService"
 import ValueService from "@/services/value-service/ValueService"
+import { CountryValidationSchema } from "@/utils/validation-schemas/api/country"
 import { CommonValidations } from "@/utils/validation-schemas/common"
-import { CountryValidationSchema } from "@/utils/validation-schemas/country"
 import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
 export const POST = validationMiddleware(async ({ body }) => {

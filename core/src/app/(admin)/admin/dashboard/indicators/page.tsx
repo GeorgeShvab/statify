@@ -1,59 +1,32 @@
-import { FC } from "react"
-import {
-  possibleIndicatorSortDirection,
-  possibleIndicatorSortQueryParam,
-  possibleIndicatorStatusQueryParam,
-} from "@/app/(admin)/admin/dashboard/indicators/constants"
-import { DashboardIndicatorQueryParams } from "@/app/(admin)/admin/dashboard/indicators/types"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import AdminDashboard from "@/containers/admin-dashboard/AdminDashboard"
 import IndicatorsDashboard from "@/containers/indicators-dashboard/IndicatorsDashboard"
-import validateQueryParam from "@/utils/validate-query-param/validateQueryParam"
-import { PageProps } from "@/types/general.types"
+import adminDashboardIndicatorsPageSchema from "@/utils/validation-schemas/pages/admin-dashboard-indicators-page"
+import pageValidationMiddleware from "@/middlewares/page-validation-middleware/pageValidationMiddleware"
 
 export { default as metadata } from "@/app/(admin)/admin/dashboard/indicators/metadata"
 
-const IndicatorsDashboardPage: FC<
-  PageProps<object, DashboardIndicatorQueryParams>
-> = async ({ searchParams }) => {
-  const sort = validateQueryParam(
-    searchParams.sort,
-    possibleIndicatorSortQueryParam
-  )
+const IndicatorsDashboardPage = pageValidationMiddleware(
+  async ({ searchParams }) => {
+    const { status } = searchParams
 
-  const status = validateQueryParam(
-    searchParams.status,
-    possibleIndicatorStatusQueryParam
-  )
+    const normalizedStatus = status === "all" ? undefined : status === "hidden"
 
-  const sortDirection = validateQueryParam(
-    searchParams.sortDirection,
-    possibleIndicatorSortDirection
-  )
+    const indicators = await IndicatorService.getForAdmin({
+      ...searchParams,
+      hidden: normalizedStatus,
+    })
 
-  const search = searchParams.search || ""
-
-  const indicators = await IndicatorService.getForAdmin({
-    sort,
-    search,
-    sortDirection,
-    hidden: status === "all" ? undefined : status === "hidden",
-  })
-
-  return (
-    <main className="container">
-      <AdminDashboard>
-        <IndicatorsDashboard
-          sort={sort}
-          status={status}
-          search={search}
-          sortDirection={sortDirection}
-          indicators={indicators}
-        />
-      </AdminDashboard>
-    </main>
-  )
-}
+    return (
+      <main className="container">
+        <AdminDashboard>
+          <IndicatorsDashboard {...searchParams} indicators={indicators} />
+        </AdminDashboard>
+      </main>
+    )
+  },
+  adminDashboardIndicatorsPageSchema
+)
 
 export const dynamic = "force-dynamic"
 

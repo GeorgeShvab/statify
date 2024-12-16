@@ -1,9 +1,14 @@
 import { NextResponse } from "next/server"
-import { initialValueIndicatorOptions } from "@/app/(admin)/admin/dashboard/values/constants"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 
 export const GET = async () => {
   const indicators = await IndicatorService.getSelectAutocomplete()
 
-  return NextResponse.json([initialValueIndicatorOptions, ...indicators])
+  return NextResponse.json([
+    {
+      value: "all",
+      label: "All indicators",
+    },
+    ...indicators,
+  ])
 }

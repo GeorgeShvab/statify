@@ -1,5 +1,4 @@
 import { CountryServiceInterface } from "@/services/country-service/types"
-import { Option } from "@/ui/select/Select.types"
 import sqlCondition from "@/utils/sql-condition/sqlCondition"
 import sql from "@/utils/sql/sql"
 import {
@@ -42,7 +41,7 @@ const CountryService: CountryServiceInterface = {
     return prisma.country.findUnique({ where: { id } })
   },
 
-  async getSelectAutocomplete(): Promise<Option[]> {
+  async getSelectAutocomplete() {
     const data = prisma.country
       .findMany({
         select: {
@@ -54,10 +53,15 @@ const CountryService: CountryServiceInterface = {
         },
       })
       .then((countries) =>
-        countries.map((country) => ({
-          value: country.id,
-          label: country.name,
-        }))
+        countries
+          .map((country) => ({
+            value: country.id,
+            label: country.name,
+          }))
+          .concat({
+            value: "all",
+            label: "All countries",
+          })
       )
 
     return data

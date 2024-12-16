@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server"
 import ValueService from "@/services/value-service/ValueService"
-import { ValueValidationSchema } from "@/utils/validation-schemas/value"
+import { ValueValidationSchema } from "@/utils/validation-schemas/api/value"
 import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
 export const PATCH = validationMiddleware(async ({ params, body }) => {

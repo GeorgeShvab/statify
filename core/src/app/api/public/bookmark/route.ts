@@ -4,7 +4,7 @@ import BookmarkService from "@/services/bookmark-service/BookmarkService"
 import CountryService from "@/services/country-service/CountryService"
 import IndicatorService from "@/services/indicator-service/IndicatorService"
 import generateId from "@/utils/generate-id/generateId"
-import { BookmarkValidationSchema } from "@/utils/validation-schemas/bookmark"
+import { BookmarkValidationSchema } from "@/utils/validation-schemas/api/bookmark"
 import validationMiddleware from "@/middlewares/validation-middleware/validationMiddleware"
 
 export const POST = validationMiddleware(async ({ body }) => {
