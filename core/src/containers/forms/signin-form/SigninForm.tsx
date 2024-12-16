@@ -42,6 +42,7 @@ const SigninForm = () => {
             autoComplete="email"
             placeholder="Email"
             isError={Boolean(emailErrorMsg)}
+            data-testid="signin-email-input"
             {...register("email")}
           />
         </label>
@@ -52,6 +53,7 @@ const SigninForm = () => {
             placeholder="Password"
             type="password"
             isError={Boolean(passwordErrorMsg)}
+            data-testid="signin-password-input"
             {...register("password")}
           />
         </label>
