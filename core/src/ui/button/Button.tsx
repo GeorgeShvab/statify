@@ -6,6 +6,7 @@ import {
 } from "react"
 import Link from "next/link"
 import { ButtonProps } from "@/ui/button/Button.types"
+import CircleLoader from "@/ui/icons/CircleLoader"
 import cn from "@/utils/cn/cn"
 import "@/ui/button/styles.scss"
 
@@ -22,6 +23,7 @@ const Button: ForwardRefRenderFunction<
     endIcon,
     children,
     href,
+    isLoading = false,
     ...props
   },
   ref
@@ -62,9 +64,10 @@ const Button: ForwardRefRenderFunction<
     <button
       className={btnClassName}
       ref={ref as RefObject<HTMLButtonElement>}
+      disabled={isLoading}
       {...(props as ComponentProps<"button">)}
     >
-      {content}
+      {isLoading ? <CircleLoader /> : content}
     </button>
   )
 }

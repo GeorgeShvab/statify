@@ -11,6 +11,7 @@ export interface ButtonDefaultProps {
   size?: Size
   startIcon?: ReactNode
   endIcon?: ReactNode
+  isLoading?: boolean
 }
 
 export type ButtonProps = ButtonDefaultProps &
