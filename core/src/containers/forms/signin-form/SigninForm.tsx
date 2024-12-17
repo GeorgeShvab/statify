@@ -59,7 +59,11 @@ const SigninForm = () => {
         </label>
       </fieldset>
       <p className="signin-form__error-message">{errorText}</p>
-      <Button className="signin-form__submit-button" type="submit">
+      <Button
+        className="signin-form__submit-button"
+        type="submit"
+        isLoading={data.isLoading}
+      >
         Sign In
       </Button>
       <p className="signin-form__help-label">Need help? Contact the admin.</p>

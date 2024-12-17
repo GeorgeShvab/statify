@@ -6,6 +6,6 @@ export interface ConfirmProps {
   subtitle?: string
   confirmText?: string
   cancelText?: string
-  onConfirm?: () => void
-  onCancel?: () => void
+  onConfirm?: () => Promise<void> | void
+  onCancel?: () => Promise<void> | void
 }

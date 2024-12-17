@@ -17,7 +17,7 @@ import { updateValue } from "@/api/admin"
 import "@/containers/forms/value-form/styles.scss"
 
 const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
-  const [, mutate] = useMutation(updateValue, {
+  const [data, mutate] = useMutation(updateValue, {
     successMessage: "Value was updated successffully",
     errorMessage: "Unexpected error occured",
     onSuccess,
@@ -76,7 +76,12 @@ const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
           </Label>
         </InputGroup>
       </DataList>
-      <Button disabled={!isDirty} type="submit" className="full-width">
+      <Button
+        isLoading={data.isLoading}
+        disabled={!isDirty || data.isLoading}
+        type="submit"
+        className="full-width"
+      >
         Save
       </Button>
     </form>

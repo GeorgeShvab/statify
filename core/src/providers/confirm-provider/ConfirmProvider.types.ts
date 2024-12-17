@@ -8,8 +8,8 @@ export interface ConfirmConfiguration {
   severity: ConfirmSeverity
   confirmText?: string
   cancelText?: string
-  onConfirm?: () => void
-  onCancel?: () => void
+  onConfirm?: () => Promise<void> | void
+  onCancel?: () => Promise<void> | void
 }
 
 export interface ConfirmContext {

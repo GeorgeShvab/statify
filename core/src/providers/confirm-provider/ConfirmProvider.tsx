@@ -38,14 +38,14 @@ const ConfirmProvider: FC<ConfirmProviderProps> = ({ children }) => {
     []
   )
 
-  const handleCancel = () => {
+  const handleCancel = async () => {
+    if (configuration.onCancel) await configuration.onCancel()
     closeConfirm()
-    if (configuration.onCancel) configuration.onCancel()
   }
 
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
+    if (configuration.onConfirm) await configuration.onConfirm()
     closeConfirm()
-    if (configuration.onConfirm) configuration.onConfirm()
   }
 
   return (

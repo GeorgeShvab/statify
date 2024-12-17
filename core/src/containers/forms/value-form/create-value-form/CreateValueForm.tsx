@@ -16,7 +16,7 @@ import { createValue } from "@/api/admin"
 import "@/containers/forms/value-form/styles.scss"
 
 const CreateValueForm: FC<CreateValueFormProps> = ({ onSuccess }) => {
-  const [, mutate] = useMutation(createValue, {
+  const [data, mutate] = useMutation(createValue, {
     successMessage: "Value was created successffully",
     errorMessage: "Unexpected error occured",
     onSuccess,
@@ -72,7 +72,12 @@ const CreateValueForm: FC<CreateValueFormProps> = ({ onSuccess }) => {
           </Label>
         </InputGroup>
       </DataList>
-      <Button disabled={!isDirty} type="submit" className="full-width">
+      <Button
+        isLoading={data.isLoading}
+        disabled={!isDirty || data.isLoading}
+        type="submit"
+        className="full-width"
+      >
         Save
       </Button>
     </form>

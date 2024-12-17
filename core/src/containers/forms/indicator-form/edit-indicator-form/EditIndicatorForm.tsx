@@ -25,7 +25,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
   indicator,
   onSuccess,
 }) => {
-  const [, mutate] = useMutation(updateIndicator, {
+  const [data, mutate] = useMutation(updateIndicator, {
     successMessage: "Indicator was updated successffully",
     errorMessage: "Unexpected error occured",
     onSuccess,
@@ -135,7 +135,12 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
           <Switch {...register("absolute")}>Absolute</Switch>
         </div>
       </DataList>
-      <Button disabled={!isDirty} type="submit" className="full-width">
+      <Button
+        isLoading={data.isLoading}
+        disabled={!isDirty || data.isLoading}
+        type="submit"
+        className="full-width"
+      >
         Save
       </Button>
     </form>
