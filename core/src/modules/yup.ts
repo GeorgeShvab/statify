@@ -15,7 +15,6 @@ declare module "yup" {
     sanitize(): StringSchema<TType, TContext>
     replaceSpecialCharacters(): StringSchema<TType, TContext>
     oneOf(fn: () => Promise<string[]>): StringSchema<TType, TContext>
-    transformAllToDefault(): StringSchema<TType, TContext>
     context?: ValidationContext
   }
 
@@ -24,6 +23,16 @@ declare module "yup" {
     TContext extends AnyObject = AnyObject,
   > extends yup.Schema<TType, TContext> {
     context?: ValidationContext
+  }
+
+  interface ArraySchema<
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    TIn extends any[] | null | undefined,
+    TContext,
+    TDefault = undefined,
+    TFlags extends yup.Flags = "",
+  > {
+    forceArray(): ArraySchema<TIn, TContext, TDefault, TFlags>
   }
 }
 
@@ -42,6 +51,14 @@ yup.addMethod(yup.string, "sanitize", function () {
       return xss(value)
     }
     return value
+  })
+})
+
+yup.addMethod(yup.array, "forceArray", function () {
+  return this.transform((value) => {
+    if (Array.isArray(value)) return value
+
+    return [value]
   })
 })
 

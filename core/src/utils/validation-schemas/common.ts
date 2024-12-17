@@ -11,13 +11,13 @@ const searchSchema = {
 
 const searchParamsStringIdentificatorsSchema = {
   searchParams: schema({
-    ids: yup.array(yup.string().required()).required(),
+    ids: yup.array(yup.string().required()).forceArray().required(),
   }),
 }
 
 const seachParamsNumberIdentificatorsSchema = {
   searchParams: schema({
-    ids: yup.array(yup.number().required()).required(),
+    ids: yup.array(yup.number().required()).forceArray().required(),
   }),
 }
 
