@@ -19,12 +19,8 @@ const ValuesDashboardTableRowDropdown: FC<
   const { selectedItems, selectedCount, clearSelection } =
     useSelectable<number>()
 
-  const {
-    updateValue,
-    revert,
-    backup,
-    deleteValues: deleteStoreValues,
-  } = useContextStore<StoreApi<ValuesStore>>()
+  const { updateValue, deleteValues: deleteStoreValues } =
+    useContextStore<StoreApi<ValuesStore>>()
 
   const { openModal } = useModal()
 
@@ -33,7 +29,6 @@ const ValuesDashboardTableRowDropdown: FC<
   const [, deleteManyValues] = useMutation(deleteValues, {
     errorMessage: "Unexpected error occured",
     successMessage: "Values deleted",
-    onError: revert,
   })
 
   const handleEditValue = () => {
@@ -51,10 +46,9 @@ const ValuesDashboardTableRowDropdown: FC<
       title: `Are you sure you want to delete value (${value.id})?`,
       subtitle: "This action can not be reverted.",
       severity: "danger",
-      onConfirm: () => {
-        backup()
+      onConfirm: async () => {
+        await deleteManyValues([value.id])
         deleteStoreValues([value.id])
-        deleteManyValues([value.id])
       },
     })
   }
@@ -64,10 +58,9 @@ const ValuesDashboardTableRowDropdown: FC<
       title: `Are you sure you want to delete selected values (${selectedCount})?`,
       subtitle: "This action can not be reverted.",
       severity: "danger",
-      onConfirm: () => {
-        backup()
+      onConfirm: async () => {
+        await deleteManyValues(selectedItems)
         deleteStoreValues(selectedItems)
-        deleteManyValues(selectedItems)
       },
     })
   }

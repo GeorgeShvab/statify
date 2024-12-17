@@ -7,7 +7,7 @@ const useMutation = <TArguments, TResult>(
   fn: (args: TArguments) => Promise<AxiosResponse<TResult>>,
   config?: MutationConfiguration<TArguments>
 ) => {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(false)
   const [data, setData] = useState<TResult>()
   const [error, setError] = useState<unknown>()
 

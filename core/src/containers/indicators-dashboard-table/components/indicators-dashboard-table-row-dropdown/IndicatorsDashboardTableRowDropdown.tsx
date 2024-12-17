@@ -40,7 +40,6 @@ const IndicatorsDashboardTableRowDropdown: FC<
   })
 
   const [, deleteManyIndicators] = useMutation(deleteIndicators, {
-    onError: revert,
     errorMessage: "Unexpected error occured",
     successMessage: "Indicators deleted",
   })
@@ -78,10 +77,9 @@ const IndicatorsDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with indicator values will be deleted too.",
       severity: "danger",
-      onConfirm: () => {
-        backup()
+      onConfirm: async () => {
+        await deleteManyIndicators([indicator.id])
         deleteStoreIndicators([indicator.id])
-        deleteManyIndicators([indicator.id])
       },
     })
   }
@@ -92,10 +90,9 @@ const IndicatorsDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with indicators values will be deleted too.",
       severity: "danger",
-      onConfirm: () => {
-        backup()
+      onConfirm: async () => {
+        await deleteManyIndicators(selectedItems)
         deleteStoreIndicators(selectedItems)
-        deleteManyIndicators(selectedItems)
       },
     })
   }

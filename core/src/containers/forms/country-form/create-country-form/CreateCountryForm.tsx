@@ -26,7 +26,7 @@ import { createCountry } from "@/api/admin"
 import "@/containers/forms/country-form/styles.scss"
 
 const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
-  const [, mutate] = useMutation(createCountry, {
+  const [data, mutate] = useMutation(createCountry, {
     successMessage: "Country was updated successffully",
     errorMessage: "Unexpected error occured",
     onSuccess,
@@ -112,7 +112,12 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
           <TagInput tags={[]} onChange={handleTagsChange} />
         </Label>
       </DataList>
-      <Button disabled={!isDirty} type="submit" className="full-width">
+      <Button
+        disabled={!isDirty || data.isLoading}
+        isLoading={data.isLoading}
+        type="submit"
+        className="full-width"
+      >
         Save
       </Button>
     </form>

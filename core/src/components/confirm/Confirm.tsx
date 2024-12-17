@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import Button from "@/ui/button/Button"
 import { ConfirmProps } from "@/components/confirm/types"
 import "@/components/confirm/styles.scss"
@@ -12,6 +12,18 @@ const Confirm: FC<ConfirmProps> = ({
   confirmText = "Confirm",
   severity = "info",
 }) => {
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleConfirm = async () => {
+    setIsLoading(true)
+
+    try {
+      if (onConfirm) await onConfirm()
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="confirm">
       <h4 className="confirm__title">{title}</h4>
@@ -21,9 +33,10 @@ const Confirm: FC<ConfirmProps> = ({
           {cancelText}
         </Button>
         <Button
-          onClick={onConfirm}
+          onClick={handleConfirm}
           size="small"
           color={severity === "info" ? "dark" : "danger"}
+          isLoading={isLoading}
         >
           {confirmText}
         </Button>

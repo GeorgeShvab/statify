@@ -26,7 +26,7 @@ import { updateCountry } from "@/api/admin"
 import "@/containers/forms/country-form/styles.scss"
 
 const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
-  const [, mutate] = useMutation(updateCountry, {
+  const [data, mutate] = useMutation(updateCountry, {
     successMessage: "Country was updated successffully",
     errorMessage: "Unexpected error occured",
     onSuccess,
@@ -110,7 +110,12 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
           <TagInput tags={country.searchTags} onChange={handleTagsChange} />
         </Label>
       </DataList>
-      <Button disabled={!isDirty} type="submit" className="full-width">
+      <Button
+        isLoading={data.isLoading}
+        disabled={!isDirty || data.isLoading}
+        type="submit"
+        className="full-width"
+      >
         Save
       </Button>
     </form>

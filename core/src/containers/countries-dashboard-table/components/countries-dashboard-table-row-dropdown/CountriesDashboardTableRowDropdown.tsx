@@ -41,7 +41,6 @@ const CountriesDashboardTableRowDropdown: FC<
   })
 
   const [, deleteManyCountries] = useMutation(deleteCountries, {
-    onError: revert,
     errorMessage: "Unexpected error occured",
     successMessage: "Countries deleted",
   })
@@ -79,10 +78,9 @@ const CountriesDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with country values will be deleted too.",
       severity: "danger",
-      onConfirm: () => {
-        backup()
+      onConfirm: async () => {
+        await deleteManyCountries([country.id])
         deleteStoreCountries([country.id])
-        deleteManyCountries([country.id])
       },
     })
   }
@@ -93,10 +91,9 @@ const CountriesDashboardTableRowDropdown: FC<
       subtitle:
         "This action can not be reverted. Associated with country values will be deleted too.",
       severity: "danger",
-      onConfirm: () => {
-        backup()
+      onConfirm: async () => {
+        await deleteManyCountries(selectedItems)
         deleteStoreCountries(selectedItems)
-        deleteManyCountries(selectedItems)
       },
     })
   }

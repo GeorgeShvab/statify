@@ -22,7 +22,7 @@ import { createIndicator } from "@/api/admin"
 import "@/containers/forms/indicator-form/styles.scss"
 
 const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
-  const [, mutate] = useMutation(createIndicator, {
+  const [data, mutate] = useMutation(createIndicator, {
     successMessage: "Indicator was created successffully",
     errorMessage: "Unexpected error occured",
     onSuccess,
@@ -136,7 +136,12 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
           <Switch {...register("absolute")}>Absolute</Switch>
         </div>
       </DataList>
-      <Button disabled={!isDirty} type="submit" className="full-width">
+      <Button
+        isLoading={data.isLoading}
+        disabled={!isDirty || data.isLoading}
+        type="submit"
+        className="full-width"
+      >
         Save
       </Button>
     </form>

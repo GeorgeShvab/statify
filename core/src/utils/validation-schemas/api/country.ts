@@ -21,7 +21,7 @@ const patchSchema = {
     geoCode: yup.string().sanitize(),
     iso2Code: yup.string().sanitize(),
     hidden: yup.boolean(),
-    type: yup.string<AreaType>().oneOf(areaTypes),
+    type: yup.string<AreaType>().oneOf(areaTypes).notRequired(),
     searchTags: yup.array(yup.string().required().sanitize()),
   }),
   params: schema({
