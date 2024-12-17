@@ -67,6 +67,7 @@ yup.addMethod(
   "oneOf",
   function (value: (() => Promise<string[]>) | (string | number)[]) {
     return this.test("oneOf", "Invalid value", async (v) => {
+      if (v === undefined) return true
       if (!v) return false
 
       if (typeof value === "function") {
