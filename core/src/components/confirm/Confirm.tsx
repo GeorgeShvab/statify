@@ -29,7 +29,12 @@ const Confirm: FC<ConfirmProps> = ({
       <h4 className="confirm__title">{title}</h4>
       {subtitle && <p className="confirm__subtitle">{subtitle}</p>}
       <div className="confirm__actions">
-        <Button onClick={onCancel} size="small" color="light">
+        <Button
+          onClick={onCancel}
+          size="small"
+          color="light"
+          data-testid="cancel-action-button"
+        >
           {cancelText}
         </Button>
         <Button
@@ -37,6 +42,7 @@ const Confirm: FC<ConfirmProps> = ({
           size="small"
           color={severity === "info" ? "dark" : "danger"}
           isLoading={isLoading}
+          data-testid="confirm-action-button"
         >
           {confirmText}
         </Button>

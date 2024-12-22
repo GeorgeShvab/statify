@@ -94,6 +94,7 @@ const Select: FC<SelectProps> = ({
                   "select__options",
                   containerProps?.className
                 )}
+                data-testid="select"
               >
                 {selectItems}
               </ul>

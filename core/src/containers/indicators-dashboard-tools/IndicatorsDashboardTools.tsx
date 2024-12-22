@@ -43,11 +43,10 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
     setSearchParams(key, option.value)
   }
 
+  const nextSortDirection = sortDirection === "asc" ? "desc" : "asc"
+
   const handleSortDirectionChange = () => {
-    setSearchParams(
-      searchParamsKeys.sortDirection,
-      sortDirection === "asc" ? "desc" : "asc"
-    )
+    setSearchParams(searchParamsKeys.sortDirection, nextSortDirection)
   }
 
   const renderSortLabel = ({ label }: Option) =>
@@ -64,10 +63,11 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   })
 
   return (
-    <div className="admin-dashboard-tools">
+    <div className="admin-dashboard-tools" data-testid="admin-dashboard-tools">
       <Input
         className="flex-grow"
         placeholder="Search by ID, name or description..."
+        data-testid="admin-dashboard-search-field"
         value={searchValue}
         onChange={handleSearchInput}
       />
@@ -75,6 +75,7 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         options={indicatorSelectOptions.status}
         value={status}
         onChange={handleSelectChange(searchParamsKeys.status)}
+        data-testid="admin-dashboard-status-select"
         className="flex-22-5"
         size="small"
       />
@@ -83,16 +84,24 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         value={sort}
         onChange={handleSelectChange(searchParamsKeys.sort)}
         renderSelectedLabel={renderSortLabel}
+        data-testid="admin-dashboard-sort-select"
         className="flex-22-5"
         size="small"
       />
-      <IconButton color="light" onClick={handleSortDirectionChange}>
+      <IconButton
+        color="light"
+        onClick={handleSortDirectionChange}
+        data-testid="admin-dashboard-sort-direction-button"
+        data-current-direction={sortDirection}
+        data-next-direction={nextSortDirection}
+      >
         {sortIcon}
       </IconButton>
       <IconButton
         onClick={clearAllParams}
         disabled={showClearFiltersButton}
         color="light"
+        data-testid="admin-dashboard-clear-filters"
         aria-label="Clear filters"
         title="Clear filters"
       >

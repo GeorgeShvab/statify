@@ -20,6 +20,7 @@ const IndicatorsDashboardTable: FC = () => {
 
   return (
     <Table
+      data-testid="admin-dashboard-table"
       data={indicators}
       renderRow={renderRow}
       renderHeader={renderHeader}

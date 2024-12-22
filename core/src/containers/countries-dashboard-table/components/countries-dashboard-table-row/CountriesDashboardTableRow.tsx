@@ -34,7 +34,14 @@ const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
 
   const handleSelect = () => select(country.id)
 
-  const lastUpdateDate = new Date(country.updatedAt).toLocaleDateString()
+  const lastUpdateDate = new Date(country.updatedAt).toLocaleDateString(
+    "en-GB",
+    {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }
+  )
 
   return (
     <TableRow className={cn(selectedItems.includes(country.id) && "selected")}>

@@ -22,7 +22,11 @@ const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
 
   const handleSelect = () => select(value.id)
 
-  const lastUpdateDate = new Date(value.updatedAt).toLocaleDateString()
+  const lastUpdateDate = new Date(value.updatedAt).toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  })
 
   return (
     <TableRow

@@ -25,7 +25,7 @@ const ValueModal: FC<ValueModalProps> = ({ value }) => {
         <DataListItem label="Country ID" data={value.countryId} />
         <DataListItem label="Value" data={value.value} />
         <DataListItem label="Year" data={value.year} />
-        <DataListItem label="Date of updation" data={updatedAtDate} />
+        <DataListItem label="Date of update" data={updatedAtDate} />
         <DataListItem label="Date of creation" data={createdAtDate} />
       </DataList>
       <Button color="dark" className="full-width" onClick={handleEditValue}>

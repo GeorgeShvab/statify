@@ -1,12 +1,12 @@
 "use client"
 
 import { FC, MouseEvent } from "react"
+import dynamic from "next/dynamic"
 import { DropdownProps } from "@/ui/dropdown/Dropdown.types"
 import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
-import dynamic from "next/dynamic"
-import "@/ui/dropdown/styles.scss"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import cn from "@/utils/cn/cn"
+import "@/ui/dropdown/styles.scss"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
 
@@ -40,6 +40,7 @@ const Dropdown: FC<DropdownProps> = ({
           <ul
             className={cn("dropdown", "light", className)}
             onClick={handleDropdownClick}
+            data-testid="dropdown"
             {...props}
           >
             {children}
