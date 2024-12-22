@@ -32,3 +32,11 @@ When("I type {string} in the searchbar", (value: string) => {
 When("clear input value", () => {
   cy.getById("searchbar-clear-button").click();
 });
+
+When("I confirm action", () => {
+  cy.getById("confirm-action-button").click();
+});
+
+When("I cancel action", () => {
+  cy.getById("cancel-action-button").click();
+});

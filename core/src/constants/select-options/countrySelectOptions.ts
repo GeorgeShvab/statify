@@ -5,7 +5,7 @@ export default {
     { value: "geoCode", label: "GeoCode" },
     { value: "iso2Code", label: "Iso2Code" },
     { value: "datapoints", label: "Datapoints" },
-    { value: "updatedAt", label: "Date of updation" },
+    { value: "updatedAt", label: "Date of update" },
   ],
   status: [
     {

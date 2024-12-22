@@ -21,7 +21,10 @@ const IndicatorsDashboardHeader = () => {
   const handleRefresh = () => router.refresh()
 
   return (
-    <div className="admin-dashboard-header">
+    <div
+      className="admin-dashboard-header"
+      data-testid="admin-dashboard-header"
+    >
       <DashboardHeading
         title="Indicators Dashboard"
         subtitle="Manage indicators: define descriptions, unit, and other essential details."
@@ -31,10 +34,14 @@ const IndicatorsDashboardHeader = () => {
         className="admin-dashboard-header__create-button"
         onClick={handleCreateIndicatorClick}
         startIcon={<PlusIcon />}
+        data-testid="admin-dashboard-add-button"
       >
         Create
       </Button>
-      <IconButton onClick={handleRefresh}>
+      <IconButton
+        onClick={handleRefresh}
+        data-testid="admin-dashboard-refresh-button"
+      >
         <RefreshIcon />
       </IconButton>
     </div>

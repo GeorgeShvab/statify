@@ -34,7 +34,7 @@ const CountryModal: FC<CountryModalProps> = ({ country }) => {
         <DataListItem label="GeoCode" data={country.geoCode} />
         <DataListItem label="Country name" data={country.name} />
         <DataListItem label="Country type" data={country.type} />
-        <DataListItem label="Date of updation" data={updatedAtDate} />
+        <DataListItem label="Date of update" data={updatedAtDate} />
         <DataListItem label="Date of creation" data={createdAtDate} />
         <DataListItem
           label="Search tags"

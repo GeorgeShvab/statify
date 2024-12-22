@@ -34,14 +34,23 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
 
   const handleSelect = () => select(indicator.id)
 
-  const lastUpdateDate = new Date(indicator.updatedAt).toLocaleDateString()
+  const lastUpdateDate = new Date(indicator.updatedAt).toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  })
 
   return (
     <TableRow
       className={cn(selectedItems.includes(indicator.id) && "selected")}
     >
       <TableCell className="admin-dashboard-table__check-cell">
-        <IconButton variant="text" color="dark" onClick={handleSelect}>
+        <IconButton
+          variant="text"
+          color="dark"
+          data-testid="select-button"
+          onClick={handleSelect}
+        >
           <SquareIcon />
         </IconButton>
       </TableCell>
@@ -67,6 +76,7 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
         <IconButton
           variant="text"
           color="light"
+          data-testid="indicator-options-button"
           ref={moreButtonContainer}
           onClick={() => setIsOptionsDropdownOpened(true)}
         >

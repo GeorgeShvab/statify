@@ -8,12 +8,13 @@ const Table = <T,>({
   data,
   children,
   semantic = true,
+  ...props
 }: TableProps<T>) => {
   const rows = children ? children : data?.map(renderRow)
 
   if (semantic) {
     return (
-      <div className="table__container">
+      <div className="table__container" {...props}>
         <table className="table">
           <thead>{renderHeader()}</thead>
           <tbody>{rows}</tbody>
@@ -24,7 +25,7 @@ const Table = <T,>({
   }
 
   return (
-    <div className="table__container">
+    <div className="table__container" {...props}>
       <div className="table no-semantic">
         <div className="table__head">{renderHeader()}</div>
         <div className="table__body">{rows}</div>

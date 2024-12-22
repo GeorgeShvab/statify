@@ -32,13 +32,27 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
     <ModalContainer title="Indicator Information" size="medium">
       <DataList>
         <Label label="Indicator name">
-          <p className="indicator-modal__text">{indicator.label}</p>
+          <p
+            className="indicator-modal__text"
+            data-testid="indicator-modal-name"
+          >
+            {indicator.label}
+          </p>
         </Label>
         <Label label="Indicator description">
-          <p className="indicator-modal__text">{indicator.description}</p>
+          <p
+            className="indicator-modal__text"
+            data-testid="indicator-modal-description"
+          >
+            {indicator.description}
+          </p>
         </Label>
         <DataListDivider />
-        <DataListItem label="Indicator ID" data={indicator.id} />
+        <DataListItem
+          label="Indicator ID"
+          data={indicator.id}
+          data-testid="indicator-modal-id"
+        />
         <DataListItem label="Indicator source" data={indicator.source} />
         <DataListItem label="Indicator dataset" data={indicator.dataset} />
         <DataListItem label="Indicator unit" data={indicator.unit} />
@@ -48,17 +62,22 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
         />
         <DataListItem label="Indicator precision" data={indicator.precision} />
         <DataListItem label="Indicator rank" data={indicator.ranking} />
-        <DataListItem label="Date of updation" data={updatedAtDate} />
+        <DataListItem label="Date of update" data={updatedAtDate} />
         <DataListItem label="Date of creation" data={createdAtDate} />
         <DataListItem
           label="Search tags"
+          data-testid="indicator-modal-tags"
           className={cn(
             indicator.searchTags.length && "indicator-modal__tags-section"
           )}
           data={searchTags}
         />
       </DataList>
-      <Button className="full-width" onClick={handleEditIndicator}>
+      <Button
+        className="full-width"
+        onClick={handleEditIndicator}
+        data-testid="indicator-modal-edit-button"
+      >
         Edit
       </Button>
     </ModalContainer>

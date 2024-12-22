@@ -3,7 +3,7 @@ export default {
     { value: "id", label: "ID" },
     { value: "label", label: "Label" },
     { value: "datapoints", label: "Datapoints" },
-    { value: "updatedAt", label: "Date of updation" },
+    { value: "updatedAt", label: "Date of update" },
   ],
   status: [
     {

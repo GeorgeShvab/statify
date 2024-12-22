@@ -13,6 +13,7 @@ const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
     <label
       htmlFor={inputId}
       {...labelProps}
+      data-testid="switch"
       className={cn("switch", labelProps?.className)}
     >
       <input
@@ -22,6 +23,7 @@ const Switch: ForwardRefRenderFunction<HTMLInputElement, SwitchProps> = (
         checked={checked}
         onChange={onChange}
         id={inputId}
+        data-checked={checked}
         {...props}
         hidden
       />

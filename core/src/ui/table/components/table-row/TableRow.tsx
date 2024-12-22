@@ -9,10 +9,22 @@ const TableRow: FC<TableRowProps> = ({
   ...props
 }) => {
   if (semantic) {
-    return <tr className={cn("table__row", className)} {...props} />
+    return (
+      <tr
+        className={cn("table__row", className)}
+        {...props}
+        data-testid="table-row"
+      />
+    )
   }
 
-  return <div className={cn("table__row", className)} {...props} />
+  return (
+    <div
+      className={cn("table__row", className)}
+      {...props}
+      data-testid="table-row"
+    />
+  )
 }
 
 export default TableRow

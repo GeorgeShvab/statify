@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { useRouter } from "next/navigation"
 import Button from "@/ui/button/Button"
 import Input from "@/ui/input/Input"
 import Label from "@/ui/label/Label"
@@ -22,10 +23,15 @@ import { createIndicator } from "@/api/admin"
 import "@/containers/forms/indicator-form/styles.scss"
 
 const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
+  const router = useRouter()
+
   const [data, mutate] = useMutation(createIndicator, {
     successMessage: "Indicator was created successffully",
     errorMessage: "Unexpected error occured",
-    onSuccess,
+    onSuccess: () => {
+      onSuccess()
+      router.refresh()
+    },
   })
 
   const {

@@ -21,7 +21,7 @@ export default {
         },
         {
           value: "updatedAt",
-          label: "Date of updation",
+          label: "Date of update",
         },
         {
           value: "indicatorId",
