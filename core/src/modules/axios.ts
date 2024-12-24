@@ -5,12 +5,16 @@ const axiosInstance = axios.create({
   baseURL: `${SERVER_ADDRESS}/api`,
   paramsSerializer: (params) => {
     const serizalizedParams = Object.keys(params).reduce(
-      (acc: Record<string, string>, curr: string) => ({
-        ...acc,
-        [curr]: Array.isArray(params[curr])
-          ? params[curr].toString()
-          : params[curr],
-      }),
+      (acc: Record<string, string>, curr: string) => {
+        if (!params[curr]) return acc
+
+        return {
+          ...acc,
+          [curr]: Array.isArray(params[curr])
+            ? params[curr].toString()
+            : params[curr],
+        }
+      },
       {}
     )
 
