@@ -29,9 +29,9 @@ export default {
   },
   public: {
     download: {
-      indicator: (indicatorId: string) => `/public/download/${indicatorId}`,
+      indicator: (indicatorId: string) => `/api/public/download/${indicatorId}`,
       country: (indicatorId: string, countryId: string) =>
-        `/public/download/${indicatorId}/${countryId}`,
+        `/api/public/download/${indicatorId}/${countryId}`,
     },
     bookmark: "/public/bookmark",
     indicators: {
