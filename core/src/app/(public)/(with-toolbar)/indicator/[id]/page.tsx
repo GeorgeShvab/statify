@@ -73,6 +73,6 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
 
 export const revalidate = "force-cache"
 
-export const dynamicParams = true
+export const dynamicParams = process.env.SSG === "false" ? true : false
 
 export default IndicatorPage
