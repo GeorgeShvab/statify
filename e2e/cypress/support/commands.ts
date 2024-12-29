@@ -78,3 +78,8 @@ Cypress.Commands.add("login", () => {
       });
     });
 });
+
+Cypress.Commands.add("verifyFileDownload", (name: string) => {
+  const downloadsFolder = Cypress.config("downloadsFolder");
+  cy.readFile(`${downloadsFolder}/${name}`).should("exist");
+});

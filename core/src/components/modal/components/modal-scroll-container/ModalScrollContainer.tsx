@@ -16,8 +16,14 @@ const ModalScrollContainer: FC<ModalScrollContainerProps> = ({
 
   return (
     <div ref={containerEl}>
-      <div className="modal-scroll-container" onClick={onClose}>
-        <div onClick={handleWrapperClick}>{children}</div>
+      <div
+        className="modal-scroll-container"
+        data-testid="modal-backdrop"
+        onClick={onClose}
+      >
+        <div onClick={handleWrapperClick} data-testid="modal">
+          {children}
+        </div>
       </div>
     </div>
   )

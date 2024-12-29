@@ -24,6 +24,7 @@ const IndicatorCountryTable: FC<IndicatorCountryTableProps> = (props) => {
         direction={data.order}
         isSelected={data.by === "value"}
         aria-label="Sort by value"
+        data-testid="sort-by-value"
       >
         Value
       </TableHeadCellWithSorting>
@@ -36,6 +37,7 @@ const IndicatorCountryTable: FC<IndicatorCountryTableProps> = (props) => {
           className: "indicator-country-table__value-sorting-button",
         }}
         aria-label="Sort by year"
+        data-testid="sort-by-year"
       >
         Year
       </TableHeadCellWithSorting>
@@ -56,6 +58,8 @@ const IndicatorCountryTable: FC<IndicatorCountryTableProps> = (props) => {
         data={data.data}
         renderRow={renderRow}
         renderHeader={renderHeader}
+        data-current-sort-direction={data.order}
+        data-current-sort={data.by}
       />
     </section>
   )

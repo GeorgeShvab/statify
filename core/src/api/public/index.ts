@@ -1,13 +1,46 @@
-import { BookmarkParams } from "@/api/public/types"
+import {
+  BookmarkIndicatorParams,
+  BookmarkIndicatorAndCountryParams,
+  GetBookmarkResult,
+} from "@/api/public/types"
 import apiRoutes from "@/constants/apiRoutes"
 import { CountryIndicator } from "@/types/indicator.types"
 import axiosInstance from "@/modules/axios"
 
-export const bookmarkDataset = (args: BookmarkParams) =>
-  axiosInstance.post(apiRoutes.public.bookmark, args)
+export const createBookmark = ({ indicator }: BookmarkIndicatorParams) =>
+  axiosInstance.post(apiRoutes.public.bookmark.indicator(indicator))
 
-export const getBookmarkedDataset = (args: BookmarkParams) =>
-  axiosInstance.get(apiRoutes.public.bookmark, { params: args })
+export const removeBookmark = ({ indicator }: BookmarkIndicatorParams) =>
+  axiosInstance.delete(apiRoutes.public.bookmark.indicator(indicator))
+
+export const getBookmark = ({ indicator }: BookmarkIndicatorParams) =>
+  axiosInstance.get<GetBookmarkResult>(
+    apiRoutes.public.bookmark.indicator(indicator)
+  )
+
+export const createBookmarkWithCountry = ({
+  indicator,
+  country,
+}: BookmarkIndicatorAndCountryParams) =>
+  axiosInstance.post(
+    apiRoutes.public.bookmark.indicatorWithCountry(indicator, country)
+  )
+
+export const removeBookmarkWithCountry = ({
+  indicator,
+  country,
+}: BookmarkIndicatorAndCountryParams) =>
+  axiosInstance.delete(
+    apiRoutes.public.bookmark.indicatorWithCountry(indicator, country)
+  )
+
+export const getBookmarkWithCountry = ({
+  indicator,
+  country,
+}: BookmarkIndicatorAndCountryParams) =>
+  axiosInstance.get<GetBookmarkResult>(
+    apiRoutes.public.bookmark.indicatorWithCountry(indicator, country)
+  )
 
 export const getSearchAutocomplete = (query: string, signal: AbortSignal) =>
   axiosInstance.get<CountryIndicator[]>(

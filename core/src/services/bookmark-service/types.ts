@@ -1,10 +1,8 @@
 import { Bookmark, Indicator } from "@prisma/client"
 import { PageableParams, PageableResult } from "@/types/general.types"
 
-export type BookmarkActionParams = Pick<
-  Bookmark,
-  "countryId" | "indicatorId" | "client"
->
+export type BookmarkActionParams = Pick<Bookmark, "indicatorId" | "client"> &
+  Partial<Pick<Bookmark, "countryId">>
 
 export interface GetBookmarsByUserParams extends PageableParams {
   client: string

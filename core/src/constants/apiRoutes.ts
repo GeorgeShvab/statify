@@ -33,7 +33,11 @@ export default {
       country: (indicatorId: string, countryId: string) =>
         `/api/public/download/${indicatorId}/${countryId}`,
     },
-    bookmark: "/public/bookmark",
+    bookmark: {
+      indicator: (id: string) => `/public/bookmark/${id}`,
+      indicatorWithCountry: (indicatorId: string, countryId: string) =>
+        `/public/bookmark/${indicatorId}/${countryId}`,
+    },
     indicators: {
       autocomplete: {
         search: "/public/indicators/autocomplete/search",

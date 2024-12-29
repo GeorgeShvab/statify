@@ -24,10 +24,16 @@ const IndicatorsListView: FC<IndicatorsListViewProps> = ({
         "indicators-list-view",
         entirePageHeight && "indicators-list-view--entire-height"
       )}
+      data-testid="indicators-list-view"
     >
       <div className="indicators-list-view__content">
         <div className="container">
-          <h2 className="indicators-list-view__title">{text}</h2>
+          <h2
+            className="indicators-list-view__title"
+            data-testid="indicators-list-title"
+          >
+            {text}
+          </h2>
           {content}
         </div>
       </div>

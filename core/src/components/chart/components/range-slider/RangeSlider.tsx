@@ -40,6 +40,8 @@ const RangeSlider: FC<RangeSliderProps> = ({
     <div
       className={cn(className, "range-slider")}
       data-testid="indicator-chart-range-slider"
+      data-current-min-range={selectedRange[0]}
+      data-current-max-range={selectedRange[selectedRange.length - 1]}
     >
       <Slider
         min={0}
