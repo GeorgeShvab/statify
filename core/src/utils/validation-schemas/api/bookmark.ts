@@ -1,21 +1,35 @@
 import * as yup from "yup"
 import schema from "@/utils/validation-schemas/api/schema"
 
-const postSchema = {
-  body: schema({
+const postBookmarkSchema = {
+  params: schema({
     indicator: yup.string().required(),
-    country: yup.string().nullable().default(null),
   }),
 }
 
-const getSchema = {
-  searchParams: schema({
+const getBookmarkSchema = {
+  params: schema({
     indicator: yup.string().required(),
-    country: yup.string().nullable().default(null),
+  }),
+}
+
+const postBookmarkWithCountrySchema = {
+  params: schema({
+    indicator: yup.string().required(),
+    country: yup.string().required(),
+  }),
+}
+
+const getBookmarkWithCountrySchema = {
+  params: schema({
+    indicator: yup.string().required(),
+    country: yup.string().required(),
   }),
 }
 
 export const BookmarkValidationSchema = {
-  post: postSchema,
-  get: getSchema,
+  postBookmark: postBookmarkSchema,
+  getBookmark: getBookmarkSchema,
+  postBookmarkWithCountry: postBookmarkWithCountrySchema,
+  getBookmarkWithCountry: getBookmarkWithCountrySchema,
 }

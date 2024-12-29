@@ -95,7 +95,7 @@ const IndicatorChartContainer = ({
         />
       </Modal>
       <IndicatorDataSection>
-        <div id="indicator-chart">
+        <div id="indicator-chart" data-testid="indicator-chart">
           <ChartTitle
             className="indicator-chart-container__header"
             title={label}

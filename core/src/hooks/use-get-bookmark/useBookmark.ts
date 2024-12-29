@@ -1,31 +1,60 @@
-import { useEffect, useState } from "react"
-import isErrorWithStatus from "@/utils/is-error-with-status/isErrorWithStatus"
-import { bookmarkDataset, getBookmarkedDataset } from "@/api/public"
+import { useState } from "react"
+import useMutation from "@/hooks/use-mutation/useMutation"
+import useQuery from "@/hooks/use-query/useQuery"
+import {
+  getBookmark,
+  getBookmarkWithCountry,
+  createBookmark,
+  removeBookmark,
+  createBookmarkWithCountry,
+  removeBookmarkWithCountry,
+} from "@/api/public"
 
 const useBookmark = (indicator: string, country?: string) => {
-  const [isBookmarked, setIsBookmarked] = useState<boolean>(false)
+  const [isBookmarked, setIsBookmarked] = useState(false)
 
-  const handleBookmark = async () => {
-    setIsBookmarked((prev) => !prev)
+  const queryFn = () =>
+    country
+      ? getBookmarkWithCountry({ indicator, country })
+      : getBookmark({ indicator })
 
-    await bookmarkDataset({ country, indicator })
+  useQuery(queryFn, {
+    onSuccess: (res) => setIsBookmarked(res.isBookmarked),
+  })
+
+  const addBookmarkConfig = {
+    onSuccess: () => setIsBookmarked(true),
   }
 
-  useEffect(() => {
-    const fetch = async () => {
-      try {
-        await getBookmarkedDataset({ country, indicator })
+  const removeBookmarkConfig = {
+    onSuccess: () => setIsBookmarked(false),
+  }
 
-        setIsBookmarked(true)
-      } catch (e: unknown) {
-        if (isErrorWithStatus(e) && e.response.status === 404) {
-          setIsBookmarked(false)
-        }
-      }
+  const [, addBookmarkWithCountry] = useMutation(
+    createBookmarkWithCountry,
+    addBookmarkConfig
+  )
+
+  const [, addBookmark] = useMutation(createBookmark, addBookmarkConfig)
+
+  const [, deleteBookmarkWithCountry] = useMutation(
+    removeBookmarkWithCountry,
+    removeBookmarkConfig
+  )
+
+  const [, deleteBookmark] = useMutation(removeBookmark, removeBookmarkConfig)
+
+  const handleBookmark = () => {
+    if (isBookmarked) {
+      if (country) return deleteBookmarkWithCountry({ country, indicator })
+
+      return deleteBookmark({ indicator })
     }
 
-    fetch()
-  }, [indicator, country])
+    if (country) return addBookmarkWithCountry({ country, indicator })
+
+    return addBookmark({ indicator })
+  }
 
   return { handleBookmark, isBookmarked }
 }

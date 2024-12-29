@@ -1,4 +1,12 @@
-export interface BookmarkParams {
+export interface BookmarkIndicatorParams {
   indicator: string
-  country?: string
+}
+
+export interface BookmarkIndicatorAndCountryParams {
+  indicator: string
+  country: string
+}
+
+export interface GetBookmarkResult {
+  isBookmarked: boolean
 }

@@ -7,7 +7,11 @@ const ChartLegend: FC<ChartLegendProps> = ({ items, className, ...props }) => {
   return (
     <div className={cn("chart-legend", className)} {...props}>
       {items.map((item) => (
-        <div className="chart-legend__label" key={item.id}>
+        <div
+          className="chart-legend__label"
+          data-testid="chart-legend-item"
+          key={item.id}
+        >
           <span
             className="chart-legend__label-color"
             data-testid="chart-legend-color-label"

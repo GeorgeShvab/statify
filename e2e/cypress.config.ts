@@ -8,6 +8,8 @@ import users from "./cypress/fixtures/users.json";
 import indicators from "./cypress/fixtures/indicators.json";
 import values from "./cypress/fixtures/values.json";
 import countries from "./cypress/fixtures/countries.json";
+import bookmarks from "./cypress/fixtures/bookmarks.json";
+import fs from "fs";
 
 const envs = dotenv.config().parsed!;
 
@@ -31,13 +33,20 @@ async function setupNodeEvents(
         prisma.user.createMany({ data: users as any }),
         prisma.indicator.createMany({ data: indicators as any }),
         prisma.country.createMany({ data: countries as any }),
+      ]);
+
+      await Promise.all([
         prisma.value.createMany({ data: values as any }),
+        prisma.bookmark.createMany({ data: bookmarks as any }),
       ]);
 
       return 0;
     },
     clearTestDatabase: async () => {
-      await prisma.value.deleteMany();
+      await Promise.all([
+        prisma.value.deleteMany(),
+        prisma.bookmark.deleteMany(),
+      ]);
 
       await Promise.all([
         prisma.user.deleteMany(),
@@ -46,6 +55,23 @@ async function setupNodeEvents(
       ]);
 
       return 0;
+    },
+    clearDownloads: async () => {
+      if (!fs.existsSync(path.join(__dirname, "cypress", "downloads"))) {
+        return 0;
+      }
+
+      return new Promise((resolve, reject) => {
+        fs.rmdir(
+          path.join(__dirname, "cypress", "downloads"),
+          { maxRetries: 10, recursive: true },
+          (err) => {
+            if (err) return reject(err);
+
+            resolve(null);
+          }
+        );
+      });
     },
   });
 

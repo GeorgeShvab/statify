@@ -73,4 +73,6 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
 
 export const revalidate = "force-cache"
 
+export const dynamicParams = true
+
 export default IndicatorPage

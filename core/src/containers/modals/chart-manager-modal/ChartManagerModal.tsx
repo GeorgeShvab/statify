@@ -65,6 +65,7 @@ const ChartManagerModal: FC<ChartManagerModalProps> = ({
       key={item.id}
       onClick={() => onRemoveItem(item.id)}
       region={{ ...item, isSelected: true }}
+      data-testid="chart-manager-region"
     />
   ))
 
@@ -84,6 +85,7 @@ const ChartManagerModal: FC<ChartManagerModalProps> = ({
         key={item.id}
         onClick={handleClick}
         region={{ ...item, isSelected: selectedIds.has(item.id) }}
+        data-testid="chart-manager-region"
       />
     )
   })
@@ -100,6 +102,7 @@ const ChartManagerModal: FC<ChartManagerModalProps> = ({
           onChange={handleInput}
           value={value}
           onClear={clearValue}
+          data-testid="chart-manager-search-field"
         />
         <div className="chart-manager-modal__lists">
           <ul className="chart-manager-modal__list">{selectedItems}</ul>

@@ -8,8 +8,14 @@ const ModalCenterContainer: FC<ModalCenterContainerProps> = ({
 }) => {
   return (
     <div>
-      <div className="modal-center-container__backdrope" onClick={onClose} />
-      <div className="modal-center-container__content">{children}</div>
+      <div
+        className="modal-center-container__backdrope"
+        data-testid="modal-backdrop"
+        onClick={onClose}
+      />
+      <div className="modal-center-container__content" data-testid="modal">
+        {children}
+      </div>
     </div>
   )
 }

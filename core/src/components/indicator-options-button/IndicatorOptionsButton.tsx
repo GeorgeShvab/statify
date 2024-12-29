@@ -37,6 +37,7 @@ const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
         onClick={handleToggleOptions}
         color="light"
         ref={anchor}
+        data-testid="indicator-actions-button"
         aria-label="Open options"
       >
         <VerticalMoreIcon />

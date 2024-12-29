@@ -14,6 +14,7 @@ const IndicatorDetailsSection = ({
 
   const descriptionElement = indicator.description && (
     <p
+      data-testid="indicator-description"
       className="indicator-page__description"
       dangerouslySetInnerHTML={{ __html: indicator.description }}
     />
@@ -26,12 +27,14 @@ const IndicatorDetailsSection = ({
   )
 
   return (
-    <IndicatorDataSection>
+    <IndicatorDataSection data-testid="indicator-data-section">
       <IndicatorOptionsButton
         indicatorId={indicator.id}
         countryId={country?.id}
       />
-      <h1 className="indicator-page__title">{title}</h1>
+      <h1 className="indicator-page__title" data-testid="indicator-title">
+        {title}
+      </h1>
       <p className="indicator-page__source">Source: {indicator.source}</p>
       <p className="indicator-page__unit">Unit: {indicator.unit}</p>
       {descriptionElement}

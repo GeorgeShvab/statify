@@ -301,6 +301,3 @@ Then("selected indicators should be exposed", () => {
   cy.wait("@visibility-change-request");
   cy.getByData("checked", "true").should("not.exist");
 });
-
-// add tags. In places where interpolation and args can be used, use it
-// Rewrite some of scenarious names and steps to be more imperative

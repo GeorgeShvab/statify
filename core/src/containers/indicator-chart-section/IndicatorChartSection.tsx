@@ -21,7 +21,7 @@ const IndicatorChartSection: FC<IndicatorChartSectionProps> = ({
   allData,
 }) => {
   return (
-    <section>
+    <section data-testid="indicator-chart-section">
       <ChartProvider data={data}>
         <div className="indicator-chart-section">
           <IndicatorChartContainer data={allData} indicator={indicator} />

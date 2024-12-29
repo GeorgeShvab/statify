@@ -25,6 +25,7 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
         direction={data.order}
         isSelected={data.by === "country"}
         aria-label="Sort by region name"
+        data-testid="sort-by-region"
       >
         Region
       </TableHeadSortingCell>
@@ -35,6 +36,7 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
         isSelected={data.by === "value"}
         buttonProps={{ className: "indicator-table__value-sorting-button" }}
         aria-label="Sort by value"
+        data-testid="sort-by-value"
       >
         Value
       </TableHeadSortingCell>
@@ -56,6 +58,8 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
   return (
     <section className="container">
       <TableComponent
+        data-current-sort-direction={data.order}
+        data-current-sort={data.by}
         data={data.data}
         renderRow={renderRow}
         renderHeader={renderHeader}
