@@ -49,11 +49,10 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   const renderSortLabel = ({ label }: Option) =>
     `Sort by ${label.toLowerCase()}`
 
+  const nextSortDirection = sortDirection === "asc" ? "desc" : "asc"
+
   const handleSortDirectionChange = () => {
-    setSearchParams(
-      searchParamsKeys.sortDirection,
-      sortDirection === "asc" ? "desc" : "asc"
-    )
+    setSearchParams(searchParamsKeys.sortDirection, nextSortDirection)
   }
 
   const sortIcon =
@@ -68,10 +67,11 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   })
 
   return (
-    <div className="admin-dashboard-tools">
+    <div className="admin-dashboard-tools" data-testid="admin-dashboard-tools">
       <Input
         className="flex-grow"
         placeholder="Search by ID, name, geocode or iso2code..."
+        data-testid="admin-dashboard-search-field"
         value={searchValue}
         onChange={handleSearchInput}
       />
@@ -79,6 +79,7 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
         options={countrySelectOptions.status}
         value={status}
         onChange={handleSelectChange(searchParamsKeys.status)}
+        data-testid="admin-dashboard-status-select"
         className="flex-15"
         size="small"
       />
@@ -86,6 +87,7 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
         options={countrySelectOptions.type}
         value={type}
         onChange={handleSelectChange(searchParamsKeys.type)}
+        data-testid="admin-dashboard-type-select"
         className="flex-15"
         size="small"
       />
@@ -94,10 +96,17 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
         value={sort}
         onChange={handleSelectChange(searchParamsKeys.sort)}
         renderSelectedLabel={renderSortLabel}
+        data-testid="admin-dashboard-sort-select"
         className="flex-22-5"
         size="small"
       />
-      <IconButton color="light" onClick={handleSortDirectionChange}>
+      <IconButton
+        color="light"
+        data-testid="admin-dashboard-sort-direction-button"
+        onClick={handleSortDirectionChange}
+        data-current-direction={sortDirection}
+        data-next-direction={nextSortDirection}
+      >
         {sortIcon}
       </IconButton>
       <IconButton
@@ -105,6 +114,7 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
         disabled={showClearFiltersButton}
         color="light"
         aria-label="Clear filters"
+        data-testid="admin-dashboard-clear-filters"
         title="Clear filters"
       >
         <CloseIcon />

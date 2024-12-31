@@ -81,7 +81,7 @@ Then("I should see {string} indicators", (status: string) => {
   cy.get("body").contains(status, { matchCase: false });
 });
 
-When("I type {word} in dashboard search input", (word: string) => {
+When("I type {string} in dashboard search input", (word: string) => {
   cy.getById("admin-dashboard-search-field").type(word);
 });
 
@@ -92,7 +92,7 @@ When("I submit value with Enter", () => {
 });
 
 Then(
-  "I should see indicators containing {word} in a name or description",
+  "I should see indicators containing {string} in a name or description",
   (value: string) => {
     cy.get("body").contains(value, { matchCase: false });
     cy.url().should("include", `search=${value}`);
@@ -165,7 +165,7 @@ When("I open first indicator's options dropdown", () => {
 
 When("I open more information modal", () => {
   cy.getById("dropdown")
-    .contains("more informatio", { matchCase: false })
+    .contains("more information", { matchCase: false })
     .click();
 });
 

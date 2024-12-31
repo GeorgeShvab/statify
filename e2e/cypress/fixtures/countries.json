@@ -37,7 +37,7 @@
     "internationallyRecognized": true,
     "iso2Code": null,
     "mapping": null,
-    "hidden": false,
+    "hidden": true,
     "searchTags": [],
     "type": "country"
   },
@@ -65,7 +65,7 @@
     "internationallyRecognized": true,
     "iso2Code": null,
     "mapping": null,
-    "hidden": false,
+    "hidden": true,
     "searchTags": [],
     "type": "country"
   },
@@ -107,7 +107,7 @@
     "internationallyRecognized": true,
     "iso2Code": null,
     "mapping": null,
-    "hidden": false,
+    "hidden": true,
     "searchTags": [],
     "type": "country"
   },

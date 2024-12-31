@@ -19,7 +19,10 @@ const CountriesDashboardHeader = () => {
   const handleRefresh = () => router.refresh()
 
   return (
-    <div className="admin-dashboard-header">
+    <div
+      className="admin-dashboard-header"
+      data-testid="admin-dashboard-header"
+    >
       <DashboardHeading
         title="Countries Dashboard"
         subtitle="Manage country records: view, edit, and add details for individual countries."
@@ -27,12 +30,16 @@ const CountriesDashboardHeader = () => {
       <Button
         color="dark"
         className="admin-dashboard-header__create-button"
+        data-testid="admin-dashboard-add-button"
         onClick={handleCreateCountryClick}
         startIcon={<PlusIcon />}
       >
         Create
       </Button>
-      <IconButton onClick={handleRefresh}>
+      <IconButton
+        onClick={handleRefresh}
+        data-testid="admin-dashboard-refresh-button"
+      >
         <RefreshIcon />
       </IconButton>
     </div>

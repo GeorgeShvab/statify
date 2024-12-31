@@ -46,7 +46,12 @@ const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
   return (
     <TableRow className={cn(selectedItems.includes(country.id) && "selected")}>
       <TableBodyCell className="admin-dashboard-table__check-cell">
-        <IconButton variant="text" color="dark" onClick={handleSelect}>
+        <IconButton
+          variant="text"
+          color="dark"
+          data-testid="select-button"
+          onClick={handleSelect}
+        >
           <SquareIcon />
         </IconButton>
       </TableBodyCell>
@@ -76,6 +81,7 @@ const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
         <IconButton
           variant="text"
           color="light"
+          data-testid="country-options-button"
           ref={moreButtonContainer}
           onClick={() => setIsOptionsDropdownOpened(true)}
         >
