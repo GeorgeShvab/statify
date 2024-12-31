@@ -3,7 +3,13 @@ const filterDirtyValues = <TData extends object>(
   dirtyValues: Partial<Record<keyof TData, undefined | boolean | boolean[]>>
 ) => {
   const result = (Object.keys(dirtyValues) as (keyof TData)[]).reduce(
-    (acc, curr) => ({ ...acc, [curr]: data[curr] }),
+    (acc, curr) => {
+      if (dirtyValues[curr]) {
+        return { ...acc, [curr]: data[curr] }
+      }
+
+      return acc
+    },
     {}
   )
 
