@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { useRouter } from "next/navigation"
 import Button from "@/ui/button/Button"
 import Input from "@/ui/input/Input"
 import Label from "@/ui/label/Label"
@@ -26,10 +27,15 @@ import { createCountry } from "@/api/admin"
 import "@/containers/forms/country-form/styles.scss"
 
 const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
+  const router = useRouter()
+
   const [data, mutate] = useMutation(createCountry, {
     successMessage: "Country was updated successffully",
     errorMessage: "Unexpected error occured",
-    onSuccess,
+    onSuccess: () => {
+      onSuccess()
+      router.refresh()
+    },
   })
 
   const {

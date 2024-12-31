@@ -17,7 +17,12 @@ const CountriesDashboardTable: FC = () => {
   )
 
   return (
-    <Table data={countries} renderRow={renderRow} renderHeader={renderHeader} />
+    <Table
+      data={countries}
+      data-testid="admin-dashboard-table"
+      renderRow={renderRow}
+      renderHeader={renderHeader}
+    />
   )
 }
 

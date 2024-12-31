@@ -29,22 +29,56 @@ const CountryModal: FC<CountryModalProps> = ({ country }) => {
   return (
     <ModalContainer title="Country Information" size="small">
       <DataList>
-        <DataListItem label="Country ID" data={country.id} />
-        <DataListItem label="Iso2Code" data={country.iso2Code} />
-        <DataListItem label="GeoCode" data={country.geoCode} />
-        <DataListItem label="Country name" data={country.name} />
-        <DataListItem label="Country type" data={country.type} />
-        <DataListItem label="Date of update" data={updatedAtDate} />
-        <DataListItem label="Date of creation" data={createdAtDate} />
+        <DataListItem
+          label="Country ID"
+          data={country.id}
+          data-testid="country-modal-id"
+        />
+        <DataListItem
+          label="Iso2Code"
+          data={country.iso2Code}
+          data-testid="country-modal-iso2code"
+        />
+        <DataListItem
+          label="GeoCode"
+          data={country.geoCode}
+          data-testid="country-modal-geocode"
+        />
+        <DataListItem
+          label="Country name"
+          data={country.name}
+          data-testid="country-modal-name"
+        />
+        <DataListItem
+          label="Country type"
+          data={country.type}
+          data-testid="country-modal-type"
+        />
+        <DataListItem
+          label="Date of update"
+          data={updatedAtDate}
+          data-testid="country-modal-updatedAt"
+        />
+        <DataListItem
+          label="Date of creation"
+          data={createdAtDate}
+          data-testid="country-modal-createdAt"
+        />
         <DataListItem
           label="Search tags"
+          data-testid="country-modal-tags"
           className={cn(
             country.searchTags.length && "country-modal__tags-section"
           )}
           data={searchTags}
         />
       </DataList>
-      <Button color="dark" className="full-width" onClick={handleEditCountry}>
+      <Button
+        color="dark"
+        className="full-width"
+        data-testid="country-modal-edit-button"
+        onClick={handleEditCountry}
+      >
         Edit
       </Button>
     </ModalContainer>

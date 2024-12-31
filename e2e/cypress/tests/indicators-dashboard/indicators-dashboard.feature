@@ -49,9 +49,9 @@ Feature: Indicator dashboard
 
   @feature
   Scenario: Search works as expected
-    When I type GDP in dashboard search input
+    When I type "GDP" in dashboard search input
     And I submit value with Enter
-    Then I should see indicators containing GDP in a name or description
+    Then I should see indicators containing "GDP" in a name or description
 
   @feature
   Scenario: Data refresh works as expected
