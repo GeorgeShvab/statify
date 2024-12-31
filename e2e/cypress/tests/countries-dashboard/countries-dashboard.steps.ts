@@ -235,5 +235,3 @@ Then("I should see {string} countries", (status: string) => {
   cy.url().should("include", `status=${statusLabelParamMap[status]}`);
   cy.get("body").contains(status, { matchCase: false });
 });
-
-// Refactor code. Check scenarious for imperativity, move common steps, check for right copying from indicator to country
