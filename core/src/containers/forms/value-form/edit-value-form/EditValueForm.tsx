@@ -40,6 +40,8 @@ const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
     await mutate({ ...filteredValues, id: value.id })
   }
 
+  const errorMsg = Object.values(errors)[0]?.message
+
   return (
     <form className="value-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="value-form__data-list">
@@ -76,6 +78,9 @@ const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
           </Label>
         </InputGroup>
       </DataList>
+      <p className="value-form__error-msg">
+        {errorMsg ? errorMsg : <>&nbsp;</>}
+      </p>
       <Button
         isLoading={data.isLoading}
         disabled={!isDirty || data.isLoading}

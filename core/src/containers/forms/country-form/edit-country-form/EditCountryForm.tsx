@@ -43,6 +43,8 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
     resolver: yupResolver(editCountryValidationSchema),
   })
 
+  const errorMsg = Object.values(errors)[0]?.message
+
   const handleTagsChange = (tags: string[]) => {
     setValue("searchTags", tags, { shouldDirty: true })
   }
@@ -110,6 +112,9 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
           <TagInput tags={country.searchTags} onChange={handleTagsChange} />
         </Label>
       </DataList>
+      <p className="country-form__error-msg">
+        {errorMsg ? errorMsg : <>&nbsp;</>}
+      </p>
       <Button
         isLoading={data.isLoading}
         disabled={!isDirty || data.isLoading}

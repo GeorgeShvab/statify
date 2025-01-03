@@ -7,5 +7,12 @@
 }
 
 .indicator-form__data-list {
-  margin-bottom: sp(6);
+  margin-bottom: sp(1);
+}
+
+.indicator-form__error-msg {
+  font-size: $fs-sm;
+  color: $error;
+  margin-bottom: sp(5);
+  padding-left: sp(2);
 }
