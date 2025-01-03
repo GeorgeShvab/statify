@@ -56,6 +56,8 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
     await mutate(preparedData)
   }
 
+  const errorMsg = Object.values(errors)[0]?.message
+
   return (
     <form className="indicator-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="indicator-form__data-list">
@@ -142,6 +144,9 @@ const CreateIndicatorForm: FC<CreateIndicatorFormProps> = ({ onSuccess }) => {
           <Switch {...register("absolute")}>Absolute</Switch>
         </div>
       </DataList>
+      <p className="indicator-form__error-msg">
+        {errorMsg ? errorMsg : <>&nbsp;</>}
+      </p>
       <Button
         isLoading={data.isLoading}
         disabled={!isDirty || data.isLoading}

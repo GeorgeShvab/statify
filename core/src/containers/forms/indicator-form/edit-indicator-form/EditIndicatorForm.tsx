@@ -41,6 +41,8 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
     resolver: yupResolver(validationSchema),
   })
 
+  const errorMsg = Object.values(errors)[0]?.message
+
   const handleTagsChange = (tags: string[]) => {
     setValue("searchTags", tags, { shouldDirty: true })
   }
@@ -135,6 +137,9 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
           <Switch {...register("absolute")}>Absolute</Switch>
         </div>
       </DataList>
+      <p className="indicator-form__error-msg">
+        {errorMsg ? errorMsg : <>&nbsp;</>}
+      </p>
       <Button
         isLoading={data.isLoading}
         disabled={!isDirty || data.isLoading}

@@ -49,6 +49,8 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
     resolver: yupResolver(createCountryValidationSchema),
   })
 
+  const errorMsg = Object.values(errors)[0]?.message
+
   const handleTagsChange = (tags: string[]) => {
     setValue("searchTags", tags, { shouldDirty: true })
   }
@@ -118,6 +120,9 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
           <TagInput tags={[]} onChange={handleTagsChange} />
         </Label>
       </DataList>
+      <p className="country-form__error-msg">
+        {errorMsg ? errorMsg : <>&nbsp;</>}
+      </p>
       <Button
         disabled={!isDirty || data.isLoading}
         isLoading={data.isLoading}

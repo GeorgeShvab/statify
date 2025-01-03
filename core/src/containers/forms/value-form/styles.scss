@@ -1,5 +1,12 @@
 @import "@design-system";
 
 .value-form__data-list {
-  margin-bottom: sp(10);
+  margin-bottom: sp(5);
+}
+
+.value-form__error-msg {
+  font-size: $fs-sm;
+  color: $error;
+  margin-bottom: sp(5);
+  padding-left: sp(2);
 }
