@@ -68,14 +68,14 @@ Feature: Indicator dashboard
   Scenario: New indicator can be created
     When I open new indicator form
     And I fill in needed values
-    And I submit form
+    And I submit form inside of a modal
     Then I should see a new indicator in a table
 
   @feature
   Scenario: New indicator fields validation works as expected
     When I open new indicator form
     And I fill in only name
-    And I submit form
+    And I submit form inside of a modal
     Then input should be highlighted indicating failed validation
 
   @feature
@@ -94,7 +94,7 @@ Feature: Indicator dashboard
     When I open first indicator's options dropdown
     And I open edit indicator modal
     And I fill in new name
-    And I submit form
+    And I submit form inside of a modal
     Then I should see changed indicator
 
   @feature

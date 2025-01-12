@@ -50,11 +50,10 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   const renderSortLabel = ({ label }: Option) =>
     `Sort by ${label.toLowerCase()}`
 
+  const nextSortDirection = sortDirection === "asc" ? "desc" : "asc"
+
   const handleSortDirectionChange = () => {
-    setSearchParams(
-      searchParamsKeys.sortDirection,
-      sortDirection === "asc" ? "desc" : "asc"
-    )
+    setSearchParams(searchParamsKeys.sortDirection, nextSortDirection)
   }
 
   const sortIcon =
@@ -72,12 +71,13 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   )
 
   return (
-    <div className="admin-dashboard-tools">
+    <div className="admin-dashboard-tools" data-testid="admin-dashboard-tools">
       <LoadableSelectWithSearch
         apiService={getIndicatorSelectAutocomplete}
         value={indicator}
         onChange={handleSelectChange(searchParamsKeys.indicator)}
         className="flex-grow"
+        data-testid="admin-dashboard-indicator-select"
         size="small"
       />
       <LoadableSelectWithSearch
@@ -85,6 +85,7 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
         value={country}
         onChange={handleSelectChange(searchParamsKeys.country)}
         className="flex-30"
+        data-testid="admin-dashboard-country-select"
         size="small"
       />
       <Select
@@ -93,12 +94,16 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
         onChange={handleSelectChange(searchParamsKeys.sort)}
         renderSelectedLabel={renderSortLabel}
         className="flex-22-5"
+        data-testid="admin-dashboard-sort-select"
         size="small"
       />
       <IconButton
         className="flex-static"
+        data-testid="admin-dashboard-sort-direction-button"
         color="light"
         onClick={handleSortDirectionChange}
+        data-current-direction={sortDirection}
+        data-next-direction={nextSortDirection}
       >
         {sortIcon}
       </IconButton>
@@ -108,6 +113,7 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
         className="flex-static"
         color="light"
         aria-label="Clear filters"
+        data-testid="admin-dashboard-clear-filters"
         title="Clear filters"
       >
         <CloseIcon />

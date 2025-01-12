@@ -69,14 +69,14 @@ Feature: Countries dashboard
   Scenario: New country can be created
     When I open new country form
     And I fill in needed country values
-    And I submit form
+    And I submit form inside of a modal
     Then I should see a new country in a table
 
   @feature
   Scenario: New country fields validation works as expected
     When I open new country form
     And I fill in only country name
-    And I submit form
+    And I submit form inside of a modal
     Then country id input should be highlighted indicating failed validation
 
   @feature
@@ -95,7 +95,7 @@ Feature: Countries dashboard
     When I open first country options dropdown
     And I open edit country modal
     And I fill in new country name
-    And I submit form
+    And I submit form inside of a modal
     Then I should see changed country
 
   @feature

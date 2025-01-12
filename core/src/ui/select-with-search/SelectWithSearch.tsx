@@ -115,6 +115,7 @@ const SelectWithSearch: FC<SelectWithSearchProps> = ({
                   "select__container select-with-search",
                   containerProps?.className
                 )}
+                data-testid="select"
               >
                 <div className="select__input-container">
                   <Input

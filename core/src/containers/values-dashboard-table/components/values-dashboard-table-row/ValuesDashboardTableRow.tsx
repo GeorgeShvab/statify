@@ -38,7 +38,12 @@ const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
         semantic={false}
         className="admin-dashboard-table__check-cell flex-5"
       >
-        <IconButton variant="text" color="dark" onClick={handleSelect}>
+        <IconButton
+          variant="text"
+          color="dark"
+          data-testid="select-button"
+          onClick={handleSelect}
+        >
           <SquareIcon />
         </IconButton>
       </TableCell>
@@ -79,6 +84,7 @@ const IndicatorsDashboardTableRow: FC<ValuesDashboardTableRowProps> = ({
         <IconButton
           variant="text"
           color="light"
+          data-testid="value-options-button"
           ref={moreButtonContainer}
           onClick={() => setIsOptionsDropdownOpened(true)}
         >

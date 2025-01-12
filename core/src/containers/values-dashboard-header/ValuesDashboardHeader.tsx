@@ -19,7 +19,10 @@ const ValuesDashboardHeader = () => {
   const handleRefresh = () => router.refresh()
 
   return (
-    <div className="admin-dashboard-header">
+    <div
+      className="admin-dashboard-header"
+      data-testid="admin-dashboard-header"
+    >
       <DashboardHeading
         title="Data Entries Dashboard"
         subtitle="Manage data entries: review, update, and add values for indicators across countries and years."
@@ -27,12 +30,16 @@ const ValuesDashboardHeader = () => {
       <Button
         color="dark"
         className="admin-dashboard-header__create-button"
+        data-testid="admin-dashboard-add-button"
         startIcon={<PlusIcon />}
         onClick={handleCreateValueClick}
       >
         Create
       </Button>
-      <IconButton onClick={handleRefresh}>
+      <IconButton
+        onClick={handleRefresh}
+        data-testid="admin-dashboard-refresh-button"
+      >
         <RefreshIcon />
       </IconButton>
     </div>

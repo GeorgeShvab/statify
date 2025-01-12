@@ -18,6 +18,7 @@ const SelectItem: FC<SelectItemProps> = ({
         className,
         isSelected && "selected"
       )}
+      data-testid="option"
       role="option"
       {...props}
     />
