@@ -27,7 +27,7 @@ const ValuesDashboardTable: FC = () => {
   const ref = useInfiniteScroll(getAdminValues, merge, { initialPage: 1 })
 
   return (
-    <div ref={ref}>
+    <div ref={ref} data-testid="admin-dashboard-table">
       <VirtualizedTable
         rowHeight={46}
         rowCount={values.length}

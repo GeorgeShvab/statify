@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
+import { useRouter } from "next/navigation"
 import Button from "@/ui/button/Button"
 import Input from "@/ui/input/Input"
 import Label from "@/ui/label/Label"
@@ -16,10 +17,15 @@ import { createValue } from "@/api/admin"
 import "@/containers/forms/value-form/styles.scss"
 
 const CreateValueForm: FC<CreateValueFormProps> = ({ onSuccess }) => {
+  const router = useRouter()
+
   const [data, mutate] = useMutation(createValue, {
     successMessage: "Value was created successffully",
     errorMessage: "Unexpected error occured",
-    onSuccess,
+    onSuccess: () => {
+      onSuccess()
+      router.refresh()
+    },
   })
 
   const {

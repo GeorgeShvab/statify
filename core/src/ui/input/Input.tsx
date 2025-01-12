@@ -9,7 +9,14 @@ const Input: ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
 ) => {
   const inputClassName = cn("input", className, isError && "error")
 
-  return <input ref={ref} className={inputClassName} {...props} />
+  return (
+    <input
+      ref={ref}
+      data-testid="input"
+      className={inputClassName}
+      {...props}
+    />
+  )
 }
 
 export default forwardRef(Input)

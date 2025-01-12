@@ -9,6 +9,10 @@ When("I submit form", () => {
   cy.get('button[type="submit"]:visible').click();
 });
 
+When("I submit form inside of a modal", () => {
+  cy.getById("modal").get('button[type="submit"]').click();
+});
+
 Then("I should be navigated to {string} page", (urlSubstring: string) => {
   if (urlSubstring === "home") {
     cy.url().should("equal", "http://localhost:3000/");

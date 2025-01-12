@@ -21,9 +21,7 @@ declare global {
 beforeEach(() => {
   cy.setCookie("client_id", "m0qqf9t91yatil3svh");
 
-  cy.task("clearTestDatabase").then(() => {
-    cy.task("populateTestDatabase");
-  });
+  cy.task("clearTestDatabase").then(() => cy.task("populateTestDatabase"));
 });
 
 afterEach(() => {
