@@ -6,8 +6,8 @@ interface RateLimiterClient {
 const clients = new Map<string, RateLimiterClient>()
 
 const config = {
-  windowSize: 120000,
-  maxRequests: 60,
+  windowSize: 60,
+  maxRequests: 180,
 }
 
 const initializeClient = (ip: string) => {
