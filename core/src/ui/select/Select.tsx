@@ -9,6 +9,7 @@ import SelectItem from "@/ui/select/components/select-item/SelectItem"
 import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import cn from "@/utils/cn/cn"
+import translate, { TranslationMessage } from "@/modules/i18n"
 import "@/ui/select/styles.scss"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
@@ -21,6 +22,7 @@ const Select: FC<SelectProps> = ({
   className,
   containerProps,
   size = "medium",
+  i18n = true,
   renderItemLabel,
   renderSelectedLabel,
   ...props
@@ -34,9 +36,13 @@ const Select: FC<SelectProps> = ({
 
   const selectedOption = options.find((item) => item.value === value)!
 
+  const i18nLabel = i18n
+    ? translate(selectedOption.label as TranslationMessage)
+    : selectedOption.label
+
   const mainLabel = renderSelectedLabel
     ? renderSelectedLabel(selectedOption)
-    : selectedOption.label
+    : i18nLabel
 
   const chevronIcon = isOpen ? <UpChevronIcon /> : <DownChevronIcon />
 
@@ -57,7 +63,7 @@ const Select: FC<SelectProps> = ({
         onClick={handleItemClick}
         {...itemProps}
       >
-        {label}
+        {i18n ? translate(label as TranslationMessage) : label}
       </SelectItem>
     )
   })

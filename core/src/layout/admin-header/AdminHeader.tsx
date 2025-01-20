@@ -5,6 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import Button from "@/ui/button/Button"
 import routes from "@/constants/routes"
+import translate from "@/modules/i18n"
 import "@/layout/admin-header/styles.scss"
 import "@/layout/header/styles.scss"
 
@@ -30,7 +31,7 @@ const AdminHeader: FC = () => {
               color={isIndicators ? "light" : "dark"}
               href={routes.admin.indicators}
             >
-              Indicators
+              {translate("admin_header.indicators")}
             </Button>
           </li>
           <li>
@@ -41,7 +42,7 @@ const AdminHeader: FC = () => {
               color={isCountries ? "light" : "dark"}
               href={routes.admin.countries}
             >
-              Countries
+              {translate("admin_header.countries")}
             </Button>
           </li>
           <li>
@@ -52,7 +53,7 @@ const AdminHeader: FC = () => {
               color={isValues ? "light" : "dark"}
               href={routes.admin.values}
             >
-              Values
+              {translate("admin_header.values")}
             </Button>
           </li>
         </ul>

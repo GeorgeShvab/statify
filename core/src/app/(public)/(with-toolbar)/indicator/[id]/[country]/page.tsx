@@ -7,6 +7,7 @@ import IndicatorChartSection from "@/containers/indicator-chart-section/Indicato
 import IndicatorCountryTable from "@/containers/indicator-country-table/IndicatorCountryTable"
 import IndicatorDetailsSection from "@/containers/indicator-details-section/IndicatorDetailsSection"
 import IndicatorsListView from "@/containers/indicators-list-view/IndicatorsListView"
+import translate from "@/modules/i18n"
 
 export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/indicator/[id]/[country]/metadata"
 
@@ -44,7 +45,7 @@ async function IndicatorPage({ params }: IndicatorCountryPageProps) {
       {!!relatedIndicators?.length && (
         <IndicatorsListView
           entirePageHeight={false}
-          text="Related indicators"
+          text={translate("pages.indicator.related_indicators_label")}
           data={relatedIndicators}
         />
       )}

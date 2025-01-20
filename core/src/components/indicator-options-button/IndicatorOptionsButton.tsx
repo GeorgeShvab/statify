@@ -12,6 +12,7 @@ import XlsxFileIcon from "@/ui/icons/XlsxFileIcon"
 import { IndicatorOptionsProps } from "@/components/indicator-options-button/types"
 import useBookmark from "@/hooks/use-get-bookmark/useBookmark"
 import getDatasetDonwloadLink from "@/utils/get-dataset-donwload-link/getDatasetDownloadLink"
+import translate from "@/modules/i18n"
 import "@/components/indicator-options-button/styles.scss"
 
 const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
@@ -53,7 +54,11 @@ const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
           size="small"
           onClick={handleBookmark}
         >
-          {isBookmarked ? "Unbookmark" : "Bookmark"}
+          {translate(
+            isBookmarked
+              ? "pages.indicator.bookmark"
+              : "pages.indicator.unbookmark"
+          )}
         </DropdownItem>
         <DropdownItem className="indicator-options__dropdown-item" size="small">
           <a
@@ -66,7 +71,7 @@ const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
             download="true"
           >
             <CsvFileIcon />
-            <span>Download as CSV</span>
+            <span>{translate("pages.indicator.download_csv")}</span>
           </a>
         </DropdownItem>
         <DropdownItem className="indicator-options__dropdown-item" size="small">
@@ -80,7 +85,7 @@ const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
             download="true"
           >
             <XlsxFileIcon />
-            <span>Download as XLSX</span>
+            <span>{translate("pages.indicator.download_xlsx")}</span>
           </a>
         </DropdownItem>
       </Dropdown>

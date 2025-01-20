@@ -14,12 +14,13 @@ import InputGroup from "@/components/input-group/InputGroup"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import filterDirtyValues from "@/utils/filter-dirty-values/filterDirtyValues"
 import { updateValue } from "@/api/admin"
+import translate from "@/modules/i18n"
 import "@/containers/forms/value-form/styles.scss"
 
 const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
   const [data, mutate] = useMutation(updateValue, {
-    successMessage: "Value was updated successffully",
-    errorMessage: "Unexpected error occured",
+    successMessage: translate("pages.values_dashboard.updated_successfully"),
+    errorMessage: translate("errors.unexpected_error"),
     onSuccess,
   })
 
@@ -46,14 +47,14 @@ const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
     <form className="value-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="value-form__data-list">
         <InputGroup>
-          <Label label="Indicator ID">
+          <Label label={translate("pages.values_dashboard.indicator_id")}>
             <Input
               className="full-width"
               isError={Boolean(errors.indicatorId)}
               {...register("indicatorId")}
             />
           </Label>
-          <Label label="Country ID">
+          <Label label={translate("pages.values_dashboard.country_id")}>
             <Input
               className="full-width"
               isError={Boolean(errors.countryId)}
@@ -62,14 +63,14 @@ const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
           </Label>
         </InputGroup>
         <InputGroup>
-          <Label label="Value">
+          <Label label={translate("common.value")}>
             <Input
               className="full-width"
               isError={Boolean(errors.value)}
               {...register("value")}
             />
           </Label>
-          <Label label="Year">
+          <Label label={translate("common.year")}>
             <Input
               className="full-width"
               isError={Boolean(errors.year)}
@@ -87,7 +88,7 @@ const EditValueForm: FC<EditValueFormProps> = ({ value, onSuccess }) => {
         type="submit"
         className="full-width"
       >
-        Save
+        {translate("common.save")}
       </Button>
     </form>
   )

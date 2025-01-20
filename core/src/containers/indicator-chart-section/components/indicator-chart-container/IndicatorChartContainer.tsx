@@ -16,6 +16,7 @@ import { useChartContext } from "@/providers/chart-provider/ChartProvider"
 import { isEmptyChartStore } from "@/store/chart-store/utils"
 import capitalize from "@/utils/capitalize/capitalize"
 import saveToClipboardAsImage from "@/utils/save-to-clipboard-as-image/saveToClipboardAsImage"
+import translate from "@/modules/i18n"
 import "@/containers/indicator-chart-section/components/indicator-chart-container/styles.scss"
 
 const getSubtitle = (shortening: number | null, unit: string) => {
@@ -68,12 +69,12 @@ const IndicatorChartContainer = ({
 
       openAlert({
         severity: "success",
-        text: "The chart was copied to the clipboard",
+        text: translate("chart.copying_success"),
       })
     } catch {
       openAlert({
         severity: "danger",
-        text: "Unexpected error occured, the chart was not copied to clipboard",
+        text: translate("chart.copying_fail"),
       })
     }
   }
@@ -111,8 +112,8 @@ const IndicatorChartContainer = ({
             <IconButton
               color="light"
               className="indicator-chart-container__manager-button html2canvas-hidden"
-              aria-label="Edit chart"
-              title="Edit chart"
+              aria-label={translate("pages.indicator.edit_chart")}
+              title={translate("pages.indicator.edit_chart")}
               size="small"
               data-testid="indicator-chart-manager-button"
               onClick={handleOpenModal}
@@ -123,8 +124,8 @@ const IndicatorChartContainer = ({
           <IconButton
             color="light"
             className="indicator-chart-container__copy-button html2canvas-hidden"
-            aria-label="Copy the chart as an image"
-            title="Copy the chart as an image"
+            aria-label={translate("pages.indicator.copy_chart")}
+            title={translate("pages.indicator.copy_chart")}
             data-testid="indicator-chart-copy-button"
             size="small"
             onClick={handleSaveChartToClipboard}

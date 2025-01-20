@@ -1,36 +1,45 @@
 export default {
   sort: [
-    { value: "id", label: "ID" },
-    { value: "label", label: "Label" },
-    { value: "datapoints", label: "Datapoints" },
-    { value: "updatedAt", label: "Date of update" },
+    { value: "id", label: "pages.indicators_dashboard.selects.sort.by_id" },
+    {
+      value: "label",
+      label: "pages.indicators_dashboard.selects.sort.by_label",
+    },
+    {
+      value: "datapoints",
+      label: "pages.indicators_dashboard.selects.sort.by_datapoints",
+    },
+    {
+      value: "updatedAt",
+      label: "pages.indicators_dashboard.selects.sort.by_date_of_update",
+    },
   ],
   status: [
     {
       value: "all",
-      label: "All statuses",
+      label: "pages.indicators_dashboard.selects.status.all",
     },
     {
       value: "visible",
-      label: "Visible",
+      label: "pages.indicators_dashboard.selects.status.visible",
     },
     {
       value: "hidden",
-      label: "Hidden",
+      label: "pages.indicators_dashboard.selects.status.hidden",
     },
   ],
   type: [
     {
       value: "all",
-      label: "All types",
+      label: "pages.indicators_dashboard.selects.type.all",
     },
     {
       value: "absolute",
-      label: "Absolute",
+      label: "pages.indicators_dashboard.selects.type.absolute",
     },
     {
       value: "relative",
-      label: "Relative",
+      label: "pages.indicators_dashboard.selects.type.relative",
     },
   ],
 } as const

@@ -34,3 +34,18 @@ export interface PageProps<
 export type IconProps = ComponentProps<"svg">
 
 export type QueryParams = Record<string, string | null>
+
+export type Lang = "en" | "uk"
+
+export interface LangProp {
+  lang: Lang
+}
+
+export type Flatten<
+  T extends Record<string, unknown>,
+  Key = keyof T,
+> = Key extends string
+  ? T[Key] extends Record<string, unknown>
+    ? `${Key}.${Flatten<T[Key]>}`
+    : `${Key}`
+  : never

@@ -8,6 +8,7 @@ import IndicatorDetailsSection from "@/containers/indicator-details-section/Indi
 import IndicatorTable from "@/containers/indicator-table/IndicatorTable"
 import IndicatorsListView from "@/containers/indicators-list-view/IndicatorsListView"
 import { CountryWithValues } from "@/types/country.types"
+import translate from "@/modules/i18n"
 
 export { default as generateMetadata } from "@/app/(public)/(with-toolbar)/indicator/[id]/metadata"
 export { default as generateStaticParams } from "@/app/(public)/(with-toolbar)/indicator/[id]/generate-static-params"
@@ -63,7 +64,7 @@ async function IndicatorPage({ params }: IndicatorPageProps) {
       {!!relatedIndicators?.length && (
         <IndicatorsListView
           entirePageHeight={false}
-          text="Related indicators"
+          text={translate("pages.indicator.related_indicators_label")}
           data={relatedIndicators}
         />
       )}

@@ -24,14 +24,15 @@ import InputGroup from "@/components/input-group/InputGroup"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { createCountry } from "@/api/admin"
+import translate from "@/modules/i18n"
 import "@/containers/forms/country-form/styles.scss"
 
 const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
   const router = useRouter()
 
   const [data, mutate] = useMutation(createCountry, {
-    successMessage: "Country was updated successffully",
-    errorMessage: "Unexpected error occured",
+    successMessage: translate("pages.countries_dashboard.created_successfully"),
+    errorMessage: translate("errors.unexpected_error"),
     onSuccess: () => {
       onSuccess()
       router.refresh()
@@ -69,14 +70,14 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
   return (
     <form className="country-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="country-form__data-list">
-        <Label label="Country ID">
+        <Label label={translate("common.id")}>
           <Input
             className="full-width"
             isError={Boolean(errors.id)}
             {...register("id")}
           />
         </Label>
-        <Label label="Country name">
+        <Label label={translate("common.name")}>
           <Input
             className="full-width"
             isError={Boolean(errors.name)}
@@ -85,14 +86,14 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
         </Label>
         <DataListDivider />
         <InputGroup>
-          <Label label="Iso2Code">
+          <Label label={translate("common.iso2code")}>
             <Input
               className="full-width"
               isError={Boolean(errors.iso2Code)}
               {...register("iso2Code")}
             />
           </Label>
-          <Label label="GeoCode">
+          <Label label={translate("common.geocode")}>
             <Input
               className="full-width"
               isError={Boolean(errors.geoCode)}
@@ -100,7 +101,7 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
             />
           </Label>
         </InputGroup>
-        <Label label="Type">
+        <Label label={translate("common.type")}>
           <SelectController<CreateCountryFormValues>
             name="type"
             options={countryTypeOptions}
@@ -108,7 +109,7 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
             control={control}
           />
         </Label>
-        <Label label="Status">
+        <Label label={translate("common.status")}>
           <SelectController<CreateCountryFormValues>
             name="status"
             options={countryStatusOptions}
@@ -116,7 +117,7 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
             control={control}
           />
         </Label>
-        <Label label="Search tags">
+        <Label label={translate("common.search_tags")}>
           <TagInput tags={[]} onChange={handleTagsChange} />
         </Label>
       </DataList>
@@ -129,7 +130,7 @@ const CreateCountryForm: FC<CreateCountryFormProps> = ({ onSuccess }) => {
         type="submit"
         className="full-width"
       >
-        Save
+        {translate("common.save")}
       </Button>
     </form>
   )

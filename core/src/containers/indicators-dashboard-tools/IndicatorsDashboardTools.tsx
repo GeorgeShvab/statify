@@ -15,6 +15,7 @@ import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
 import searchParamsKeys from "@/constants/searchParamsKeys"
 import indicatorSelectOptions from "@/constants/select-options/indicatorSelectOptions"
+import translate, { TranslationMessage } from "@/modules/i18n"
 
 const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   sort,
@@ -50,7 +51,9 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
   }
 
   const renderSortLabel = ({ label }: Option) =>
-    `Sort by ${label.toLowerCase()}`
+    translate("common.sort_by", {
+      value: translate(label as TranslationMessage).toLowerCase(),
+    })
 
   const sortIcon =
     sortDirection === "asc" ? <SortAscendingIcon /> : <SortDescendingIcon />
@@ -66,7 +69,7 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
     <div className="admin-dashboard-tools" data-testid="admin-dashboard-tools">
       <Input
         className="flex-grow"
-        placeholder="Search by ID, name or description..."
+        placeholder={translate("pages.indicators_dashboard.search_placeholder")}
         data-testid="admin-dashboard-search-field"
         value={searchValue}
         onChange={handleSearchInput}
@@ -102,8 +105,8 @@ const IndicatorsDashboardTools: FC<IndicatorsDashboardToolsProps> = ({
         disabled={showClearFiltersButton}
         color="light"
         data-testid="admin-dashboard-clear-filters"
-        aria-label="Clear filters"
-        title="Clear filters"
+        aria-label={translate("pages.dashboard.clear_filters")}
+        title={translate("pages.dashboard.clear_filters")}
       >
         <CloseIcon />
       </IconButton>

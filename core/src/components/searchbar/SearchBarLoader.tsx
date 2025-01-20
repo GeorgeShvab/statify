@@ -3,6 +3,7 @@ import Button from "@/ui/button/Button"
 import IconButton from "@/ui/icon-button/IconButton"
 import SearchIcon from "@/ui/icons/SearchIcon"
 import { SearchBarProps } from "@/components/searchbar/types"
+import translate from "@/modules/i18n"
 import "@/components/searchbar/styles.scss"
 
 const SearchBarLoader: FC<SearchBarProps> = ({ placeholder }) => {
@@ -16,14 +17,14 @@ const SearchBarLoader: FC<SearchBarProps> = ({ placeholder }) => {
           <input
             name="query"
             value=""
-            placeholder={placeholder || "Search..."}
+            placeholder={placeholder || translate("common.search_ellipsed")}
             autoComplete="off"
             className="searchbar__input"
           />
         </div>
       </div>
       <Button type="submit" className="searchbar__button desktop">
-        Search
+        {translate("common.search")}
       </Button>
       <IconButton
         type="submit"

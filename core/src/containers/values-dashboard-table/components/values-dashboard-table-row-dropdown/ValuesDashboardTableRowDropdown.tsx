@@ -12,6 +12,7 @@ import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { ValuesStore } from "@/store/values-store/types"
 import { deleteValues } from "@/api/admin"
+import translate from "@/modules/i18n"
 
 const ValuesDashboardTableRowDropdown: FC<
   ValuesDashboardTableRowDropdownProps
@@ -27,8 +28,8 @@ const ValuesDashboardTableRowDropdown: FC<
   const { openConfirm } = useConfirm()
 
   const [, deleteManyValues] = useMutation(deleteValues, {
-    errorMessage: "Unexpected error occured",
-    successMessage: "Values deleted",
+    errorMessage: translate("errors.unexpected_error"),
+    successMessage: translate("pages.values_dashboard.deleted_successfully"),
   })
 
   const handleEditValue = () => {
@@ -43,8 +44,10 @@ const ValuesDashboardTableRowDropdown: FC<
 
   const handleDeleteValue = () => {
     openConfirm({
-      title: `Are you sure you want to delete value (${value.id})?`,
-      subtitle: "This action can not be reverted.",
+      title: translate("pages.values_dashboard.confirm_deletion", {
+        id: value.id,
+      }),
+      subtitle: translate("common.unrevertable_action"),
       severity: "danger",
       onConfirm: async () => {
         await deleteManyValues([value.id])
@@ -55,8 +58,10 @@ const ValuesDashboardTableRowDropdown: FC<
 
   const handleDeleteValues = () => {
     openConfirm({
-      title: `Are you sure you want to delete selected values (${selectedCount})?`,
-      subtitle: "This action can not be reverted.",
+      title: translate("pages.values_dashboard.confirm_multiple_deletion", {
+        count: selectedCount,
+      }),
+      subtitle: translate("common.unrevertable_action"),
       severity: "danger",
       onConfirm: async () => {
         await deleteManyValues(selectedItems)
@@ -68,21 +73,25 @@ const ValuesDashboardTableRowDropdown: FC<
   return (
     <Dropdown position="bottom-end" closeOneClick {...props}>
       <DropdownItem size="small" onClick={handleMoreValueInformation}>
-        More Information
+        {translate("pages.dashboard.more_info")}
       </DropdownItem>
       <DropdownItem size="small" onClick={handleEditValue}>
-        Edit Value
+        {translate("pages.values_dashboard.edit_value")}
       </DropdownItem>
       <DropdownItem size="small" onClick={handleDeleteValue}>
-        Delete Value
+        {translate("pages.values_dashboard.delete_value")}
       </DropdownItem>
       {selectedCount > 0 && (
         <>
           <DropdownItem size="small" onClick={handleDeleteValues}>
-            Delete selected ({selectedCount})
+            {translate("pages.dashboard.delete_selected", {
+              values: selectedCount,
+            })}
           </DropdownItem>
           <DropdownItem size="small" onClick={clearSelection}>
-            Clear selection ({selectedCount})
+            {translate("pages.dashboard.clear_selection", {
+              values: selectedCount,
+            })}
           </DropdownItem>
         </>
       )}

@@ -9,27 +9,27 @@ export default {
       [
         {
           value: "id",
-          label: "ID",
+          label: "pages.values_dashboard.selects.sort.by_id",
         },
         {
           value: "value",
-          label: "Value",
+          label: "pages.values_dashboard.selects.sort.by_value",
         },
         {
           value: "year",
-          label: "Year",
+          label: "pages.values_dashboard.selects.sort.by_year",
         },
         {
           value: "updatedAt",
-          label: "Date of update",
+          label: "pages.values_dashboard.selects.sort.by_date_of_update",
         },
         {
           value: "indicatorId",
-          label: "Indicator ID",
+          label: "pages.values_dashboard.selects.sort.by_indicator_id",
         },
         {
           value: "countryId",
-          label: "Country ID",
+          label: "pages.values_dashboard.selects.sort.by_country_id",
         },
       ] as const
     ).filter(({ value }) => full || (value !== "value" && value !== "year")),

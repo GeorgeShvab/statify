@@ -19,6 +19,7 @@ import InputGroup from "@/components/input-group/InputGroup"
 import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { updateIndicator } from "@/api/admin"
+import translate from "@/modules/i18n"
 import "@/containers/forms/indicator-form/styles.scss"
 
 const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
@@ -26,8 +27,10 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
   onSuccess,
 }) => {
   const [data, mutate] = useMutation(updateIndicator, {
-    successMessage: "Indicator was updated successffully",
-    errorMessage: "Unexpected error occured",
+    successMessage: translate(
+      "pages.indicators_dashboard.updated_successfully"
+    ),
+    errorMessage: translate("errors.unexpected_error"),
     onSuccess,
   })
 
@@ -58,17 +61,17 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
   return (
     <form className="indicator-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="indicator-form__data-list">
-        <Label label="Indicator ID">
+        <Label label={translate("common.id")}>
           <Input className="full-width" value={indicator.id} readOnly />
         </Label>
-        <Label label="Indicator name">
+        <Label label={translate("common.name")}>
           <Input
             className="full-width"
             isError={Boolean(errors.label)}
             {...register("label")}
           />
         </Label>
-        <Label label="Indicator description">
+        <Label label={translate("common.description")}>
           <Textarea
             {...register("description")}
             isError={Boolean(errors.description)}
@@ -76,14 +79,14 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
         </Label>
         <DataListDivider />
         <InputGroup>
-          <Label label="Source">
+          <Label label={translate("common.source")}>
             <Input
               className="full-width"
               isError={Boolean(errors.source)}
               {...register("source")}
             />
           </Label>
-          <Label label="Dataset">
+          <Label label={translate("common.dataset")}>
             <Input
               className="full-width"
               isError={Boolean(errors.dataset)}
@@ -92,14 +95,14 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
           </Label>
         </InputGroup>
         <InputGroup>
-          <Label label="Unit">
+          <Label label={translate("common.unit")}>
             <Input
               className="full-width"
               isError={Boolean(errors.unit)}
               {...register("unit")}
             />
           </Label>
-          <Label label="Unit symbol">
+          <Label label={translate("common.unit_symbol")}>
             <Input
               className="full-width"
               isError={Boolean(errors.unitSymbol)}
@@ -108,7 +111,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
           </Label>
         </InputGroup>
         <InputGroup>
-          <Label label="Precision">
+          <Label label={translate("common.precision")}>
             <Input
               className="full-width"
               isError={Boolean(errors.precision)}
@@ -117,7 +120,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
               {...register("precision", { valueAsNumber: true })}
             />
           </Label>
-          <Label label="Rank">
+          <Label label={translate("common.rank")}>
             <Input
               className="full-width"
               isError={Boolean(errors.ranking)}
@@ -128,13 +131,17 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
           </Label>
         </InputGroup>
         <DataListDivider />
-        <Label label="Search tags">
+        <Label label={translate("common.search_tags")}>
           <TagInput tags={indicator.searchTags} onChange={handleTagsChange} />
         </Label>
         <div className="indicator-form__switchers">
-          <Switch {...register("hidden")}>Hidden</Switch>
-          <Switch {...register("showChart")}>Show chart</Switch>
-          <Switch {...register("absolute")}>Absolute</Switch>
+          <Switch {...register("hidden")}>{translate("common.hidden")}</Switch>
+          <Switch {...register("showChart")}>
+            {translate("pages.indicators_dashboard.show_chart")}
+          </Switch>
+          <Switch {...register("absolute")}>
+            {translate("common.absolute")}
+          </Switch>
         </div>
       </DataList>
       <p className="indicator-form__error-msg">
@@ -146,7 +153,7 @@ const EditIndicatorForm: FC<EditIndicatorFormProps> = ({
         type="submit"
         className="full-width"
       >
-        Save
+        {translate("common.save")}
       </Button>
     </form>
   )

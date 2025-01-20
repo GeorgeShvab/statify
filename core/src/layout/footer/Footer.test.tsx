@@ -18,7 +18,7 @@ describe("Test Footer component", () => {
 
   test("Should display copyright text", () => {
     const copyrightEl = screen.getByText(
-      "© 2023-2024 Heorhii Shvab. All rights reserved."
+      "© 2023-2025 Heorhii Shvab. All rights reserved."
     )
 
     expect(copyrightEl).toBeInTheDocument()

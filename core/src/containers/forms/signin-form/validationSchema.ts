@@ -1,7 +1,9 @@
-import messages from "@/messages"
 import * as yup from "yup"
+import translate from "@/modules/i18n"
 
-const incorrectCredentialsMessage = messages.credentials_error
+const incorrectCredentialsMessage = translate(
+  "validation.incorrect_credentials"
+)
 
 const signinValidationSchema = yup.object({
   email: yup

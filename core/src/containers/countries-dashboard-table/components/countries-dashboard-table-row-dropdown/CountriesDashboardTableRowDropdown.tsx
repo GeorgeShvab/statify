@@ -12,6 +12,7 @@ import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { CountriesStore } from "@/store/countries-store/types"
 import { deleteCountries, exposeCountries, hideCountries } from "@/api/admin"
+import translate from "@/modules/i18n"
 
 const CountriesDashboardTableRowDropdown: FC<
   CountriesDashboardTableRowDropdownProps
@@ -32,17 +33,17 @@ const CountriesDashboardTableRowDropdown: FC<
 
   const [, hideManyCountries] = useMutation(hideCountries, {
     onError: revert,
-    errorMessage: "Unexpected error occured",
+    errorMessage: translate("errors.unexpected_error"),
   })
 
   const [, exposeManyCountries] = useMutation(exposeCountries, {
     onError: revert,
-    errorMessage: "Unexpected error occured",
+    errorMessage: translate("errors.unexpected_error"),
   })
 
   const [, deleteManyCountries] = useMutation(deleteCountries, {
-    errorMessage: "Unexpected error occured",
-    successMessage: "Countries deleted",
+    errorMessage: translate("errors.unexpected_error"),
+    successMessage: translate("pages.countries_dashboard.deleted_successfully"),
   })
 
   const handleEditCountry = () => {
@@ -74,9 +75,10 @@ const CountriesDashboardTableRowDropdown: FC<
 
   const handleDeleteCountry = () => {
     openConfirm({
-      title: `Are you sure you want to delete country (${country.id})?`,
-      subtitle:
-        "This action can not be reverted. Associated with country values will be deleted too.",
+      title: translate("pages.countries_dashboard.confirm_deletion", {
+        id: country.id,
+      }),
+      subtitle: translate("pages.countries_dashboard.deletion_unrevertable"),
       severity: "danger",
       onConfirm: async () => {
         await deleteManyCountries([country.id])
@@ -87,9 +89,12 @@ const CountriesDashboardTableRowDropdown: FC<
 
   const handleDeleteSelectedCountries = () => {
     openConfirm({
-      title: `Are you sure you want to delete selected countries (${selectedCount})?`,
-      subtitle:
-        "This action can not be reverted. Associated with country values will be deleted too.",
+      title: translate("pages.countries_dashboard.confirm_multiple_deletion", {
+        count: selectedCount,
+      }),
+      subtitle: translate(
+        "pages.countries_dashboard.deletion_multiple_unrevertable"
+      ),
       severity: "danger",
       onConfirm: async () => {
         await deleteManyCountries(selectedItems)
@@ -101,27 +106,35 @@ const CountriesDashboardTableRowDropdown: FC<
   return (
     <Dropdown position="bottom-end" closeOneClick {...props}>
       <DropdownItem size="small" onClick={handleMoreCountryInformation}>
-        More Information
+        {translate("pages.dashboard.more_info")}
       </DropdownItem>
       <DropdownItem size="small" onClick={handleEditCountry}>
-        Edit Country
+        {translate("pages.countries_dashboard.edit_country")}
       </DropdownItem>
       <DropdownItem size="small" onClick={handleDeleteCountry}>
-        Delete Country
+        {translate("pages.countries_dashboard.delete_country")}
       </DropdownItem>
       {selectedCount > 0 && (
         <>
           <DropdownItem size="small" onClick={handleHideSelected}>
-            Hide all selected ({selectedCount})
+            {translate("pages.dashboard.hide_selected", {
+              count: selectedCount,
+            })}
           </DropdownItem>
           <DropdownItem size="small" onClick={handleExposeSelected}>
-            Expose all selected ({selectedCount})
+            {translate("pages.dashboard.expose_selected", {
+              count: selectedCount,
+            })}
           </DropdownItem>
           <DropdownItem size="small" onClick={handleDeleteSelectedCountries}>
-            Delete selected ({selectedCount})
+            {translate("pages.dashboard.delete_selected", {
+              count: selectedCount,
+            })}
           </DropdownItem>
           <DropdownItem size="small" onClick={clearSelection}>
-            Clear selection ({selectedCount})
+            {translate("pages.dashboard.clear_selection", {
+              count: selectedCount,
+            })}
           </DropdownItem>
         </>
       )}

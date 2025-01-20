@@ -18,6 +18,7 @@ import {
 } from "@/api/admin"
 import searchParamsKeys from "@/constants/searchParamsKeys"
 import valueSelectOptions from "@/constants/select-options/valueSelectOptions"
+import translate, { TranslationMessage } from "@/modules/i18n"
 
 const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   sort,
@@ -48,7 +49,9 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
   }
 
   const renderSortLabel = ({ label }: Option) =>
-    `Sort by ${label.toLowerCase()}`
+    translate("common.sort_by", {
+      value: translate(label as TranslationMessage).toLowerCase(),
+    })
 
   const nextSortDirection = sortDirection === "asc" ? "desc" : "asc"
 
@@ -112,9 +115,9 @@ const ValueDashboardTools: FC<ValuesDashboardToolsProps> = ({
         disabled={showClearFiltersButton}
         className="flex-static"
         color="light"
-        aria-label="Clear filters"
+        aria-label={translate("pages.dashboard.clear_filters")}
         data-testid="admin-dashboard-clear-filters"
-        title="Clear filters"
+        title={translate("pages.dashboard.clear_filters")}
       >
         <CloseIcon />
       </IconButton>

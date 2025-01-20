@@ -1,4 +1,5 @@
 import { FC } from "react"
+import translate from "@/modules/i18n"
 import "@/app/(public)/(with-toolbar)/terms/styles.scss"
 
 export { default as metadata } from "@/app/(public)/(with-toolbar)/terms/metadata"
@@ -7,44 +8,50 @@ const Page: FC = () => {
   return (
     <section className="container">
       <div className="terms-page">
-        <h1 className="terms-page__title">Terms of Use</h1>
-        <p className="terms-page__paragraph">Last Updated: 01.02.2024</p>
+        <h1 className="terms-page__title">
+          {translate("pages.terms_of_use.title")}
+        </h1>
         <p className="terms-page__paragraph">
-          Welcome to Statify! By using our website, you agree to comply with and
-          be bound by the following terms of use. Please read these terms
-          carefully before using Statify.
+          {translate("pages.terms_of_use.last_update")}
         </p>
-        <h4 className="terms-page__section-title">Disclaimer of Liability</h4>
         <p className="terms-page__paragraph">
-          We do not guarantee the accuracy, completeness, or reliability of the
-          data. All data is provided by IMF and The World Bank.
+          {translate("pages.terms_of_use.welcome")}
         </p>
-        <h4 className="terms-page__section-title">Use of Information</h4>
+        <h4 className="terms-page__section-title">
+          {translate("pages.terms_of_use.liability_title")}
+        </h4>
         <p className="terms-page__paragraph">
-          Users are allowed to use statistical data from Statify for personal,
-          educational, or commercial purposes. The data should not be used for
-          illegal or harmful activities.
+          {translate("pages.terms_of_use.liability_text")}
         </p>
-        <h4 className="terms-page__section-title">Privacy Policy</h4>
+        <h4 className="terms-page__section-title">
+          {translate("pages.terms_of_use.use_of_information_title")}
+        </h4>
         <p className="terms-page__paragraph">
-          Statify does not collect any users&apos; information. So there is no
-          data to store or share.
+          {translate("pages.terms_of_use.use_of_information_text")}
         </p>
-        <h4 className="terms-page__section-title">Ownership</h4>
+        <h4 className="terms-page__section-title">
+          {translate("pages.terms_of_use.privacy_title")}
+        </h4>
         <p className="terms-page__paragraph">
-          All design elements, code, scripts, and programming elements used on
-          Statify are the intellectual property of Heorhii Shvab. Unauthorized
-          reproduction, modification, or distribution of the code is strictly
-          prohibited.
+          {translate("pages.terms_of_use.privacy_text")}
         </p>
-        <h4 className="terms-page__section-title">Contact Information</h4>
-        <p className="terms-page__paragraph-6">
-          For questions, concerns, or requests related to the terms of use,
-          please contact us at&nbsp;
-          <a href="mailto:georgiy.shva@gmail.com" className="link">
-            georgiy.shvab@gmail.com
-          </a>
-          .
+        <h4 className="terms-page__section-title">
+          {translate("pages.terms_of_use.ownership_title")}
+        </h4>
+        <p className="terms-page__paragraph">
+          {translate("pages.terms_of_use.ownership_text")}
+        </p>
+        <h4 className="terms-page__section-title">
+          {translate("pages.terms_of_use.contact_title")}
+        </h4>
+        <p className="terms-page__paragraph">
+          {translate("pages.terms_of_use.contact_text", {
+            a: (chunk: string[]) => (
+              <a href="mailto:georgiy.shvab@gmail.com" className="link">
+                {chunk}
+              </a>
+            ),
+          })}
         </p>
       </div>
     </section>

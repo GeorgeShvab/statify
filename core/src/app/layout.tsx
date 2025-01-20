@@ -14,9 +14,11 @@ const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
 })
 
+const lang = process.env.NEXT_PUBLIC_LANG
+
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body className={roboto.className}>
         <ConfirmProvider>
           <AlertProvider>

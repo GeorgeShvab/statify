@@ -12,6 +12,7 @@ import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpda
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
 import { updateIndicator } from "@/api/admin"
+import translate from "@/modules/i18n"
 
 const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
   indicator,
@@ -22,7 +23,7 @@ const IndicatorsDashboardTableRow: FC<IndicatorsDashboardTableRowProps> = ({
 
   const [{ value }, mutate] = useOptimisticUpdate(updateIndicator, {
     initialValue: indicator.hidden,
-    errorMessage: "Unexpected error occured",
+    errorMessage: translate("errors.unexpected_error"),
     deps: [indicator.hidden],
   })
 

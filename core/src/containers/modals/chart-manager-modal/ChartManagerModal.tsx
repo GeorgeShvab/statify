@@ -13,6 +13,7 @@ import SearchInput from "@/components/search-input/SearchInput"
 import { useAlert } from "@/providers/alert-provider/AlertProvider"
 import { ChartItem } from "@/store/chart-store/types"
 import searchInString from "@/utils/search-in-string/searchInString"
+import translate from "@/modules/i18n"
 import "@/containers/modals/chart-manager-modal/styles.scss"
 
 const ChartManagerModal: FC<ChartManagerModalProps> = ({
@@ -51,7 +52,7 @@ const ChartManagerModal: FC<ChartManagerModalProps> = ({
     if (isError) {
       openAlert({
         severity: "danger",
-        text: "You can add maximum of 15 regions to the chart",
+        text: translate("chart.max_items_error"),
       })
     }
   }
@@ -92,7 +93,7 @@ const ChartManagerModal: FC<ChartManagerModalProps> = ({
 
   return (
     <ModalContainer
-      title="Edit Chart"
+      title={translate("pages.indicator.edit_chart")}
       size="medium"
       className="chart-manager-modal"
       onClose={onClose}

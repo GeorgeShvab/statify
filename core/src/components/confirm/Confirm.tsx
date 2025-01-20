@@ -1,6 +1,7 @@
 import { FC, useState } from "react"
 import Button from "@/ui/button/Button"
 import { ConfirmProps } from "@/components/confirm/types"
+import translate, { TranslationMessage } from "@/modules/i18n"
 import "@/components/confirm/styles.scss"
 
 const Confirm: FC<ConfirmProps> = ({
@@ -8,8 +9,8 @@ const Confirm: FC<ConfirmProps> = ({
   onConfirm,
   title,
   subtitle,
-  cancelText = "Cancel",
-  confirmText = "Confirm",
+  cancelText = "common.cancel",
+  confirmText = "common.confirm",
   severity = "info",
 }) => {
   const [isLoading, setIsLoading] = useState(false)
@@ -35,7 +36,7 @@ const Confirm: FC<ConfirmProps> = ({
           color="light"
           data-testid="cancel-action-button"
         >
-          {cancelText}
+          {translate(cancelText as TranslationMessage)}
         </Button>
         <Button
           onClick={handleConfirm}
@@ -44,7 +45,7 @@ const Confirm: FC<ConfirmProps> = ({
           isLoading={isLoading}
           data-testid="confirm-action-button"
         >
-          {confirmText}
+          {translate(confirmText as TranslationMessage)}
         </Button>
       </div>
     </div>

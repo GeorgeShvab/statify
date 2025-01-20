@@ -1,6 +1,6 @@
 import { FC, ReactElement, cloneElement } from "react"
 import cn from "@/utils/cn/cn"
-import "./styles.scss"
+import "@/ui/alert/styles.scss"
 
 interface Props {
   duration?: number

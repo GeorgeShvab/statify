@@ -4,6 +4,7 @@ import EditIndicatorForm from "@/containers/forms/indicator-form/edit-indicator-
 import { EditIndicatorModalProps } from "@/containers/modals/edit-indicator-modal/types"
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import translate from "@/modules/i18n"
 
 const EditIndicatorModal: FC<EditIndicatorModalProps> = ({
   indicator,
@@ -17,7 +18,9 @@ const EditIndicatorModal: FC<EditIndicatorModalProps> = ({
   }
 
   return (
-    <ModalContainer title="Edit Indicator">
+    <ModalContainer
+      title={translate("pages.indicators_dashboard.edit_indicator")}
+    >
       <EditIndicatorForm indicator={indicator} onSuccess={handleSuccess} />
     </ModalContainer>
   )

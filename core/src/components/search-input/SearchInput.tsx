@@ -2,6 +2,7 @@ import { FC } from "react"
 import ResetIcon from "@/ui/icons/ResetIcon"
 import SearchIcon from "@/ui/icons/SearchIcon"
 import { SearchInputProps } from "@/components/search-input/types"
+import translate from "@/modules/i18n"
 import "@/components/search-input/styles.scss"
 
 const SearchInput: FC<SearchInputProps> = ({
@@ -20,7 +21,7 @@ const SearchInput: FC<SearchInputProps> = ({
       <input
         name="query"
         value={value}
-        placeholder="Search..."
+        placeholder={translate("common.search_ellipsed")}
         autoComplete="off"
         className="search-input__input"
         {...rest}

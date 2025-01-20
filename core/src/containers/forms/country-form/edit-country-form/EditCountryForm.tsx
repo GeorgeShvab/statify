@@ -23,12 +23,13 @@ import TagInput from "@/components/tag-input/TagInput"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import filterDirtyValues from "@/utils/filter-dirty-values/filterDirtyValues"
 import { updateCountry } from "@/api/admin"
+import translate from "@/modules/i18n"
 import "@/containers/forms/country-form/styles.scss"
 
 const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
   const [data, mutate] = useMutation(updateCountry, {
-    successMessage: "Country was updated successffully",
-    errorMessage: "Unexpected error occured",
+    successMessage: translate("pages.countries_dashboard.updated_successfully"),
+    errorMessage: translate("errors.unexpected_error"),
     onSuccess,
   })
 
@@ -65,10 +66,10 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
   return (
     <form className="country-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="country-form__data-list">
-        <Label label="Country ID">
+        <Label label={translate("common.id")}>
           <Input className="full-width" value={country.id} readOnly />
         </Label>
-        <Label label="Country name">
+        <Label label={translate("common.name")}>
           <Input
             className="full-width"
             isError={Boolean(errors.name)}
@@ -77,14 +78,14 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
         </Label>
         <DataListDivider />
         <InputGroup>
-          <Label label="Iso2Code">
+          <Label label={translate("common.iso2code")}>
             <Input
               className="full-width"
               isError={Boolean(errors.iso2Code)}
               {...register("iso2Code")}
             />
           </Label>
-          <Label label="GeoCode">
+          <Label label={translate("common.geocode")}>
             <Input
               className="full-width"
               isError={Boolean(errors.geoCode)}
@@ -92,7 +93,7 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
             />
           </Label>
         </InputGroup>
-        <Label label="Type">
+        <Label label={translate("common.type")}>
           <SelectController<EditCountryFormValues>
             name="type"
             options={countryTypeOptions}
@@ -100,7 +101,7 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
             control={control}
           />
         </Label>
-        <Label label="Status">
+        <Label label={translate("common.status")}>
           <SelectController<EditCountryFormValues>
             name="status"
             options={countryStatusOptions}
@@ -108,7 +109,7 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
             control={control}
           />
         </Label>
-        <Label label="Search tags">
+        <Label label={translate("common.search_tags")}>
           <TagInput tags={country.searchTags} onChange={handleTagsChange} />
         </Label>
       </DataList>
@@ -121,7 +122,7 @@ const EditCountryForm: FC<EditCountryFormProps> = ({ country, onSuccess }) => {
         type="submit"
         className="full-width"
       >
-        Save
+        {translate("common.save")}
       </Button>
     </form>
   )

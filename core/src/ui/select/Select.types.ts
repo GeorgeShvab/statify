@@ -12,6 +12,7 @@ export interface SelectProps extends Omit<ComponentProps<"div">, "onChange"> {
   size?: Size
   itemProps?: ComponentProps<"li">
   containerProps?: ComponentProps<"ul">
+  i18n?: boolean
   onChange: (option: Option) => void
   renderItemLabel?: (option: Option) => string
   renderSelectedLabel?: (option: Option) => string

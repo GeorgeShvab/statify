@@ -3,6 +3,7 @@ import NotFoundIcon from "@/ui/icons/NotFoundIcon"
 import Footer from "@/layout/footer/Footer"
 import Header from "@/layout/header/Header"
 import StatusPage from "@/containers/status-page/StatusPage"
+import translate from "@/modules/i18n"
 
 export { default as metadata } from "@/app/metadata"
 
@@ -12,9 +13,9 @@ const NotFoundPage: FC = () => {
       <Header />
       <StatusPage
         icon={<NotFoundIcon />}
-        title={"Page is not found"}
+        title={translate("errors.page_not_found")}
         linkHref="/"
-        linkText="To home page"
+        linkText={translate("common.to_home")}
       />
       <Footer />
     </>

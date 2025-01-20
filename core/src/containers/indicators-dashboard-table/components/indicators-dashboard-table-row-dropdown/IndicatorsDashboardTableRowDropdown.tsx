@@ -12,6 +12,7 @@ import { useContextStore } from "@/providers/store-provider/StoreProvider"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { IndicatorsStore } from "@/store/indicators-store/types"
 import { hideIndicators, exposeIndicators, deleteIndicators } from "@/api/admin"
+import translate from "@/modules/i18n"
 
 const IndicatorsDashboardTableRowDropdown: FC<
   IndicatorsDashboardTableRowDropdownProps
@@ -31,17 +32,19 @@ const IndicatorsDashboardTableRowDropdown: FC<
 
   const [, hideManyIndicators] = useMutation(hideIndicators, {
     onError: revert,
-    errorMessage: "Unexpected error occured",
+    errorMessage: translate("errors.unexpected_error"),
   })
 
   const [, exposeManyIndicators] = useMutation(exposeIndicators, {
     onError: revert,
-    errorMessage: "Unexpected error occured",
+    errorMessage: translate("errors.unexpected_error"),
   })
 
   const [, deleteManyIndicators] = useMutation(deleteIndicators, {
-    errorMessage: "Unexpected error occured",
-    successMessage: "Indicators deleted",
+    errorMessage: translate("errors.unexpected_error"),
+    successMessage: translate(
+      "pages.indicators_dashboard.deleted_successfully"
+    ),
   })
 
   const handleEditIndicator = () => {
@@ -73,9 +76,10 @@ const IndicatorsDashboardTableRowDropdown: FC<
 
   const handleDeleteIndicator = () => {
     openConfirm({
-      title: `Are you sure you want to delete indicator (${indicator.id})?`,
-      subtitle:
-        "This action can not be reverted. Associated with indicator values will be deleted too.",
+      title: translate("pages.indicators_dashboard.confirm_deletion", {
+        id: indicator.id,
+      }),
+      subtitle: translate("pages.indicators_dashboard.deletion_unrevertable"),
       severity: "danger",
       onConfirm: async () => {
         await deleteManyIndicators([indicator.id])
@@ -86,9 +90,12 @@ const IndicatorsDashboardTableRowDropdown: FC<
 
   const handleDeleteSelectedIndicators = () => {
     openConfirm({
-      title: `Are you sure you want to delete selected indicators (${selectedCount})?`,
-      subtitle:
-        "This action can not be reverted. Associated with indicators values will be deleted too.",
+      title: translate("pages.indicators_dashboard.confirm_multiple_deletion", {
+        count: selectedCount,
+      }),
+      subtitle: translate(
+        "pages.indicators_dashboard.deletion_multiple_unrevertable"
+      ),
       severity: "danger",
       onConfirm: async () => {
         await deleteManyIndicators(selectedItems)
@@ -100,27 +107,35 @@ const IndicatorsDashboardTableRowDropdown: FC<
   return (
     <Dropdown position="bottom-end" closeOneClick {...props}>
       <DropdownItem size="small" onClick={handleMoreIndicatorInformation}>
-        More Information
+        {translate("pages.dashboard.more_info")}
       </DropdownItem>
       <DropdownItem size="small" onClick={handleEditIndicator}>
-        Edit Indicator
+        {translate("pages.indicators_dashboard.edit_indicator")}
       </DropdownItem>
       <DropdownItem size="small" onClick={handleDeleteIndicator}>
-        Delete Indicator
+        {translate("pages.indicators_dashboard.delete_indicator")}
       </DropdownItem>
       {selectedCount > 0 && (
         <>
           <DropdownItem size="small" onClick={handleHideSelected}>
-            Hide all selected ({selectedCount})
+            {translate("pages.dashboard.hide_selected", {
+              count: selectedCount,
+            })}
           </DropdownItem>
           <DropdownItem size="small" onClick={handleExposeSelected}>
-            Expose all selected ({selectedCount})
+            {translate("pages.dashboard.expose_selected", {
+              count: selectedCount,
+            })}
           </DropdownItem>
           <DropdownItem size="small" onClick={handleDeleteSelectedIndicators}>
-            Delete selected ({selectedCount})
+            {translate("pages.dashboard.delete_selected", {
+              count: selectedCount,
+            })}
           </DropdownItem>
           <DropdownItem size="small" onClick={clearSelection}>
-            Clear selection ({selectedCount})
+            {translate("pages.dashboard.clear_selection", {
+              count: selectedCount,
+            })}
           </DropdownItem>
         </>
       )}

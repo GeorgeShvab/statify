@@ -12,6 +12,7 @@ import useOptimisticUpdate from "@/hooks/use-optimistic-update/useOptimisticUpda
 import cn from "@/utils/cn/cn"
 import prettifyValue from "@/utils/prettify-value/prettifyValue"
 import { updateCountry } from "@/api/admin"
+import translate from "@/modules/i18n"
 
 const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
   country,
@@ -24,7 +25,7 @@ const CountriesDashboardTableRow: FC<CountriesDashboardTableRowProps> = ({
 
   const [{ value }, mutate] = useOptimisticUpdate(updateCountry, {
     initialValue: country.hidden,
-    errorMessage: "Unexpected error occured",
+    errorMessage: translate("errors.unexpected_error"),
     deps: [country.hidden],
   })
 
