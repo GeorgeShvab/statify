@@ -45,6 +45,7 @@ const renderWithProps = (props?: Partial<SelectProps>) => {
       options={testOptions}
       value={testOptions[0].value}
       onChange={mockOnChange}
+      i18n={false}
       {...props}
     />
   )

@@ -9,7 +9,7 @@ import translate from "@/modules/i18n"
 import "@/layout/admin-header/styles.scss"
 import "@/layout/header/styles.scss"
 
-const AdminHeader: FC = async () => {
+const AdminHeader: FC = () => {
   const path = usePathname()
 
   const isIndicators = path.includes("indicators")

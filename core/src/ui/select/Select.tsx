@@ -22,6 +22,7 @@ const Select: FC<SelectProps> = ({
   className,
   containerProps,
   size = "medium",
+  i18n = true,
   renderItemLabel,
   renderSelectedLabel,
   ...props
@@ -35,9 +36,13 @@ const Select: FC<SelectProps> = ({
 
   const selectedOption = options.find((item) => item.value === value)!
 
+  const i18nLabel = i18n
+    ? translate(selectedOption.label as TranslationMessage)
+    : selectedOption.label
+
   const mainLabel = renderSelectedLabel
     ? renderSelectedLabel(selectedOption)
-    : translate(selectedOption.label as TranslationMessage)
+    : i18nLabel
 
   const chevronIcon = isOpen ? <UpChevronIcon /> : <DownChevronIcon />
 
@@ -58,7 +63,7 @@ const Select: FC<SelectProps> = ({
         onClick={handleItemClick}
         {...itemProps}
       >
-        {translate(label as TranslationMessage)}
+        {i18n ? translate(label as TranslationMessage) : label}
       </SelectItem>
     )
   })
