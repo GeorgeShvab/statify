@@ -9,6 +9,7 @@ import SelectItem from "@/ui/select/components/select-item/SelectItem"
 import AbsolutePosition from "@/components/absolute-position/AbsolutePosition"
 import DetectOutsideClick from "@/components/detect-outside-click/DetectOutsideClick"
 import cn from "@/utils/cn/cn"
+import translate, { TranslationMessage } from "@/modules/i18n"
 import "@/ui/select/styles.scss"
 
 const Portal = dynamic(() => import("@/components/Portal"), { ssr: false })
@@ -36,7 +37,7 @@ const Select: FC<SelectProps> = ({
 
   const mainLabel = renderSelectedLabel
     ? renderSelectedLabel(selectedOption)
-    : selectedOption.label
+    : translate(selectedOption.label as TranslationMessage)
 
   const chevronIcon = isOpen ? <UpChevronIcon /> : <DownChevronIcon />
 
@@ -57,7 +58,7 @@ const Select: FC<SelectProps> = ({
         onClick={handleItemClick}
         {...itemProps}
       >
-        {label}
+        {translate(label as TranslationMessage)}
       </SelectItem>
     )
   })

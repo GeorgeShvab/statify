@@ -7,6 +7,7 @@ import Input from "@/ui/input/Input"
 import { SigninFormValues } from "@/containers/forms/signin-form/SigninForm.types"
 import signinValidationSchema from "@/containers/forms/signin-form/validationSchema"
 import useSignin from "@/hooks/use-signin/useSignin"
+import translate from "@/modules/i18n"
 import "@/containers/forms/signin-form/styles.scss"
 
 const SigninForm = () => {
@@ -34,13 +35,15 @@ const SigninForm = () => {
 
   return (
     <form className="signin-form" onSubmit={handleSubmit(onSubmit)}>
-      <h4 className="signin-form__title">Sign In</h4>
+      <h4 className="signin-form__title">
+        {translate("pages.signin.heading")}
+      </h4>
       <fieldset className="signin-form__fieldset">
         <label className="signin-form__input-container">
           <Input
             className="signin-form__input"
             autoComplete="email"
-            placeholder="Email"
+            placeholder={translate("common.email")}
             isError={Boolean(emailErrorMsg)}
             data-testid="signin-email-input"
             {...register("email")}
@@ -50,7 +53,7 @@ const SigninForm = () => {
           <Input
             className="signin-form__input"
             autoComplete="password"
-            placeholder="Password"
+            placeholder={translate("common.password")}
             type="password"
             isError={Boolean(passwordErrorMsg)}
             data-testid="signin-password-input"
@@ -64,9 +67,11 @@ const SigninForm = () => {
         type="submit"
         isLoading={data.isLoading}
       >
-        Sign In
+        {translate("common.signin")}
       </Button>
-      <p className="signin-form__help-label">Need help? Contact the admin.</p>
+      <p className="signin-form__help-label">
+        {translate("pages.signin.need_help")}
+      </p>
     </form>
   )
 }

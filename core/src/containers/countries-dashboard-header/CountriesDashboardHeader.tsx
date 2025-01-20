@@ -6,6 +6,7 @@ import RefreshIcon from "@/ui/icons/RefreshIcon"
 import CreateCountryModal from "@/containers/modals/create-country-modal/CreateCountryModal"
 import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import translate from "@/modules/i18n"
 
 const CountriesDashboardHeader = () => {
   const router = useRouter()
@@ -24,8 +25,8 @@ const CountriesDashboardHeader = () => {
       data-testid="admin-dashboard-header"
     >
       <DashboardHeading
-        title="Countries Dashboard"
-        subtitle="Manage country records: view, edit, and add details for individual countries."
+        title={translate("pages.countries_dashboard.title")}
+        subtitle={translate("pages.countries_dashboard.subtitle")}
       />
       <Button
         color="dark"
@@ -34,7 +35,7 @@ const CountriesDashboardHeader = () => {
         onClick={handleCreateCountryClick}
         startIcon={<PlusIcon />}
       >
-        Create
+        {translate("common.create")}
       </Button>
       <IconButton
         onClick={handleRefresh}

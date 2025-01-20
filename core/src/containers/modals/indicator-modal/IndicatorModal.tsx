@@ -10,6 +10,7 @@ import DataListItem from "@/components/data-list/components/data-list-item/DataL
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
 import cn from "@/utils/cn/cn"
+import translate from "@/modules/i18n"
 import "@/containers/modals/indicator-modal/styles.scss"
 
 const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
@@ -29,9 +30,12 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
   const updatedAtDate = new Date(indicator.updatedAt).toLocaleDateString()
 
   return (
-    <ModalContainer title="Indicator Information" size="medium">
+    <ModalContainer
+      title={translate("pages.indicators_dashboard.indicator_information")}
+      size="medium"
+    >
       <DataList>
-        <Label label="Indicator name">
+        <Label label={translate("common.name")}>
           <p
             className="indicator-modal__text"
             data-testid="indicator-modal-name"
@@ -39,7 +43,7 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
             {indicator.label}
           </p>
         </Label>
-        <Label label="Indicator description">
+        <Label label={translate("common.description")}>
           <p
             className="indicator-modal__text"
             data-testid="indicator-modal-description"
@@ -49,23 +53,41 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
         </Label>
         <DataListDivider />
         <DataListItem
-          label="Indicator ID"
+          label={translate("common.id")}
           data={indicator.id}
           data-testid="indicator-modal-id"
         />
-        <DataListItem label="Indicator source" data={indicator.source} />
-        <DataListItem label="Indicator dataset" data={indicator.dataset} />
-        <DataListItem label="Indicator unit" data={indicator.unit} />
         <DataListItem
-          label="Indicator unit symbol"
+          label={translate("common.source")}
+          data={indicator.source}
+        />
+        <DataListItem
+          label={translate("common.dataset")}
+          data={indicator.dataset}
+        />
+        <DataListItem label={translate("common.unit")} data={indicator.unit} />
+        <DataListItem
+          label={translate("common.unit_symbol")}
           data={indicator.unitSymbol}
         />
-        <DataListItem label="Indicator precision" data={indicator.precision} />
-        <DataListItem label="Indicator rank" data={indicator.ranking} />
-        <DataListItem label="Date of update" data={updatedAtDate} />
-        <DataListItem label="Date of creation" data={createdAtDate} />
         <DataListItem
-          label="Search tags"
+          label={translate("common.precision")}
+          data={indicator.precision}
+        />
+        <DataListItem
+          label={translate("common.rank")}
+          data={indicator.ranking}
+        />
+        <DataListItem
+          label={translate("common.date_of_update")}
+          data={updatedAtDate}
+        />
+        <DataListItem
+          label={translate("common.date_of_creation")}
+          data={createdAtDate}
+        />
+        <DataListItem
+          label={translate("common.search_tags")}
           data-testid="indicator-modal-tags"
           className={cn(
             indicator.searchTags.length && "indicator-modal__tags-section"
@@ -78,7 +100,7 @@ const IndicatorModal: FC<IndicatorModalProps> = ({ indicator }) => {
         onClick={handleEditIndicator}
         data-testid="indicator-modal-edit-button"
       >
-        Edit
+        {translate("common.edit")}
       </Button>
     </ModalContainer>
   )

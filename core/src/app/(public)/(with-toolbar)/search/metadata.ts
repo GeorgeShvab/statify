@@ -1,27 +1,37 @@
 import { Metadata } from "next"
 import { SearchPageProps } from "@/app/(public)/(with-toolbar)/search/types"
 import { SERVER_ADDRESS } from "@/constants/general"
+import translate from "@/modules/i18n"
 
 const generateMetadata = async ({
   searchParams,
 }: SearchPageProps): Promise<Metadata> => {
   return {
     metadataBase: new URL(SERVER_ADDRESS),
-    title: `Results for ${searchParams.query}`,
-    description: `Indicator results for ${searchParams.query}`,
+    title: translate("pages.search.metadata.title", {
+      value: searchParams.query,
+    }),
+    description: translate("pages.search.metadata.description", {
+      value: searchParams.query,
+    }),
     themeColor: "#ffffff",
     openGraph: {
       images: ["/og.png"],
-      title: `Results for ${searchParams.query}`,
-      description: `Indicator results for ${searchParams.query}`,
+      title: translate("pages.search.metadata.title", {
+        value: searchParams.query,
+      }),
+      description: translate("pages.search.metadata.description", {
+        value: searchParams.query,
+      }),
       type: "website",
       url: `/search?query=${searchParams.query}&page=${searchParams.page}`,
     },
     twitter: {
       images: ["/og.png"],
       title: "Statify",
-      description:
-        "Explore our database featuring 100+ indicators for hundreds of regions worldwide.",
+      description: translate("pages.search.metadata.description", {
+        value: searchParams.query,
+      }),
       card: "summary_large_image",
       site: "@Zhorrrro",
     },

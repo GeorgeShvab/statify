@@ -14,14 +14,15 @@ import DataList from "@/components/data-list/DataList"
 import InputGroup from "@/components/input-group/InputGroup"
 import useMutation from "@/hooks/use-mutation/useMutation"
 import { createValue } from "@/api/admin"
+import translate from "@/modules/i18n"
 import "@/containers/forms/value-form/styles.scss"
 
 const CreateValueForm: FC<CreateValueFormProps> = ({ onSuccess }) => {
   const router = useRouter()
 
   const [data, mutate] = useMutation(createValue, {
-    successMessage: "Value was created successffully",
-    errorMessage: "Unexpected error occured",
+    successMessage: translate("pages.values_dashboard.created_successfully"),
+    errorMessage: translate("errors.unexpected_error"),
     onSuccess: () => {
       onSuccess()
       router.refresh()
@@ -48,14 +49,14 @@ const CreateValueForm: FC<CreateValueFormProps> = ({ onSuccess }) => {
     <form className="value-form" onSubmit={handleSubmit(onSubmit)}>
       <DataList className="value-form__data-list">
         <InputGroup>
-          <Label label="Indicator ID">
+          <Label label={translate("pages.values_dashboard.indicator_id")}>
             <Input
               className="full-width"
               isError={Boolean(errors.indicatorId)}
               {...register("indicatorId")}
             />
           </Label>
-          <Label label="Country ID">
+          <Label label={translate("pages.values_dashboard.country_id")}>
             <Input
               className="full-width"
               isError={Boolean(errors.countryId)}
@@ -64,14 +65,14 @@ const CreateValueForm: FC<CreateValueFormProps> = ({ onSuccess }) => {
           </Label>
         </InputGroup>
         <InputGroup>
-          <Label label="Value">
+          <Label label={translate("common.value")}>
             <Input
               className="full-width"
               isError={Boolean(errors.value)}
               {...register("value")}
             />
           </Label>
-          <Label label="Year">
+          <Label label={translate("common.year")}>
             <Input
               className="full-width"
               isError={Boolean(errors.year)}
@@ -89,7 +90,7 @@ const CreateValueForm: FC<CreateValueFormProps> = ({ onSuccess }) => {
         type="submit"
         className="full-width"
       >
-        Save
+        {translate("common.save")}
       </Button>
     </form>
   )

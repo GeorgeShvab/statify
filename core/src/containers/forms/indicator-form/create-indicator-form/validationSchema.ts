@@ -1,19 +1,12 @@
 import * as yup from "yup"
+import indicatorValidationSchema from "@/containers/forms/indicator-form/validationSchema"
+import translate from "@/modules/i18n"
 
-const validationSchema = yup.object({
-  id: yup.string().max(50).required(),
-  label: yup.string().max(200).required(),
-  description: yup.string().max(1000),
-  source: yup.string().max(150).required(),
-  dataset: yup.string().max(150),
-  unit: yup.string().max(150),
-  unitSymbol: yup.string().max(50),
-  precision: yup.number().min(0).max(10).required(),
-  ranking: yup.number().min(0).max(10).required(),
-  hidden: yup.boolean().required(),
-  showChart: yup.boolean().required(),
-  absolute: yup.boolean().required(),
-  searchTags: yup.array(yup.string().max(100).required()),
+const validationSchema = indicatorValidationSchema.shape({
+  id: yup
+    .string()
+    .max(50, translate("validation.id_max_length_exceed"))
+    .required(translate("validation.id_is_required")),
 })
 
 export default validationSchema

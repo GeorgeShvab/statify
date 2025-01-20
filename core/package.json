@@ -15,6 +15,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
+    "@formatjs/intl": "^3.1.0",
     "@hookform/resolvers": "^3.9.0",
     "@prisma/client": "^5.3.1",
     "@unocss/reset": "^0.64.1",

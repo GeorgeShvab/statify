@@ -9,6 +9,7 @@ import TableRow from "@/ui/table/components/table-row/TableRow"
 import { IndicatorTableProps } from "@/containers/indicator-table/IndicatorTable.types"
 import IndicatorTableRow from "@/containers/indicator-table/components/indicator-table-row/IndicatorTableRow"
 import { CountryRowValue } from "@/types/country.types"
+import translate from "@/modules/i18n"
 import "@/containers/indicator-table/styles.scss"
 
 const IndicatorTable: FC<IndicatorTableProps> = (props) => {
@@ -24,10 +25,10 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
         onSortChange={handleCountrySort}
         direction={data.order}
         isSelected={data.by === "country"}
-        aria-label="Sort by region name"
+        aria-label={translate("pages.indicator.sort_by_region")}
         data-testid="sort-by-region"
       >
-        Region
+        {translate("common.region")}
       </TableHeadSortingCell>
       <TableHeadSortingCell
         className="indicator-table__value-cell"
@@ -35,15 +36,17 @@ const IndicatorTable: FC<IndicatorTableProps> = (props) => {
         direction={data.order}
         isSelected={data.by === "value"}
         buttonProps={{ className: "indicator-table__value-sorting-button" }}
-        aria-label="Sort by value"
+        aria-label={translate("pages.indicator.sort_by_value")}
         data-testid="sort-by-value"
       >
-        Value
+        {translate("common.value")}
       </TableHeadSortingCell>
       <TableHeadCell className="indicator-table__trend-cell">
-        Trend
+        {translate("common.trend")}
       </TableHeadCell>
-      <TableHeadCell className="indicator-table__year-cell">Year</TableHeadCell>
+      <TableHeadCell className="indicator-table__year-cell">
+        {translate("common.year")}
+      </TableHeadCell>
     </TableRow>
   )
 

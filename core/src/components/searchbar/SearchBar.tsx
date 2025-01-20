@@ -13,6 +13,7 @@ import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQuery from "@/hooks/use-query/useQuery"
 import cn from "@/utils/cn/cn"
 import { getSearchAutocomplete } from "@/api/public"
+import translate from "@/modules/i18n"
 import "@/components/searchbar/styles.scss"
 
 const SearchBar: FC<SearchBarProps> = ({ placeholder }) => {
@@ -122,7 +123,7 @@ const SearchBar: FC<SearchBarProps> = ({ placeholder }) => {
               <input
                 name="query"
                 value={value}
-                placeholder={placeholder || "Search..."}
+                placeholder={placeholder || translate("common.search_ellipsed")}
                 autoComplete="off"
                 className="searchbar__input"
                 data-testid="searchbar-input"
@@ -134,7 +135,7 @@ const SearchBar: FC<SearchBarProps> = ({ placeholder }) => {
             {autocomplete}
           </div>
           <Button type="submit" className="searchbar__button desktop">
-            Search
+            {translate("common.search")}
           </Button>
           <IconButton
             type="submit"

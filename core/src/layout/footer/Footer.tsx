@@ -1,5 +1,6 @@
 import { FC } from "react"
 import Link from "next/link"
+import translate from "@/modules/i18n"
 import "@/layout/footer/styles.scss"
 
 const Footer: FC = () => {
@@ -9,20 +10,20 @@ const Footer: FC = () => {
         <div className="footer__container">
           <ul className="footer__list">
             <li className="footer__link">
-              <Link href="/">Home</Link>
+              <Link href="/">{translate("common.home")}</Link>
             </li>
             <li className="footer__link">
-              <Link href="/bookmarks">Bookmarks</Link>
+              <Link href="/bookmarks">{translate("common.bookmarks")}</Link>
             </li>
             <li className="footer__link">
-              <Link href="/search">Search</Link>
+              <Link href="/search">{translate("common.search")}</Link>
             </li>
             <li className="footer__link">
-              <Link href="/terms">Terms of Use</Link>
+              <Link href="/terms">{translate("footer.terms")}</Link>
             </li>
           </ul>
           <p className="footer__copyright" data-testid="footer-copyrights">
-            &copy; 2023-2024 Heorhii Shvab. All rights reserved.
+            {translate("footer.copyright")}
           </p>
         </div>
       </div>

@@ -4,6 +4,7 @@ import EditCountryForm from "@/containers/forms/country-form/edit-country-form/E
 import { EditCountryModalProps } from "@/containers/modals/edit-country-modal/types"
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import translate from "@/modules/i18n"
 
 const EditCountryModal: FC<EditCountryModalProps> = ({
   country,
@@ -17,7 +18,10 @@ const EditCountryModal: FC<EditCountryModalProps> = ({
   }
 
   return (
-    <ModalContainer title="Edit Country" size="medium">
+    <ModalContainer
+      title={translate("pages.countries_dashboard.edit_country")}
+      size="medium"
+    >
       <EditCountryForm country={country} onSuccess={handleSuccess} />
     </ModalContainer>
   )

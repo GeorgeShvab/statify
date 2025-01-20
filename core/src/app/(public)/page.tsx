@@ -1,6 +1,7 @@
 import { FC, Suspense } from "react"
 import SearchBar from "@/components/searchbar/SearchBar"
 import SearchBarLoader from "@/components/searchbar/SearchBarLoader"
+import translate from "@/modules/i18n"
 import "@/app/(public)/styles.scss"
 
 export { default as metadata } from "@/app/(public)/metadata"
@@ -12,16 +13,22 @@ const Home: FC = () => {
         <div className="landing__container">
           <div>
             <h1 className="landing__title" data-testid="landing-page-heading">
-              Discover the World through Data
+              {translate("pages.landing.title")}
             </h1>
             <div className="landing__searchbar-container">
               <div className="landing__searchbar-wrapper">
                 <Suspense
                   fallback={
-                    <SearchBarLoader placeholder="Example: Birth rate" />
+                    <SearchBarLoader
+                      placeholder={translate(
+                        "pages.landing.search_placeholder"
+                      )}
+                    />
                   }
                 >
-                  <SearchBar placeholder="Example: Birth rate" />
+                  <SearchBar
+                    placeholder={translate("pages.landing.search_placeholder")}
+                  />
                 </Suspense>
               </div>
             </div>
@@ -30,9 +37,7 @@ const Home: FC = () => {
                 className="landing__subtitle"
                 data-testid="landing-page-description"
               >
-                Explore our database featuring 100+ indicators for hundreds of
-                regions worldwide. Create customizable charts, view trends, and
-                access hundreds of thousands of data points.
+                {translate("pages.landing.subtitle")}
               </p>
             </div>
           </div>

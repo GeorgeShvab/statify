@@ -1,3 +1,5 @@
+import { Lang } from "@/types/general.types"
+
 declare global {
   namespace NodeJS {
     interface ProcessEnv {
@@ -6,6 +8,9 @@ declare global {
       RESULTS_PER_PAGE: string
       DATABASE_URL: string
       AUTH_SECRET: string
+      NEXT_PUBLIC_LANG: Lang
     }
   }
 }
+
+export {}

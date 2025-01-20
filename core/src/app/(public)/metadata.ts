@@ -1,25 +1,23 @@
 import { Metadata } from "next/types"
 import { SERVER_ADDRESS } from "@/constants/general"
+import translate from "@/modules/i18n"
 
 const metadata: Metadata = {
   metadataBase: new URL(SERVER_ADDRESS),
   title: "Statify",
-  description:
-    "Explore our database featuring 100+ indicators for hundreds of regions worldwide. Create customizable charts, view trends, and access hundreds of thousands of data points.",
+  description: translate("pages.landing.metadata.description_long"),
   themeColor: "#ffffff",
   openGraph: {
     images: ["/og.png"],
     title: "Statify",
-    description:
-      "Explore our database featuring 100+ indicators for hundreds of regions worldwide.",
+    description: translate("pages.landing.metadata.description"),
     type: "website",
     url: "/",
   },
   twitter: {
     images: ["/og.png"],
     title: "Statify",
-    description:
-      "Explore our database featuring 100+ indicators for hundreds of regions worldwide.",
+    description: translate("pages.landing.metadata.description"),
     card: "summary_large_image",
     site: "@Zhorrrro",
   },

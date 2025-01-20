@@ -8,6 +8,7 @@ import DataListItem from "@/components/data-list/components/data-list-item/DataL
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
 import cn from "@/utils/cn/cn"
+import translate from "@/modules/i18n"
 import "@/containers/modals/country-modal/styles.scss"
 
 const CountryModal: FC<CountryModalProps> = ({ country }) => {
@@ -27,45 +28,48 @@ const CountryModal: FC<CountryModalProps> = ({ country }) => {
   const updatedAtDate = new Date(country.updatedAt).toLocaleDateString()
 
   return (
-    <ModalContainer title="Country Information" size="small">
+    <ModalContainer
+      title={translate("pages.countries_dashboard.country_information")}
+      size="small"
+    >
       <DataList>
         <DataListItem
-          label="Country ID"
+          label={translate("common.id")}
           data={country.id}
           data-testid="country-modal-id"
         />
         <DataListItem
-          label="Iso2Code"
+          label={translate("common.iso2code")}
           data={country.iso2Code}
           data-testid="country-modal-iso2code"
         />
         <DataListItem
-          label="GeoCode"
+          label={translate("common.geocode")}
           data={country.geoCode}
           data-testid="country-modal-geocode"
         />
         <DataListItem
-          label="Country name"
+          label={translate("common.name")}
           data={country.name}
           data-testid="country-modal-name"
         />
         <DataListItem
-          label="Country type"
+          label={translate("common.type")}
           data={country.type}
           data-testid="country-modal-type"
         />
         <DataListItem
-          label="Date of update"
+          label={translate("common.date_of_update")}
           data={updatedAtDate}
           data-testid="country-modal-updatedAt"
         />
         <DataListItem
-          label="Date of creation"
+          label={translate("common.date_of_creation")}
           data={createdAtDate}
           data-testid="country-modal-createdAt"
         />
         <DataListItem
-          label="Search tags"
+          label={translate("common.search_tags")}
           data-testid="country-modal-tags"
           className={cn(
             country.searchTags.length && "country-modal__tags-section"
@@ -79,7 +83,7 @@ const CountryModal: FC<CountryModalProps> = ({ country }) => {
         data-testid="country-modal-edit-button"
         onClick={handleEditCountry}
       >
-        Edit
+        {translate("common.edit")}
       </Button>
     </ModalContainer>
   )

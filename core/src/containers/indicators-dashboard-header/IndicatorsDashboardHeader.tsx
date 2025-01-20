@@ -8,6 +8,7 @@ import RefreshIcon from "@/ui/icons/RefreshIcon"
 import CreateIndicatorModal from "@/containers/modals/create-indicator-modal/CreateIndicatorModal"
 import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import translate from "@/modules/i18n"
 
 const IndicatorsDashboardHeader = () => {
   const router = useRouter()
@@ -26,8 +27,8 @@ const IndicatorsDashboardHeader = () => {
       data-testid="admin-dashboard-header"
     >
       <DashboardHeading
-        title="Indicators Dashboard"
-        subtitle="Manage indicators: define descriptions, unit, and other essential details."
+        title={translate("pages.indicators_dashboard.title")}
+        subtitle={translate("pages.indicators_dashboard.subtitle")}
       />
       <Button
         color="dark"
@@ -36,7 +37,7 @@ const IndicatorsDashboardHeader = () => {
         startIcon={<PlusIcon />}
         data-testid="admin-dashboard-add-button"
       >
-        Create
+        {translate("common.create")}
       </Button>
       <IconButton
         onClick={handleRefresh}

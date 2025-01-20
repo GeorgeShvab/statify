@@ -6,6 +6,7 @@ import RefreshIcon from "@/ui/icons/RefreshIcon"
 import CreateValueModal from "@/containers/modals/create-value-modal/CreateValueModal"
 import DashboardHeading from "@/components/dashboard-heading/DashboardHeading"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import translate from "@/modules/i18n"
 
 const ValuesDashboardHeader = () => {
   const router = useRouter()
@@ -24,8 +25,8 @@ const ValuesDashboardHeader = () => {
       data-testid="admin-dashboard-header"
     >
       <DashboardHeading
-        title="Data Entries Dashboard"
-        subtitle="Manage data entries: review, update, and add values for indicators across countries and years."
+        title={translate("pages.values_dashboard.title")}
+        subtitle={translate("pages.values_dashboard.subtitle")}
       />
       <Button
         color="dark"
@@ -34,7 +35,7 @@ const ValuesDashboardHeader = () => {
         startIcon={<PlusIcon />}
         onClick={handleCreateValueClick}
       >
-        Create
+        {translate("common.create")}
       </Button>
       <IconButton
         onClick={handleRefresh}

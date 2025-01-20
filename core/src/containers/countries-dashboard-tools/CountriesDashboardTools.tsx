@@ -17,6 +17,7 @@ import useDebounce from "@/hooks/use-debounce/useDebounce"
 import useQueryParams from "@/hooks/use-query-params/useQueryParams"
 import searchParamsKeys from "@/constants/searchParamsKeys"
 import countrySelectOptions from "@/constants/select-options/countrySelectOptions"
+import translate, { TranslationMessage } from "@/modules/i18n"
 
 const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   search,
@@ -47,7 +48,9 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
   }
 
   const renderSortLabel = ({ label }: Option) =>
-    `Sort by ${label.toLowerCase()}`
+    translate("common.sort_by", {
+      value: translate(label as TranslationMessage).toLowerCase(),
+    })
 
   const nextSortDirection = sortDirection === "asc" ? "desc" : "asc"
 
@@ -70,7 +73,7 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
     <div className="admin-dashboard-tools" data-testid="admin-dashboard-tools">
       <Input
         className="flex-grow"
-        placeholder="Search by ID, name, geocode or iso2code..."
+        placeholder={translate("pages.countries_dashboard.search_placeholder")}
         data-testid="admin-dashboard-search-field"
         value={searchValue}
         onChange={handleSearchInput}
@@ -113,9 +116,9 @@ const CountriesDashboardTools: FC<CountriesDashboardToolsProps> = ({
         onClick={clearAllParams}
         disabled={showClearFiltersButton}
         color="light"
-        aria-label="Clear filters"
+        aria-label={translate("pages.dashboard.clear_filters")}
         data-testid="admin-dashboard-clear-filters"
-        title="Clear filters"
+        title={translate("pages.dashboard.clear_filters")}
       >
         <CloseIcon />
       </IconButton>

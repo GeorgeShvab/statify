@@ -4,6 +4,7 @@ import EditValueForm from "@/containers/forms/value-form/edit-value-form/EditVal
 import { EditValueModalProps } from "@/containers/modals/edit-value-modal/types"
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import translate from "@/modules/i18n"
 
 const EditValueModal: FC<EditValueModalProps> = ({ value, onSuccess }) => {
   const { closeModal } = useModal()
@@ -14,7 +15,10 @@ const EditValueModal: FC<EditValueModalProps> = ({ value, onSuccess }) => {
   }
 
   return (
-    <ModalContainer title="Edit Value" size="small">
+    <ModalContainer
+      title={translate("pages.values_dashboard.edit_value")}
+      size="small"
+    >
       <EditValueForm value={value} onSuccess={handleSuccess} />
     </ModalContainer>
   )

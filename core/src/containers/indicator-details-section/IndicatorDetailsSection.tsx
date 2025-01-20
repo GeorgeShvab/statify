@@ -2,6 +2,7 @@ import Link from "next/link"
 import IndicatorDataSection from "@/containers/indicator-data/components/indicator-data-section/IndicatorDataSection"
 import { IndicatorDetailsSectionProps } from "@/containers/indicator-details-section/types"
 import IndicatorOptionsButton from "@/components/indicator-options-button/IndicatorOptionsButton"
+import translate from "@/modules/i18n"
 import "@/containers/indicator-details-section/styles.scss"
 
 const IndicatorDetailsSection = ({
@@ -22,7 +23,9 @@ const IndicatorDetailsSection = ({
 
   const backButton = country && (
     <p className="indicator-page__back">
-      <Link href={`/indicator/${indicator.id}`}>Back to all countries</Link>
+      <Link href={`/indicator/${indicator.id}`}>
+        {translate("pages.indicator.back_to_all")}
+      </Link>
     </p>
   )
 
@@ -35,8 +38,12 @@ const IndicatorDetailsSection = ({
       <h1 className="indicator-page__title" data-testid="indicator-title">
         {title}
       </h1>
-      <p className="indicator-page__source">Source: {indicator.source}</p>
-      <p className="indicator-page__unit">Unit: {indicator.unit}</p>
+      <p className="indicator-page__source">
+        {translate("pages.indicator.source", { value: indicator.source })}
+      </p>
+      <p className="indicator-page__unit">
+        {translate("pages.indicator.unit", { value: indicator.unit })}
+      </p>
       {descriptionElement}
       {backButton}
     </IndicatorDataSection>
