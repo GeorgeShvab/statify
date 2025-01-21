@@ -4,20 +4,20 @@ import translate from "@/modules/i18n"
 
 const metadata: Metadata = {
   metadataBase: new URL(SERVER_ADDRESS),
-  title: translate("pages.indicators_dashboard.metadata.title"),
-  description: translate("pages.indicators_dashboard.metadata.description"),
+  title: translate("pages.countries_dashboard.metadata.title"),
+  description: translate("pages.countries_dashboard.metadata.description"),
   themeColor: "#ffffff",
   openGraph: {
     images: ["/og.png"],
-    title: translate("pages.indicators_dashboard.metadata.title"),
-    description: translate("pages.indicators_dashboard.metadata.description"),
+    title: translate("pages.countries_dashboard.metadata.title"),
+    description: translate("pages.countries_dashboard.metadata.description"),
     type: "website",
     url: "/",
   },
   twitter: {
     images: ["/og.png"],
-    title: translate("pages.indicators_dashboard.metadata.title"),
-    description: translate("pages.indicators_dashboard.metadata.description"),
+    title: translate("pages.countries_dashboard.metadata.title"),
+    description: translate("pages.countries_dashboard.metadata.description"),
     card: "summary_large_image",
     site: "@Zhorrrro",
   },
