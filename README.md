@@ -126,7 +126,7 @@ When E2E tests start, the database is populated with data from the e2e/fixtures 
 
 For deployment, I use Vercel. The application supports internationalization based on domain prefixes, so there are two separate builds: one for the UK and another for UA. Production deployment is automatically triggered whenever the production branch is updated.
 
-# SSR SSG CSR
+## SSR SSG CSR
 
 My application utilizes a mix of SSG (Static Site Generation), SSR (Server-Side Rendering), and CSR (Client-Side Rendering) to optimize performance and user experience:
 
