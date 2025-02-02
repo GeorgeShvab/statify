@@ -10,6 +10,8 @@ import values from "./cypress/fixtures/values.json";
 import countries from "./cypress/fixtures/countries.json";
 import bookmarks from "./cypress/fixtures/bookmarks.json";
 import fs from "fs";
+import countryTranslations from "./cypress/fixtures/countryTranslations.json";
+import indicatorTranslations from "./cypress/fixtures/indicatorTranslations.json";
 
 const envs = dotenv.config().parsed!;
 
@@ -38,6 +40,12 @@ async function setupNodeEvents(
       await Promise.all([
         prisma.value.createMany({ data: values as any }),
         prisma.bookmark.createMany({ data: bookmarks as any }),
+        prisma.countryTranslation.createMany({
+          data: countryTranslations as any,
+        }),
+        prisma.indicatorTranslation.createMany({
+          data: indicatorTranslations as any,
+        }),
       ]);
 
       return 0;
@@ -46,6 +54,8 @@ async function setupNodeEvents(
       await Promise.all([
         prisma.value.deleteMany(),
         prisma.bookmark.deleteMany(),
+        prisma.indicatorTranslation.deleteMany(),
+        prisma.countryTranslation.deleteMany(),
       ]);
 
       await Promise.all([

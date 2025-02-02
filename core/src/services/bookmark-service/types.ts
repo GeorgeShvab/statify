@@ -1,5 +1,6 @@
-import { Bookmark, Indicator } from "@prisma/client"
+import { Bookmark } from "@prisma/client"
 import { PageableParams, PageableResult } from "@/types/general.types"
+import { Indicator } from "@/types/indicator.types"
 
 export type BookmarkActionParams = Pick<Bookmark, "indicatorId" | "client"> &
   Partial<Pick<Bookmark, "countryId">>

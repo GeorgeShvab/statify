@@ -1,0 +1,146 @@
+[
+  {
+    "language": "en",
+    "label": "GDP (PPP)",
+    "description": "This indicator provides values for gross domestic product expressed in current international dollars, converted by purchasing power parity conversion factor.",
+    "source": "World Development Indicators",
+    "unit": "US dollars",
+    "dataset": null,
+    "indicatorId": "NY.GDP.MKTP.PP.CD"
+  },
+  {
+    "language": "uk",
+    "label": "ВВП (ПКС)",
+    "description": "Цей показник надає значення валового внутрішнього продукту, вираженого в поточних міжнародних доларах, перетворених за фактором паритету купівельної спроможності.",
+    "source": "World Development Indicators",
+    "unit": "US dollars",
+    "dataset": null,
+    "indicatorId": "NY.GDP.MKTP.PP.CD"
+  },
+  {
+    "language": "en",
+    "label": "GDP growth",
+    "description": "Annual percentage growth rate of GDP at market prices based on constant local currency.",
+    "source": "World Development Indicators",
+    "unit": "annual percent",
+    "dataset": null,
+    "indicatorId": "NY.GDP.MKTP.KD.ZG"
+  },
+  {
+    "language": "uk",
+    "label": "Зростання ВВП",
+    "description": "Річний відсотковий темп зростання ВВП за ринковими цінами на основі постійної місцевої валюти.",
+    "source": "World Development Indicators",
+    "unit": "annual percent",
+    "dataset": null,
+    "indicatorId": "NY.GDP.MKTP.KD.ZG"
+  },
+  {
+    "language": "en",
+    "label": "Urban population",
+    "description": "Urban population refers to people living in urban areas as defined by national statistical offices. The data are collected and smoothed by United Nations Population Division.",
+    "source": "World Development Indicators",
+    "unit": "percent of total population",
+    "dataset": null,
+    "indicatorId": "SP.URB.TOTL.IN.ZS"
+  },
+  {
+    "language": "uk",
+    "label": "Міське населення",
+    "description": "Міське населення відноситься до людей, що живуть у міських районах, як визначено національними статистичними службами. Дані збираються та обробляються відділом населення ООН.",
+    "source": "World Development Indicators",
+    "unit": "percent of total population",
+    "dataset": null,
+    "indicatorId": "SP.URB.TOTL.IN.ZS"
+  },
+  {
+    "language": "en",
+    "label": "Birth rate",
+    "description": "Crude birth rate indicates the number of live births occurring during the year, per 1,000 population estimated at midyear. Subtracting the crude death rate from the crude birth rate provides the rate of natural increase, which is equal to the rate of population change in the absence of migration.",
+    "source": "World Development Indicators",
+    "unit": "births per 1000 people",
+    "dataset": null,
+    "indicatorId": "SP.DYN.CBRT.IN"
+  },
+  {
+    "language": "uk",
+    "label": "Рівень народжуваності",
+    "description": "Сирий рівень народжуваності вказує на кількість живих народжень, що відбулися протягом року, на 1 000 населення, оціненого на середину року. Віднявши сирий рівень смертності від сирого рівня народжуваності, можна отримати рівень природного приросту, який дорівнює рівню зміни населення в умовах відсутності міграції.",
+    "source": "World Development Indicators",
+    "unit": "births per 1000 people",
+    "dataset": null,
+    "indicatorId": "SP.DYN.CBRT.IN"
+  },
+  {
+    "language": "en",
+    "label": "Population density",
+    "description": "Population density is midyear population divided by land area in square kilometers.",
+    "source": "World Development Indicators",
+    "unit": "people per square kilometer",
+    "dataset": null,
+    "indicatorId": "EN.POP.DNST"
+  },
+  {
+    "language": "uk",
+    "label": "Щільність населення",
+    "description": "Щільність населення — це населення на середину року, поділене на площу землі в квадратних кілометрах.",
+    "source": "World Development Indicators",
+    "unit": "people per square kilometer",
+    "dataset": null,
+    "indicatorId": "EN.POP.DNST"
+  },
+  {
+    "language": "en",
+    "label": "CO2 emissions",
+    "description": "Carbon dioxide emissions are those stemming from the burning of fossil fuels and the manufacture of cement. They include carbon dioxide produced during consumption of solid, liquid, and gas fuels and gas flaring.",
+    "source": "World Development Indicators",
+    "unit": "metric tons per capita",
+    "dataset": null,
+    "indicatorId": "EN.ATM.CO2E.PC"
+  },
+  {
+    "language": "uk",
+    "label": "Викиди CO2",
+    "description": "Викиди вуглекислого газу — це викиди, що виникають внаслідок спалювання викопного пального та виробництва цементу. Вони включають вуглекислий газ, що виробляється під час споживання твердого, рідкого та газоподібного пального та факельного горіння газу.",
+    "source": "World Development Indicators",
+    "unit": "metric tons per capita",
+    "dataset": null,
+    "indicatorId": "EN.ATM.CO2E.PC"
+  },
+  {
+    "language": "en",
+    "label": "Population",
+    "description": "Total population is based on the de facto definition of population, which counts all residents regardless of legal status or citizenship. The values shown are midyear estimates.",
+    "source": "World Development Indicators",
+    "unit": "people",
+    "dataset": null,
+    "indicatorId": "SP.POP.TOTL"
+  },
+  {
+    "language": "uk",
+    "label": "Загальна чисельність населення",
+    "description": "Загальна чисельність населення базується на фактичному визначенні населення, яке враховує всіх жителів незалежно від правового статусу або громадянства. Показані значення є оцінками на середину року.",
+    "source": "World Development Indicators",
+    "unit": "people",
+    "dataset": null,
+    "indicatorId": "SP.POP.TOTL"
+  },
+  {
+    "language": "en",
+    "label": "GDP",
+    "description": "GDP at purchaser's prices is the sum of gross value added by all resident producers in the economy plus any product taxes and minus any subsidies not included in the value of the products. Data are in current U.S. dollars converted from domestic currencies using single year official exchange rates.",
+    "source": "World Development Indicators",
+    "unit": "US dollars",
+    "dataset": null,
+    "indicatorId": "NY.GDP.MKTP.CD"
+  },
+  {
+    "language": "uk",
+    "label": "ВВП",
+    "description": "ВВП за цінами покупців – це сума валової доданої вартості всіх резидентних виробників в економіці плюс будь-які податки на продукцію та мінус будь-які субсидії, не включені у вартість продукції. Дані наведені в поточних доларах США, конвертовані з національних валют за офіційними річними обмінними курсами.",
+    "source": "World Development Indicators",
+    "unit": "US dollars",
+    "dataset": null,
+    "indicatorId": "NY.GDP.MKTP.CD"
+  }
+]

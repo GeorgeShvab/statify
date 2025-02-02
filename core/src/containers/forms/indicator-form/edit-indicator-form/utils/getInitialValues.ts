@@ -1,4 +1,4 @@
-import { Indicator } from "@prisma/client"
+import { Indicator } from "@/types/indicator.types"
 
 const getInitialValues = (indicator: Indicator) => {
   return {

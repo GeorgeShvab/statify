@@ -1,7 +1,6 @@
 [
   {
     "id": "POL",
-    "name": "Poland",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:19.843Z",
     "geoCode": "616",
@@ -15,7 +14,6 @@
   },
   {
     "id": "ESP",
-    "name": "Spain",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:13.291Z",
     "geoCode": "724",
@@ -29,7 +27,6 @@
   },
   {
     "id": "FRA",
-    "name": "France",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:14.485Z",
     "geoCode": "250",
@@ -43,7 +40,6 @@
   },
   {
     "id": "GBR",
-    "name": "United Kingdom",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:14.73Z",
     "geoCode": "826",
@@ -57,7 +53,6 @@
   },
   {
     "id": "DEU",
-    "name": "Germany",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:24.036Z",
     "geoCode": "276",
@@ -71,7 +66,6 @@
   },
   {
     "id": "UKR",
-    "name": "Ukraine",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:22.919Z",
     "geoCode": "804",
@@ -85,7 +79,6 @@
   },
   {
     "id": "USA",
-    "name": "United States",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:24.658Z",
     "geoCode": "840",
@@ -99,7 +92,6 @@
   },
   {
     "id": "CHN",
-    "name": "China",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:11.872Z",
     "geoCode": "156",
@@ -113,7 +105,6 @@
   },
   {
     "id": "WEOWORLD",
-    "name": "World",
     "createdAt": "2023-09-20T13:00:24.369Z",
     "updatedAt": "2024-10-10T09:03:23.541Z",
     "geoCode": "1",

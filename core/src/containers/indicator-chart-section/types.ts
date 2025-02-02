@@ -1,5 +1,5 @@
-import { Indicator } from "@prisma/client"
 import { ChartItem } from "@/store/chart-store/types"
+import { Indicator } from "@/types/indicator.types"
 
 export type ChartIndicatorData = Pick<Indicator, "unit" | "label">
 

@@ -1,4 +1,4 @@
-import { Country } from "@prisma/client"
+import { Country } from "@/types/country.types"
 
 export interface EditCountryModalProps {
   country: Country

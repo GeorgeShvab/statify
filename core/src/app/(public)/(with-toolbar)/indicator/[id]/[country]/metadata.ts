@@ -56,12 +56,14 @@ const generateMetadata = async ({
     }
   }
 
+  const i18nContext = {
+    name: country.name,
+    label: indicator.label,
+  }
+
   return {
     metadataBase: new URL(SERVER_ADDRESS),
-    title: translate("pages.indicator_country.metadata.title", {
-      country: country.name,
-      indicator: indicator.label,
-    }),
+    title: translate("pages.indicator_country.metadata.title", i18nContext),
     description: translate(
       "pages.indicator_country.metadata.description_long",
       {
@@ -73,27 +75,21 @@ const generateMetadata = async ({
     themeColor: "#ffffff",
     openGraph: {
       images: [ogImage],
-      title: translate("pages.indicator_country.metadata.title", {
-        country: country.name,
-        indicator: indicator.label,
-      }),
-      description: translate("pages.indicator_country.metadata.description", {
-        country: country.name,
-        indicator: indicator.label,
-      }),
+      title: translate("pages.indicator_country.metadata.title", i18nContext),
+      description: translate(
+        "pages.indicator_country.metadata.description",
+        i18nContext
+      ),
       type: "website",
       url: `/indicator/${params.id}/${params.country}`,
     },
     twitter: {
       images: [ogImage],
-      title: translate("pages.indicator_country.metadata.title", {
-        country: country.name,
-        indicator: indicator.label,
-      }),
-      description: translate("pages.indicator_country.metadata.description", {
-        country: country.name,
-        indicator: indicator.label,
-      }),
+      title: translate("pages.indicator_country.metadata.title", i18nContext),
+      description: translate(
+        "pages.indicator_country.metadata.description",
+        i18nContext
+      ),
       card: "summary_large_image",
       site: "@Zhorrrro",
     },

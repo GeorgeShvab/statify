@@ -1,5 +1,5 @@
-import { Indicator } from "@prisma/client"
 import { IndicatorFormValues } from "@/containers/forms/indicator-form/types"
+import { Indicator } from "@/types/indicator.types"
 
 export interface EditIndicatorFormProps {
   indicator: Indicator

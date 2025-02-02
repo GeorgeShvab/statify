@@ -20,7 +20,7 @@ export const GET = validationMiddleware(async ({ params, searchParams }) => {
   if (!indicator || !countryValues.length)
     return new NextResponse(null, { status: 404 })
 
-  const fileName = indicator.label
+  const fileName = encodeURI(indicator.label)
 
   if (searchParams.format === "xlsx") {
     const header = ["Region", "Year", "Value"]

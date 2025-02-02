@@ -1,4 +1,4 @@
-import { Indicator } from "@prisma/client"
+import { Indicator } from "@/types/indicator.types"
 
 export interface IndicatorCardProps
   extends Pick<Indicator, "label" | "id" | "description" | "source"> {
