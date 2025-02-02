@@ -1,9 +1,9 @@
 import { FC } from "react"
-import { Indicator } from "@prisma/client"
 import EditIndicatorForm from "@/containers/forms/indicator-form/edit-indicator-form/EditIndicatorForm"
 import { EditIndicatorModalProps } from "@/containers/modals/edit-indicator-modal/types"
 import ModalContainer from "@/components/modal-container/ModalContainer"
 import { useModal } from "@/providers/modal-provider/ModalProvider"
+import { Indicator } from "@/types/indicator.types"
 import translate from "@/modules/i18n"
 
 const EditIndicatorModal: FC<EditIndicatorModalProps> = ({

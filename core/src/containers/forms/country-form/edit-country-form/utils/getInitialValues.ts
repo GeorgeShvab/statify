@@ -1,5 +1,5 @@
-import { Country } from "@prisma/client"
 import { EditCountryFormValues } from "@/containers/forms/country-form/edit-country-form/types"
+import { Country } from "@/types/country.types"
 
 const getInitialValues = (country: Country): EditCountryFormValues => {
   return {

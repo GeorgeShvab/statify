@@ -241,6 +241,12 @@ export default {
           by_indicator_id: "Indicator ID",
           by_country_id: "Country ID",
         },
+        country: {
+          all: "All countries",
+        },
+        indicator: {
+          all: "All indicators",
+        },
       },
     },
     dashboard: {

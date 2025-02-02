@@ -1,5 +1,5 @@
-import { Country } from "@prisma/client"
 import { CountryFormValues } from "@/containers/forms/country-form/types"
+import { Country } from "@/types/country.types"
 
 export interface EditCountryFormProps {
   country: Country

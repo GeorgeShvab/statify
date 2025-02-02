@@ -1,6 +1,7 @@
-import { AreaType, Country } from "@prisma/client"
+import prisma, { AreaType } from "@prisma/client"
 import { Option } from "@/ui/select/Select.types"
 import {
+  Country,
   CountryRowValue,
   CountryWithDatapoints,
   CountryWithValues,
@@ -33,11 +34,11 @@ export interface CreateCountryParams {
   searchTags?: string[]
 }
 
-export type UpdateOneParams = Partial<Omit<Country, "mapping">> &
-  Pick<Country, "id">
+export type UpdateOneParams = Partial<Omit<prisma.Country, "mapping">> &
+  Pick<prisma.Country, "id">
 
 export interface CountryServiceInterface {
-  createOne: (param: CreateCountryParams) => Promise<Country>
+  createOne: (param: CreateCountryParams) => Promise<prisma.Country>
   deleteMany: (ids: string[]) => Promise<void>
   hideMany: (ids: string[]) => Promise<void>
   exposeMany: (ids: string[]) => Promise<void>

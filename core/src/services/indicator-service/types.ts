@@ -1,7 +1,7 @@
-import { Indicator } from "@prisma/client"
+import prisma from "@prisma/client"
 import { Option } from "@/ui/select/Select.types"
 import { PageableResult } from "@/types/general.types"
-import { IndicatorWithDatapoints } from "@/types/indicator.types"
+import { IndicatorWithDatapoints, Indicator } from "@/types/indicator.types"
 
 export type AdminIndicatorSort =
   | "id"
@@ -37,13 +37,14 @@ export interface SearchParams {
 export interface IndicatorServiceInterface {
   deleteMany: (ids: string[]) => Promise<void>
   getSelectAutocomplete: () => Promise<Option[]>
-  createOne: (data: CreateIndicatorParams) => Promise<Indicator>
+  createOne: (data: CreateIndicatorParams) => Promise<prisma.Indicator>
   hideMany: (ids: string[]) => Promise<void>
   exposeMany: (ids: string[]) => Promise<void>
-  updateOne: (data: Partial<Indicator> & Pick<Indicator, "id">) => Promise<void>
+  updateOne: (
+    data: Partial<prisma.Indicator> & Pick<prisma.Indicator, "id">
+  ) => Promise<void>
   getById: (id: string) => Promise<null | Indicator>
   getAll: () => Promise<Indicator[]>
-  getManyByIds: (ids: string[]) => Promise<Indicator[]>
   getRelatedById: (ids: string) => Promise<Indicator[]>
   getForAdmin: (params: GetForAdminParams) => Promise<IndicatorWithDatapoints[]>
   getSearchAutocomplete: (query: string) => Promise<Indicator[]>

@@ -9,30 +9,24 @@ datasource db {
 }
 
 model Indicator {
-  id          String      @id @unique
-  label       String
-  description String?
-  source      String
-  unit        String?
-  dataset     String?
-  absolute    Boolean
-  unitSymbol  String?
-  showChart   Boolean     @default(true)
-  precision   Int         @default(0)
-  hidden      Boolean     @default(false)
-  tags        String[]
-  searchTags  String[]
-  ranking     Int         @default(0)
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  values      Value[]
-  Bookmark    Bookmark[]
-  relatedTo   Indicator[] @relation("indicatorRelation")
-  relatedIn   Indicator[] @relation("indicatorRelation")
+  id                   String                 @id @unique
+  absolute             Boolean
+  unitSymbol           String?
+  showChart            Boolean                @default(true)
+  precision            Int                    @default(0)
+  hidden               Boolean                @default(false)
+  tags                 String[]
+  searchTags           String[]
+  ranking              Int                    @default(0)
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime               @updatedAt
+  values               Value[]
+  Bookmark             Bookmark[]
+  relatedTo            Indicator[]            @relation("indicatorRelation")
+  relatedIn            Indicator[]            @relation("indicatorRelation")
+  IndicatorTranslation IndicatorTranslation[]
 
-  @@index([label(sort: Asc)])
   @@index([id(sort: Asc)])
-  @@index([label, searchTags, hidden])
 }
 
 model Value {
@@ -59,22 +53,21 @@ enum AreaType {
 }
 
 model Country {
-  id                        String     @id @unique
-  name                      String
-  geoCode                   String?    @unique
+  id                        String               @id @unique
+  geoCode                   String?              @unique
   iso2Code                  String?
-  hidden                    Boolean    @default(false)
+  hidden                    Boolean              @default(false)
   mapping                   Json?
-  createdAt                 DateTime   @default(now())
-  updatedAt                 DateTime   @updatedAt
-  independentState          Boolean    @default(true)
-  internationallyRecognized Boolean    @default(true)
+  createdAt                 DateTime             @default(now())
+  updatedAt                 DateTime             @updatedAt
+  independentState          Boolean              @default(true)
+  internationallyRecognized Boolean              @default(true)
   searchTags                String[]
   type                      AreaType?
   values                    Value[]
   Bookmark                  Bookmark[]
+  CountryTranslation        CountryTranslation[]
 
-  @@index([name(sort: Asc)])
   @@index([id(sort: Asc)])
 }
 
@@ -104,4 +97,31 @@ model User {
   role      Role
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum Language {
+  uk
+  en
+}
+
+model IndicatorTranslation {
+  language    Language
+  indicator   Indicator @relation(fields: [indicatorId], references: [id])
+  label       String
+  description String?
+  source      String
+  unit        String?
+  dataset     String?
+  indicatorId String
+
+  @@id([indicatorId, language])
+}
+
+model CountryTranslation {
+  language  Language
+  country   Country  @relation(fields: [countryId], references: [id])
+  name      String
+  countryId String
+
+  @@id([countryId, language])
 }

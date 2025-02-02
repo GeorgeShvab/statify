@@ -1,5 +1,7 @@
-import { Country } from "@prisma/client"
+import prisma from "@prisma/client"
 import { RowValue } from "@/types/value.types"
+
+export type Country = prisma.Country & Pick<prisma.CountryTranslation, "name">
 
 export interface CountryWithDatapoints extends Country {
   datapoints: number

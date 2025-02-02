@@ -1,0 +1,92 @@
+[
+  {
+    "language": "en",
+    "name": "Poland",
+    "countryId": "POL"
+  },
+  {
+    "language": "uk",
+    "name": "Польща",
+    "countryId": "POL"
+  },
+  {
+    "language": "en",
+    "name": "Spain",
+    "countryId": "ESP"
+  },
+  {
+    "language": "uk",
+    "name": "Іспанія",
+    "countryId": "ESP"
+  },
+  {
+    "language": "en",
+    "name": "France",
+    "countryId": "FRA"
+  },
+  {
+    "language": "uk",
+    "name": "Франція",
+    "countryId": "FRA"
+  },
+  {
+    "language": "en",
+    "name": "United Kingdom",
+    "countryId": "GBR"
+  },
+  {
+    "language": "uk",
+    "name": "Сполучене Королівство",
+    "countryId": "GBR"
+  },
+  {
+    "language": "en",
+    "name": "Germany",
+    "countryId": "DEU"
+  },
+  {
+    "language": "uk",
+    "name": "Німеччина",
+    "countryId": "DEU"
+  },
+  {
+    "language": "en",
+    "name": "Ukraine",
+    "countryId": "UKR"
+  },
+  {
+    "language": "uk",
+    "name": "Україна",
+    "countryId": "UKR"
+  },
+  {
+    "language": "en",
+    "name": "United States",
+    "countryId": "USA"
+  },
+  {
+    "language": "uk",
+    "name": "Сполучені Штати",
+    "countryId": "USA"
+  },
+  {
+    "language": "en",
+    "name": "China",
+    "countryId": "CHN"
+  },
+  {
+    "language": "uk",
+    "name": "Китай",
+    "countryId": "CHN"
+  },
+  {
+    "language": "en",
+    "name": "World",
+    "countryId": "WEOWORLD"
+  },
+  {
+    "language": "uk",
+    "name": "Світ",
+    "countryId": "WEOWORLD"
+  }
+]

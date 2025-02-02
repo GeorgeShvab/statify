@@ -56,8 +56,8 @@ const IndicatorOptionsButton: FC<IndicatorOptionsProps> = ({
         >
           {translate(
             isBookmarked
-              ? "pages.indicator.bookmark"
-              : "pages.indicator.unbookmark"
+              ? "pages.indicator.unbookmark"
+              : "pages.indicator.bookmark"
           )}
         </DropdownItem>
         <DropdownItem className="indicator-options__dropdown-item" size="small">

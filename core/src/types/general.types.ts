@@ -49,3 +49,9 @@ export type Flatten<
     ? `${Key}.${Flatten<T[Key]>}`
     : `${Key}`
   : never
+
+export type SQLCount = [
+  {
+    count: number
+  },
+]
