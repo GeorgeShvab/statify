@@ -12,10 +12,10 @@ export default async function middleware(
   req: NextRequestWithAuth,
   event: NextFetchEvent
 ) {
-  const limitRequests =
-    process.env.NODE_ENV === "production" &&
-    process.env.MODE !== "testing" &&
-    process.env.MODE !== "development"
+  const limitRequests = false
+    // process.env.NODE_ENV === "production" &&
+    // process.env.MODE !== "testing" &&
+    // process.env.MODE !== "development"
 
   if (limitRequests) {
     const isStaticPath =
